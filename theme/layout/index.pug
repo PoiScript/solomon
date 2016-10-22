@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    title= Index
+  body
+    p Hello World
+    p All Posts:
+    for post in posts
+      a(href='/blog/' + post.url)= post.title 

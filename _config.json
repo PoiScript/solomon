@@ -1,0 +1,12 @@
+{
+  "title": "Solomon",
+  "description": "Oops, Solomon!",
+  "url": "localhost:8080",
+  "pages": [
+    "about",
+    "links"
+  ],
+  "posts": [
+    "Amps and angle encoding.md"
+  ]
+}

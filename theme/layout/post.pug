@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title= post.title
+  body
+    p Title:
+    p= post.title
+    p Content:
+    p!= post.content
+    p Tags:
+    for tag in post.tags
+      p= tag

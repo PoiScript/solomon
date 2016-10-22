@@ -1,0 +1,34 @@
+{
+  "name": "solomon",
+  "version": "0.1.0",
+  "description": "Ooops, a blog framework!",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jstransformer-markdown-it": "^2.0.0",
+    "marked": "^0.3.6",
+    "marked-metadata": "0.0.6",
+    "moment": "^2.15.1",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoiScript/Solomon.git"
+  },
+  "keywords": [
+    "Blog",
+    "Framework",
+    "ExpressJS",
+    "Pug"
+  ],
+  "author": "PoiScript",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PoiScript/Solomon/issues"
+  },
+  "homepage": "https://github.com/PoiScript/Solomon#readme"
+}
