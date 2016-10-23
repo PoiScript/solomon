@@ -1,0 +1,24 @@
+html,body{
+  height: 100%;
+  width: 100%;
+  margin: 0px auto;
+}
+div#plax-container {
+  position: relative;
+  margin: -60px auto;
+  width: 600px;
+  height: 600px;
+  z-index: -1;
+}
+img.plax-img {
+  position: absolute;
+}
+img#plax-1 {
+  z-index: 1;
+}
+img#plax-2 {
+  z-index: 2;
+}
+img#plax-3 {
+  z-index: 3;
+}

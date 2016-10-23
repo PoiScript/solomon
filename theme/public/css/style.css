@@ -1,0 +1,17 @@
+.semi-transparent {
+  background-color: rgba(0,0,0,0.2) !important;
+}
+.margin-top-container {
+  margin-top: -35vh;
+  margin-bottom: -15vh;
+}
+.ribbon {
+  width: 100%;
+  height: 10vh;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+.page-footer {
+  background-color: #00BCD4;
+}

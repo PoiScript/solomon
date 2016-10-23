@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  .parallax-container
+    include includes/header
+    .parallax
+      img#parallax-img(src='/img/bg.jpg')
+  .row.margin-top-container
+    .col.s10.offset-s1.card.row
+      h1 博客
+      .col.s10
+        if (posts.length)
+          #recent.section.scrollspy
+            h3 recent_posts
+            .slider
+              ul.slides
+                for post in posts
+                  li
+                    img
+                    .caption.center-align
+                      h3= post.title
+                      a.waves-effect.waves-light.btn(href='/blog/' + post.url) Read More
+          #tags.section.scrollspy
+            h3 Tags
+          #archive.section.scrollspy
+            h3 Archive
+      .col.s2
+        .toc-wrapper
+          ul.section.table-of-contents
+            li
+              a(href='#recent') recent_posts
+            li
+              a(href='#tags') tags
+            li
+              a(href='#categories') categories
+            li
+              a(href='#archive') archive_a
+
+block script
+  script(src='/js/post.js')

@@ -38,3 +38,9 @@ jspm_packages
 
 # Posts Folder
 posts
+
+# Dolphin
+.directory
+
+# Configure
+_config.json

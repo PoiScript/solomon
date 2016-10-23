@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Dashboard
+  h3 All Posts
+  for post in posts
+    p= post.title
+    p= post.date
+    p= post.tags
+    p= post.url
