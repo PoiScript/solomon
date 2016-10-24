@@ -3,11 +3,14 @@
   "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   "placeholder": [
     "links",
-    "about",
-    "poi"
+    "about"
   ],
   "posts": [
-    "example1.md",
-    "example2.md"
+    "about.md",
+    "Amps and angle encoding.md"
+  ],
+  "archive": [
+    "tags",
+    "month"
   ]
 }
