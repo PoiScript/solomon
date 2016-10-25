@@ -4,4 +4,5 @@ $(document).ready(function () {
   $('.toc-wrapper').pushpin({ top: $('.toc-wrapper').offset().top })
   $(".button-collapse").sideNav()
   $('.parallax').parallax()
+   $('.collapsible').collapsible()
 })
