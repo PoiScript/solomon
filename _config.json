@@ -4,6 +4,7 @@
   "placeholder": [
     "links"
   ],
+  "post_folder": "/posts",
   "posts": [
     "about.md",
     "Amps and angle encoding.md"
