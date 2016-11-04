@@ -1,8 +1,8 @@
-extends ../layout
+extends layout
 
 block content
   .parallax-container
-    include ../includes/header
+    include includes/header
     .parallax
       img#parallax-img(src='/img/bg.jpg')
   .row.margin-top-container
@@ -31,7 +31,7 @@ block content
       .col.s3
         .toc-wrapper
         | page.content
-  include ../includes/footer
+  include includes/footer
 
 block css
   link(rel='stylesheet' href='/css/about.css')
