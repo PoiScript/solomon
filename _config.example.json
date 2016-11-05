@@ -1,13 +1,9 @@
 {
   "title": "Lorem ipsum",
   "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-  "placeholder": [
+  "pages": [
     "links",
-    "about",
-    "poi"
-  ],
-  "posts": [
-    "example1.md",
-    "example2.md"
+    "archive",
+    "dashboard"
   ]
 }

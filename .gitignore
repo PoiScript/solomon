@@ -42,5 +42,6 @@ posts
 # Dolphin
 .directory
 
-# Configure
+# Configure & Posts
 _config.json
+_posts.json
