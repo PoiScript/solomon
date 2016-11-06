@@ -3,7 +3,6 @@
   "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   "pages": [
     "links",
-    "archive",
-    "dashboard"
+    "archive"
   ]
 }
