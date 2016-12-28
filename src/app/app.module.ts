@@ -7,10 +7,8 @@ import { MaterialModule } from '@angular/material'
 import { AppComponent } from './app.component'
 import { AppFooterComponent } from './app-footer.component'
 import { AppNavComponent } from './app-nav.component'
-import { AppIndexComponent } from './app-index.component'
 
-import { CardTagComponent } from './card-tag.component'
-import { PostListComponent } from './post-list.component'
+import { MainModule } from './main/main.module'
 
 import { AppRoutingModule } from './app-routing.module'
 
@@ -19,11 +17,9 @@ import { AppRoutingModule } from './app-routing.module'
     AppComponent,
     AppFooterComponent,
     AppNavComponent,
-    PostListComponent,
-    AppIndexComponent,
-    CardTagComponent
   ],
   imports: [
+    MainModule,
     BrowserModule,
     FormsModule,
     HttpModule,
