@@ -5,25 +5,22 @@ import { HttpModule } from '@angular/http'
 import { MaterialModule } from '@angular/material'
 
 import { AppComponent } from './app.component'
-import { AppFooterComponent } from './app-footer.component'
-import { AppNavComponent } from './app-nav.component'
+import { FooterComponent } from './footer'
+import { HeaderComponent } from './header'
 
-import { MainModule } from './main/main.module'
-
-import { AppRoutingModule } from './app-routing.module'
+import { AppRouting } from './app.routing'
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppFooterComponent,
-    AppNavComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
-    MainModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule,
+    AppRouting,
     MaterialModule.forRoot()
   ],
   providers: [],
