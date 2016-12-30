@@ -1,17 +1,28 @@
-import { NgModule }     from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { NgModule }             from '@angular/core'
+import { CommonModule }         from '@angular/common'
+import { MaterialModule }       from '@angular/material'
+import { FlexLayoutModule }     from '@angular/flex-layout'
 
-import { HomeComponent } from './home.component'
+import { HomeComponent }        from './home.component'
+import { AboutComponent }       from './about'
+import { CategoriesComponent }  from './categories'
+import { PostsComponent }       from './posts'
 
-import { HomeRouting } from './home.routing'
+import { HomeRouting }          from './home.routing'
+
 
 @NgModule({
   imports: [
+    HomeRouting,
     CommonModule,
-    HomeRouting
+    MaterialModule,
+    FlexLayoutModule,
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    PostsComponent,
+    CategoriesComponent,
   ]
 })
 
