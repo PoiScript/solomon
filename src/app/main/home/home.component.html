@@ -1,12 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="space-around start" >
-  <div fxFlex="30%">
-    <md-input-container>
-      <input md-input placeholder="Search">
-    </md-input-container>
-    <about></about>
-    <categories></categories>
-  </div>
-  <div fxFlex="60%">
-    <posts></posts>
+<div class="containerX">
+  <div  fxLayout="row"
+        fxLayoutAlign="space-around stretch"
+        fxLayout.xs="column"
+        fxLayout.sm="column" fxFlex class="coloredContainerX box" >
+    <div fxFlex="20%"><about></about></div>
+    <div fxFlex="75%"><posts></posts></div>
   </div>
 </div>

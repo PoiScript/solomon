@@ -6,6 +6,7 @@ import { FlexLayoutModule }     from '@angular/flex-layout'
 import { HomeComponent }        from './home.component'
 import { AboutComponent }       from './about'
 import { CategoriesComponent }  from './categories'
+import { ArchivesComponent }    from './archives'
 import { PostsComponent }       from './posts'
 
 import { HomeRouting }          from './home.routing'
@@ -22,6 +23,7 @@ import { HomeRouting }          from './home.routing'
     HomeComponent,
     AboutComponent,
     PostsComponent,
+    ArchivesComponent,
     CategoriesComponent,
   ]
 })

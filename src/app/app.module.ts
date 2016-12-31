@@ -1,21 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
-import { HttpModule } from '@angular/http'
+import { BrowserModule }    from '@angular/platform-browser'
+import { NgModule }         from '@angular/core'
+import { FormsModule }      from '@angular/forms'
+import { HttpModule }       from '@angular/http'
 
-import { MaterialModule } from '@angular/material'
+import { MaterialModule }   from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 
-import { AppComponent } from './app.component'
-import { FooterComponent } from './footer'
-import { HeaderComponent } from './header'
+import { AppComponent }     from './app.component'
+import { NavComponent }     from './nav'
+import { HeaderComponent }  from './header'
 
-import { AppRouting } from './app.routing'
+import { AppRouting }       from './app.routing'
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
+    NavComponent,
     HeaderComponent,
   ],
   imports: [
