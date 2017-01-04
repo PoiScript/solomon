@@ -1,3 +1,7 @@
 .containerX {
   padding-top: 10vh;
 }
+
+md-card {
+    margin: 20px;
+}

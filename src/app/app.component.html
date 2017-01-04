@@ -1,7 +1,10 @@
-<md-sidenav-layout fullscreen>
-  <md-sidenav #sidenav mode="side" layout="column" opened="true">
+<md-sidenav-container fullscreen>
+  <md-sidenav mode="side" [opened]="true">
+    <md-toolbar color="primary">
+      <h3>PoiScript's Blog</h3>
+    </md-toolbar>
     <app-nav></app-nav>
   </md-sidenav>
   <app-header></app-header>
   <router-outlet></router-outlet>
-</md-sidenav-layout>
+</md-sidenav-container>

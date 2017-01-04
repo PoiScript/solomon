@@ -1,3 +1,7 @@
-md-list {
+md-list, md-nav-list, md-list[dense], md-nav-list[dense] {
   padding: 0;
+}
+
+.nav-active {
+    color: purple;
 }

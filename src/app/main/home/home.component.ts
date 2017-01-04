@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import {Component} from "@angular/core"
+import {Post} from "../../post/post"
 
 @Component({
   selector: 'home',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core'
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {}
+export class HomeComponent {
+  title: 'Home'
+  posts: Post[]
+}

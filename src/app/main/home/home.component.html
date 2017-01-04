@@ -1,9 +1,24 @@
+<h3>Recent Posts</h3>
+<posts></posts>
 <div class="containerX">
-  <div  fxLayout="row"
-        fxLayoutAlign="space-around stretch"
-        fxLayout.xs="column"
-        fxLayout.sm="column" fxFlex class="coloredContainerX box" >
-    <div fxFlex="20%"><about></about></div>
-    <div fxFlex="75%"><posts></posts></div>
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayout.sm="column"
+       fxLayoutAlign="space-around center"
+       fxFlex class="coloredContainerX box">
+    <div fxFlex
+         fxFlex.sm="1"
+         fxFlex.xs="1">
+      <h3>Recent Working Projects</h3>
+      <md-card>
+        <github>Loading...</github>
+      </md-card>
+    </div>
+    <div fxFlex
+         fxFlex.xs="1"
+         fxFlex.sm="1">
+      <h3>Recent Watching Anime</h3>
+      <kitsu></kitsu>
+    </div>
   </div>
 </div>
