@@ -2,11 +2,11 @@ import {NgModule} from "@angular/core"
 import {CommonModule} from "@angular/common"
 import {MaterialModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
-import {HomeComponent} from "./home.component"
+import {RecentComponent} from "./recent.component"
 import {PostsComponent} from "./posts"
 import {GitHubComponent} from "./github/github.component"
 import {KitsuComponent} from "./kitsu"
-import {HomeRouting} from "./home.routing"
+import {HomeRouting} from "./recent.routing"
 
 
 @NgModule({
@@ -17,12 +17,12 @@ import {HomeRouting} from "./home.routing"
 		FlexLayoutModule,
 	],
 	declarations: [
-		HomeComponent,
+		RecentComponent,
 		PostsComponent,
 		GitHubComponent,
 		KitsuComponent,
 	]
 })
 
-export class HomeModule {
+export class RecentModule {
 }

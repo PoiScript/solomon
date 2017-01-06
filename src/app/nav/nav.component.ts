@@ -24,8 +24,8 @@ export class NavComponent {
 
 	menu = [
 		{
-			title: 'Home',
-			path: '/'
+			title: 'Recent',
+			path: '/recent'
 		},
 		{
 			title: 'About',
