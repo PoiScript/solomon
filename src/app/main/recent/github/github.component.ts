@@ -24,7 +24,7 @@ export class GitHubComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.repos = parseGitHubApiJSON(data, 4)
-					let date = new Date(data[0].updated_at)
+					let date = new Date(data[0].pushed_at)
 					this.updatedAt = date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
 				},
 				err => alert(err),
