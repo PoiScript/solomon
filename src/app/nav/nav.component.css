@@ -5,3 +5,7 @@ md-list, md-nav-list, md-list[dense], md-nav-list[dense] {
 .nav-active {
     color: purple;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}

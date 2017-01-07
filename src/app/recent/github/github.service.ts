@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
-import {config} from "../../../../config"
+import {api} from "../../../config/api"
 
 @Injectable()
 export class GitHubService {
@@ -9,8 +9,8 @@ export class GitHubService {
 
 	getRepos() {
 		return this._http.get('https://api.github.com/users/'
-			+ config.github_username + '/repos?'
-			+ config.github_params)
+			+ api.github_username + '/repos?'
+			+ api.github_params)
 			.map(res => res.json())
 	}
 }

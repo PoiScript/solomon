@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core"
 import {GitHubService} from "./github.service"
 import {Repo} from "./repo"
-import {config} from "../../../../config"
+import {api} from "../../../config/api"
 
 @Component({
 	selector: 'github',
@@ -11,10 +11,11 @@ import {config} from "../../../../config"
 })
 
 export class GitHubComponent implements OnInit {
-	username: string = config.github_username
+	username: string = api.github_username
 
 	updatedAt: string
-	repos: Repo[]
+	reposLeft: Repo[] = []
+	reposRight: Repo[] = []
 
 	constructor(private _githubService: GitHubService) {
 	}
@@ -23,7 +24,11 @@ export class GitHubComponent implements OnInit {
 		this._githubService.getRepos()
 			.subscribe(
 				data => {
-					this.repos = parseGitHubApiJSON(data, 4)
+					let a = 0;
+					for (; a <= 2; a++)
+						this.reposLeft.push(new Repo(data[a]))
+					for (; a <= 5; a++)
+						this.reposRight.push(new Repo(data[a]))
 					let date = new Date(data[0].pushed_at)
 					this.updatedAt = date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
 				},
@@ -33,11 +38,3 @@ export class GitHubComponent implements OnInit {
 	}
 }
 
-function parseGitHubApiJSON(data, limit): Repo[] {
-	let result: Repo[] = []
-	data.some((repo, index) => {
-		result.push(new Repo(repo))
-		return index === limit
-	})
-	return result
-}

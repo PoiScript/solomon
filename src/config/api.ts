@@ -1,6 +1,6 @@
 import {stringify} from "querystring"
 
-export const config = {
+export const api = {
 	github_username: 'PoiScript',
 	github_params: stringify({
 		type: 'all',

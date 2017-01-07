@@ -1,7 +1,10 @@
-<md-sidenav-container fullscreen>
-  <md-sidenav #sidenav>
-    <app-nav></app-nav>
+<md-sidenav-container fullscreen [ngClass]="{'dark-theme': isDarkTheme}">
+  <md-sidenav #sidenav fullscreen>
+    <app-nav [isDarkTheme]="isDarkTheme"></app-nav>
   </md-sidenav>
-  <app-header [sidenav]="sidenav"></app-header>
-  <router-outlet></router-outlet>
+  <app-header></app-header>
+  <router-outlet #content></router-outlet>
 </md-sidenav-container>
+<button #fab md-fab class="fab" (click)="sidenav.toggle()">
+  <md-icon>menu</md-icon>
+</button>

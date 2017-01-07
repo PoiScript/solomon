@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
-import {config} from "../../../../config"
+import {api} from "../../../config/api"
+
 
 @Injectable()
 export class KitsuService {
@@ -8,8 +9,7 @@ export class KitsuService {
 	}
 
 	getAnime() {
-		return this._http.get('https://kitsu.io/api/edge/library-entries?' + config.kitsu_params)
+		return this._http.get('https://kitsu.io/api/edge/library-entries?' + api.kitsu_params)
 			.map(res => res.json())
 	}
-
 }
