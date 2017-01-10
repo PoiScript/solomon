@@ -1,0 +1,50 @@
+{
+  "example0": [
+    {
+      "category": "example0",
+      "title": "example 0",
+      "path": "example-0",
+      "date": "2017-1-1"
+    },
+    {
+      "category": "example0",
+      "title": "example 1",
+      "path": "example-1",
+      "date": "2017-1-1"
+    },
+    {
+      "category": "example0",
+      "title": "example 2",
+      "path": "example-2",
+      "date": "2017-1-1"
+    }
+  ],
+  "example1": [
+    {
+      "category": "example1",
+      "title": "example 3",
+      "path": "example-3",
+      "date": "2017-1-1"
+    },
+    {
+      "category": "example1",
+      "title": "example 4",
+      "path": "example-4",
+      "date": "2017-1-1"
+    }
+  ],
+  "example2": [
+    {
+      "category": "example2",
+      "title": "example 5",
+      "path": "example-5",
+      "date": "2017-1-1"
+    },
+    {
+      "category": "example2",
+      "title": "example 6",
+      "path": "example-6",
+      "date": "2017-1-1"
+    }
+  ]
+}

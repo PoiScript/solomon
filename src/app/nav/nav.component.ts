@@ -1,4 +1,6 @@
-import {Component, Input} from "@angular/core"
+import {Component, Input, OnInit} from "@angular/core"
+import {global} from "../../config/global"
+import {PostService} from "../service/post/post.service"
 
 @Component({
 	selector: 'app-nav',
@@ -6,39 +8,24 @@ import {Component, Input} from "@angular/core"
 	styleUrls: ['./nav.component.css'],
 })
 
-export class NavComponent {
+export class NavComponent implements OnInit {
+	menu = global.menu
+	categories: any[] = []
 	@Input() isDarkTheme: boolean
 
-	categories = [
-		{
-			title: 'Test 1',
-			count: 23
-		},
-		{
-			title: 'Test 2',
-			count: 34
-		},
-		{
-			title: 'Test 3',
-			count: 45
-		}
-	]
-	menu = [
-		{
-			title: 'Recent',
-			path: '/recent'
-		},
-		{
-			title: 'About',
-			path: '/about'
-		},
-		{
-			title: 'Links',
-			path: '/links'
-		},
-		{
-			title: 'Random',
-			path: '/rand'
-		}
-	]
+	constructor(private _postService: PostService) {
+	}
+
+	ngOnInit() {
+		this._postService.getAllCategories()
+			.subscribe(
+				data => {
+					for (let k in data) {
+						if (data.hasOwnProperty(k))
+							this.categories.push({title: k, count: data[k].length})
+					}
+				},
+				err => alert(err)
+			)
+	}
 }

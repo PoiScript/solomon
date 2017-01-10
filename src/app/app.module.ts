@@ -8,6 +8,7 @@ import {AppComponent} from "./app.component"
 import {NavComponent} from "./nav"
 import {HeaderComponent} from "./header"
 import {AppRouting} from "./app.routing"
+import {PostService} from "./service/post/post.service"
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,7 @@ import {AppRouting} from "./app.routing"
 		MaterialModule.forRoot(),
 		FlexLayoutModule.forRoot(),
 	],
-	providers: [],
+	providers: [PostService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

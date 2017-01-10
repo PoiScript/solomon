@@ -1,0 +1,8 @@
+{
+  "title": "example 6",
+  "path": "example-6",
+  "category": "example2",
+  "date": "2017-1-1",
+  "raw": "\n\n# Example 5\n\n##Emphasis\n*This text will be italic*\n_This will also be italic_\n\n**This text will be bold**\n__This will also be bold__\n\n_You **can** combine them_",
+  "html": "<h1 id=\"example-5\">Example 5</h1>\n<p>##Emphasis\n<em>This text will be italic</em>\n<em>This will also be italic</em></p>\n<p><strong>This text will be bold</strong>\n<strong>This will also be bold</strong></p>\n<p><em>You <strong>can</strong> combine them</em></p>\n"
+}

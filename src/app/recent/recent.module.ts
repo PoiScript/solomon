@@ -21,7 +21,7 @@ import {HomeRouting} from "./recent.routing"
 		PostsComponent,
 		GitHubComponent,
 		KitsuComponent,
-	]
+	],
 })
 
 export class RecentModule {

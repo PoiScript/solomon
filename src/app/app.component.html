@@ -2,9 +2,6 @@
   <md-sidenav #sidenav fullscreen>
     <app-nav [isDarkTheme]="isDarkTheme"></app-nav>
   </md-sidenav>
-  <app-header></app-header>
+  <app-header [sidenav]="sidenav"></app-header>
   <router-outlet #content></router-outlet>
 </md-sidenav-container>
-<button #fab md-fab class="fab" (click)="sidenav.toggle()">
-  <md-icon>menu</md-icon>
-</button>

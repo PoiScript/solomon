@@ -1,3 +1,1 @@
-/**
- * Created by poi on 1/10/17.
- */
+export * from './post.service'
