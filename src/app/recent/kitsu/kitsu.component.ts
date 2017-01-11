@@ -1,7 +1,8 @@
-import {Component, OnInit} from "@angular/core"
-import {KitsuService} from "./kitsu.service"
-import {Anime} from "./anime"
+import {Component} from "@angular/core"
+import {KitsuService} from "../../service/kitsu"
+import {Anime} from "../../service/kitsu/anime"
 import {api} from "../../../config/api"
+import {Entry} from "../../service/kitsu/entry"
 
 @Component({
 	selector: 'kitsu',
@@ -9,32 +10,28 @@ import {api} from "../../../config/api"
 	styleUrls: ['./kitsu.component.css'],
 	providers: [KitsuService]
 })
-export class KitsuComponent implements OnInit {
+export class KitsuComponent {
 	username: string = api.kitsu_username
+	entries: Entry[]
+	animes: Anime[]
 
-	animeLeft: Anime[] = []
-	animeRight: Anime[] = []
-	updatedAt: string
-
-	constructor(private _kitsuService: KitsuService) {
+	constructor(private kitsuService: KitsuService) {
 	}
 
-	ngOnInit() {
-		this._kitsuService.getAnime()
-			.subscribe(
-				data => {
-					let i = 0
-					for (; i <= 2; i++)
-						if (data.data[i].relationships.media.data.id === data.included[i].id)
-							this.animeLeft.push(new Anime(data.included[i], data.data[i]))
-					for (; i <= 5; i++)
-						if (data.data[i].relationships.media.data.id === data.included[i].id)
-							this.animeRight.push(new Anime(data.included[i], data.data[i]))
-					let date = new Date(data.data[0].attributes.updatedAt)
-					this.updatedAt = date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
-				},
-				err => alert(err),
-				() => console.log('Anime Refreshed.')
-			)
-	}
+	// getAnimes(): void {
+	// 	this.kitsuService
+	// 		.getAnimes()
+	// 		.then(animes => this.animes = animes)
+	// }
+	//
+	// getEntries(): void {
+	// 	this.kitsuService
+	// 		.getEntries()
+	// 		.then(entries => this.entries = entries)
+	// }
+	//
+	// ngOnInit(): void {
+	// 	this.getAnimes()
+	// 	this.getEntries()
+	// }
 }

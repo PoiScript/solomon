@@ -29,22 +29,31 @@ function generatePostJSON() {
 		})
 		meta['raw'] = post.substr(metaTokenEnd + 3)
 		meta['html'] = marked(meta['raw'])
-		console.log(JSON.stringify(meta))
-		fs.writeFile(`src/assets/post/${meta.path}.json`, JSON.stringify(meta), (err) => {
-			if (err) console.error(err)
-			console.log(`${meta.path}.json generated.`)
-		})
+		// console.log(JSON.stringify(meta))
+		// fs.writeFile(`src/assets/post/${meta.path}.json`, JSON.stringify(meta), (err) => {
+		// 	if (err) console.error(err)
+		// 	console.log(`${meta.path}.json generated.`)
+		// })
 	})
 }
 
 function generateCategoryJSON() {
-	let categories = {}
+	let temp = {}
+	let categories = []
 	categoryList.forEach((post) => {
-		if (post.category in categories)
-			categories[post.category].push(post)
+		if (post.category in temp)
+			temp[post.category].push(post)
 		else
-			categories[post.category] = [post]
+			temp[post.category] = [post]
 	})
+	for (let k in temp) {
+		categories.push({
+			title: k,
+			count: temp[k].length,
+			posts: temp[k]
+		})
+	}
+	console.log(JSON.stringify(categories))
 	fs.writeFile("src/assets/post/categories.json", JSON.stringify(categories), (err) => {
 		if (err) console.error(err)
 		console.log("categories.json generated.")

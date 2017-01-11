@@ -1,0 +1,5 @@
+<ul *ngFor="let post of posts">
+  <li> {{post.title}}</li>
+  <li> {{post.date}}</li>
+  <a [routerLink]="['/post', post.path]">Read</a>
+</ul>

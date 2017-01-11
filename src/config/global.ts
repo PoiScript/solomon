@@ -13,8 +13,8 @@ export const global = {
 			path: '/links'
 		},
 		{
-			title: 'Random',
-			path: '/rand'
+			title: 'Archive',
+			path: '/archive'
 		}
 	]
 }

@@ -2,7 +2,7 @@
   <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
     <div fxFlex>
       <md-list>
-        <md-list-item *ngFor="let repo of reposLeft">
+        <md-list-item *ngFor="let repo of repos| slice:0:3">
           <md-icon md-list-avatar>code</md-icon>
           <h3 md-line> {{repo.name}} </h3>
           <p md-line> {{repo.language}} </p>
@@ -12,7 +12,7 @@
     </div>
     <div fxFlex>
       <md-list>
-        <md-list-item *ngFor="let repo of reposRight">
+        <md-list-item *ngFor="let repo of repos| slice:3:6">
           <md-icon md-list-avatar>code</md-icon>
           <h3 md-line> {{repo.name}} </h3>
           <p md-line> {{repo.language}} </p>
