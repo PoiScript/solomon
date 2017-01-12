@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core"
-import {PostService} from "../service/post/post.service"
-import {Post} from "../service/post/post"
+import {Component, OnDestroy, OnInit} from "@angular/core"
+import {PostService} from "../service/post"
+import {Category} from "../service/post/category"
+import {CategoryService} from "../service/category"
 import {ActivatedRoute} from "@angular/router"
 
 @Component({
@@ -8,25 +9,38 @@ import {ActivatedRoute} from "@angular/router"
 	styleUrls: ['./category.component.css'],
 	providers: [PostService]
 })
-export class CategoryComponent implements OnInit {
-	posts: Post[]
-	category: string
+export class CategoryComponent implements OnDestroy, OnInit{
+	// subscription: Subscription
+	category: Category
 
-	constructor(private postService: PostService, private route: ActivatedRoute) {
-	}
-
-	getPosts(): void {
-		this.postService
+	getCategory(title: string): void{
+		this.categoryService
 			.getCategories()
-			.then(categories => this.posts = categories.filter((category) => category.title === this.category)[0].posts)
+			.then((categories) => this.category = categories.filter((cat) => cat.title === title)[0])
 	}
 
-	ngOnInit() {
-		this.route.params.subscribe(
-			params => {
-				this.category = params['title']
-				this.getPosts()
-			}
-		)
+	constructor(
+		private categoryService: CategoryService,
+	  private router: ActivatedRoute
+	){
+		// this.subscription = categoryService.categoryAnnounced$
+		// 	.subscribe(
+		// 		category => {
+		// 			this.category = category
+		// 			console.error(category)
+		// 		}
+		// )
+	}
+
+	ngOnInit(): void {
+			this.router.params.subscribe(
+				params => {
+					this.getCategory(params['title'])
+				}
+			)
+	}
+
+	ngOnDestroy(): void {
+		// this.subscription.unsubscribe()
 	}
 }

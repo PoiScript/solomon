@@ -1,8 +1,1 @@
-{
-  "title": "example 3",
-  "path": "example-3",
-  "category": "example1",
-  "date": "2017-1-1",
-  "raw": "\n\n# Example 3\n\n```javascript\n//JavaScript Code\nconsole.log('hello')\n```\n\n```html\n<!-- HTML Code -->\n<h1>Hello</h1>\n```",
-  "html": "<h1 id=\"example-3\">Example 3</h1>\n<pre><code class=\"lang-javascript\">//JavaScript Code\nconsole.log(&#39;hello&#39;)\n</code></pre>\n<pre><code class=\"lang-html\">&lt;!-- HTML Code --&gt;\n&lt;h1&gt;Hello&lt;/h1&gt;\n</code></pre>\n"
-}
+{"title":"example 3","slug":"example-3","category":"example1","date":"2016-11-7","raw":"\n\n# Example 3\n\n```javascript\n//JavaScript Code\nconsole.log('hello')\n```\n\n```html\n<!-- HTML Code -->\n<h1>Hello</h1>\n```","html":"<h1 id=\"example-3\">Example 3</h1>\n<pre><code class=\"lang-javascript\">//JavaScript Code\nconsole.log(&#39;hello&#39;)\n</code></pre>\n<pre><code class=\"lang-html\">&lt;!-- HTML Code --&gt;\n&lt;h1&gt;Hello&lt;/h1&gt;\n</code></pre>\n"}

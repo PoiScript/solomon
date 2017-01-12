@@ -8,13 +8,24 @@ import {AppComponent} from "./app.component"
 import {NavComponent} from "./nav"
 import {HeaderComponent} from "./header"
 import {AppRouting} from "./app.routing"
-import {PostService} from "./service/post/post.service"
+import {PostService} from "./service/post"
+import {LinkComponent} from "./link"
+import {YearPipe} from "./pipe/year.pipe"
+import {ArchiveComponent} from "./archive/archive.component"
+import {CategoryComponent} from "./category/category.component"
+import {CategoryPipe} from "./pipe/category.pipe"
+import {CategoryService} from "./service/category"
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		NavComponent,
 		HeaderComponent,
+		ArchiveComponent,
+		LinkComponent,
+		CategoryComponent,
+		YearPipe,
+		CategoryPipe,
 	],
 	imports: [
 		BrowserModule,
@@ -24,8 +35,11 @@ import {PostService} from "./service/post/post.service"
 		MaterialModule.forRoot(),
 		FlexLayoutModule.forRoot(),
 	],
-	providers: [PostService],
-	bootstrap: [AppComponent]
+	providers: [
+		PostService,
+		CategoryService
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule {
 }

@@ -1,27 +1,30 @@
 <md-card>
-  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+  <h3>Recent Projects</h3>
+  <div fxLayout="row" fxLayout.sm="column">
     <div fxFlex>
-      <md-list>
+      <md-nav-list>
         <md-list-item *ngFor="let repo of repos| slice:0:3">
           <md-icon md-list-avatar>code</md-icon>
-          <h3 md-line> {{repo.name}} </h3>
-          <p md-line> {{repo.language}} </p>
-          <p md-line> {{repo.description}} </p>
+          <a md-line href=repo.html_url>{{repo.name}}</a>
+          <p md-line>{{repo.language}} </p>
+          <p md-line>{{repo.description}} </p>
+          <p md-line>{{repo.pushed_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
         </md-list-item>
-      </md-list>
+      </md-nav-list>
     </div>
     <div fxFlex>
-      <md-list>
+      <md-nav-list>
         <md-list-item *ngFor="let repo of repos| slice:3:6">
           <md-icon md-list-avatar>code</md-icon>
-          <h3 md-line> {{repo.name}} </h3>
-          <p md-line> {{repo.language}} </p>
-          <p md-line> {{repo.description}} </p>
+          <a md-line href=repo.html_url>{{repo.name}}</a>
+          <p md-line>{{repo.language}} </p>
+          <p md-line>{{repo.description}} </p>
+          <p md-line>{{repo.pushed_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
         </md-list-item>
-      </md-list>
+      </md-nav-list>
     </div>
   </div>
-  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+  <div fxLayout="row" fxLayout.sm="column">
     <div fxFlex><p class="fade">Updated At: {{updatedAt}}</p></div>
     <div fxFlex><a class="fade" href="https://github.com/{{username}}">@{{username}} on GitHub</a></div>
   </div>

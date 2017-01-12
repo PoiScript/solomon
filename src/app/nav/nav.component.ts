@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from "@angular/core"
+import {Component, OnInit} from "@angular/core"
 import {global} from "../../config/global"
-import {PostService} from "../service/post"
 import {Category} from "../service/post/category"
+import {CategoryService} from "../service/category/category.service"
 
 @Component({
 	selector: 'app-nav',
@@ -12,18 +12,23 @@ import {Category} from "../service/post/category"
 export class NavComponent implements OnInit {
 	menu = global.menu
 	categories: Category[]
-	@Input() isDarkTheme: boolean
 
-	constructor(private postService: PostService) {
+	constructor(private categoryService: CategoryService) {
 	}
 
-	getCategories(): void {
-		this.postService
+	getCategorise(): void {
+		this.categoryService
 			.getCategories()
-			.then(categories => this.categories = categories)
+			.then((categories) => this.categories = categories)
+	}
+
+	announce(title: string): void {
+		this.categoryService.announceCategory(
+			this.categories.filter((category) => category.title === title)[0]
+		)
 	}
 
 	ngOnInit(): void {
-		this.getCategories()
+		this.getCategorise()
 	}
 }

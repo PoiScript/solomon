@@ -1,18 +1,25 @@
 <md-card>
-  <div  fxLayout="row"
-        fxLayout.xs="column"
-        fxLayout.sm="column">
+  <h3>Recent Animes</h3>
+  <div fxLayout="row" fxLayout.sm="column">
     <div fxFlex>
-      <md-list>
-        <md-list-item *ngFor="let i of [0]">
+      <md-nav-list>
+        <md-list-item *ngFor="let anime of animes| slice:0:3">
           <md-icon md-list-avatar>tv</md-icon>
-          <h3 md-line> {{entries}} </h3>
+          <a md-line href="[]"> {{anime.canonicalTitle}} </a>
+          <p md-line> {{anime.titles.ja_jp}} </p>
+          <p md-line> {{anime.updatedAt | date:"yyyy-MM-dd HH:mm:ss"}} </p>
         </md-list-item>
-      </md-list>
+      </md-nav-list>
     </div>
     <div fxFlex>
-      <md-list>
-      </md-list>
+      <md-nav-list>
+        <md-list-item *ngFor="let anime of animes| slice:3:6">
+          <md-icon md-list-avatar>tv</md-icon>
+          <a md-line href="[]"> {{anime.canonicalTitle}} </a>
+          <p md-line> {{anime.titles.ja_jp}} </p>
+          <p md-line> {{anime.updatedAt | date:"yyyy-MM-dd HH:mm:ss"}} </p>
+        </md-list-item>
+      </md-nav-list>
     </div>
   </div>
   <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">

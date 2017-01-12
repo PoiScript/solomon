@@ -1,22 +1,21 @@
+<md-toolbar color="primary">
+  <h4>PoiScript's Blog</h4>
+  <span class="spacer"></span>
+  <button md-icon-button><md-icon>color_lens</md-icon></button>
+</md-toolbar>
 <md-nav-list>
-  <md-toolbar color="primary">
-    <h4>PoiScript's Blog</h4>
-    <span class="spacer"></span>
-    <button md-icon-button (click)="isDarkTheme = !isDarkTheme">
-      <md-icon>color_lens</md-icon>
-    </button>
-  </md-toolbar>
-  <md-list-item *ngFor="let meun of menu">
-    <a md-line [routerLink]=[meun.path]> {{ meun.title }} </a>
+  <md-list-item *ngFor="let meun of menu" [routerLink]=[meun.path]>
+    {{ meun.title }}
   </md-list-item>
   <md-divider></md-divider>
-  <md-nav-list dense>
-    <h3 md-subheader>Categories</h3>
-    <md-list-item *ngFor="let category of categories">
-      <a md-line [routerLink]="['/category', category.title]"> {{ category.title }} </a>
-      <md-chip-list>
-        <md-chip> {{category.count}}</md-chip>
-      </md-chip-list>
-    </md-list-item>
-  </md-nav-list>
+  <h3 md-subheader>Categories</h3>
+  <md-list-item
+      *ngFor="let category of categories"
+      (click)="announce(category.title)"
+      [routerLink]="['/category', category.title]">
+    <p md-line> {{ category.title }} </p>
+    <md-chip-list>
+      <md-chip> {{category.count}}</md-chip>
+    </md-chip-list>
+  </md-list-item>
 </md-nav-list>

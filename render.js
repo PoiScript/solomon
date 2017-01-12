@@ -1,8 +1,8 @@
 let fs = require('fs')
 let marked = require('marked')
 
+let fileList = []
 let postList = []
-let categoryList = []
 
 function walk(path) {
 	let dirList = fs.readdirSync(path)
@@ -10,37 +10,36 @@ function walk(path) {
 		if (fs.statSync(path + '/' + item).isDirectory())
 			walk(path + '/' + item)
 		else
-			postList.push(fs.readFileSync(path + '/' + item, 'utf8'))
+			fileList.push(fs.readFileSync(path + '/' + item, 'utf8'))
 	})
-	console.log(postList.length + " file(s) found.")
+	console.log(fileList.length + " file(s) found.")
 }
 
 function generatePostJSON() {
-	postList.forEach((post) => {
-		let metaTokenStart = post.indexOf('```json')
-		let metaTokenEnd = post.indexOf('```', 1)
+	fileList.forEach((file) => {
+		let metaTokenStart = file.indexOf('```json')
+		let metaTokenEnd = file.indexOf('```', 1)
 		if (metaTokenStart === -1) return console.error('Markdown Metadata Missed.')
-		let meta = JSON.parse(post.substr(metaTokenStart + 8, metaTokenEnd - 9))
-		categoryList.push({
-			category: meta.category,
-			title: meta.title,
-			path: meta.path,
-			date: meta.date
+		let post = JSON.parse(file.substr(metaTokenStart + 8, metaTokenEnd - 9))
+		postList.push({
+			category: post.category,
+			title: post.title,
+			slug: post.slug,
+			date: new Date(post.date)
 		})
-		meta['raw'] = post.substr(metaTokenEnd + 3)
-		meta['html'] = marked(meta['raw'])
-		// console.log(JSON.stringify(meta))
-		// fs.writeFile(`src/assets/post/${meta.path}.json`, JSON.stringify(meta), (err) => {
-		// 	if (err) console.error(err)
-		// 	console.log(`${meta.path}.json generated.`)
-		// })
+		post['raw'] = file.substr(metaTokenEnd + 3)
+		post['html'] = marked(post['raw'])
+		fs.writeFile(`src/assets/post/${post.slug}.json`, JSON.stringify(post), (err) => {
+			if (err) console.error(err)
+			console.log(`${post.slug}.json generated.`)
+		})
 	})
 }
 
 function generateCategoryJSON() {
 	let temp = {}
 	let categories = []
-	categoryList.forEach((post) => {
+	postList.forEach((post) => {
 		if (post.category in temp)
 			temp[post.category].push(post)
 		else
@@ -53,13 +52,23 @@ function generateCategoryJSON() {
 			posts: temp[k]
 		})
 	}
-	console.log(JSON.stringify(categories))
 	fs.writeFile("src/assets/post/categories.json", JSON.stringify(categories), (err) => {
 		if (err) console.error(err)
 		console.log("categories.json generated.")
 	})
 }
 
+function generateArchiveJSON() {
+	postList.sort((p1, p2) => {
+		return p2.date - p1.date
+	})
+	fs.writeFile("src/assets/post/archive.json", JSON.stringify(postList), (err) => {
+		if (err) console.error(err)
+		console.log("archive.json generated.")
+	})
+}
+
 walk('post')
 generatePostJSON()
 generateCategoryJSON()
+generateArchiveJSON()

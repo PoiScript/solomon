@@ -4,12 +4,5 @@ export class Repo {
 	description: string
 	fork: boolean
 	language: string
-
-	constructor(repo) {
-		this.name = repo.name
-		this.html_url = repo.html_url
-		this.description = repo.description
-		this.fork = repo.fork
-		this.language = repo.language
-	}
+	pushed_at: string
 }

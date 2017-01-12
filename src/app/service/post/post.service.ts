@@ -1,31 +1,25 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
-import {Category} from "./category"
 import "rxjs/add/operator/toPromise"
+
 import {Post} from "./post"
 
 @Injectable()
 export class PostService {
+	constructor(private http: Http) {}
 
-	constructor(private http: Http) {
-	}
-
-	getCategories(): Promise<Category []> {
-		return this.http.get('/assets/post/categories.json')
+	getArchive(): Promise<Post []> {
+		return this.http.get('/assets/post/archive.json')
 			.toPromise()
-			.then(res => res.json() as Category[])
+			.then(res => res.json() as Post[])
 			.catch(this.handleError)
 	}
 
-	getPost(path: string): Promise<Post> {
-		return this.http.get(`/assets/post/${path}.json`)
+	getPost(slug: string): Promise<Post> {
+		return this.http.get(`/assets/post/${slug}.json`)
 			.toPromise()
 			.then(res => res.json() as Post)
-	}
-
-	getPostByPath() {
-		return this.http.get('/assets/post/example-0.json')
-			.map(res => res.json())
+			.catch(this.handleError)
 	}
 
 	private handleError(error: any): Promise<any> {

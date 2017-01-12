@@ -1,9 +1,9 @@
 ```json
 {
   "title": "example 2",
-  "path": "example-2",
+  "slug": "example-2",
   "category": "example0",
-  "date": "2017-1-1"
+  "date": "2016-11-5"
 }
 ```
 #Example 3

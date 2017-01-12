@@ -1,6 +1,6 @@
 <md-sidenav-container fullscreen [ngClass]="{'dark-theme': isDarkTheme}">
   <md-sidenav #sidenav fullscreen>
-    <app-nav [isDarkTheme]="isDarkTheme"></app-nav>
+    <app-nav></app-nav>
   </md-sidenav>
   <app-header [sidenav]="sidenav"></app-header>
   <router-outlet #content></router-outlet>
