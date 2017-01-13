@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core"
 import {global} from "../../config/global"
 import {Category} from "../service/post/category"
 import {CategoryService} from "../service/category/category.service"
+import {ThemeService} from "../service/theme/theme.service"
 
 @Component({
 	selector: 'app-nav',
@@ -13,7 +14,8 @@ export class NavComponent implements OnInit {
 	menu = global.menu
 	categories: Category[]
 
-	constructor(private categoryService: CategoryService) {
+	constructor(private categoryService: CategoryService,
+	            private themeService: ThemeService) {
 	}
 
 	getCategorise(): void {

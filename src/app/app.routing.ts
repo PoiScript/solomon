@@ -1,17 +1,20 @@
 import {NgModule} from "@angular/core"
 import {RouterModule, Routes} from "@angular/router"
-import {LinkComponent} from "./link/link.component"
 import {ArchiveComponent} from "./archive"
 import {CategoryComponent} from "./category"
+import {AboutComponent} from "./about"
+import {PostComponent} from "./post"
+import {RecentComponent} from "./recent"
+import {LinksComponent} from "./links"
 
 const routes: Routes = [
 	{path: '', redirectTo: 'recent', pathMatch: 'full'},
-	{path: 'recent', loadChildren: './recent#RecentModule'},
+	{path: 'recent', component: RecentComponent},
 	{path: 'category/:title', component: CategoryComponent},
-	{path: 'about', loadChildren: './about#AboutModule'},
+	{path: 'about', component: AboutComponent},
 	{path: 'archive', component: ArchiveComponent},
-	{path: 'post/:slug', loadChildren: './post#PostModule'},
-	{path: 'links', component: LinkComponent }
+	{path: 'post/:slug', component: PostComponent},
+	{path: 'links', component: LinksComponent}
 ]
 
 @NgModule({

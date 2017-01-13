@@ -9,12 +9,23 @@ import {NavComponent} from "./nav"
 import {HeaderComponent} from "./header"
 import {AppRouting} from "./app.routing"
 import {PostService} from "./service/post"
-import {LinkComponent} from "./link"
 import {YearPipe} from "./pipe/year.pipe"
-import {ArchiveComponent} from "./archive/archive.component"
-import {CategoryComponent} from "./category/category.component"
+import {ArchiveComponent} from "./archive"
+import {CategoryComponent} from "./category"
 import {CategoryPipe} from "./pipe/category.pipe"
 import {CategoryService} from "./service/category"
+import {ThemeService} from "./service/theme"
+import {AboutComponent} from "./about"
+import {PostComponent} from "./post"
+import {TitleService} from "./service/title"
+import {RecentComponent} from "./recent"
+import {OddPipe} from "./pipe/odd.pipe"
+import {PostListComponent} from "./component/post-list"
+import {GitHubComponent} from "./recent/github"
+import {KitsuComponent} from "./recent/kitsu"
+import {PostsComponent} from "./recent/posts"
+import {LinkService} from "./service/link"
+import {LinksComponent} from "./links"
 
 @NgModule({
 	declarations: [
@@ -22,10 +33,18 @@ import {CategoryService} from "./service/category"
 		NavComponent,
 		HeaderComponent,
 		ArchiveComponent,
-		LinkComponent,
 		CategoryComponent,
+		AboutComponent,
+		PostComponent,
 		YearPipe,
 		CategoryPipe,
+		RecentComponent,
+		OddPipe,
+		PostListComponent,
+		GitHubComponent,
+		KitsuComponent,
+		PostsComponent,
+		LinksComponent
 	],
 	imports: [
 		BrowserModule,
@@ -37,7 +56,10 @@ import {CategoryService} from "./service/category"
 	],
 	providers: [
 		PostService,
-		CategoryService
+		CategoryService,
+		ThemeService,
+		TitleService,
+		LinkService
 	],
 	bootstrap: [AppComponent],
 })

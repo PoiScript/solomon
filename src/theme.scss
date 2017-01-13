@@ -6,7 +6,7 @@ $accent:  md-palette($md-amber, A200, A100, A400);
 $theme: md-light-theme($primary, $accent);
 @include angular-material-theme($theme);
 
-.dark-theme {
+.dark {
   $dark-primary: md-palette($md-pink, 700, 500, 900);
   $dark-accent:  md-palette($md-blue-grey, A200, A100, A400);
   $dark-warn:    md-palette($md-deep-orange);

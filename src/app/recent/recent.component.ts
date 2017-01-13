@@ -1,4 +1,5 @@
-import {Component} from "@angular/core"
+import {Component, OnInit} from "@angular/core"
+import {TitleService} from "../service/title/title.service"
 
 @Component({
 	selector: 'home',
@@ -6,6 +7,13 @@ import {Component} from "@angular/core"
 	styleUrls: ['./recent.component.css'],
 })
 
-export class RecentComponent {
+export class RecentComponent implements OnInit {
 	title: 'Recent'
+
+	constructor(private titleService: TitleService) {
+	}
+
+	ngOnInit(): void {
+		this.titleService.announceTitle("Recent")
+	}
 }

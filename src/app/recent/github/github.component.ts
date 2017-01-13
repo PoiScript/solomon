@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core"
 import {GitHubService} from "../../service/github"
 import {Repo} from "../../service/github/repo"
 import {api} from "../../../config/api"
+import {colors} from "../../../config/color"
 
 @Component({
 	selector: 'github',
@@ -11,9 +12,9 @@ import {api} from "../../../config/api"
 })
 
 export class GitHubComponent implements OnInit {
+	colors = colors
 	username: string = api.github_username
 	repos: Repo[]
-	updatedAt: string
 
 	constructor(private githubService: GitHubService) {
 	}

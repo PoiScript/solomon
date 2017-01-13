@@ -1,23 +1,30 @@
 import {Component, OnInit} from "@angular/core"
 import {ActivatedRoute} from "@angular/router"
-
 import {PostService} from "../service/post/post.service"
 import {Post} from "../service/post/post"
+import {TitleService} from "../service/title/title.service"
 
 @Component({
-	templateUrl: './post.component.html'
+	templateUrl: './post.component.html',
+	styleUrls: ['./post.component.css']
 })
 
 export class PostComponent implements OnInit {
 	post: Post
+	isRaw: boolean = false
 
-	constructor(private postService: PostService, private router: ActivatedRoute) {
+	constructor(private postService: PostService,
+	            private titleService: TitleService,
+	            private router: ActivatedRoute) {
 	}
 
 	getPost(slug: string): void {
 		this.postService
 			.getPost(slug)
-			.then(post => this.post = post)
+			.then(post => {
+				this.post = post
+				this.titleService.announceTitle(post.title)
+			})
 	}
 
 	ngOnInit(): void {

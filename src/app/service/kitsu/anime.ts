@@ -11,4 +11,7 @@ export class Anime {
 	progress: Number
 	episodeCount: Number
 	episodeLength: Number
+	posterImage: {
+		tiny: string
+	}
 }

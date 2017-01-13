@@ -1,5 +1,5 @@
-<md-sidenav-container fullscreen [ngClass]="{'dark-theme': isDarkTheme}">
-  <md-sidenav #sidenav fullscreen>
+<md-sidenav-container fullscreen [class.dark]="isDarkTheme">
+  <md-sidenav #sidenav>
     <app-nav></app-nav>
   </md-sidenav>
   <app-header [sidenav]="sidenav"></app-header>

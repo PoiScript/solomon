@@ -1,7 +1,6 @@
-import {Component} from "@angular/core"
+import {Component, OnInit} from "@angular/core"
 import {KitsuService} from "../../service/kitsu"
 import {Anime} from "../../service/kitsu/anime"
-import {api} from "../../../config/api"
 
 @Component({
 	selector: 'kitsu',
@@ -9,8 +8,7 @@ import {api} from "../../../config/api"
 	styleUrls: ['./kitsu.component.css'],
 	providers: [KitsuService]
 })
-export class KitsuComponent {
-	username: string = api.kitsu_username
+export class KitsuComponent implements OnInit {
 	animes: Anime[]
 
 	constructor(private kitsuService: KitsuService) {
@@ -19,10 +17,7 @@ export class KitsuComponent {
 	getAnimes(): void {
 		this.kitsuService
 			.getAnimes()
-			.then(animes => {
-				this.animes = animes
-				console.log(animes)
-			})
+			.then(animes => this.animes = animes)
 	}
 
 	ngOnInit(): void {

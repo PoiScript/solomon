@@ -3,9 +3,9 @@ import {PostService} from "../../service/post"
 import {Post} from "../../service/post/post"
 
 @Component({
-  selector: 'posts',
-	templateUrl: './posts.component.html',
-	styleUrls: ['./posts.component.css']
+	selector: 'posts',
+	template: `<post-list [posts]="posts" [limit]="6" [title]="'Recent Posts'"></post-list>`,
+
 })
 
 export class PostsComponent implements OnInit {
@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
 	constructor(private postService: PostService) {
 	}
 
-	getArchives():void {
+	getArchives(): void {
 		this.postService
 			.getArchive()
 			.then(posts => this.posts = posts)

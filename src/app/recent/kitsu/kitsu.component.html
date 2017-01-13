@@ -4,9 +4,10 @@
     <div fxFlex>
       <md-nav-list>
         <md-list-item *ngFor="let anime of animes| slice:0:3">
-          <md-icon md-list-avatar>tv</md-icon>
-          <a md-line href="[]"> {{anime.canonicalTitle}} </a>
+          <img md-list-avatar src={{anime.posterImage.tiny}} alt="Poster of {{anime.canonicalTitle}}">
+          <a md-line href="https://kitsu.io/anime/{{anime.slug}}"> {{anime.canonicalTitle}} </a>
           <p md-line> {{anime.titles.ja_jp}} </p>
+          <p md-line class="capitalize"> {{anime.status}} {{anime.progress}} / {{anime.episodeCount || "~"}}</p>
           <p md-line> {{anime.updatedAt | date:"yyyy-MM-dd HH:mm:ss"}} </p>
         </md-list-item>
       </md-nav-list>
@@ -14,16 +15,13 @@
     <div fxFlex>
       <md-nav-list>
         <md-list-item *ngFor="let anime of animes| slice:3:6">
-          <md-icon md-list-avatar>tv</md-icon>
-          <a md-line href="[]"> {{anime.canonicalTitle}} </a>
+          <img md-list-avatar src={{anime.posterImage.tiny}} alt="Poster of {{anime.canonicalTitle}}">
+          <a md-line href="https://kitsu.io/anime/{{anime.slug}}"> {{anime.canonicalTitle}} </a>
           <p md-line> {{anime.titles.ja_jp}} </p>
+          <p md-line class="capitalize"> {{anime.status}} {{anime.progress}}/{{anime.episodeCount || "~"}}</p>
           <p md-line> {{anime.updatedAt | date:"yyyy-MM-dd HH:mm:ss"}} </p>
         </md-list-item>
       </md-nav-list>
     </div>
-  </div>
-  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
-    <div fxFlex><p class="fade">Updated At: {{updatedAt}}</p></div>
-    <div fxFlex><a class="fade" href="https://github.com/{{username}}">@{{username}} on Kitsu</a></div>
   </div>
 </md-card>

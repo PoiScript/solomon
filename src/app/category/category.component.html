@@ -1,7 +1,0 @@
-<md-nav-list *ngIf="category">
-  <md-list-item *ngFor="let post of category.posts" [routerLink]="['/post', post.slug]">
-    <h3 md-line> {{post.title}} </h3>
-    <p md-line> {{post.category}} </p>
-    <p md-line> {{post.date}} </p>
-  </md-list-item>
-</md-nav-list>

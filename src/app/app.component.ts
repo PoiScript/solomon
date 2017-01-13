@@ -1,6 +1,8 @@
-import {Component, ViewChild, HostListener, OnInit} from "@angular/core"
+import {Component, ViewChild, HostListener, OnInit, OnDestroy} from "@angular/core"
 import {MdSidenav} from "@angular/material"
 import {PostService} from "./service/post/post.service"
+import {ThemeService} from "./service/theme/theme.service"
+import {Subscription} from "rxjs"
 
 @Component({
 	selector: 'app',
@@ -9,10 +11,19 @@ import {PostService} from "./service/post/post.service"
 	providers: [PostService]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+	isDarkTheme: boolean = false
 	@ViewChild('sidenav') sidenav: MdSidenav
+	subscription: Subscription
 
-	ngOnInit() {
+	constructor(private themeService: ThemeService) {
+		this.subscription = themeService.toggleTheme$
+			.subscribe(
+				() => this.isDarkTheme = !this.isDarkTheme
+			)
+	}
+
+	ngOnInit(): void {
 		if (window.innerWidth <= 960) {
 			this.sidenav.close()
 			this.sidenav.mode = "over"
@@ -30,5 +41,9 @@ export class AppComponent implements OnInit {
 			this.sidenav.open()
 			this.sidenav.mode = "side"
 		}
+	}
+
+	ngOnDestroy(): void {
+		this.subscription.unsubscribe()
 	}
 }

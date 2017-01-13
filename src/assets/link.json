@@ -1,0 +1,32 @@
+[
+  {
+    "name": "example 0",
+    "address": "0.example.com",
+    "description": "A example of address."
+  },
+  {
+    "name": "example 1",
+    "address": "1.example.com",
+    "description": "A example of address."
+  },
+  {
+    "name": "example 2",
+    "address": "2.example.com",
+    "description": "A example of address."
+  },
+  {
+    "name": "example 3",
+    "address": "3.example.com",
+    "description": "A example of address."
+  },
+  {
+    "name": "example 4",
+    "address": "4.example.com",
+    "description": "A example of address."
+  },
+  {
+    "name": "example 5",
+    "address": "5.example.com",
+    "description": "A example of address."
+  }
+]

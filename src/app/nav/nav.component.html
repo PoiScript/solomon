@@ -1,7 +1,9 @@
 <md-toolbar color="primary">
   <h4>PoiScript's Blog</h4>
   <span class="spacer"></span>
-  <button md-icon-button><md-icon>color_lens</md-icon></button>
+  <button md-icon-button (click)="themeService.toggleTheme()">
+    <md-icon>color_lens</md-icon>
+  </button>
 </md-toolbar>
 <md-nav-list>
   <md-list-item *ngFor="let meun of menu" [routerLink]=[meun.path]>

@@ -14,3 +14,7 @@ md-card {
     color: gray;
     text-decoration: none;
 }
+
+.capitalize {
+    text-transform: capitalize;
+}
