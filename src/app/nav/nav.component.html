@@ -6,7 +6,9 @@
   </button>
 </md-toolbar>
 <md-nav-list>
-  <md-list-item *ngFor="let meun of menu" [routerLink]=[meun.path]>
+  <md-list-item *ngFor="let meun of menu"
+                routerLinkActive="nav-active"
+                [routerLink]=[meun.path]>
     {{ meun.title }}
   </md-list-item>
   <md-divider></md-divider>
@@ -14,7 +16,8 @@
   <md-list-item
       *ngFor="let category of categories"
       (click)="announce(category.title)"
-      [routerLink]="['/category', category.title]">
+      [routerLink]="['/category', category.title]"
+      routerLinkActive="nav-active">
     <p md-line> {{ category.title }} </p>
     <md-chip-list>
       <md-chip> {{category.count}}</md-chip>

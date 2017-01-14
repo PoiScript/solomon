@@ -2,14 +2,14 @@
   <div fxLayout="row" fxLayout.sm="column">
     <md-nav-list fxFlex>
       <md-list-item *ngFor="let link of links|odd:false">
-        <md-icon md-list-avatar>code</md-icon>
+        <img md-list-avatar src="https://github.com/{{link.username}}.png?size=200" alt="avatar of {{link.name}}">
         <h3 md-line> {{link?.name}} </h3>
         <p md-line> {{link?.description}} </p>
       </md-list-item>
     </md-nav-list>
     <md-nav-list fxFlex>
       <md-list-item *ngFor="let link of links|odd:true">
-        <md-icon md-list-avatar>code</md-icon>
+        <img md-list-avatar src="https://github.com/{{link.username}}.png?size=200" alt="avatar of {{link.name}}">
         <h3 md-line> {{link?.name}} </h3>
         <p md-line> {{link?.description}} </p>
       </md-list-item>

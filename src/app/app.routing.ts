@@ -6,6 +6,7 @@ import {AboutComponent} from "./about"
 import {PostComponent} from "./post"
 import {RecentComponent} from "./recent"
 import {LinksComponent} from "./links"
+import {SearchComponent} from "./search"
 
 const routes: Routes = [
 	{path: '', redirectTo: 'recent', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
 	{path: 'about', component: AboutComponent},
 	{path: 'archive', component: ArchiveComponent},
 	{path: 'post/:slug', component: PostComponent},
-	{path: 'links', component: LinksComponent}
+	{path: 'links', component: LinksComponent},
+	{path: 'search', component: SearchComponent}
 ]
 
 @NgModule({

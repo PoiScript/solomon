@@ -12,7 +12,7 @@ import {PostService} from "./service/post"
 import {YearPipe} from "./pipe/year.pipe"
 import {ArchiveComponent} from "./archive"
 import {CategoryComponent} from "./category"
-import {CategoryPipe} from "./pipe/category.pipe"
+import {KeywordPipe} from "./pipe/keyword.pipe"
 import {CategoryService} from "./service/category"
 import {ThemeService} from "./service/theme"
 import {AboutComponent} from "./about"
@@ -26,6 +26,7 @@ import {KitsuComponent} from "./recent/kitsu"
 import {PostsComponent} from "./recent/posts"
 import {LinkService} from "./service/link"
 import {LinksComponent} from "./links"
+import {SearchComponent} from "./search"
 
 @NgModule({
 	declarations: [
@@ -37,14 +38,15 @@ import {LinksComponent} from "./links"
 		AboutComponent,
 		PostComponent,
 		YearPipe,
-		CategoryPipe,
+		KeywordPipe,
 		RecentComponent,
 		OddPipe,
 		PostListComponent,
 		GitHubComponent,
 		KitsuComponent,
 		PostsComponent,
-		LinksComponent
+		LinksComponent,
+		SearchComponent
 	],
 	imports: [
 		BrowserModule,

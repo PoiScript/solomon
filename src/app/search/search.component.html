@@ -1,0 +1,21 @@
+<md-card>
+  <md-input-container>
+    <input md-input [(ngModel)]="keyword" placeholder="Input Category, Title, Content...">
+  </md-input-container>
+  Include:
+  <md-checkbox>Category</md-checkbox>
+  <md-checkbox>Post Title</md-checkbox>
+  <md-checkbox>Post Content</md-checkbox>
+</md-card>
+<md-card>
+  <h3>Category includes "{{keyword}}"</h3>
+  <md-nav-list>
+    <md-list-item *ngFor="let category of categories|keywordPipe:keyword"
+                  [routerLink]="['/category', category?.title]">
+      <h3 md-line>{{category?.title}}</h3>
+      <p md-line>{{category?.count}}</p>
+    </md-list-item>
+  </md-nav-list>
+</md-card>
+<post-list [posts]="posts|keywordPipe:keyword"
+           [title]="'Title includes ' + keyword"></post-list>

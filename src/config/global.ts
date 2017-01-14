@@ -5,6 +5,10 @@ export const global = {
 			path: '/recent'
 		},
 		{
+			title: 'Search',
+			path: '/search'
+		},
+		{
 			title: 'About',
 			path: '/about'
 		},

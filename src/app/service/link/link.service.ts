@@ -13,5 +13,4 @@ export class LinkService {
 			.toPromise()
 			.then(res => res.json() as Link[])
 	}
-
 }
