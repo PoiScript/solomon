@@ -1,8 +1,8 @@
 import {Pipe, PipeTransform} from "@angular/core"
-import {Category} from "../service/post/category"
+import {Category} from "../classes/Category"
 
 @Pipe({
-	name: 'keywordPipe'
+	name: 'keyword'
 })
 export class KeywordPipe implements PipeTransform {
 

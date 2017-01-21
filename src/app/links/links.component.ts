@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core"
 import {LinkService} from "../service/link/link.service"
 import {TitleService} from "../service/title/title.service"
-import {Link} from "../service/link/link"
+import {Link} from "../classes/Link"
 
 @Component({
 	templateUrl: './links.component.html',

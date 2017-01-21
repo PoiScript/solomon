@@ -5,10 +5,10 @@
       <md-nav-list>
         <md-list-item *ngFor="let repo of repos| slice:0:3">
           <md-icon md-list-avatar>code</md-icon>
-          <a md-line href={{repo.html_url}}>{{repo.name}}</a>
-          <p md-line>{{repo.language}} </p>
-          <p md-line>{{repo.description}} </p>
-          <p md-line>{{repo.pushed_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+          <a md-line href={{repo?.html_url}}>{{repo?.name}}</a>
+          <p md-line>{{repo?.language}} </p>
+          <p md-line>{{repo?.description}} </p>
+          <p md-line>{{repo?.pushed_at|date:"yyyy-MM-dd HH:mm:ss"}}</p>
         </md-list-item>
       </md-nav-list>
     </div>
@@ -16,10 +16,10 @@
       <md-nav-list>
         <md-list-item *ngFor="let repo of repos| slice:3:6">
           <md-icon md-list-avatar>code</md-icon>
-          <a md-line href={{repo.html_url}}>{{repo.name}}</a>
-          <p md-line>{{repo.language}} </p>
-          <p md-line>{{repo.description}} </p>
-          <p md-line>{{repo.pushed_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+          <a md-line href={{repo?.html_url}}>{{repo?.name}}</a>
+          <p md-line>{{repo?.language}} </p>
+          <p md-line>{{repo?.description}} </p>
+          <p md-line>{{repo?.pushed_at|date:"yyyy-MM-dd HH:mm:ss"}}</p>
         </md-list-item>
       </md-nav-list>
     </div>

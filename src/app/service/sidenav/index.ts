@@ -1,3 +1,1 @@
-/**
- * Created by poi on 1/15/17.
- */
+export * from './sidenav.service'

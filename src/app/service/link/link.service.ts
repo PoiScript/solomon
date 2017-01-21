@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
-import {Link} from "./link"
+import {Link} from "../../classes/Link"
 
 @Injectable()
 export class LinkService {

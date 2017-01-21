@@ -1,13 +1,13 @@
 <md-toolbar color="primary">
   <h4>PoiScript's Blog</h4>
   <span class="spacer"></span>
-  <button md-icon-button (click)="themeService.toggleTheme()">
+  <button md-icon-button (click)="toggleTheme()">
     <md-icon>color_lens</md-icon>
   </button>
 </md-toolbar>
 <md-nav-list>
   <md-list-item *ngFor="let meun of menu"
-                routerLinkActive="nav-active"
+                [routerLinkActive]="isDark?['active-dark']:['active']"
                 [routerLink]=[meun.path]>
     {{ meun.title }}
   </md-list-item>
@@ -15,12 +15,8 @@
   <h3 md-subheader>Categories</h3>
   <md-list-item
       *ngFor="let category of categories"
-      (click)="announce(category.title)"
       [routerLink]="['/category', category.title]"
-      routerLinkActive="nav-active">
-    <p md-line> {{ category.title }} </p>
-    <md-chip-list>
-      <md-chip> {{category.count}}</md-chip>
-    </md-chip-list>
+      [routerLinkActive]="isDark?['active-dark']:['active']">
+    <p md-line> {{ category.title }} </p> {{category.count}}
   </md-list-item>
 </md-nav-list>

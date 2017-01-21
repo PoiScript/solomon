@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
 import {api} from "../../../config/api"
-import {Repo} from "./repo"
+import {Repo} from "../../classes/Repo"
 
 @Injectable()
 export class GitHubService {

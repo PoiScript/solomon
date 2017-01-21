@@ -1,49 +1,48 @@
 import {Component, ViewChild, HostListener, OnInit, OnDestroy} from "@angular/core"
 import {MdSidenav} from "@angular/material"
-import {PostService} from "./service/post/post.service"
 import {ThemeService} from "./service/theme/theme.service"
 import {Subscription} from "rxjs"
+import {SideNavService} from "./service/sidenav"
 
 @Component({
 	selector: 'app',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css'],
-	providers: [PostService]
+	styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit, OnDestroy {
 	isDarkTheme: boolean = false
+	isSMLayout: boolean
 	@ViewChild('sidenav') sidenav: MdSidenav
-	subscription: Subscription
+	themeSubscription: Subscription
+	sideNavSubscription: Subscription
 
-	constructor(private themeService: ThemeService) {
-		this.subscription = themeService.toggleTheme$
+	constructor(private themeService: ThemeService,
+	            private sideNavService: SideNavService) {
+		this.themeSubscription = themeService.toggleTheme$
 			.subscribe(
-				() => this.isDarkTheme = !this.isDarkTheme
+				() => {
+					this.isDarkTheme = !this.isDarkTheme
+					themeService.confirmToggle()
+				}
+			)
+		this.sideNavSubscription = sideNavService.toggleSideNav$
+			.subscribe(
+				() => this.sidenav.toggle()
 			)
 	}
 
 	ngOnInit(): void {
-		if (window.innerWidth <= 960) {
-			this.sidenav.close()
-			this.sidenav.mode = "over"
-		} else {
-			this.sidenav.open()
-			this.sidenav.mode = "side"
-		}
+		window.innerWidth > 960 ? this.isSMLayout = false : this.isSMLayout = true
 	}
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
-		if (event.target.innerWidth <= 960) {
-			this.sidenav.mode = "over"
-		} else {
-			this.sidenav.open()
-			this.sidenav.mode = "side"
-		}
+		event.target.innerWidth > 960 ? this.isSMLayout = false : this.isSMLayout = true
 	}
 
 	ngOnDestroy(): void {
-		this.subscription.unsubscribe()
+		this.themeSubscription.unsubscribe()
+		this.sideNavSubscription.unsubscribe()
 	}
 }

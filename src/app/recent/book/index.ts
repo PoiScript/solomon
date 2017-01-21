@@ -1,3 +1,1 @@
-/**
- * Created by poi on 1/19/17.
- */
+export * from './book.component'

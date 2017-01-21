@@ -3,8 +3,8 @@ import {Post} from "../../../classes/Post"
 
 @Component({
 	selector: 'post-list',
-	templateUrl: 'post-list.component.html',
-	styleUrls: ['post-list.component.css']
+	templateUrl: './post.component.html',
+	styleUrls: ['./post.component.css']
 })
 export class PostListComponent {
 	@Input() posts: Post[]

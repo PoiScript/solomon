@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
 import {api} from "../../../config/api"
-import {Anime} from "./anime"
+import {Anime} from "../../classes/Anime"
 
 
 @Injectable()

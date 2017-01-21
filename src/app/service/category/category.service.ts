@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
-import {Category} from "../post/category"
+import {Category} from "../../classes/Category"
 import {Subject} from "rxjs"
 
 @Injectable()

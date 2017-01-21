@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core"
 import {KitsuService} from "../../service/kitsu"
-import {Anime} from "../../service/kitsu/anime"
+import {Anime} from "../../classes/Anime"
 
 @Component({
 	selector: 'kitsu',

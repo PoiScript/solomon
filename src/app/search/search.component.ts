@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core"
 import {TitleService} from "../service/title"
 import {CategoryService} from "../service/category"
-import {Category} from "../service/post/category"
-import {Post} from "../service/post/post"
+import {Category} from "../classes/Category"
+import {Post} from "../classes/Post"
 import {PostService} from "../service/post/post.service"
 
 @Component({
@@ -13,6 +13,8 @@ export class SearchComponent implements OnInit {
 	categories: Category[]
 	posts: Post[]
 	keyword: string = ""
+	includeCategory: boolean = true
+	includePostTitle: boolean = true
 
 	constructor(private titleService: TitleService,
 	            private archiveService: PostService,

@@ -2,73 +2,73 @@ let fs = require('fs')
 let marked = require('marked')
 
 let fileList = []
-let postList = []
+let postIntro = []
+let posts = []
 
 function walk(path) {
-	let dirList = fs.readdirSync(path)
-	dirList.forEach((item) => {
-		if (fs.statSync(path + '/' + item).isDirectory())
-			walk(path + '/' + item)
-		else
-			fileList.push(fs.readFileSync(path + '/' + item, 'utf8'))
+	fs.readdirSync(path)
+		.forEach((item) => {
+			if (fs.statSync(path + '/' + item).isDirectory())
+				walk(path + '/' + item)
+			else
+				fileList.push(fs.readFileSync(path + '/' + item, 'utf8'))
+		})
+}
+
+function parseFile(file) {
+	let metaTokenStart = file.indexOf('```json')
+	let metaTokenEnd = file.indexOf('```', 1)
+	if (metaTokenStart === -1) return console.error('[ERROR] Markdown Metadata Missed')
+	let post = JSON.parse(file.substr(metaTokenStart + 8, metaTokenEnd - 9))
+	posts.push({
+		category: post.category,
+		title: post.title,
+		slug: post.slug,
+		date: new Date(post.date),
+		raw: file.substr(metaTokenEnd + 3),
+		html: marked(post['raw'])
 	})
-	console.log(fileList.length + " file(s) found.")
 }
 
 function generatePostJSON() {
 	fileList.forEach((file) => {
-		let metaTokenStart = file.indexOf('```json')
-		let metaTokenEnd = file.indexOf('```', 1)
-		if (metaTokenStart === -1) return console.error('Markdown Metadata Missed.')
-		let post = JSON.parse(file.substr(metaTokenStart + 8, metaTokenEnd - 9))
-		postList.push({
-			category: post.category,
-			title: post.title,
-			slug: post.slug,
-			date: new Date(post.date)
-		})
-		post['raw'] = file.substr(metaTokenEnd + 3)
-		post['html'] = marked(post['raw'])
+		parseFile(file)
+
 		fs.writeFile(`src/assets/post/${post.slug}.json`, JSON.stringify(post), (err) => {
 			if (err) console.error(err)
-			console.log(`${post.slug}.json generated.`)
+			console.log(`[GENERATED] ${post.slug}.json`)
 		})
 	})
 }
 
 function generateCategoryJSON() {
-	let temp = {}
-	let categories = []
-	postList.forEach((post) => {
-		if (post.category in temp)
-			temp[post.category].push(post)
-		else
-			temp[post.category] = [post]
-	})
-	for (let k in temp) {
-		categories.push({
-			title: k,
-			count: temp[k].length,
-			posts: temp[k]
+	let categories = {}
+	postIntro
+		.map(post => post.category)
+		.filter((post, index, self) => index === self.indexOf(post))
+		.forEach(category => {
+			categories.push({
+				title: category,
+				posts: postIntro.filter(post => category === post.category),
+				count: postIntro.filter(post => category === post.category).length
+			})
 		})
-	}
 	fs.writeFile("src/assets/post/categories.json", JSON.stringify(categories), (err) => {
 		if (err) console.error(err)
-		console.log("categories.json generated.")
+		console.log("[GENERATED] categories.json")
 	})
 }
 
 function generateArchiveJSON() {
-	postList.sort((p1, p2) => {
-		return p2.date - p1.date
-	})
-	fs.writeFile("src/assets/post/archive.json", JSON.stringify(postList), (err) => {
+	postIntro.sort((p1, p2) => p2.date - p1.date)
+	fs.writeFile("src/assets/post/archive.json", JSON.stringify(postIntro), (err) => {
 		if (err) console.error(err)
-		console.log("archive.json generated.")
+		console.log("[GENERATED] archive.json")
 	})
 }
 
 walk('post')
+console.log(`[INFO] ${fileList.length} file(s) found`)
 generatePostJSON()
 generateCategoryJSON()
 generateArchiveJSON()

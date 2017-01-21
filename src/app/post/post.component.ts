@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core"
 import {ActivatedRoute} from "@angular/router"
 import {PostService} from "../service/post/post.service"
-import {Post} from "../service/post/post"
+import {Post} from "../classes/Post"
 import {TitleService} from "../service/title/title.service"
 
 @Component({
@@ -11,7 +11,7 @@ import {TitleService} from "../service/title/title.service"
 
 export class PostComponent implements OnInit {
 	post: Post
-	isRaw: boolean = false
+	viewSource: boolean = false
 
 	constructor(private postService: PostService,
 	            private titleService: TitleService,

@@ -1,21 +1,16 @@
 <md-card>
+  <span>Search</span>
   <md-input-container>
-    <input md-input [(ngModel)]="keyword" placeholder="Input Category, Title, Content...">
+    <input md-input [(ngModel)]="keyword">
   </md-input-container>
-  Include:
-  <md-checkbox>Category</md-checkbox>
-  <md-checkbox>Post Title</md-checkbox>
-  <md-checkbox>Post Content</md-checkbox>
+  <span>Include:</span>
+  <br>
+  <md-checkbox [checked]="includeCategory" (change)="includeCategory = !includeCategory">Category</md-checkbox>
+  <md-checkbox [checked]="includePostTitle" (change)="includePostTitle = !includePostTitle">Post Title</md-checkbox>
 </md-card>
-<md-card>
-  <h3>Category includes "{{keyword}}"</h3>
-  <md-nav-list>
-    <md-list-item *ngFor="let category of categories|keywordPipe:keyword"
-                  [routerLink]="['/category', category?.title]">
-      <h3 md-line>{{category?.title}}</h3>
-      <p md-line>{{category?.count}}</p>
-    </md-list-item>
-  </md-nav-list>
-</md-card>
-<post-list [posts]="posts|keywordPipe:keyword"
+<category-list *ngIf="includeCategory"
+               [categories]="categories|keyword:keyword"
+               [title]="'Category includes ' + keyword"></category-list>
+<post-list *ngIf="includePostTitle"
+           [posts]="posts|keyword:keyword"
            [title]="'Title includes ' + keyword"></post-list>

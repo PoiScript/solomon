@@ -20,13 +20,17 @@ import {PostComponent} from "./post"
 import {TitleService} from "./service/title"
 import {RecentComponent} from "./recent"
 import {OddPipe} from "./pipe/odd.pipe"
-import {PostListComponent} from "./component/post-list"
 import {GitHubComponent} from "./recent/github"
 import {KitsuComponent} from "./recent/kitsu"
 import {PostsComponent} from "./recent/posts"
 import {LinkService} from "./service/link"
 import {LinksComponent} from "./links"
 import {SearchComponent} from "./search"
+import {SideNavService} from "./service/sidenav"
+import {BookComponent} from "./recent/book"
+import {BookService} from "./service/book"
+import {PostListComponent} from "./component/list/post"
+import {CategoryListComponent} from "./component/list/category"
 
 @NgModule({
 	declarations: [
@@ -46,7 +50,11 @@ import {SearchComponent} from "./search"
 		KitsuComponent,
 		PostsComponent,
 		LinksComponent,
-		SearchComponent
+		SearchComponent,
+		BookComponent,
+		BookComponent,
+		CategoryListComponent,
+		CategoryComponent
 	],
 	imports: [
 		BrowserModule,
@@ -61,7 +69,9 @@ import {SearchComponent} from "./search"
 		CategoryService,
 		ThemeService,
 		TitleService,
-		LinkService
+		LinkService,
+		SideNavService,
+		BookService
 	],
 	bootstrap: [AppComponent],
 })

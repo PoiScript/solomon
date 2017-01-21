@@ -5,3 +5,7 @@ md-sidenav {
 md-sidenav-container.dark {
     background: #212121;
 }
+
+.dark .md-sidenav-backdrop .md-sidenav-shown {
+    background-color: rgba(0, 0, 0, 0.6);
+}

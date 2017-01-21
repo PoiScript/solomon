@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from "@angular/core/testing"
-import {PostListComponent} from "./post-list.component"
+import {PostListComponent} from "./post.component"
 
 describe('PostListComponent', () => {
 	let component: PostListComponent;

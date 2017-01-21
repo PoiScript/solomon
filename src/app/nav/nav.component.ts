@@ -1,8 +1,9 @@
-import {Component, OnInit} from "@angular/core"
+import {Component, OnInit, OnDestroy} from "@angular/core"
 import {global} from "../../config/global"
-import {Category} from "../service/post/category"
+import {Category} from "../classes/Category"
 import {CategoryService} from "../service/category/category.service"
 import {ThemeService} from "../service/theme/theme.service"
+import {Subscription} from "rxjs"
 
 @Component({
 	selector: 'app-nav',
@@ -10,12 +11,18 @@ import {ThemeService} from "../service/theme/theme.service"
 	styleUrls: ['./nav.component.css'],
 })
 
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 	menu = global.menu
 	categories: Category[]
+	subscription: Subscription
+	isDark: boolean = false
 
 	constructor(private categoryService: CategoryService,
 	            private themeService: ThemeService) {
+		this.subscription = themeService.confirmToggle$
+			.subscribe(
+				() => this.isDark = !this.isDark
+			)
 	}
 
 	getCategorise(): void {
@@ -24,13 +31,15 @@ export class NavComponent implements OnInit {
 			.then((categories) => this.categories = categories)
 	}
 
-	announce(title: string): void {
-		this.categoryService.announceCategory(
-			this.categories.filter((category) => category.title === title)[0]
-		)
+	toggleTheme(): void {
+		this.themeService.toggleTheme()
 	}
 
 	ngOnInit(): void {
 		this.getCategorise()
+	}
+
+	ngOnDestroy(): void {
+		this.subscription.unsubscribe()
 	}
 }
