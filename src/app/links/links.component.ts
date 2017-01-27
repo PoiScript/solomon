@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core"
 import {LinkService} from "../service/link/link.service"
-import {TitleService} from "../service/title/title.service"
 import {Link} from "../classes/Link"
 
 @Component({
@@ -10,8 +9,7 @@ import {Link} from "../classes/Link"
 export class LinksComponent implements OnInit {
 	links: Link[]
 
-	constructor(private titleService: TitleService,
-	            private linkService: LinkService) {
+	constructor(private linkService: LinkService) {
 	}
 
 	getLinks(): void {
@@ -20,7 +18,6 @@ export class LinksComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.titleService.announceTitle("Links")
 		this.getLinks()
 	}
 }

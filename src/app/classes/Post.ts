@@ -4,4 +4,5 @@ export class Post {
 	raw: string
 	category: string
 	date: string
+	slug: string
 }

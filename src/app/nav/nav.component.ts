@@ -1,9 +1,11 @@
-import {Component, OnInit, OnDestroy} from "@angular/core"
-import {global} from "../../config/global"
+import {Component, Input, OnDestroy, OnInit} from "@angular/core"
 import {Category} from "../classes/Category"
 import {CategoryService} from "../service/category/category.service"
 import {ThemeService} from "../service/theme/theme.service"
 import {Subscription} from "rxjs"
+import {MdDialog, MdSidenav} from "@angular/material"
+import {SideNavService} from "../service/sidenav/sidenav.service"
+import {SettingsDialogComponent} from "../component/settings-dialog/settings-dialog.component"
 
 @Component({
 	selector: 'app-nav',
@@ -12,17 +14,24 @@ import {Subscription} from "rxjs"
 })
 
 export class NavComponent implements OnInit, OnDestroy {
-	menu = global.menu
+	@Input() sideNav: MdSidenav
 	categories: Category[]
-	subscription: Subscription
-	isDark: boolean = false
+	toggleSubscription: Subscription
+	closeSubscription: Subscription
 
-	constructor(private categoryService: CategoryService,
-	            private themeService: ThemeService) {
-		this.subscription = themeService.confirmToggle$
-			.subscribe(
-				() => this.isDark = !this.isDark
-			)
+	menu = [{title: 'Recent', path: '/recent'},
+		{title: 'Search', path: '/search'},
+		{title: 'About', path: '/about'},
+		{title: 'Links', path: '/links'},
+		{title: 'Archive', path: '/archive'}]
+
+	constructor(public dialog: MdDialog,
+	            private categoryService: CategoryService,
+	            private sideNavService: SideNavService) {
+		this.toggleSubscription = sideNavService.toggleSideNav$
+			.subscribe(() => this.sideNav.toggle())
+		this.closeSubscription = sideNavService.closeSideNav$
+			.subscribe(() => this.sideNav.close())
 	}
 
 	getCategorise(): void {
@@ -31,8 +40,8 @@ export class NavComponent implements OnInit, OnDestroy {
 			.then((categories) => this.categories = categories)
 	}
 
-	toggleTheme(): void {
-		this.themeService.toggleTheme()
+	openDialog(): void {
+		this.dialog.open(SettingsDialogComponent)
 	}
 
 	ngOnInit(): void {
@@ -40,6 +49,7 @@ export class NavComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.subscription.unsubscribe()
+		this.closeSubscription.unsubscribe()
+		this.toggleSubscription.unsubscribe()
 	}
 }

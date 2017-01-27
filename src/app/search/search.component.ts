@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core"
-import {TitleService} from "../service/title"
 import {CategoryService} from "../service/category"
 import {Category} from "../classes/Category"
 import {Post} from "../classes/Post"
@@ -16,8 +15,7 @@ export class SearchComponent implements OnInit {
 	includeCategory: boolean = true
 	includePostTitle: boolean = true
 
-	constructor(private titleService: TitleService,
-	            private archiveService: PostService,
+	constructor(private archiveService: PostService,
 	            private categoryService: CategoryService) {
 	}
 
@@ -34,7 +32,6 @@ export class SearchComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.titleService.announceTitle('Search')
 		this.getCategories()
 		this.getArchive()
 	}

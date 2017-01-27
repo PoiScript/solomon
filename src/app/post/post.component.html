@@ -1,3 +1,4 @@
+<app-header [title]="post?.title" [isPostPage]="true"></app-header>
 <md-card>
   <md-card-header>
     <md-icon md-card-avatar>code</md-icon>
@@ -7,8 +8,11 @@
     <button md-icon-button mdTooltip="View Source" (click)="viewSource = !viewSource">
       <md-icon>code</md-icon>
     </button>
+    <button md-icon-button mdTooltip="View It On GitHub" (click)="viewSource = !viewSource">
+      <md-icon>open_in_new</md-icon>
+    </button>
     <button md-icon-button mdTooltip="Bookmark" [mdMenuTriggerFor]="menu">
-      <md-icon>bookmark</md-icon>
+      <md-icon>bookmark_border</md-icon>
     </button>
     <md-menu #menu="mdMenu">
       <button md-menu-item>View {{isRaw?"Parsed":"Source"}}</button>
@@ -17,3 +21,5 @@
   <md-card-content *ngIf="viewSource" [innerHTML]="post?.raw"></md-card-content>
   <md-card-content [innerHTML]="post?.html"></md-card-content>
 </md-card>
+<comment></comment>
+<app-footer [nextPostTile]="post?.slug" [previousPostTitle]="post?.slug"></app-footer>

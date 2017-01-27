@@ -6,7 +6,7 @@ import {MaterialModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {AppComponent} from "./app.component"
 import {NavComponent} from "./nav"
-import {HeaderComponent} from "./header"
+import {HeaderComponent} from "./component/header"
 import {AppRouting} from "./app.routing"
 import {PostService} from "./service/post"
 import {YearPipe} from "./pipe/year.pipe"
@@ -17,7 +17,6 @@ import {CategoryService} from "./service/category"
 import {ThemeService} from "./service/theme"
 import {AboutComponent} from "./about"
 import {PostComponent} from "./post"
-import {TitleService} from "./service/title"
 import {RecentComponent} from "./recent"
 import {OddPipe} from "./pipe/odd.pipe"
 import {GitHubComponent} from "./recent/github"
@@ -31,6 +30,11 @@ import {BookComponent} from "./recent/book"
 import {BookService} from "./service/book"
 import {PostListComponent} from "./component/list/post"
 import {CategoryListComponent} from "./component/list/category"
+import {FooterComponent} from "./component/footer"
+import {CommentComponent} from "./component/comment"
+import {GitHubService} from "./service/github"
+import {SortByPipe} from "./pipe/sort-by.pipe";
+import { SettingsDialogComponent } from './component/settings-dialog/settings-dialog.component'
 
 @NgModule({
 	declarations: [
@@ -54,7 +58,11 @@ import {CategoryListComponent} from "./component/list/category"
 		BookComponent,
 		BookComponent,
 		CategoryListComponent,
-		CategoryComponent
+		CategoryComponent,
+		FooterComponent,
+		CommentComponent,
+		SortByPipe,
+		SettingsDialogComponent
 	],
 	imports: [
 		BrowserModule,
@@ -68,12 +76,13 @@ import {CategoryListComponent} from "./component/list/category"
 		PostService,
 		CategoryService,
 		ThemeService,
-		TitleService,
 		LinkService,
 		SideNavService,
-		BookService
+		BookService,
+		GitHubService
 	],
 	bootstrap: [AppComponent],
+	entryComponents: [SettingsDialogComponent]
 })
 export class AppModule {
 }

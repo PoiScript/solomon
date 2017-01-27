@@ -3,11 +3,7 @@ md-list, md-nav-list, md-list[dense], md-nav-list[dense] {
 }
 
 .active {
-    color: #673ab7;
-}
-
-.active-dark {
-    color: #c2185b;
+    font-weight: 700;
 }
 
 .spacer {

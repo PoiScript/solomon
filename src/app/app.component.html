@@ -1,7 +1,6 @@
 <md-sidenav-container fullscreen [class.dark]="isDarkTheme">
   <md-sidenav #sidenav [opened]="!isSMLayout" [mode]="isSMLayout?'over':'side'">
-    <app-nav></app-nav>
+    <app-nav [sideNav]="sidenav"></app-nav>
   </md-sidenav>
-  <app-header></app-header>
   <router-outlet></router-outlet>
 </md-sidenav-container>

@@ -1,0 +1,26 @@
+<md-card>
+  <h3>Comment</h3>
+  <md-card-header>
+    <md-card-title>{{comments?.length}} comments</md-card-title>
+    <span class="spacer"></span>
+    <button md-icon-button mdTooltip="Sort" [mdMenuTriggerFor]="menu">
+      <md-icon>sort</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item>Oldest First</button>
+      <button md-menu-item>Newest First</button>
+    </md-menu>
+  </md-card-header>
+  <div class="comment" *ngFor="let comment of comments">
+    <header>
+      <a [href]="comment.user.html_url" target="_blank">
+        <img [src]="comment.user.avatar_url" class="avatar">
+      </a>
+      <div class="author">
+        <strong>{{comment.user.login}}</strong>
+        <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
+      </div>
+    </header>
+    <div class="text">{{comment.body}}</div>
+  </div>
+</md-card>

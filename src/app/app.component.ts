@@ -1,8 +1,7 @@
-import {Component, ViewChild, HostListener, OnInit, OnDestroy} from "@angular/core"
+import {Component, HostListener, OnInit, ViewChild} from "@angular/core"
 import {MdSidenav} from "@angular/material"
 import {ThemeService} from "./service/theme/theme.service"
 import {Subscription} from "rxjs"
-import {SideNavService} from "./service/sidenav"
 
 @Component({
 	selector: 'app',
@@ -10,25 +9,16 @@ import {SideNavService} from "./service/sidenav"
 	styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 	isDarkTheme: boolean = false
 	isSMLayout: boolean
 	@ViewChild('sidenav') sidenav: MdSidenav
 	themeSubscription: Subscription
-	sideNavSubscription: Subscription
 
-	constructor(private themeService: ThemeService,
-	            private sideNavService: SideNavService) {
+	constructor(private themeService: ThemeService) {
 		this.themeSubscription = themeService.toggleTheme$
 			.subscribe(
-				() => {
-					this.isDarkTheme = !this.isDarkTheme
-					themeService.confirmToggle()
-				}
-			)
-		this.sideNavSubscription = sideNavService.toggleSideNav$
-			.subscribe(
-				() => this.sidenav.toggle()
+				() => this.isDarkTheme = !this.isDarkTheme
 			)
 	}
 
@@ -39,10 +29,5 @@ export class AppComponent implements OnInit, OnDestroy {
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
 		event.target.innerWidth > 960 ? this.isSMLayout = false : this.isSMLayout = true
-	}
-
-	ngOnDestroy(): void {
-		this.themeSubscription.unsubscribe()
-		this.sideNavSubscription.unsubscribe()
 	}
 }
