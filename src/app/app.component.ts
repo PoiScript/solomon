@@ -5,7 +5,14 @@ import {Subscription} from "rxjs"
 
 @Component({
 	selector: 'app',
-	templateUrl: './app.component.html',
+	template: `
+    <md-sidenav-container fullscreen [class.dark]="isDarkTheme">
+      <md-sidenav #sidenav [opened]="!isSMLayout" [mode]="isSMLayout?'over':'side'">
+        <app-nav [sideNav]="sidenav"></app-nav>
+      </md-sidenav>
+      <router-outlet></router-outlet>
+    </md-sidenav-container>
+	`,
 	styleUrls: ['./app.component.css']
 })
 
@@ -16,18 +23,17 @@ export class AppComponent implements OnInit {
 	themeSubscription: Subscription
 
 	constructor(private themeService: ThemeService) {
-		this.themeSubscription = themeService.toggleTheme$
-			.subscribe(
-				() => this.isDarkTheme = !this.isDarkTheme
-			)
+		this.themeSubscription = themeService.toggleTheme$.subscribe(
+			() => this.isDarkTheme = !this.isDarkTheme
+		)
 	}
 
 	ngOnInit(): void {
-		window.innerWidth > 960 ? this.isSMLayout = false : this.isSMLayout = true
+		this.isSMLayout = window.innerWidth <= 960
 	}
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
-		event.target.innerWidth > 960 ? this.isSMLayout = false : this.isSMLayout = true
+		this.isSMLayout = event.target.innerWidth <= 960
 	}
 }

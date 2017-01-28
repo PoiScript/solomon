@@ -5,7 +5,6 @@ import {SearchRouting} from "./search.routing"
 import {SearchComponent} from "./search.component"
 import {SearchBarComponent} from "../../components/search-bar"
 import {KeywordPipe} from "../../pipe/keyword.pipe"
-import {CategoryListComponent} from "../../components/list/category"
 import {FormsModule} from "@angular/forms"
 import {MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule, MdListModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
@@ -26,7 +25,6 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 	declarations: [
 		SearchComponent,
 		SearchBarComponent,
-		CategoryListComponent,
 		KeywordPipe
 	]
 })

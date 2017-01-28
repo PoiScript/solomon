@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
-import {api} from "../../../config/api"
 import {Repo} from "../../classes/Repo"
 import {Comment} from "../../classes/Comment"
 
 @Injectable()
 export class GitHubService {
-	private repoUrl: string = `https://api.github.com/users/${api.github_username}/repos?${api.github_params}`
+	private repoUrl: string = 'https://api.github.com/users/PoiScript/repos?type=all&sort=pushed'
+	private commentUrl: string = `https://api.github.com/repos/nodejs/node/issues`
 
 	constructor(private http: Http) {
 	}
@@ -17,8 +17,9 @@ export class GitHubService {
 			.then(res => res.json() as Repo[])
 	}
 
-	getIssueComments(): Promise<Comment[]> {
-		return this.http.get("https://api.github.com/repos/nodejs/node/issues/5731/comments")
+	getIssueComments(issueNumber: Number): Promise<Comment[]> {
+		if (!issueNumber) issueNumber = 5731
+		return this.http.get(`${this.commentUrl}/${issueNumber}/comments`)
 			.toPromise()
 			.then(res => res.json() as Comment[])
 	}

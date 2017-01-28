@@ -8,9 +8,6 @@ import {CategoryService} from "../../service/category"
 	template: `
     <app-header [title]="'Search'"></app-header>
     <search-bar (keywordChanged)="handleKeywordChanged($event)"></search-bar>
-    <category-list
-        [categories]="categories|keyword:keyword"
-        [title]="'Category includes ' + keyword"></category-list>
     <post-list
         [posts]="posts|keyword:keyword"
         [title]="'Title includes ' + keyword"></post-list>

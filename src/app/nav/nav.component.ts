@@ -17,6 +17,7 @@ export class NavComponent implements OnInit, OnDestroy {
 	categories: Category[]
 	toggleSubscription: Subscription
 	closeSubscription: Subscription
+	openSubscription: Subscription
 
 	menu = [{title: 'Recent', path: '/recent'},
 		{title: 'Search', path: '/search'},
@@ -31,6 +32,8 @@ export class NavComponent implements OnInit, OnDestroy {
 			.subscribe(() => this.sideNav.toggle())
 		this.closeSubscription = sideNavService.closeSideNav$
 			.subscribe(() => this.sideNav.close())
+		this.openSubscription = sideNavService.openSideNav$
+			.subscribe(() => this.sideNav.open())
 	}
 
 	getCategorise(): void {
@@ -43,6 +46,10 @@ export class NavComponent implements OnInit, OnDestroy {
 		this.dialog.open(SettingsDialogComponent)
 	}
 
+	titleClick(): void {
+		console.log('Title Clicked.')
+	}
+
 	ngOnInit(): void {
 		this.getCategorise()
 	}
@@ -50,5 +57,6 @@ export class NavComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.closeSubscription.unsubscribe()
 		this.toggleSubscription.unsubscribe()
+		this.openSubscription.unsubscribe()
 	}
 }

@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router"
 import {YearPipe} from "../../pipe/year.pipe"
 import {PostService} from "../../service/post"
 import {GitHubService} from "../../service/github"
+import {FlexLayoutModule} from "@angular/flex-layout"
 
 @NgModule({
 	imports: [
@@ -16,7 +17,8 @@ import {GitHubService} from "../../service/github"
 		MdIconModule,
 		MdToolbarModule,
 		MdCardModule,
-		RouterModule
+		RouterModule,
+		FlexLayoutModule
 	],
 	declarations: [
 		HeaderComponent,
