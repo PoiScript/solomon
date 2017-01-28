@@ -1,11 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from "@angular/core"
 import {Category} from "../classes/Category"
-import {CategoryService} from "../service/category/category.service"
-import {ThemeService} from "../service/theme/theme.service"
+import {CategoryService} from "../service/category"
 import {Subscription} from "rxjs"
 import {MdDialog, MdSidenav} from "@angular/material"
 import {SideNavService} from "../service/sidenav/sidenav.service"
-import {SettingsDialogComponent} from "../component/settings-dialog/settings-dialog.component"
+import {SettingsDialogComponent} from "../components/settings-dialog/settings-dialog.component"
 
 @Component({
 	selector: 'app-nav',
@@ -22,7 +21,7 @@ export class NavComponent implements OnInit, OnDestroy {
 	menu = [{title: 'Recent', path: '/recent'},
 		{title: 'Search', path: '/search'},
 		{title: 'About', path: '/about'},
-		{title: 'Links', path: '/links'},
+		{title: 'Link', path: '/link'},
 		{title: 'Archive', path: '/archive'}]
 
 	constructor(public dialog: MdDialog,

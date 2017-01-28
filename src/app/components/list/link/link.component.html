@@ -1,0 +1,18 @@
+<md-card>
+  <div fxLayout="row" fxLayout.sm="column">
+    <md-nav-list fxFlex>
+      <md-list-item *ngFor="let link of links|odd:false">
+        <img md-list-avatar src="https://github.com/{{link.username}}.png?size=200" alt="avatar of {{link.name}}">
+        <h3 md-line> {{link?.name}} </h3>
+        <p md-line> {{link?.description}} </p>
+      </md-list-item>
+    </md-nav-list>
+    <md-nav-list fxFlex>
+      <md-list-item *ngFor="let link of links|odd:true">
+        <img md-list-avatar src="https://github.com/{{link.username}}.png?size=200" alt="avatar of {{link.name}}">
+        <h3 md-line> {{link?.name}} </h3>
+        <p md-line> {{link?.description}} </p>
+      </md-list-item>
+    </md-nav-list>
+  </div>
+</md-card>

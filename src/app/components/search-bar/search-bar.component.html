@@ -1,0 +1,8 @@
+<md-card fxLayout="row" fxLayoutAlign="end end">
+  <md-input-container flex>
+    <input #input md-input (keyup.enter)="valueChanged(input.value)">
+  </md-input-container>
+  <button md-icon-button (click)="valueChanged(input.value)">
+    <md-icon>search</md-icon>
+  </button>
+</md-card>

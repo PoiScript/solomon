@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core"
-import {Sort} from "../component/comment"
+import {Sort} from "../components/comment"
 import {Comment} from "../classes/Comment"
 
 @Pipe({
