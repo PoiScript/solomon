@@ -1,11 +1,12 @@
 import {Component, OnInit} from "@angular/core"
 import {Post} from "../../classes/Post"
 import {PostService} from "../../service/post"
+import {Title} from "@angular/platform-browser"
 
 @Component({
 	template: `
-		<app-header [title]="'Archive'"></app-header>
-		<post-list *ngFor="let year of years" [posts]="posts|yearPipe:year" [title]="year"></post-list>
+    <app-header [title]="'Archive'"></app-header>
+    <post-list *ngFor="let year of years" [posts]="posts|yearPipe:year" [title]="year"></post-list>
 	`,
 })
 
@@ -13,7 +14,8 @@ export class ArchiveComponent implements OnInit {
 	posts: Post[]
 	years: Number[]
 
-	constructor(private postService: PostService) {
+	constructor(private postService: PostService,
+	            private titleService: Title) {
 	}
 
 	getArchive(): void {
@@ -29,5 +31,6 @@ export class ArchiveComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getArchive()
+		this.titleService.setTitle('Archive - PoiScript\'s Blog')
 	}
 }

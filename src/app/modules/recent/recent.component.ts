@@ -5,6 +5,7 @@ import {Repo} from "../../classes/Repo"
 import {GitHubService} from "../../service/github"
 import {KitsuService} from "../../service/kitsu"
 import {Anime} from "../../classes/Anime"
+import {Title} from "@angular/platform-browser"
 
 @Component({
 	template: `
@@ -21,7 +22,8 @@ export class RecentComponent implements OnInit {
 
 	constructor(private postService: PostService,
 	            private githubService: GitHubService,
-	            private kitsuService: KitsuService) {
+	            private kitsuService: KitsuService,
+	            private titleService: Title) {
 	}
 
 	getArchives(): void {
@@ -46,5 +48,6 @@ export class RecentComponent implements OnInit {
 		this.getArchives()
 		this.getRepos()
 		this.getAnimes()
+		this.titleService.setTitle(`Recent - PoiScript's Blog`)
 	}
 }

@@ -1,11 +1,11 @@
-<md-toolbar color="primary">
+<footer>
   <button md-icon-button [routerLink]="['/post', previousPostTitle]">
     <md-icon>keyboard_arrow_left</md-icon>
   </button>
   <span>{{previousPostTitle}}</span>
-  <div class="spacer"></div>
+  <span class="spacer"></span>
   <span>{{nextPostTile}}</span>
   <button md-icon-button [routerLink]="['/post', nextPostTile]">
     <md-icon>keyboard_arrow_right</md-icon>
   </button>
-</md-toolbar>
+</footer>

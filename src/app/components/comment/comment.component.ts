@@ -21,7 +21,7 @@ export class CommentComponent implements OnInit {
 
 	getIssueComments(): void {
 		this.githubService
-			.getIssueComments()
+			.getIssueComments(5731)
 			.then(comments => this.comments = comments)
 	}
 

@@ -2,11 +2,12 @@ import {Component, OnInit} from "@angular/core"
 import {Category} from "../../classes/Category"
 import {ActivatedRoute} from "@angular/router"
 import {CategoryService} from "../../service/category"
+import {Title} from "@angular/platform-browser"
 
 @Component({
 	template: `
-		<app-header [title]="category?.title"></app-header>
-		<post-list *ngFor="let year of years" [posts]="category?.posts|yearPipe:year" [title]="year"></post-list>
+    <app-header [title]="category?.title"></app-header>
+    <post-list *ngFor="let year of years" [posts]="category?.posts|yearPipe:year" [title]="year"></post-list>
 	`,
 })
 export class CategoryComponent implements OnInit {
@@ -14,7 +15,8 @@ export class CategoryComponent implements OnInit {
 	years: Number[]
 
 	constructor(private categoryService: CategoryService,
-	            private router: ActivatedRoute) {
+	            private router: ActivatedRoute,
+	            private titleService: Title) {
 	}
 
 	getCategory(title: string): void {
@@ -30,7 +32,10 @@ export class CategoryComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.router.params.subscribe(
-			params => this.getCategory(params['title'])
+			params => {
+				this.getCategory(params['title'])
+				this.titleService.setTitle(`${params['title']} - PoiScript's Blog`)
+			}
 		)
 	}
 }

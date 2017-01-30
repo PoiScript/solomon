@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core"
 import {LinkService} from "../../service/link/link.service"
 import {Link} from "../../classes/Link"
+import {Title} from "@angular/platform-browser"
 
 @Component({
 	template:`
@@ -11,7 +12,8 @@ import {Link} from "../../classes/Link"
 export class LinkComponent implements OnInit {
 	links: Link[]
 
-	constructor(private linkService: LinkService) {
+	constructor(private linkService: LinkService,
+	            private titleService: Title) {
 	}
 
 	getLinks(): void {
@@ -21,5 +23,6 @@ export class LinkComponent implements OnInit {
 
 	ngOnInit() {
 		this.getLinks()
+		this.titleService.setTitle('Link - PoiScript\'s Blog')
 	}
 }

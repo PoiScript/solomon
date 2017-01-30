@@ -46,3 +46,13 @@ header {
     line-height: 1.5em;
     margin-bottom: 16px;
 }
+
+.receptacle {
+    max-width: 960px;
+    margin: auto;
+    padding: 16px;
+}
+
+.comment-area {
+    background: #EEEEEE;
+}

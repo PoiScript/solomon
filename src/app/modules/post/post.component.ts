@@ -2,35 +2,39 @@ import {Component, OnInit} from "@angular/core"
 import {ActivatedRoute} from "@angular/router"
 import {PostService} from "../../service/post"
 import {Post} from "../../classes/Post"
-import {SideNavService} from "../../service/sidenav"
+import {Title} from "@angular/platform-browser"
 
 @Component({
 	template: `
-		<app-header [title]="post?.title" [isPostPage]="true"></app-header>
-		<post-content [post]="post"></post-content>
-		<comment></comment>
-		<app-footer [nextPostTile]="post?.slug" [previousPostTitle]="post?.slug"></app-footer>
+    <app-header [title]="post?.title" [isPostPage]="true"></app-header>
+    <article>
+      <post-content [post]="post"></post-content>
+      <app-footer [nextPostTile]="post?.slug" [previousPostTitle]="post?.slug"></app-footer>
+    </article>
+    <comment></comment>
 	`,
+	styleUrls: ['./post.component.css']
 })
 
 export class PostComponent implements OnInit {
 	post: Post
-	viewSource: boolean = false
 
 	constructor(private postService: PostService,
-	            private sideNavService: SideNavService,
+	            private titleService: Title,
 	            private router: ActivatedRoute) {
 	}
 
 	getPost(slug: string): void {
 		this.postService
 			.getPost(slug)
-			.then(post => this.post = post)
+			.then(post => {
+				this.post = post
+				this.titleService.setTitle(`${post.title} - PoiScript's Blog`)
+			})
 	}
 
 	ngOnInit(): void {
 		this.router.params
 			.subscribe(params => this.getPost(params['slug']))
-		this.sideNavService.closeSideNav()
 	}
 }
