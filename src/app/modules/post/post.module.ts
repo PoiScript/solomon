@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router"
 import {CommentComponent} from "../../components/comment"
 import {FooterComponent} from "../../components/footer"
 import {MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModule} from "@angular/material"
+import {FlexLayoutModule} from "@angular/flex-layout"
 
 @NgModule({
 	imports: [
@@ -19,7 +20,8 @@ import {MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModul
 		MdCardModule,
 		MdButtonModule,
 		MdMenuModule,
-		MdToolbarModule
+		MdToolbarModule,
+		FlexLayoutModule,
 	],
 	declarations: [
 		PostComponent,

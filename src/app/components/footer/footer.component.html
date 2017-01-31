@@ -1,10 +1,16 @@
-<footer>
+<footer [fxLayout]="'row'">
   <button md-icon-button [routerLink]="['/post', previousPostTitle]">
     <md-icon>keyboard_arrow_left</md-icon>
   </button>
-  <span>{{previousPostTitle}}</span>
-  <span class="spacer"></span>
-  <span>{{nextPostTile}}</span>
+  <div [fxLayout]="'column'">
+    <span>Previous</span>
+    <strong>{{previousPostTitle}}</strong>
+  </div>
+  <div class="spacer"></div>
+  <div [fxLayout]="'column'" align="right">
+    <span>Next</span>
+    <strong>{{nextPostTile}}</strong>
+  </div>
   <button md-icon-button [routerLink]="['/post', nextPostTile]">
     <md-icon>keyboard_arrow_right</md-icon>
   </button>

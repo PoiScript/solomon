@@ -1,22 +1,23 @@
 <div class="comment-area">
   <div class="receptacle">
-    <header>
+    <h5 align="center">Login to GitHub and left your comments in this issue, then your comment will show here. :)</h5>
+    <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
       <h3>{{comments?.length}} comments</h3>
       <span class="spacer"></span>
       <button md-icon-button mdTooltip="Sort" [mdMenuTriggerFor]="menu">
         <md-icon>sort</md-icon>
       </button>
-      <md-menu #menu="mdMenu">
+      <md-menu #menu="mdMenu" x-position="before">
         <button md-menu-item>Oldest First</button>
         <button md-menu-item>Newest First</button>
       </md-menu>
     </header>
-    <div class="comment" *ngFor="let comment of comments">
-      <header>
+    <div *ngFor="let comment of comments">
+      <header [fxLayout]="'row'">
         <a [href]="comment.user.html_url" target="_blank">
           <img [src]="comment.user.avatar_url" class="avatar">
         </a>
-        <div class="author">
+        <div [fxLayout]="'column'">
           <strong>{{comment.user.login}}</strong>
           <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
         </div>

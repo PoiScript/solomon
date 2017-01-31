@@ -7,6 +7,7 @@ import {ShareModule} from "../share"
 import {RepoListComponent} from "../../components/list/repo"
 import {AnimeListComponent} from "../../components/list/anime"
 import {RecentComponent} from "./recent.component"
+import {FlexLayoutModule} from "@angular/flex-layout"
 
 @NgModule({
 	imports: [
@@ -15,7 +16,8 @@ import {RecentComponent} from "./recent.component"
 		ShareModule,
 		MdIconModule,
 		MdListModule,
-		MdCardModule
+		MdCardModule,
+		FlexLayoutModule
 	],
 	declarations: [
 		RecentComponent,
