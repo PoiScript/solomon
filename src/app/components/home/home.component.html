@@ -1,0 +1,6 @@
+<md-sidenav-container fullscreen [class.dark]="isDarkTheme">
+  <md-sidenav [style.width]="'210px'" #sidenav [opened]="!isSMLayout" [mode]="isSMLayout?'over':'side'">
+    <app-nav [style.width]="'250px'" [sideNav]="sidenav"></app-nav>
+  </md-sidenav>
+  <router-outlet></router-outlet>
+</md-sidenav-container>

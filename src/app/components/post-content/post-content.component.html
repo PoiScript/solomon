@@ -1,18 +1,40 @@
-<header>
-  <img class="avatar" [routerLink]="['/category', post?.category]" [src]="'https://github.com/PoiScript.png'">
-  <div class="category">
-    <strong>{{post?.category}}</strong>
-    <span>{{post?.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
-  </div>
-  <span class="spacer"></span>
-  <button md-icon-button mdTooltip="View It On GitHub">
-    <md-icon>open_in_new</md-icon>
-  </button>
-  <button md-icon-button mdTooltip="Bookmark" [mdMenuTriggerFor]="menu">
-    <md-icon>bookmark_border</md-icon>
-  </button>
-  <md-menu #menu="mdMenu">
-    <button md-menu-item>View {{isRaw?"Parsed":"Source"}}</button>
-  </md-menu>
-</header>
-<p [innerHTML]="post?.html"></p>
+<div class="post-area">
+  <header [fxLayout]="'row'">
+    <img class="avatar" [routerLink]="['/category', post?.category]" [src]="'https://github.com/PoiScript.png'">
+    <div [fxLayout]="'column'">
+      <strong>{{post?.category}}</strong>
+      <span>{{post?.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+    </div>
+    <span class="spacer"></span>
+    <button md-icon-button mdTooltip="View It On GitHub">
+      <md-icon>open_in_new</md-icon>
+    </button>
+    <button md-icon-button mdTooltip="Bookmark" [mdMenuTriggerFor]="menu">
+      <md-icon>bookmark_border</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item>View {{isRaw?"Parsed":"Source"}}</button>
+    </md-menu>
+  </header>
+  <p [innerHTML]="post?.html"></p>
+  <footer [fxLayout]="'row'" [fxLayout.xs]="'column'">
+    <div [fxFlex]="50" [fxLayoutAlign]="'start'">
+      <button md-icon-button [routerLink]="['/post', post?.slug]">
+        <md-icon>keyboard_arrow_left</md-icon>
+      </button>
+      <div [fxLayout]="'column'">
+        <span>Previous</span>
+        <strong>{{post?.title}}</strong>
+      </div>
+    </div>
+    <div [fxFlex]="50" [fxLayoutAlign]="'end'">
+      <div [fxLayout]="'column'" align="right">
+        <span>Next</span>
+        <strong>{{post?.title}}</strong>
+      </div>
+      <button md-icon-button [routerLink]="['/post', post?.slug]">
+        <md-icon>keyboard_arrow_right</md-icon>
+      </button>
+    </div>
+  </footer>
+</div>

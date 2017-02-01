@@ -6,8 +6,10 @@ import {PostComponent} from "./post.component"
 import {PostRouting} from "./post.routing"
 import {RouterModule} from "@angular/router"
 import {CommentComponent} from "../../components/comment"
-import {FooterComponent} from "../../components/footer"
-import {MdButtonModule, MdCardModule, MdIconModule, MdMenuModule, MdToolbarModule} from "@angular/material"
+import {
+	MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdMenuModule,
+	MdToolbarModule
+} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
 
 @NgModule({
@@ -22,12 +24,12 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 		MdMenuModule,
 		MdToolbarModule,
 		FlexLayoutModule,
+		MdChipsModule
 	],
 	declarations: [
 		PostComponent,
 		PostContentComponent,
-		CommentComponent,
-		FooterComponent
+		CommentComponent
 	]
 })
 export class PostModule {

@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from "@angular/core"
-import {Category} from "../classes/Category"
-import {CategoryService} from "../service/category"
 import {Subscription} from "rxjs"
 import {MdDialog, MdSidenav} from "@angular/material"
-import {SideNavService} from "../service/sidenav/sidenav.service"
-import {SettingsDialogComponent} from "../components/settings-dialog/settings-dialog.component"
+import {Category} from "../../classes/Category"
+import {CategoryService} from "../../service/category"
+import {SideNavService} from "../../service/sidenav"
+import {SettingsDialogComponent} from "../settings-dialog"
 
 @Component({
 	selector: 'app-nav',

@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core"
 import {CommonModule} from "@angular/common"
-import {MdCardModule, MdIconModule, MdListModule, MdToolbarModule} from "@angular/material"
+import {MdCardModule, MdIconModule, MdListModule, MdSidenavModule, MdToolbarModule} from "@angular/material"
 import {HeaderComponent} from "../../components/header"
 import {PostListComponent} from "../../components/list/post"
 import {OddPipe} from "../../pipe/odd.pipe"
@@ -9,6 +9,7 @@ import {YearPipe} from "../../pipe/year.pipe"
 import {PostService} from "../../service/post"
 import {GitHubService} from "../../service/github"
 import {FlexLayoutModule} from "@angular/flex-layout"
+import {NavComponent} from "../../components/nav/nav.component"
 
 @NgModule({
 	imports: [
@@ -18,7 +19,8 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 		MdToolbarModule,
 		MdCardModule,
 		RouterModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		MdSidenavModule
 	],
 	declarations: [
 		HeaderComponent,

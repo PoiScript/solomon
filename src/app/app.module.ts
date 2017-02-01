@@ -4,7 +4,6 @@ import {HttpModule} from "@angular/http"
 import {MaterialModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {AppComponent} from "./app.component"
-import {NavComponent} from "./nav"
 import {AppRouting} from "./app.routing"
 import {ThemeService} from "./service/theme"
 import {SideNavService} from "./service/sidenav"
@@ -12,13 +11,16 @@ import {SortByPipe} from "./pipe/sort-by.pipe"
 import {SettingsDialogComponent} from "./components/settings-dialog"
 import {ShareModule} from "./modules/share"
 import {CategoryService} from "./service/category"
+import {NavComponent} from "./components/nav"
+import {HomeComponent} from "./components/home/home.component"
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		NavComponent,
 		SortByPipe,
 		SettingsDialogComponent,
+		NavComponent,
+		HomeComponent
 	],
 	imports: [
 		ShareModule,

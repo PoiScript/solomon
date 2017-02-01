@@ -7,13 +7,9 @@ import {Title} from "@angular/platform-browser"
 @Component({
 	template: `
     <app-header [title]="post?.title" [isPostPage]="true"></app-header>
-    <article>
-      <post-content [post]="post"></post-content>
-      <app-footer [nextPostTile]="post?.slug" [previousPostTitle]="post?.slug"></app-footer>
-    </article>
+    <post-content [post]="post"></post-content>
     <comment></comment>
-	`,
-	styleUrls: ['./post.component.css']
+	`
 })
 
 export class PostComponent implements OnInit {

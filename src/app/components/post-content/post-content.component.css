@@ -9,26 +9,13 @@
     margin-right: 16px;
 }
 
-header {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-top: 16px;
+.post-area {
+    max-width: 960px;
+    margin: auto;
+    padding: 16px;
 }
 
-.category {
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+header {
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
