@@ -6,10 +6,7 @@ import {PostComponent} from "./post.component"
 import {PostRouting} from "./post.routing"
 import {RouterModule} from "@angular/router"
 import {CommentComponent} from "../../components/comment"
-import {
-	MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdMenuModule,
-	MdToolbarModule
-} from "@angular/material"
+import {MdButtonModule, MdIconModule, MdMenuModule, MdToolbarModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
 
 @NgModule({
@@ -19,12 +16,10 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 		PostRouting,
 		RouterModule,
 		MdIconModule,
-		MdCardModule,
 		MdButtonModule,
 		MdMenuModule,
 		MdToolbarModule,
 		FlexLayoutModule,
-		MdChipsModule
 	],
 	declarations: [
 		PostComponent,

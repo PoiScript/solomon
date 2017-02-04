@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core"
 import {Http} from "@angular/http"
 import {Category} from "../../classes/Category"
-import {Subject} from "rxjs"
 
 @Injectable()
 export class CategoryService {
@@ -10,16 +9,8 @@ export class CategoryService {
 	}
 
 	getCategories(): Promise<Category []> {
-		return this.http.get('/assets/post/categories.json')
+		return this.http.get(`https://github.com/PoiScript/Solomon-Post/blob/master/json/categories.json`)
 			.toPromise()
 			.then((res) => res.json() as Category)
-	}
-
-	private categoryAnnouncedSource = new Subject<Category>()
-
-	categoryAnnounced$ = this.categoryAnnouncedSource.asObservable()
-
-	announceCategory(category: Category){
-		this.categoryAnnouncedSource.next(category)
 	}
 }

@@ -1,0 +1,5 @@
+.parallax{
+    min-height: 70vh;
+    background: fixed center no-repeat;
+    background-size: cover;
+}

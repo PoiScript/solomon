@@ -1,31 +1,18 @@
-import {Component, Input, OnInit} from "@angular/core"
+import {Component, Input} from "@angular/core"
 import {SideNavService} from "../../service/sidenav"
-import {Location} from "@angular/common"
 
 @Component({
 	selector: 'app-header',
-	templateUrl: './header.component.html',
+	templateUrl: './header.component.html'
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 	@Input() title: string
-	@Input() isPostPage: boolean = false
 
-	constructor(private sideNavService: SideNavService,
-							private location: Location) {
-	}
-
-	backClicked(): void {
-		this.location.back()
+	constructor(private sideNavService: SideNavService) {
 	}
 
 	toggleSideNav(): void {
 		this.sideNavService.toggleSideNav()
 	}
-
-	ngOnInit(): void {
-		if(this.isPostPage == true){
-		}
-	}
-
 }

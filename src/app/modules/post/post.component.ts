@@ -5,11 +5,12 @@ import {Post} from "../../classes/Post"
 import {Title} from "@angular/platform-browser"
 
 @Component({
-	template: `
-    <app-header [title]="post?.title" [isPostPage]="true"></app-header>
+	template: `		
+    <div class="parallax" [ngStyle]="{'background-image': 'url(https://unsplash.it/1200/600/?random)'}"></div>
     <post-content [post]="post"></post-content>
     <comment></comment>
-	`
+	`,
+	styleUrls: ['./post.component.css']
 })
 
 export class PostComponent implements OnInit {

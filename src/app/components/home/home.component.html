@@ -1,6 +1,30 @@
 <md-sidenav-container fullscreen [class.dark]="isDarkTheme">
-  <md-sidenav [style.width]="'210px'" #sidenav [opened]="!isSMLayout" [mode]="isSMLayout?'over':'side'">
-    <app-nav [style.width]="'250px'" [sideNav]="sidenav"></app-nav>
+  <md-sidenav
+      #sidenav
+      [style.width]="isSMLayout?'280px':'320px'"
+      [opened]="!isSMLayout"
+      [mode]="isSMLayout?'over':'side'">
+    <md-toolbar [color]="'primary'">
+      <h4 [style.width]="'100%'" (click)="titleClick()">PoiScript's Blog</h4>
+      <button md-icon-button (click)="openDialog()">
+        <md-icon>settings</md-icon>
+      </button>
+    </md-toolbar>
+    <md-nav-list>
+      <md-list-item routerLinkActive="active" [routerLink]="'/recent'">Recent</md-list-item>
+      <md-list-item routerLinkActive="active" [routerLink]="'/search'">Search</md-list-item>
+      <md-list-item routerLinkActive="active" [routerLink]="'/about'">about</md-list-item>
+      <md-list-item routerLinkActive="active" [routerLink]="'/link'">Link</md-list-item>
+      <md-list-item routerLinkActive="active" [routerLink]="'/archive'">Archive</md-list-item>
+      <md-divider></md-divider>
+      <h3 md-subheader>Categories</h3>
+      <md-list-item
+          *ngFor="let category of categories"
+          routerLinkActive="active"
+          [routerLink]="['/category', category.title]">
+        <p md-line> {{ category.title }} </p> {{category.count}}
+      </md-list-item>
+    </md-nav-list>
   </md-sidenav>
   <router-outlet></router-outlet>
 </md-sidenav-container>

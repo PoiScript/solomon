@@ -1,6 +1,6 @@
-<md-toolbar color="primary">
-  <button md-icon-button (click)="isPostPage?backClicked():toggleSideNav()">
-    <md-icon>{{isPostPage?'keyboard_backspace':'menu'}}</md-icon>
+<md-toolbar [color]="'primary'">
+  <button md-icon-button (click)="toggleSideNav()">
+    <md-icon>menu</md-icon>
   </button>
   <md-toolbar-row></md-toolbar-row>
   <md-toolbar-row>{{title}}</md-toolbar-row>
