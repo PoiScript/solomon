@@ -1,4 +1,4 @@
-# Blog
+# Solomon
 A blog framework, writes in [Angular](https://angular.io/), builds with [Angular CLI](https://cli.angular.io/), use [Angular Material](https://material.angular.io/) and [Flex Layout](https://github.com/angular/flex-layout) for beautify.
 ## License
 This Project is [MIT](https://github.com/PoiScript/Blog/blob/master/LICENSE) licensed.

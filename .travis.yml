@@ -1,10 +1,23 @@
 language: node_js
-sudo: true
-
 node_js:
-  - '6.9.1'
+  - "6.1"
 
-before_install:
-  - yarn global add angular-cli
+branches:
+  only:
+    - master
+
+before_script:
   - yarn
-  - ng build
+  - npm install -g firebase-tools
+  - npm install -g angular-cli
+
+script:
+  - ng build --prod
+
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
