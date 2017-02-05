@@ -1,0 +1,3 @@
+[submodule "src/post"]
+	path = src/post
+	url = git@github.com:PoiScript/Solomon-Post.git
