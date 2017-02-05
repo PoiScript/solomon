@@ -1,18 +1,18 @@
 import {Pipe, PipeTransform} from "@angular/core"
-import {Post} from "../classes/Post"
+import {Intro} from "../classes/Post"
 
 @Pipe({
 	name: 'odd'
 })
 export class OddPipe implements PipeTransform {
 
-	transform(posts: Post[], isOdd?: boolean): any {
-		if (!posts) {
+	transform(intros: Intro[], isOdd?: boolean): any {
+		if (!intros) {
 			return
 		} else if (isOdd) {
-			return posts.filter(post => posts.indexOf(post) % 2)
+			return intros.filter(intro => intros.indexOf(intro) % 2)
 		}
-		return posts.filter(post => !(posts.indexOf(post) % 2))
+		return intros.filter(intro => !(intros.indexOf(intro) % 2))
 	}
 
 }

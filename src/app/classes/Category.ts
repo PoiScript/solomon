@@ -1,7 +1,9 @@
-import {Post} from "./Post"
-
+import {Intro} from "./Post"
 export class Category {
-	title: string
-	count: Number
-	posts: Post[]
+	title: {
+		en_US: string
+		zh_Hans: string
+		zh_Hant: string
+	}
+	posts: Intro[]
 }

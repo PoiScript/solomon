@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core"
 import {PostService} from "../../service/post/post.service"
-import {Post} from "../../classes/Post"
+import {Intro} from "../../classes/Post"
 import {Repo} from "../../classes/Repo"
 import {GitHubService} from "../../service/github"
 import {KitsuService} from "../../service/kitsu"
@@ -10,13 +10,13 @@ import {Title} from "@angular/platform-browser"
 @Component({
 	template: `
     <app-header [title]="'Recent'"></app-header>
-    <post-list [posts]="posts" [limit]="6" [title]="'Recent Posts'"></post-list>
+    <post-list [intros]="intros" [limit]="6" [title]="'Recent Posts'"></post-list>
     <repo-list [repos]="repos"></repo-list>
     <anime-list [animes]="animes"></anime-list>
 	`,
 })
 export class RecentComponent implements OnInit {
-	posts: Post[]
+	intros: Intro[]
 	repos: Repo[]
 	animes: Anime[]
 
@@ -29,7 +29,7 @@ export class RecentComponent implements OnInit {
 	getArchives(): void {
 		this.postService
 			.getArchive()
-			.then(posts => this.posts = posts)
+			.then(intros => this.intros = intros)
 	}
 
 	getRepos(): void {

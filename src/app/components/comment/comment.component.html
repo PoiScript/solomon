@@ -1,6 +1,8 @@
 <div class="comment-area">
   <div class="receptacle">
-    <h5 align="center">Login to GitHub and left your comments in this issue, then your comment will show here. :)</h5>
+    <h5 align="center">Login to GitHub and left your comments in
+      <a href="https://github.com/PoiScript/Solomon-Post/issues/{{issue_number}}" target="_blank"> this issue </a>
+      , then your comment will show here. :)</h5>
     <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
       <h3>{{comments?.length}} comments</h3>
       <span class="spacer"></span>
@@ -23,6 +25,12 @@
         </div>
       </header>
       <div class="text">{{comment.body}}</div>
+      <div class="reaction" [fxLayout]="center" *ngIf="comment.reactions.total_count">
+        <md-icon *ngIf="comment.reactions['+1']">thumb_up</md-icon>
+        <span>{{comment.reactions['+1']}}</span>
+        <md-icon *ngIf="comment.reactions['-1']">thumb_down</md-icon>
+        <span>{{comment.reactions['-1']}}</span>
+      </div>
     </div>
   </div>
 </div>

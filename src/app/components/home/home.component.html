@@ -21,8 +21,8 @@
       <md-list-item
           *ngFor="let category of categories"
           routerLinkActive="active"
-          [routerLink]="['/category', category.title]">
-        <p md-line> {{ category.title }} </p> {{category.count}}
+          [routerLink]="['/category', category.title.en_US]">
+        <p md-line> {{ category.title.en_US }} </p> {{category.count}}
       </md-list-item>
     </md-nav-list>
   </md-sidenav>

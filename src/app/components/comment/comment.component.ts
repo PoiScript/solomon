@@ -1,5 +1,4 @@
-import {Component, OnInit} from "@angular/core"
-import {GitHubService} from "../../service/github/github.service"
+import {Component, Input} from "@angular/core"
 import {Comment} from "../../classes/Comment"
 
 export const enum Sort {
@@ -12,21 +11,8 @@ export const enum Sort {
 	styleUrls: ['./comment.component.css']
 })
 
-export class CommentComponent implements OnInit {
-	comments: Comment[]
+export class CommentComponent {
+	@Input() issue_number: number
+	@Input() comments: Comment[]
 	sortBy: Sort = Sort.Newest
-
-	constructor(private githubService: GitHubService) {
-	}
-
-	getIssueComments(): void {
-		this.githubService
-			.getIssueComments(5731)
-			.then(comments => this.comments = comments)
-	}
-
-	ngOnInit() {
-		this.getIssueComments()
-	}
-
 }

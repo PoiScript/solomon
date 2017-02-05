@@ -1,15 +1,16 @@
 <div class="post-area">
-  <h1>{{post?.title}}</h1>
+  <h1>{{post?.intro.title}}</h1>
   <header [fxLayout]="'row'">
-    <img class="avatar" [routerLink]="['/category', post?.category]" [src]="'https://github.com/PoiScript.png'">
-    <div [fxLayout]="'column'">
-      <strong>{{post?.category}}</strong>
-      <span>{{post?.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+    <img class="category" [routerLink]="['/category', post?.intro.category.en_US]"
+         [attr.src]="'/assets/img/category/'+ post?.intro.category.en_US+'.jpg'">
+    <div [style.width]="'100%'" [fxLayout]="'column'">
+      <strong>{{post?.intro.category.zh_Hans}}</strong>
+      <span>{{post?.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
     </div>
-    <span class="spacer"></span>
-    <button md-icon-button mdTooltip="View It On GitHub">
+    <a md-icon-button mdTooltip="View Source" target="_blank"
+       href="https://raw.githubusercontent.com/PoiScript/Solomon-Post/master/markdown/{{post?.intro.slug}}.md">
       <md-icon>open_in_new</md-icon>
-    </button>
+    </a>
     <button md-icon-button mdTooltip="Bookmark" [mdMenuTriggerFor]="menu">
       <md-icon>bookmark_border</md-icon>
     </button>
@@ -19,21 +20,21 @@
   </header>
   <p [innerHTML]="post?.html"></p>
   <footer [fxLayout]="'row'" [fxLayout.xs]="'column'">
-    <div [fxFlex]="50" [fxLayoutAlign]="'start'">
-      <button md-icon-button [routerLink]="['/post', post?.slug]">
+    <div [fxFlex]="50" [fxLayoutAlign]="'start'" *ngIf="post?.previous_title">
+      <button md-icon-button [routerLink]="['/post', post?.previous_slug]">
         <md-icon>keyboard_arrow_left</md-icon>
       </button>
       <div [fxLayout]="'column'">
         <span>Previous</span>
-        <strong>{{post?.title}}</strong>
+        <strong>{{post?.previous_title}}</strong>
       </div>
     </div>
-    <div [fxFlex]="50" [fxLayoutAlign]="'end'">
+    <div [fxFlex]="50" [fxLayoutAlign]="'end'" *ngIf="post?.next_title">
       <div [fxLayout]="'column'" align="right">
         <span>Next</span>
-        <strong>{{post?.title}}</strong>
+        <strong>{{post?.next_title}}</strong>
       </div>
-      <button md-icon-button [routerLink]="['/post', post?.slug]">
+      <button md-icon-button [routerLink]="['/post', post?.next_slug]">
         <md-icon>keyboard_arrow_right</md-icon>
       </button>
     </div>

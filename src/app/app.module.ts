@@ -15,7 +15,7 @@ import {HomeComponent} from "./components/home/home.component"
 		AppComponent,
 		SortByPipe,
 		SettingsDialogComponent,
-		HomeComponent
+		HomeComponent,
 	],
 	imports: [
 		ShareModule,

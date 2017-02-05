@@ -1,13 +1,13 @@
-import {Pipe, PipeTransform} from '@angular/core'
-import {Post} from "../classes/Post"
+import {Pipe, PipeTransform} from "@angular/core"
+import {Intro} from "../classes/Post"
 
 @Pipe({
 	name: 'yearPipe'
 })
 export class YearPipe implements PipeTransform {
 
-	transform(value: Post[], arg: number): any {
-		return value.filter((post) => new Date(post.date).getFullYear() === arg)
+	transform(value: Intro[], arg: number): any {
+		return value.filter(intro => new Date(intro.date).getFullYear() === arg)
 	}
 
 }

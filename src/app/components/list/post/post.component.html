@@ -2,19 +2,19 @@
   <h3>{{title}}</h3>
   <div [fxLayout]="'row'" [fxLayout.xs]="'column'" [fxLayout.sm]="'column'">
     <md-nav-list [fxFlex]="50">
-      <md-list-item *ngFor="let post of posts|slice:0:limit|odd:false" [routerLink]="['/post', post?.slug]">
+      <md-list-item *ngFor="let intro of intros|slice:0:limit|odd:false" [routerLink]="['/post', intro?.slug]">
         <md-icon md-list-avatar>code</md-icon>
-        <h3 md-line> {{post?.title}} </h3>
-        <p md-line> {{post?.category}} </p>
-        <p md-line> {{post?.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
+        <h3 md-line> {{intro?.title}} </h3>
+        <p md-line> {{intro?.category.zh_Hans}} </p>
+        <p md-line> {{intro?.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
       </md-list-item>
     </md-nav-list>
     <md-nav-list [fxFlex]="50">
-      <md-list-item *ngFor="let post of posts|slice:0:limit|odd:true" [routerLink]="['/post', post?.slug]">
+      <md-list-item *ngFor="let intro of intros|slice:0:limit|odd:true" [routerLink]="['/post', intro?.slug]">
         <md-icon md-list-avatar>code</md-icon>
-        <h3 md-line> {{post?.title}} </h3>
-        <p md-line> {{post?.category}} </p>
-        <p md-line> {{post?.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
+        <h3 md-line> {{intro.title}} </h3>
+        <p md-line> {{intro.category.zh_Hans}} </p>
+        <p md-line> {{intro.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
       </md-list-item>
     </md-nav-list>
   </div>

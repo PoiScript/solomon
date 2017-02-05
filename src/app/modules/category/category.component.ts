@@ -6,8 +6,8 @@ import {Title} from "@angular/platform-browser"
 
 @Component({
 	template: `
-    <app-header [title]="category?.title"></app-header>
-    <post-list *ngFor="let year of years" [posts]="category?.posts|yearPipe:year" [title]="year"></post-list>
+    <app-header [title]="category?.title.zh_Hans"></app-header>
+    <post-list *ngFor="let year of years" [intros]="category?.posts|yearPipe:year" [title]="year"></post-list>
 	`,
 })
 export class CategoryComponent implements OnInit {
@@ -22,10 +22,10 @@ export class CategoryComponent implements OnInit {
 	getCategory(title: string): void {
 		this.categoryService
 			.getCategories()
-			.then((categories) => {
-				this.category = categories.find(category => category.title === title)
+			.then(categories => {
+				this.category = categories.find(category => category.title.en_US === title)
 				this.years = this.category.posts
-					.map(post => new Date(post.date).getFullYear())
+					.map(intro => new Date(intro.date).getFullYear())
 					.filter((year, index, self) => index === self.indexOf(year))
 			})
 	}

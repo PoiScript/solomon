@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core"
-import {Post} from "../../../classes/Post"
+import {Intro} from "../../../classes/Post"
 
 @Component({
 	selector: 'post-list',
@@ -7,7 +7,7 @@ import {Post} from "../../../classes/Post"
 	styleUrls: ['./post.component.css']
 })
 export class PostListComponent {
-	@Input() posts: Post[]
+	@Input() intros: Intro[]
 	@Input() limit: Number
 	@Input() title: string
 }

@@ -9,7 +9,7 @@ export class CategoryService {
 	}
 
 	getCategories(): Promise<Category []> {
-		return this.http.get(`https://github.com/PoiScript/Solomon-Post/blob/master/json/categories.json`)
+		return this.http.get('/post/json/categories.json')
 			.toPromise()
 			.then((res) => res.json() as Category)
 	}

@@ -4,10 +4,10 @@ import {ShareModule} from "../share"
 import {SearchRouting} from "./search.routing"
 import {SearchComponent} from "./search.component"
 import {SearchBarComponent} from "../../components/search-bar"
-import {KeywordPipe} from "../../pipe/keyword.pipe"
 import {FormsModule} from "@angular/forms"
 import {MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule, MdListModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
+import {SearchResultComponent} from "../../components/search-result/search-result.component"
 
 @NgModule({
 	imports: [
@@ -25,7 +25,7 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 	declarations: [
 		SearchComponent,
 		SearchBarComponent,
-		KeywordPipe
+		SearchResultComponent
 	]
 })
 export class SearchModule {

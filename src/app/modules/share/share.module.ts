@@ -9,7 +9,6 @@ import {YearPipe} from "../../pipe/year.pipe"
 import {PostService} from "../../service/post"
 import {GitHubService} from "../../service/github"
 import {FlexLayoutModule} from "@angular/flex-layout"
-import {NavComponent} from "../../components/nav/nav.component"
 
 @NgModule({
 	imports: [

@@ -1,35 +1,31 @@
 import {Component, OnInit} from "@angular/core"
-import {Post} from "../../classes/Post"
-import {PostService} from "../../service/post"
 import {Title} from "@angular/platform-browser"
+import {GitHubService} from "../../service/github"
+import {SearchResult} from "../../classes/SearchResult"
 
 @Component({
 	template: `
-    <app-header [title]="'Search'"></app-header>
+    <app-header [title]="title"></app-header>
     <search-bar (keywordChanged)="handleKeywordChanged($event)"></search-bar>
-    <post-list [posts]="posts|keyword:keyword" [title]="'Title includes ' + keyword"></post-list>
+    <search-result *ngIf="result" [result]="result"></search-result>
 	`
 })
 export class SearchComponent implements OnInit {
-	posts: Post[]
-	keyword: string = ""
+	result: SearchResult
+	title: string = "Search"
 
-	constructor(private archiveService: PostService,
+	constructor(private githubService: GitHubService,
 	            private titleService: Title) {
 	}
 
 	handleKeywordChanged(keyword: string) {
-		this.keyword = keyword
-	}
-
-	getArchive(): void {
-		this.archiveService
-			.getArchive()
-			.then(posts => this.posts = posts)
+		this.title = `Search "${keyword}"`
+		this.githubService
+			.searchCode(keyword)
+			.then(result => this.result = result)
 	}
 
 	ngOnInit() {
-		this.getArchive()
 		this.titleService.setTitle(`Search - PoiScript's Blog`)
 	}
 }
