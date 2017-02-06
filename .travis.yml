@@ -16,6 +16,13 @@ script:
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
+  - cd dist
+  - git init
+  - git config user.name "PoiScript"
+  - git config user.email "poiscript@gmail.com"
+  - git add .
+  - git commit -m "Committed via Travis-CI"
+  - git push -f -q https://PoiScript:$GITHUB_TOKEN@github.com/PoiScript/poiscript.github.io
 
 notifications:
   email:
