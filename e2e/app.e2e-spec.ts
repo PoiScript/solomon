@@ -1,10 +1,10 @@
-import { BlogPage } from './app.po';
+import { SolomonPage } from './app.po';
 
-describe('blog App', function() {
-  let page: BlogPage;
+describe('solomon App', function() {
+  let page: SolomonPage;
 
   beforeEach(() => {
-    page = new BlogPage();
+    page = new SolomonPage();
   });
 
   it('should display message saying app works', () => {

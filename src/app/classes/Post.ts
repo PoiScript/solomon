@@ -5,14 +5,15 @@ export class Intro {
 	issue_number: number
 	image: string
 	category: {
-		en_US: string
-		zh_Hans: string
-		zh_Hant: string
+		en: string
+		zh_CHS: string
+		zh_CHT: string
 	}
 }
 
 export class Post {
 	intro: Intro
+	bookmark: string[]
 	previous_title: string
 	previous_slug: string
 	next_title: string

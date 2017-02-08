@@ -6,13 +6,20 @@ import {Title} from "@angular/platform-browser"
 
 @Component({
 	template: `
-    <app-header [title]="category?.title.zh_Hans"></app-header>
-    <post-list *ngFor="let year of years" [intros]="category?.posts|yearPipe:year" [title]="year"></post-list>
+    <app-header [title]="category?.title.zh_CHS"></app-header>
+    <div class="container">
+      <div *ngFor="let intro of category?.intros|step:2; let index = index">
+        <div [fxLayout]="'row'" [fxLayout.xs]="'column'" [fxLayout.sm]="'column'">
+          <post-preview [fxFlex]="50" [intro]="intro"></post-preview>
+          <post-preview [fxFlex]="50" *ngIf="category.intros[index + 1]" [intro]="category.intros[index + 1]"></post-preview>
+        </div>
+      </div>
+    </div>
+
 	`,
 })
 export class CategoryComponent implements OnInit {
 	category: Category
-	years: Number[]
 
 	constructor(private categoryService: CategoryService,
 	            private router: ActivatedRoute,
@@ -22,19 +29,14 @@ export class CategoryComponent implements OnInit {
 	getCategory(title: string): void {
 		this.categoryService
 			.getCategories()
-			.then(categories => {
-				this.category = categories.find(category => category.title.en_US === title)
-				this.years = this.category.posts
-					.map(intro => new Date(intro.date).getFullYear())
-					.filter((year, index, self) => index === self.indexOf(year))
-			})
+			.then(categories => this.category = categories.find(category => category.title.en === title))
 	}
 
 	ngOnInit(): void {
 		this.router.params.subscribe(
 			params => {
 				this.getCategory(params['title'])
-				this.titleService.setTitle(`${params['title']} - PoiScript's Blog`)
+				this.titleService.setTitle(`${params['title']} - Solomon`)
 			}
 		)
 	}

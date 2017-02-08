@@ -1,9 +1,10 @@
 import {Intro} from "./Post"
 export class Category {
 	title: {
-		en_US: string
-		zh_Hans: string
-		zh_Hant: string
+		en: string
+		zh_CHS: string
+		zh_CHT: string
 	}
-	posts: Intro[]
+	intros: Intro[]
+	count: number
 }

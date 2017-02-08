@@ -8,11 +8,4 @@ import {SearchResult} from "../../classes/SearchResult"
 })
 export class SearchResultComponent {
 	@Input() result: SearchResult
-
-	// static highlight(fragment: string, matches: [{ text: string, indices: number[] }]): string {
-	// 	let result = fragment
-	// 	matches.forEach(match => {
-	// 		result = result.substring(0, ind) + '233' + result.substring(ind, end) + '233' + result.substring(end, code.length)
-	// 	})
-	// }
 }

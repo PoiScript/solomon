@@ -1,0 +1,14 @@
+<md-card>
+  <header [fxLayout]="'column'">
+    <strong>{{intro.title}}</strong>
+    <span>{{intro.date|date:"yyyy-MM-dd hh:mm:ss"}}</span>
+  </header>
+  <img md-card-image [src]="intro.image">
+  <md-card-content>
+    <p>Post Overview</p>
+  </md-card-content>
+  <md-card-actions>
+    <a md-button [routerLink]="['/post', intro.slug]">Read More</a>
+    <a md-button target="_blank" href='https://github.com/PoiScript/Solomon-Post/blob/master/markdown/{{intro.slug}}.md'>View Source</a>
+  </md-card-actions>
+</md-card>

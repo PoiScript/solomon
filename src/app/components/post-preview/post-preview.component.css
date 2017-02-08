@@ -1,0 +1,14 @@
+md-card {
+    margin: 20px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-right: 16px;
+}
+
+header {
+    margin-bottom: 16px;
+}

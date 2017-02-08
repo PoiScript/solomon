@@ -6,9 +6,19 @@ import {SearchResult} from "../../classes/SearchResult"
 @Component({
 	template: `
     <app-header [title]="title"></app-header>
-    <search-bar (keywordChanged)="handleKeywordChanged($event)"></search-bar>
-    <search-result *ngIf="result" [result]="result"></search-result>
-	`
+    <div class="container">
+      <div [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
+        <md-input-container [style.width]="'100%'">
+          <input #input md-input (keyup.enter)="keywordChanged(input.value)">
+        </md-input-container>
+        <button md-icon-button (click)="keywordChanged(input.value)">
+          <md-icon>search</md-icon>
+        </button>
+      </div>
+      <search-result *ngIf="result" [result]="result"></search-result>
+    </div>
+	`,
+	styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
 	result: SearchResult
@@ -18,7 +28,7 @@ export class SearchComponent implements OnInit {
 	            private titleService: Title) {
 	}
 
-	handleKeywordChanged(keyword: string) {
+	keywordChanged(keyword: string) {
 		this.title = `Search "${keyword}"`
 		this.githubService
 			.searchCode(keyword)
@@ -26,6 +36,6 @@ export class SearchComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.titleService.setTitle(`Search - PoiScript's Blog`)
+		this.titleService.setTitle('Search - Solomon')
 	}
 }

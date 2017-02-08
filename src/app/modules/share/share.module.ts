@@ -9,6 +9,8 @@ import {YearPipe} from "../../pipe/year.pipe"
 import {PostService} from "../../service/post"
 import {GitHubService} from "../../service/github"
 import {FlexLayoutModule} from "@angular/flex-layout"
+import {StepPipe} from "../../pipe/step.pipe"
+import {PostPreviewComponent} from "../../components/post-preview"
 
 @NgModule({
 	imports: [
@@ -24,14 +26,18 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 	declarations: [
 		HeaderComponent,
 		PostListComponent,
+		PostPreviewComponent,
 		OddPipe,
-		YearPipe
+		YearPipe,
+		StepPipe
 	],
 	exports: [
 		HeaderComponent,
 		PostListComponent,
+		PostPreviewComponent,
 		OddPipe,
-		YearPipe
+		YearPipe,
+		StepPipe
 	],
 	providers: [
 		PostService,

@@ -10,6 +10,6 @@ export class AboutComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.titleService.setTitle('About - PoiScript\'s Blog')
+		this.titleService.setTitle('About - Solomon')
 	}
 }

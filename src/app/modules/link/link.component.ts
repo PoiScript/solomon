@@ -23,6 +23,6 @@ export class LinkComponent implements OnInit {
 
 	ngOnInit() {
 		this.getLinks()
-		this.titleService.setTitle('Link - PoiScript\'s Blog')
+		this.titleService.setTitle('Link - Solomon')
 	}
 }

@@ -48,6 +48,6 @@ export class RecentComponent implements OnInit {
 		this.getArchives()
 		this.getRepos()
 		this.getAnimes()
-		this.titleService.setTitle(`Recent - PoiScript's Blog`)
+		this.titleService.setTitle('Recent - Solomon')
 	}
 }

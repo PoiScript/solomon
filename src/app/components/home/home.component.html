@@ -5,24 +5,24 @@
       [opened]="!isSMLayout"
       [mode]="isSMLayout?'over':'side'">
     <md-toolbar [color]="'primary'">
-      <h4 [style.width]="'100%'" (click)="titleClick()">PoiScript's Blog</h4>
+      <h4 i18n [style.width]="'100%'" (click)="titleClick()">Solomon</h4>
       <button md-icon-button (click)="openDialog()">
         <md-icon>settings</md-icon>
       </button>
     </md-toolbar>
     <md-nav-list>
-      <md-list-item routerLinkActive="active" [routerLink]="'/recent'">Recent</md-list-item>
-      <md-list-item routerLinkActive="active" [routerLink]="'/search'">Search</md-list-item>
-      <md-list-item routerLinkActive="active" [routerLink]="'/about'">about</md-list-item>
-      <md-list-item routerLinkActive="active" [routerLink]="'/link'">Link</md-list-item>
-      <md-list-item routerLinkActive="active" [routerLink]="'/archive'">Archive</md-list-item>
+      <md-list-item i18n routerLinkActive="active" [routerLink]="'/recent'">Recent</md-list-item>
+      <md-list-item i18n routerLinkActive="active" [routerLink]="'/search'">Search</md-list-item>
+      <md-list-item i18n routerLinkActive="active" [routerLink]="'/about'">About</md-list-item>
+      <md-list-item i18n routerLinkActive="active" [routerLink]="'/link'">Link</md-list-item>
+      <md-list-item i18n routerLinkActive="active" [routerLink]="'/archive'">Archive</md-list-item>
       <md-divider></md-divider>
       <h3 md-subheader>Categories</h3>
       <md-list-item
           *ngFor="let category of categories"
           routerLinkActive="active"
-          [routerLink]="['/category', category.title.en_US]">
-        <p md-line> {{ category.title.en_US }} </p> {{category.count}}
+          [routerLink]="['/category', category.title.en]">
+        <p md-line> {{ category.title.en }} </p> {{category.count}}
       </md-list-item>
     </md-nav-list>
   </md-sidenav>

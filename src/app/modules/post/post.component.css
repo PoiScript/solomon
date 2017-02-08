@@ -1,5 +1,12 @@
-.parallax{
+.parallax {
     min-height: 70vh;
     background: fixed center no-repeat;
     background-size: cover;
+}
+
+button {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }

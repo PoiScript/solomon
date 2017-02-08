@@ -9,8 +9,8 @@ export class CategoryService {
 	}
 
 	getCategories(): Promise<Category []> {
-		return this.http.get('/post/json/categories.json')
+		return this.http.get('/json/categories.json')
 			.toPromise()
-			.then((res) => res.json() as Category)
+			.then(res => res.json() as Category)
 	}
 }

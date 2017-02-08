@@ -1,10 +1,10 @@
 <div class="post-area">
   <h1>{{post?.intro.title}}</h1>
   <header [fxLayout]="'row'">
-    <img class="category" [routerLink]="['/category', post?.intro.category.en_US]"
-         [attr.src]="'/assets/img/category/'+ post?.intro.category.en_US+'.jpg'">
+    <img class="category" [routerLink]="['/category', post?.intro.category.en]"
+         [attr.src]="'/assets/img/category/'+ post?.intro.category.en+'.jpg'">
     <div [style.width]="'100%'" [fxLayout]="'column'">
-      <strong>{{post?.intro.category.zh_Hans}}</strong>
+      <strong>{{post?.intro.category.zh_CHS}}</strong>
       <span>{{post?.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
     </div>
     <a md-icon-button mdTooltip="View Source" target="_blank"
@@ -15,16 +15,16 @@
       <md-icon>bookmark_border</md-icon>
     </button>
     <md-menu #menu="mdMenu">
-      <button md-menu-item>View {{isRaw?"Parsed":"Source"}}</button>
+      <a md-menu-item *ngFor="let mark of post?.bookmark">{{mark}}</a>
     </md-menu>
   </header>
-  <p [innerHTML]="post?.html"></p>
+  <div class="markdown-body" [innerHTML]="post?.html"></div>
   <footer [fxLayout]="'row'" [fxLayout.xs]="'column'">
-    <div [fxFlex]="50" [fxLayoutAlign]="'start'" *ngIf="post?.previous_title">
-      <button md-icon-button [routerLink]="['/post', post?.previous_slug]">
+    <div [fxFlex]="50" [fxLayoutAlign]="'start'">
+      <button md-icon-button [routerLink]="['/post', post?.previous_slug]" *ngIf="post?.previous_title">
         <md-icon>keyboard_arrow_left</md-icon>
       </button>
-      <div [fxLayout]="'column'">
+      <div [fxLayout]="'column'" *ngIf="post?.previous_title">
         <span>Previous</span>
         <strong>{{post?.previous_title}}</strong>
       </div>

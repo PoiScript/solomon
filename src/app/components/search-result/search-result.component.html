@@ -1,12 +1,10 @@
-<md-card>
-  <h3>{{result?.total_count}} results</h3>
-  <md-card-content *ngFor="let item of result?.items">
-    <p>{{item?.name}}</p>
-    <a [attr.href]="item.html_url" target="_blank">View Source</a>
-    <ul>
-      <li *ngFor="let text of item?.text_matches">
-        <p>{{text?.fragment}}</p>
-      </li>
-    </ul>
-  </md-card-content>
-</md-card>
+<h3 align="center">{{result?.total_count}} results</h3>
+<md-card-content *ngFor="let item of result?.items">
+  <p>{{item?.name}}</p>
+  <a [attr.href]="item.html_url" target="_blank">View Source</a>
+  <div class="markdown-body">
+    <pre lang="markdown" *ngFor="let text of item?.text_matches">
+      <code>{{text.fragment.slice()}}</code>
+    </pre>
+  </div>
+</md-card-content>

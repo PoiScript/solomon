@@ -28,7 +28,7 @@ export class GitHubService {
 	searchCode(keyword: string): Promise<SearchResult> {
 		let headers = new Headers()
 		headers.append('Accept', 'application/vnd.github.v3.text-match+json')
-		return this.http.get(`https://api.github.com/search/code?q=repo:PoiScript/Solomon-Post+${keyword}`, {
+		return this.http.get(`https://api.github.com/search/code?q=repo:PoiScript/Solomon-Post+extension:md+${keyword}`, {
 			headers: headers
 		}).toPromise()
 			.then(res => res.json() as SearchResult)

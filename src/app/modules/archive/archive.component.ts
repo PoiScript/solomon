@@ -31,6 +31,6 @@ export class ArchiveComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getArchive()
-		this.titleService.setTitle('Archive - PoiScript\'s Blog')
+		this.titleService.setTitle('Archive - Solomon')
 	}
 }
