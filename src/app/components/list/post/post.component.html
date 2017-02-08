@@ -3,7 +3,7 @@
   <div [fxLayout]="'row'" [fxLayout.xs]="'column'" [fxLayout.sm]="'column'">
     <md-nav-list [fxFlex]="50">
       <md-list-item *ngFor="let intro of intros|slice:0:limit|odd:false" [routerLink]="['/post', intro?.slug]">
-        <md-icon md-list-avatar>code</md-icon>
+        <img md-list-avatar [attr.src]="'/assets/img/category/'+ intro?.category.en+'.jpg'">
         <h3 md-line> {{intro?.title}} </h3>
         <p md-line> {{intro?.category.zh_Hans}} </p>
         <p md-line> {{intro?.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
@@ -11,7 +11,7 @@
     </md-nav-list>
     <md-nav-list [fxFlex]="50">
       <md-list-item *ngFor="let intro of intros|slice:0:limit|odd:true" [routerLink]="['/post', intro?.slug]">
-        <md-icon md-list-avatar>code</md-icon>
+        <img md-list-avatar [attr.src]="'/assets/img/category/'+ intro?.category.en+'.jpg'">
         <h3 md-line> {{intro.title}} </h3>
         <p md-line> {{intro.category.zh_Hans}} </p>
         <p md-line> {{intro.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>

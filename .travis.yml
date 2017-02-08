@@ -12,7 +12,7 @@ before_script:
   - yarn global add angular-cli
 
 script:
-  - ng build --prod
+  - ng build
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN

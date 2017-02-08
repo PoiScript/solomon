@@ -7,15 +7,16 @@
       <strong>{{post?.intro.category.zh_CHS}}</strong>
       <span>{{post?.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
     </div>
-    <a md-icon-button mdTooltip="View Source" target="_blank"
+    <a md-icon-button [mdTooltip]="'View Source'" target="_blank"
        href="https://raw.githubusercontent.com/PoiScript/Solomon-Post/master/markdown/{{post?.intro.slug}}.md">
       <md-icon>open_in_new</md-icon>
     </a>
-    <button md-icon-button mdTooltip="Bookmark" [mdMenuTriggerFor]="menu">
+    <button md-icon-button [mdTooltip]="'Bookmark'" [mdMenuTriggerFor]="menu">
       <md-icon>bookmark_border</md-icon>
     </button>
-    <md-menu #menu="mdMenu">
+    <md-menu #menu="mdMenu" x-position="before">
       <a md-menu-item *ngFor="let mark of post?.bookmark">{{mark}}</a>
+      <a md-menu-item *ngIf="post?.bookmark.length == 0">No Bookmark</a>
     </md-menu>
   </header>
   <div class="markdown-body" [innerHTML]="post?.html"></div>
