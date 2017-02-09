@@ -1,6 +1,7 @@
 import fs = require('fs')
 import marked = require('marked')
 import cheerio = require('cheerio')
+import path = require('path')
 import {Post} from "./src/app/classes/Post"
 import {Category} from "./src/app/classes/Category"
 
@@ -21,13 +22,13 @@ renderer.heading = (text: string, level: number) => {
 let files: string[] = []
 let posts: Post[] = []
 
-function walk(path) {
-  fs.readdirSync(path)
-    .forEach((item) => {
-      if (fs.statSync(path + '/' + item).isDirectory())
-        walk(path + '/' + item)
-      else
-        files.push(fs.readFileSync(path + '/' + item, 'utf8'))
+function walk(walkPath) {
+  fs.readdirSync(walkPath)
+    .forEach(item=> {
+      if (fs.statSync(walkPath + '/' + item).isDirectory())
+        walk(walkPath + '/' + item)
+      else if (path.extname(item) === ".md")
+        files.push(fs.readFileSync(walkPath + '/' + item, 'utf8'))
     })
 }
 
