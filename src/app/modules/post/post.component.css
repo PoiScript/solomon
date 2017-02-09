@@ -1,13 +1,6 @@
-.parallax {
-    min-height: 300px;
-    max-height: 750px;
-    background: fixed center no-repeat;
-    background-size: cover;
-}
-
 button {
-    display: inline-block;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }

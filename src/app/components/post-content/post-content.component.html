@@ -1,5 +1,8 @@
-<div class="post-area">
-  <h1>{{post?.intro.title}}</h1>
+<div class="markdown-body" style="text-align:center">
+  <img [src]="post?.intro.image">
+</div>
+<div class="post-area markdown-body">
+  <h1 id="top">{{post?.intro.title}}</h1>
   <header [fxLayout]="'row'">
     <img class="category" [routerLink]="['/category', post?.intro.category.en]"
          [attr.src]="'/assets/img/category/'+ post?.intro.category.en+'.jpg'">
@@ -15,11 +18,11 @@
       <md-icon>bookmark_border</md-icon>
     </button>
     <md-menu #menu="mdMenu" x-position="before">
-      <a md-menu-item *ngFor="let mark of post?.bookmark">{{mark}}</a>
+      <a md-menu-item *ngFor="let mark of post?.bookmark" (click)="goTop(mark)">{{mark}}</a>
       <a md-menu-item *ngIf="post?.bookmark.length == 0">No Bookmark</a>
     </md-menu>
   </header>
-  <div class="markdown-body" [innerHTML]="post?.html"></div>
+  <div [innerHTML]="post?.html"></div>
   <footer [fxLayout]="'row'" [fxLayout.xs]="'column'">
     <div [fxFlex]="50" [fxLayoutAlign]="'start'">
       <button md-icon-button [routerLink]="['/post', post?.previous_slug]" *ngIf="post?.previous_title">

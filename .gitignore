@@ -38,3 +38,10 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+# Post Content
+src/json
+src/markdown
+
+# Compiled File
+build.js
