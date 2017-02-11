@@ -9,12 +9,11 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
-    "extract-i18n": "cd src && ng-xi18n",
-    "build": "tsc build.ts && node build.js && ng build"
+    "build": "ng build",
+    "render": "tsc render.ts && node render.js"
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "latest",
     "@angular/common": "^2.3.1",
     "@angular/compiler": "^2.3.1",
     "@angular/core": "^2.3.1",
@@ -36,7 +35,8 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^2.4.6",
+    "@angular/cli": "1.0.0-beta.30",
+    "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "codelyzer": "~2.0.0-beta.1",

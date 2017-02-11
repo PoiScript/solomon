@@ -11,38 +11,40 @@ import {GitHubService} from "../../service/github"
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {StepPipe} from "../../pipe/step.pipe"
 import {PostPreviewComponent} from "../../components/post-preview"
+import {ThemeService} from "../../service/theme/theme.service"
 
 @NgModule({
-	imports: [
-		CommonModule,
-		MdListModule,
-		MdIconModule,
-		MdToolbarModule,
-		MdCardModule,
-		RouterModule,
-		FlexLayoutModule,
-		MdSidenavModule
-	],
-	declarations: [
-		HeaderComponent,
-		PostListComponent,
-		PostPreviewComponent,
-		OddPipe,
-		YearPipe,
-		StepPipe
-	],
-	exports: [
-		HeaderComponent,
-		PostListComponent,
-		PostPreviewComponent,
-		OddPipe,
-		YearPipe,
-		StepPipe
-	],
-	providers: [
-		PostService,
-		GitHubService
-	]
+  imports: [
+    CommonModule,
+    MdListModule,
+    MdIconModule,
+    MdToolbarModule,
+    MdCardModule,
+    RouterModule,
+    FlexLayoutModule,
+    MdSidenavModule
+  ],
+  declarations: [
+    HeaderComponent,
+    PostListComponent,
+    PostPreviewComponent,
+    OddPipe,
+    YearPipe,
+    StepPipe
+  ],
+  exports: [
+    HeaderComponent,
+    PostListComponent,
+    PostPreviewComponent,
+    OddPipe,
+    YearPipe,
+    StepPipe
+  ],
+  providers: [
+    PostService,
+    GitHubService,
+    ThemeService
+  ]
 })
 export class ShareModule {
 }

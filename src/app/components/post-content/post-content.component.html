@@ -1,17 +1,17 @@
 <div class="markdown-body" style="text-align:center">
-  <img [src]="post?.intro.image">
+  <img [src]="post?.intro.image || ''">
 </div>
 <div class="post-area markdown-body">
   <h1 id="top">{{post?.intro.title}}</h1>
   <header [fxLayout]="'row'">
     <img class="category" [routerLink]="['/category', post?.intro.category.en]"
-         [attr.src]="'/assets/img/category/'+ post?.intro.category.en+'.jpg'">
+         [src]="post?.intro.category.en? '/assets/img/category/'+ post?.intro.category.en+'.jpg' : ''">
     <div [style.width]="'100%'" [fxLayout]="'column'">
       <strong>{{post?.intro.category.zh_CHS}}</strong>
       <span>{{post?.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
     </div>
     <a md-icon-button [mdTooltip]="'View Source'" target="_blank"
-       href="https://raw.githubusercontent.com/PoiScript/Solomon-Post/master/markdown/{{post?.intro.slug}}.md">
+       href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/blob/master/{{post?.intro.slug}}.md">
       <md-icon>open_in_new</md-icon>
     </a>
     <button md-icon-button [mdTooltip]="'Bookmark'" [mdMenuTriggerFor]="menu">

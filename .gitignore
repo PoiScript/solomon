@@ -44,4 +44,4 @@ src/json
 src/markdown
 
 # Compiled File
-build.js
+render.js

@@ -15,7 +15,6 @@ import {Title} from "@angular/platform-browser"
         </div>
       </div>
     </div>
-
 	`,
 })
 export class CategoryComponent implements OnInit {

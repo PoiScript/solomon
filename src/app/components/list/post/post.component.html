@@ -5,7 +5,7 @@
       <md-list-item *ngFor="let intro of intros|slice:0:limit|odd:false" [routerLink]="['/post', intro?.slug]">
         <img md-list-avatar [attr.src]="'/assets/img/category/'+ intro?.category.en+'.jpg'">
         <h3 md-line> {{intro?.title}} </h3>
-        <p md-line> {{intro?.category.zh_Hans}} </p>
+        <p md-line> {{intro?.category.zh_CHS}} </p>
         <p md-line> {{intro?.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
       </md-list-item>
     </md-nav-list>
@@ -13,7 +13,7 @@
       <md-list-item *ngFor="let intro of intros|slice:0:limit|odd:true" [routerLink]="['/post', intro?.slug]">
         <img md-list-avatar [attr.src]="'/assets/img/category/'+ intro?.category.en+'.jpg'">
         <h3 md-line> {{intro.title}} </h3>
-        <p md-line> {{intro.category.zh_Hans}} </p>
+        <p md-line> {{intro.category.zh_CHS}} </p>
         <p md-line> {{intro.date | date:"yyyy-MM-dd HH:mm:ss"}} </p>
       </md-list-item>
     </md-nav-list>

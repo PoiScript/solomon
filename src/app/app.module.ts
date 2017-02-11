@@ -9,24 +9,26 @@ import {SortByPipe} from "./pipe/sort-by.pipe"
 import {SettingsDialogComponent} from "./components/settings-dialog"
 import {ShareModule} from "./modules/share"
 import {HomeComponent} from "./components/home/home.component"
+import {CONFIG, CONFIG_TOKEN} from "./config"
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		SortByPipe,
-		SettingsDialogComponent,
-		HomeComponent,
-	],
-	imports: [
-		ShareModule,
-		BrowserModule,
-		HttpModule,
-		AppRouting,
-		MaterialModule.forRoot(),
-		FlexLayoutModule.forRoot(),
-	],
-	bootstrap: [AppComponent],
-	entryComponents: [SettingsDialogComponent]
+  declarations: [
+    AppComponent,
+    SortByPipe,
+    SettingsDialogComponent,
+    HomeComponent,
+  ],
+  imports: [
+    ShareModule,
+    BrowserModule,
+    HttpModule,
+    AppRouting,
+    MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot(),
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [SettingsDialogComponent],
+  providers: [{provide: CONFIG_TOKEN, useValue: CONFIG}]
 })
 export class AppModule {
 }

@@ -3,13 +3,19 @@ import {Subject} from "rxjs"
 
 @Injectable()
 export class ThemeService {
+  private isDark: boolean = false
 
-	private toggleThemeSource = new Subject()
+  private toggleThemeSource = new Subject<boolean>()
 
-	toggleTheme$ = this.toggleThemeSource.asObservable()
+  toggleTheme$ = this.toggleThemeSource.asObservable()
 
-	toggleTheme() {
-		this.toggleThemeSource.next()
-	}
+  toggleTheme() {
+    this.isDark = !this.isDark
+    this.toggleThemeSource.next(this.isDark)
+  }
+
+  getTheme(): boolean {
+    return this.isDark
+  }
 
 }

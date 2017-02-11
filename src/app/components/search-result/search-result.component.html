@@ -1,10 +1,15 @@
-<h3 align="center">{{result?.total_count}} results</h3>
-<md-card-content *ngFor="let item of result?.items">
-  <p>{{item?.name}}</p>
-  <a [attr.href]="item.html_url" target="_blank">View Source</a>
-  <div class="markdown-body">
-    <pre lang="markdown" *ngFor="let text of item?.text_matches">
-      <code>{{text.fragment.slice()}}</code>
+<md-card *ngFor="let item of result?.items">
+  <header [fxLayout]="'column'">
+    <strong>{{item.intro.title}}</strong>
+    <span>{{item.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+  </header>
+  <md-card-content class="markdown-body" *ngFor="let text of item?.text_matches">
+    <pre lang="markdown">
+      <code>{{text.fragment}}</code>
     </pre>
-  </div>
-</md-card-content>
+  </md-card-content>
+  <md-card-actions>
+    <a md-button [routerLink]="['/post', item.intro.slug]">Read More</a>
+    <a md-button target="_blank" href='https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/blob/master/{{item.intro.slug}}.md'>View Source</a>
+  </md-card-actions>
+</md-card>

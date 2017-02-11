@@ -19,8 +19,9 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "github-markdown.css"
+        "styles.scss",
+        "github-markdown.css",
+        "theme.scss"
       ],
       "scripts": [],
       "environments": {
@@ -51,7 +52,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

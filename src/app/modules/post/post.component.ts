@@ -6,6 +6,7 @@ import {Title} from "@angular/platform-browser"
 import {Comment} from "../../classes/Comment"
 import {GitHubService} from "../../service/github/github.service"
 import {Location} from "@angular/common"
+import {ThemeService} from "../../service/theme/theme.service"
 
 @Component({
   template: `
@@ -21,12 +22,14 @@ import {Location} from "@angular/common"
 })
 
 export class PostComponent implements OnInit {
+  isDark: boolean
   post: Post
   comments: Comment[]
 
   constructor(private postService: PostService,
               private location: Location,
               private titleService: Title,
+              private themeService: ThemeService,
               private githubService: GitHubService,
               private router: ActivatedRoute) {
   }
@@ -49,5 +52,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.router.params
       .subscribe(params => this.getPost(params['slug']))
+    this.isDark = this.themeService.getTheme()
+    console.log(this.isDark)
   }
 }
