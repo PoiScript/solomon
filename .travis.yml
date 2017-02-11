@@ -13,6 +13,7 @@ script:
   - mkdir src/json
   - yarn
   - npm install -g firebase-tools
+  - npm run render
   - npm run build
 
 after_success:

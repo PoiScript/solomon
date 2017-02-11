@@ -24,7 +24,7 @@ let posts: Post[] = []
 
 function walk(walkPath) {
   fs.readdirSync(walkPath)
-    .forEach(item=> {
+    .forEach(item => {
       if (fs.statSync(walkPath + '/' + item).isDirectory())
         walk(walkPath + '/' + item)
       else if (path.extname(item) === ".md")
