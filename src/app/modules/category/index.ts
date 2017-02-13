@@ -1,1 +1,1 @@
-export * from './category.module'
+export {CategoryModule} from './category.module'

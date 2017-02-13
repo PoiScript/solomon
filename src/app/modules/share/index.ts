@@ -1,1 +1,1 @@
-export * from './share.module'
+export {ShareModule} from './share.module'

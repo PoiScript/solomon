@@ -1,1 +1,1 @@
-export * from './search.module'
+export {SearchModule} from './search.module'

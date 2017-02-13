@@ -1,1 +1,1 @@
-export * from './archive.module'
+export {ArchiveModule} from './archive.module'

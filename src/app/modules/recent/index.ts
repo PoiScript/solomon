@@ -1,1 +1,1 @@
-export * from './recent.module'
+export {RecentModule} from './recent.module'

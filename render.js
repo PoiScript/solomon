@@ -14,14 +14,17 @@ var posts = [];
 function walk(walkPath) {
     fs.readdirSync(walkPath)
         .forEach(function (item) {
-        if (fs.statSync(walkPath + '/' + item).isDirectory())
+        if (fs.statSync(walkPath + "/" + item).isDirectory())
             walk(walkPath + '/' + item);
+        else if (item === 'link.md')
+            return;
         else if (path.extname(item) === ".md")
-            files.push(fs.readFileSync(walkPath + '/' + item, 'utf8'));
+            files.push(fs.readFileSync(walkPath + "/" + item, 'utf8'));
     });
 }
 function parse() {
-    files.forEach(function (file) {
+    files
+        .forEach(function (file) {
         var tokenStart = file.indexOf('```json');
         var tokenEnd = file.indexOf('```', 1);
         if (tokenStart === -1)
@@ -41,24 +44,34 @@ function generatePostJSON() {
     posts
         .sort(function (p1, p2) { return Date.parse(p1.intro.date) - Date.parse(p2.intro.date); })
         .forEach(function (post, index) {
-        if (index > 0) {
-            post.previous_title = posts[index - 1].intro.title;
-            post.previous_slug = posts[index - 1].intro.slug;
+        if (post.intro.slug === 'about') {
+            fs.writeFile("src/json/about.json", JSON.stringify(post), function (err) {
+                if (err)
+                    console.error(err);
+                console.log("[GENERATED] about.json");
+            });
         }
-        if (index < files.length - 1) {
-            post.next_title = posts[index + 1].intro.title;
-            post.next_slug = posts[index + 1].intro.slug;
+        else {
+            if (index > 0) {
+                post.previous_title = posts[index - 1].intro.title;
+                post.previous_slug = posts[index - 1].intro.slug;
+            }
+            if (index < files.length - 1) {
+                post.next_title = posts[index + 1].intro.title;
+                post.next_slug = posts[index + 1].intro.slug;
+            }
+            fs.writeFile("src/json/" + post.intro.slug + ".json", JSON.stringify(post), function (err) {
+                if (err)
+                    console.error(err);
+                console.log("[GENERATED] " + post.intro.slug + ".json");
+            });
         }
-        fs.writeFile("src/json/" + post.intro.slug + ".json", JSON.stringify(post), function (err) {
-            if (err)
-                console.error(err);
-            console.log("[GENERATED] " + post.intro.slug + ".json");
-        });
     });
 }
 function generateCategoryJSON() {
     var categories = [];
     posts
+        .filter(function (post) { return post.intro.slug !== 'about'; })
         .forEach(function (post) {
         var i = categories.map(function (category) { return JSON.stringify(category.title); }).indexOf(JSON.stringify(post.intro.category));
         if (i === -1)
@@ -66,8 +79,7 @@ function generateCategoryJSON() {
         else
             categories[i].intros.push(post.intro);
     });
-    categories
-        .forEach(function (category) { return category.count = category.intros.length; });
+    categories.forEach(function (category) { return category.count = category.intros.length; });
     fs.writeFile("src/json/categories.json", JSON.stringify(categories), function (err) {
         if (err)
             console.error(err);
@@ -75,15 +87,36 @@ function generateCategoryJSON() {
     });
 }
 function generateArchiveJSON() {
-    fs.writeFile("src/json/archive.json", JSON.stringify(posts.map(function (post) { return post.intro; })), function (err) {
+    fs.writeFile("src/json/archive.json", JSON.stringify(posts.map(function (post) { return post.intro; }).filter(function (intro) { return intro.slug !== 'about'; })), function (err) {
         if (err)
             console.error(err);
         console.log("[GENERATED] archive.json");
     });
 }
+function generateLinkJSON(walkPath) {
+    var links = [];
+    var file = fs.readFileSync(walkPath + "/link.md", 'utf8');
+    file
+        .substring(file.indexOf('|:--:|:--:|:--:|:--:|:--:|') + 28, file.lastIndexOf('|')).split('|\n|')
+        .forEach(function (line) {
+        links.push({
+            github_username: line.split('|')[0],
+            display_name: line.split('|')[1],
+            link_text: line.split('|')[2],
+            link_address: line.split('|')[3],
+            bio: line.split('|')[4] || ''
+        });
+    });
+    fs.writeFile("src/json/link.json", JSON.stringify(links), function (err) {
+        if (err)
+            console.error(err);
+        console.log("[GENERATED] link.json");
+    });
+}
 walk('src/markdown');
-console.log("[INFO] " + files.length + " file(s) found.");
+console.log("[INFO] " + files.length + " files found.");
 parse();
 generatePostJSON();
 generateCategoryJSON();
 generateArchiveJSON();
+generateLinkJSON('src/markdown');

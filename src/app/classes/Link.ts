@@ -1,6 +1,7 @@
 export class Link {
-	name: string
-	address: string
-	description: string
-	username: string
+  github_username: string
+  display_name: string
+  link_address: string
+  link_text: string
+  bio: string
 }

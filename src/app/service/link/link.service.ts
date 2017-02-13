@@ -9,7 +9,7 @@ export class LinkService {
 	}
 
 	getLinks(): Promise<Link[]> {
-		return this.http.get('/assets/link.json')
+		return this.http.get('/json/link.json')
 			.toPromise()
 			.then(res => res.json() as Link[])
 	}

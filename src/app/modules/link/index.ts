@@ -1,1 +1,1 @@
-export * from './link.module'
+export {LinkModule} from './link.module'

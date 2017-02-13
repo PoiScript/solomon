@@ -5,14 +5,14 @@ import {AboutComponent} from "./about.component"
 import {ShareModule} from "../share"
 
 @NgModule({
-	imports: [
-		CommonModule,
-		AboutRouting,
-		ShareModule
-	],
-	declarations: [
-		AboutComponent
-	]
+  imports: [
+    CommonModule,
+    AboutRouting,
+    ShareModule
+  ],
+  declarations: [
+    AboutComponent
+  ]
 })
 export class AboutModule {
 }

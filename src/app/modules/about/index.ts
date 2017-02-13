@@ -1,1 +1,1 @@
-export * from './about.module'
+export {AboutModule} from './about.module'
