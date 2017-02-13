@@ -5,7 +5,7 @@
     [opened]="!isSMLayout"
     [mode]="isSMLayout?'over':'side'">
     <md-toolbar [color]="'primary'">
-      <h4 i18n [style.width]="'100%'" (click)="titleClick()">{{BLOG_NAME}}</h4>
+      <h4 [style.width]="'100%'" (click)="titleClick()">{{BLOG_NAME}}</h4>
       <!--<button md-icon-button (click)="toggleTheme()">-->
         <!--<md-icon>settings</md-icon>-->
       <!--</button>-->
@@ -17,7 +17,7 @@
       <md-list-item i18n routerLinkActive="active" [routerLink]="'/link'">Link</md-list-item>
       <md-list-item i18n routerLinkActive="active" [routerLink]="'/archive'">Archive</md-list-item>
       <md-divider></md-divider>
-      <h3 md-subheader>Categories</h3>
+      <h3 i18n md-subheader>Categories</h3>
       <md-list-item
         *ngFor="let category of categories"
         routerLinkActive="active"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="dea597d706dced2e5ee599210b9f3efca0f6bb38" datatype="html">
+        <source>Recent</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+        <source>About</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e03b6cba7c88318e4f91a60a079870e8fba4bee7" datatype="html">
+        <source>Link</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="22c9be90eb27c5c613348fbb621792223afe5d1b" datatype="html">
+        <source>Archive</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
+        <source>Categories</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0c5bd2da41033083a851188b03fa406c954c58f8" datatype="html">
+        <source>Login to GitHub and left your comments in
+      <x id="START_LINK" ctype="x-a"/> this issue <x id="CLOSE_LINK" ctype="x-a"/>
+      , then your comment will show here. :)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5755fca01c0c53d73caac77323a2f11d72e62e09" datatype="html">
+        <source>Recent Animes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84e0d9be7005fc8c4824f0d68add601e75ba2fbb" datatype="html">
+        <source>Recent Projects</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57484d0b6780c6c4d630870e69da3082477cb5d8" datatype="html">
+        <source>No Bookmark</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9b934c17e6025b2c09a858c80c3f58c0943cf6a8" datatype="html">
+        <source>Read More</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="01843b796cec8c0739a1c1b243bcf433ac539138" datatype="html">
+        <source>View Source</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

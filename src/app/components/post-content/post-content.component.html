@@ -19,7 +19,7 @@
     </button>
     <md-menu #menu="mdMenu" x-position="before">
       <a md-menu-item *ngFor="let mark of post?.bookmark" (click)="goTop(mark)">{{mark}}</a>
-      <a md-menu-item *ngIf="post?.bookmark.length == 0">No Bookmark</a>
+      <a i18n md-menu-item *ngIf="post?.bookmark.length == 0">No Bookmark</a>
     </md-menu>
   </header>
   <div [innerHTML]="post?.html"></div>
