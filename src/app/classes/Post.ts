@@ -9,6 +9,7 @@ export class Intro {
 		zh_CHS: string
 		zh_CHT: string
 	}
+	comment: number
 }
 
 export class Post {
