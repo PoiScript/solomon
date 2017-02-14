@@ -1,34 +1,31 @@
-import {Component, OnInit} from "@angular/core"
+import {Component, HostListener, OnInit} from "@angular/core"
 import {ActivatedRoute} from "@angular/router"
 import {PostService} from "../../service/post"
 import {Post} from "../../classes/Post"
-import {Title} from "@angular/platform-browser"
+import {DomSanitizer, SafeHtml, Title} from "@angular/platform-browser"
 import {Comment} from "../../classes/Comment"
-import {GitHubService} from "../../service/github/github.service"
+import {GitHubService} from "../../service/github"
 import {Location} from "@angular/common"
-import {ThemeService} from "../../service/theme/theme.service"
+import {ThemeService} from "../../service/theme"
+import {ScrollService} from "../../service/scroll/scroll.service"
 
 @Component({
-  template: `
-    <div class="post-container">
-      <button md-fab (click)="backClicked()" [color]="'primary'">
-        <md-icon>keyboard_backspace</md-icon>
-      </button>
-      <post-content [post]="post"></post-content>
-      <comment [comments]="comments" [issue_number]="post?.intro.issue_number"></comment>
-    </div>
-  `,
-  styleUrls: ['./post.component.css']
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.css'],
+  providers: [ScrollService]
 })
 
 export class PostComponent implements OnInit {
+  toTopVisibility: boolean
   isDark: boolean
+  safeHtml: SafeHtml
   post: Post
   comments: Comment[]
 
   constructor(private postService: PostService,
               private location: Location,
               private titleService: Title,
+              private sanitizer: DomSanitizer,
               private themeService: ThemeService,
               private githubService: GitHubService,
               private router: ActivatedRoute) {
@@ -38,11 +35,25 @@ export class PostComponent implements OnInit {
     this.location.back()
   }
 
+  toTopClicked(): void {
+    window.scrollTo(0, 0)
+  }
+
+  jumpTo(id: string): void {
+    window.location.hash = id
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  changeVisibility() {
+    this.toTopVisibility = document.body.scrollTop > 500
+  }
+
   getPost(slug: string): void {
     this.postService
       .getPost(slug)
       .then(post => {
         this.post = post
+        this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.post.html)
         this.titleService.setTitle(`${post.intro.title} - Solomon`)
         return post.intro.issue_number
       })
