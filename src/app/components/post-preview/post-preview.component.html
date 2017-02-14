@@ -6,6 +6,7 @@
   <img md-card-image [src]="intro.image">
   <md-card-content>
     <p>Post Overview</p>
+    <p>{{intro.comment}}</p>
   </md-card-content>
   <md-card-actions>
     <a md-button [routerLink]="['/post', intro.slug]">Read More</a>

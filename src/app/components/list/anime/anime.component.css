@@ -2,17 +2,8 @@ md-list md-list-item [md-line] {
     white-space: normal;
 }
 
-md-list md-list-item .md-list-text {
-    padding: 0;
-}
-
 md-card {
     margin: 20px;
-}
-
-.fade {
-    color: gray;
-    text-decoration: none;
 }
 
 .capitalize {

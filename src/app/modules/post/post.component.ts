@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from "@angular/core"
+import {animate, Component, HostListener, OnInit, state, style, transition, trigger} from "@angular/core"
 import {ActivatedRoute} from "@angular/router"
 import {PostService} from "../../service/post"
 import {Post} from "../../classes/Post"
@@ -12,11 +12,19 @@ import {ScrollService} from "../../service/scroll/scroll.service"
 @Component({
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
-  providers: [ScrollService]
+  providers: [ScrollService],
+  animations: [
+    trigger('toTopState', [
+      state('true', style({transform: 'translateY(0)'})),
+      state('false', style({transform: 'translateY(200%)'})),
+      transition('1 => 0', animate(200)),
+      transition('0 => 1', animate(200))
+    ])
+  ]
 })
 
 export class PostComponent implements OnInit {
-  toTopVisibility: boolean
+  toTopVisibility: boolean = false
   isDark: boolean
   safeHtml: SafeHtml
   post: Post

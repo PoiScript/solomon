@@ -2,7 +2,7 @@
   <button id="back-fab" md-fab (click)="backClicked()" [color]="'primary'">
     <md-icon>keyboard_backspace</md-icon>
   </button>
-  <button id="top-fab" md-fab (click)="toTopClicked()" [color]="'primary'" *ngIf="toTopVisibility">
+  <button id="top-fab" md-fab (click)="toTopClicked()" [@toTopState]="toTopVisibility" [color]="'primary'">
     <md-icon>keyboard_arrow_up</md-icon>
   </button>
   <div class="markdown-body" style="text-align:center">

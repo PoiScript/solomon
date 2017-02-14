@@ -6,25 +6,29 @@ import {Intro, Post} from "../../classes/Post"
 
 @Injectable()
 export class PostService {
-	constructor(private http: Http) {
-	}
+  archive: Intro[]
 
-	getArchive(): Promise<Intro []> {
-		return this.http.get('/json/archive.json')
-			.toPromise()
-			.then(res => res.json() as Intro[])
-			.catch(PostService.handleError)
-	}
+  constructor(private http: Http) {
+  }
 
-	getPost(slug: string): Promise<Post> {
-		return this.http.get(`/json/${slug}.json`)
-			.toPromise()
-			.then(res => res.json() as Post)
-			.catch(PostService.handleError)
-	}
+  getArchive(): Promise<Intro []> {
+    if (this.archive) return new Promise(resolve => resolve(this.archive))
+    return this.http.get('/json/archive.json')
+      .toPromise()
+      .then(res => res.json() as Intro[])
+      .then(archive => this.archive = archive)
+      .catch(PostService.handleError)
+  }
 
-	static handleError(error: any): Promise<any> {
-		console.error('An error occurred', error)
-		return Promise.reject(error.message || error)
-	}
+  getPost(slug: string): Promise<Post> {
+    return this.http.get(`/json/${slug}.json`)
+      .toPromise()
+      .then(res => res.json() as Post)
+      .catch(PostService.handleError)
+  }
+
+  static handleError(error: any): Promise<any> {
+    console.error('An error occurred', error)
+    return Promise.reject(error.message || error)
+  }
 }
