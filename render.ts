@@ -2,9 +2,9 @@ import fs = require('fs')
 import marked = require('marked')
 import cheerio = require('cheerio')
 import path = require('path')
-import {Post} from "./src/app/classes/Post"
-import {Category} from "./src/app/classes/Category"
-import {Link} from "./src/app/classes/Link"
+import {Post} from "./src/app/share/classes/Post"
+import {Category} from "./src/app/share/classes/Category"
+import {Link} from "./src/app/share/classes/Link"
 
 let renderer = new marked.Renderer()
 

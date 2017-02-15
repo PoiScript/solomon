@@ -1,4 +1,4 @@
-import {SolomonConfig} from "./interface/solomon-config"
+import {SolomonConfig} from "./share/interface/solomon-config"
 import {OpaqueToken} from "@angular/core"
 
 export const CONFIG: SolomonConfig = {

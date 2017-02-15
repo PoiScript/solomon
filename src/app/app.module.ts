@@ -5,17 +5,13 @@ import {MaterialModule} from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {AppComponent} from "./app.component"
 import {AppRouting} from "./app.routing"
-import {SortByPipe} from "./pipe/sort-by.pipe"
-import {SettingsDialogComponent} from "./components/settings-dialog"
-import {ShareModule} from "./modules/share"
-import {HomeComponent} from "./components/home/home.component"
+import {ShareModule} from "./share"
+import {HomeComponent} from "./home/home.component"
 import {CONFIG, CONFIG_TOKEN} from "./config"
 
 @NgModule({
   declarations: [
     AppComponent,
-    SortByPipe,
-    SettingsDialogComponent,
     HomeComponent,
   ],
   imports: [
@@ -27,7 +23,6 @@ import {CONFIG, CONFIG_TOKEN} from "./config"
     FlexLayoutModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SettingsDialogComponent],
   providers: [{provide: CONFIG_TOKEN, useValue: CONFIG}]
 })
 export class AppModule {
