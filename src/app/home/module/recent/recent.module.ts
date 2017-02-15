@@ -8,25 +8,27 @@ import {ShareModule} from "../../../share"
 import {RepoListComponent} from "./component/repo-list"
 import {AnimeListComponent} from "./component/anime-list"
 import {KitsuService} from "./service/kitsu"
+import {HomeShareModule} from "../share/share.module"
 
 @NgModule({
-	imports: [
-		CommonModule,
-		RecentRouting,
-		ShareModule,
-		MdIconModule,
-		MdListModule,
-		MdCardModule,
-		FlexLayoutModule
-	],
-	declarations: [
-		RecentComponent,
-		RepoListComponent,
-		AnimeListComponent
-	],
-	providers: [
-		KitsuService
-	]
+  imports: [
+    CommonModule,
+    RecentRouting,
+    ShareModule,
+    HomeShareModule,
+    MdIconModule,
+    MdListModule,
+    MdCardModule,
+    FlexLayoutModule
+  ],
+  declarations: [
+    RecentComponent,
+    RepoListComponent,
+    AnimeListComponent
+  ],
+  providers: [
+    KitsuService
+  ]
 })
 export class RecentModule {
 }

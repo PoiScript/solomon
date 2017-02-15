@@ -6,11 +6,13 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 import {ShareModule} from "../../../share"
 import {PostPreviewComponent} from "./component/post-preview"
 import {MdCardModule} from "@angular/material"
+import {HomeShareModule} from "../share/share.module"
 
 @NgModule({
 	imports: [
 		CommonModule,
 		ShareModule,
+		HomeShareModule,
 		CategoryRouting,
 		FlexLayoutModule,
     MdCardModule

@@ -1,12 +1,12 @@
 import {Component, Inject, OnDestroy, OnInit, ViewChild} from "@angular/core"
 import {MdSidenav} from "@angular/material"
-import {SideNavService} from "../share/service/sidenav/sidenav.service"
-import {CategoryService} from "./service/category/category.service"
+import {SideNavService} from "./service/sidenav"
+import {CategoryService} from "./service/category"
 import {Subscription} from "rxjs"
 import {Category} from "../share/classes/Category"
-import {ResizeService} from "./service/resize/resize.service"
+import {ResizeService} from "./service/resize"
 import {Router} from "@angular/router"
-import {ThemeService} from "../share/service/theme/theme.service"
+import {ThemeService} from "../share/service/theme"
 import {SolomonConfig} from "../share/interface/solomon-config"
 import {CONFIG_TOKEN} from "../config"
 
@@ -15,8 +15,8 @@ import {CONFIG_TOKEN} from "../config"
   styleUrls: ['home.component.css'],
   providers: [
     ResizeService,
-    SideNavService,
-    CategoryService
+    CategoryService,
+    SideNavService
   ]
 })
 
@@ -53,7 +53,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       .then((categories) => this.categories = categories)
   }
 
-  toggleTheme(): void {
+  toggleChange(checked): void {
+    this.isDark = checked
     this.themeService.toggleTheme()
   }
 

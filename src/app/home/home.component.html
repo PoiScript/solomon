@@ -7,7 +7,7 @@
     <md-toolbar [color]="'primary'">
       <h4 [style.width]="'100%'" (click)="titleClick()">{{BLOG_NAME}}</h4>
       <!--<button md-icon-button (click)="toggleTheme()">-->
-        <!--<md-icon>settings</md-icon>-->
+      <!--<md-icon>settings</md-icon>-->
       <!--</button>-->
     </md-toolbar>
     <md-nav-list>
@@ -16,6 +16,10 @@
       <md-list-item i18n routerLinkActive="active" [routerLink]="'/about'">About</md-list-item>
       <md-list-item i18n routerLinkActive="active" [routerLink]="'/link'">Link</md-list-item>
       <md-list-item i18n routerLinkActive="active" [routerLink]="'/archive'">Archive</md-list-item>
+      <md-list-item>
+        <p md-line>Night Mode</p>
+        <md-slide-toggle (change)="toggleChange($event.checked)" [checked]="isDark"></md-slide-toggle>
+      </md-list-item>
       <md-divider></md-divider>
       <h3 i18n md-subheader>Categories</h3>
       <md-list-item

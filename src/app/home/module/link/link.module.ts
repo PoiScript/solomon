@@ -7,12 +7,14 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 import {ShareModule} from "../../../share"
 import {LinkListComponent} from "./component/link"
 import {LinkService} from "./service/link"
+import {HomeShareModule} from "../share/share.module"
 
 @NgModule({
 	imports: [
 		CommonModule,
 		LinkRouting,
 		ShareModule,
+		HomeShareModule,
 		MdListModule,
 		MdCardModule,
 		FlexLayoutModule

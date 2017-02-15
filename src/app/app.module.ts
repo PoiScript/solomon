@@ -12,7 +12,7 @@ import {CONFIG, CONFIG_TOKEN} from "./config"
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     ShareModule,
@@ -23,7 +23,9 @@ import {CONFIG, CONFIG_TOKEN} from "./config"
     FlexLayoutModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  providers: [{provide: CONFIG_TOKEN, useValue: CONFIG}]
+  providers: [
+    {provide: CONFIG_TOKEN, useValue: CONFIG},
+  ]
 })
 export class AppModule {
 }

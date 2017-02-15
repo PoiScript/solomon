@@ -8,25 +8,27 @@ import {FlexLayoutModule} from "@angular/flex-layout"
 import {SearchResultComponent} from "./component/search-result/search-result.component"
 import {ShareModule} from "../../../share"
 import {SearchBarComponent} from "./component/search-bar"
+import {HomeShareModule} from "../share"
 
 @NgModule({
-	imports: [
-		CommonModule,
-		ShareModule,
-		SearchRouting,
-		FormsModule,
-		MdInputModule,
-		MdCheckboxModule,
-		MdCardModule,
-		MdIconModule,
-		MdListModule,
-		FlexLayoutModule
-	],
-	declarations: [
-		SearchComponent,
-		SearchBarComponent,
-		SearchResultComponent
-	]
+  imports: [
+    CommonModule,
+    ShareModule,
+    HomeShareModule,
+    SearchRouting,
+    FormsModule,
+    MdInputModule,
+    MdCheckboxModule,
+    MdCardModule,
+    MdIconModule,
+    MdListModule,
+    FlexLayoutModule
+  ],
+  declarations: [
+    SearchComponent,
+    SearchBarComponent,
+    SearchResultComponent
+  ]
 })
 export class SearchModule {
 }

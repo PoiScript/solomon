@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core"
-import {Intro} from "../classes/Post"
+import {Intro} from "../../../../share/classes/Post"
 
 @Pipe({
 	name: 'yearPipe'
