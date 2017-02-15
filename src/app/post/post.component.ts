@@ -10,12 +10,18 @@ import {GitHubService} from "../share/service/github"
 
 
 @Component({
-  templateUrl: 'post.component.html',
-  styleUrls: ['post.component.css'],
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.css'],
   animations: [
     trigger('toTopState', [
       state('true', style({transform: 'translateY(0)'})),
       state('false', style({transform: 'translateY(200%)'})),
+      transition('1 => 0', animate(200)),
+      transition('0 => 1', animate(200))
+    ]),
+    trigger('backState', [
+      state('true', style({transform: 'translateY(0)'})),
+      state('false', style({transform: 'translateY(-200%)'})),
       transition('1 => 0', animate(200)),
       transition('0 => 1', animate(200))
     ])
@@ -24,6 +30,7 @@ import {GitHubService} from "../share/service/github"
 
 export class PostComponent implements OnInit {
   toTopVisibility: boolean = false
+  backVisibility: boolean = false
   isDark: boolean
   safeHtml: SafeHtml
   post: Post
@@ -53,6 +60,7 @@ export class PostComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   changeVisibility() {
     this.toTopVisibility = document.body.scrollTop > 500
+    this.backVisibility = document.body.scrollTop < 50
   }
 
   getPost(slug: string): void {

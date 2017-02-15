@@ -1,5 +1,5 @@
 <div class="post-container">
-  <button id="back-fab" md-fab (click)="backClicked()" [color]="'primary'">
+  <button id="back-fab" md-fab (click)="backClicked()" [@backState]="backVisibility">
     <md-icon>keyboard_backspace</md-icon>
   </button>
   <button id="top-fab" md-fab (click)="toTopClicked()" [@toTopState]="toTopVisibility" [color]="'primary'">

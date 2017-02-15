@@ -1,11 +1,24 @@
 <md-card>
-  <header [fxLayout]="'row'" *ngFor="let link of links">
-    <a [href]="'https://github.com/' + link.github_username" target="_blank">
-      <img [src]="'https://github.com/' + link.github_username + '.png'" class="avatar">
-    </a>
-    <div [fxLayout]="'column'">
-      <strong>{{link.display_name}} <a [href]="link.link_address">{{link.link_text}}</a> </strong>
-      <span>{{link.bio}}</span>
-    </div>
-  </header>
+  <div [fxLayout]="'row'" [fxLayout.xs]="'column'" [fxLayout.sm]="'column'">
+    <md-nav-list [fxFlex]="50">
+      <a *ngFor="let link of links|odd:false" [href]="link?.link_address" target="_blank">
+        <md-list-item>
+          <img md-list-avatar [src]="'https://github.com/' + link.github_username + '.png'">
+          <h3 md-line> {{link.link_text}} </h3>
+          <p md-line> {{link.display_name}} </p>
+          <p md-line> {{link.bio}} </p>
+        </md-list-item>
+      </a>
+    </md-nav-list>
+    <md-nav-list [fxFlex]="50">
+      <a *ngFor="let link of links|odd:true" [href]="link?.link_address" target="_blank">
+        <md-list-item>
+          <img md-list-avatar [src]="'https://github.com/' + link.github_username + '.png'">
+          <h3 md-line> {{link.link_text}} </h3>
+          <p md-line> {{link.display_name}} </p>
+          <p md-line> {{link.bio}} </p>
+        </md-list-item>
+      </a>
+    </md-nav-list>
+  </div>
 </md-card>

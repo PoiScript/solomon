@@ -5,7 +5,7 @@ import {CategoryComponent} from "./category.component"
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {ShareModule} from "../../../share"
 import {PostPreviewComponent} from "./component/post-preview"
-import {MdCardModule} from "@angular/material"
+import {MdButtonModule, MdCardModule} from "@angular/material"
 import {HomeShareModule} from "../share/share.module"
 
 @NgModule({
@@ -15,7 +15,8 @@ import {HomeShareModule} from "../share/share.module"
 		HomeShareModule,
 		CategoryRouting,
 		FlexLayoutModule,
-    MdCardModule
+    MdCardModule,
+    MdButtonModule
 	],
 	declarations: [
 		CategoryComponent,
