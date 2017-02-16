@@ -1,0 +1,17 @@
+md-sidenav-container.dark {
+  background: #212121;
+}
+
+md-sidenav-container {
+  background: rgba(255, 255, 255, 0.87);
+}
+
+@import '~@angular/material/core/theming/all-theme';
+
+@mixin side-nav-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .active {
+    color: md-color($primary);
+  }
+}

@@ -1,0 +1,646 @@
+@import '~@angular/material/core/theming/all-theme';
+
+@mixin markdown-theme($theme) {
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $pre-background-color: invert(md-color($background, card, 0.1)) !default;
+  $quote-color: invert(md-color($background, card, 0.4)) !default;
+  $text-color: invert(md-color($background, card, 0.6)) !default;
+
+  .markdown-body {
+    color: $text-color;
+
+    a {
+      color: md-color($primary);
+    }
+
+    pre {
+      background-color: $pre-background-color;
+    }
+
+    blockquote {
+      color: $quote-color;
+      border-left: $quote-color 0.25em solid;;
+    }
+
+    h1, h2 {
+      border-bottom: 1px solid $text-color;
+    }
+  }
+}
+
+//colors
+$color_mountain_mist_approx: #969896;
+$color_bondi_blue_approx: #0086b3;
+$color_deluge_approx: #795da3;
+$color_mine_shaft_approx: #333;
+$color_fruit_salad_approx: #63a35c;
+$color_jazzberry_jam_approx: #a71d5d;
+$color_torea_bay_approx: #183691;
+$color_burnt_sienna_approx: #ed6a43;
+$color_thunderbird_approx: #b52a1d;
+$color_desert_storm_approx: #f8f8f8;
+$color_sepia_approx: #693a17;
+$color_bay_of_many_approx: #1d3e81;
+$teal: #008080;
+$color_fair_pink_approx: #ffecec;
+$color_apple_approx: #55a532;
+$color_hint_of_green_approx: #eaffea;
+$color_alto_approx: #ddd;
+$color_mercury_approx: #e7e7e7;
+$color_fuscous_gray_approx: #555;
+$color_alabaster_approx: #fcfcfc;
+$color_celeste_approx: #ccc;
+$color_pink_swan_approx: #bbb;
+$black: #000;
+$color_gallery_approx: #eee;
+$color_tapa_approx: #777;
+$white: #fff;
+$black_4: rgba(0, 0, 0, 0.04);
+$color_black_haze_approx: #f7f7f7;
+$color_steel_blue_approx: #4078c0;
+
+//fonts
+$font_0: octicons-link;
+$font_1: monospace;
+$font_2: Consolas;
+$font_3: Liberation Mono;
+$font_4: Menlo;
+$font_5: Courier;
+
+//urls
+$url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==);
+
+//@extend-elements
+//original selectors
+//.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6
+%extend_1 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+//original selectors
+//.markdown-body ul, .markdown-body ol
+%extend_2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2em;
+}
+
+//original selectors
+//.markdown-body h1 .octicon-link, .markdown-body h2 .octicon-link, .markdown-body h3 .octicon-link, .markdown-body h4 .octicon-link, .markdown-body h5 .octicon-link, .markdown-body h6 .octicon-link
+%extend_3 {
+  color: $black;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+//original selectors
+//.markdown-body .highlight pre, .markdown-body pre
+%extend_4 {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: $color_black_haze_approx;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px;
+}
+
+@font-face {
+  font-family: $font_0;
+  src: $url_0 format('woff');
+}
+
+.markdown-body {
+  .pl-c {
+    color: $color_mountain_mist_approx;
+  }
+  .pl-c1 {
+    color: $color_bondi_blue_approx;
+  }
+  .pl-s {
+    color: $color_torea_bay_approx;
+    .pl-v {
+      color: $color_bondi_blue_approx;
+    }
+    .pl-s1 {
+      color: $color_mine_shaft_approx;
+    }
+    .pl-pse .pl-s1 {
+      color: $color_torea_bay_approx;
+    }
+  }
+  .pl-e {
+    color: $color_deluge_approx;
+  }
+  .pl-en {
+    color: $color_deluge_approx;
+  }
+  .pl-smi {
+    color: $color_mine_shaft_approx;
+  }
+  .pl-ent {
+    color: $color_fruit_salad_approx;
+  }
+  .pl-k {
+    color: $color_jazzberry_jam_approx;
+  }
+  .pl-pds {
+    color: $color_torea_bay_approx;
+  }
+  .pl-sr {
+    color: $color_torea_bay_approx;
+    .pl-cce {
+      font-weight: bold;
+      color: $color_fruit_salad_approx;
+    }
+    .pl-sre {
+      color: $color_torea_bay_approx;
+    }
+    .pl-sra {
+      color: $color_torea_bay_approx;
+    }
+  }
+  .pl-v {
+    color: $color_burnt_sienna_approx;
+  }
+  .pl-id {
+    color: $color_thunderbird_approx;
+  }
+  .pl-ii {
+    color: $color_desert_storm_approx;
+    background-color: $color_thunderbird_approx;
+  }
+  .pl-ml {
+    color: $color_sepia_approx;
+  }
+  .pl-mh {
+    font-weight: bold;
+    color: $color_bay_of_many_approx;
+    .pl-en {
+      font-weight: bold;
+      color: $color_bay_of_many_approx;
+    }
+  }
+  .pl-ms {
+    font-weight: bold;
+    color: $color_bay_of_many_approx;
+  }
+  .pl-mq {
+    color: $teal;
+  }
+  .pl-mi {
+    font-style: italic;
+    color: $color_mine_shaft_approx;
+  }
+  .pl-mb {
+    font-weight: bold;
+    color: $color_mine_shaft_approx;
+  }
+  .pl-md {
+    color: $color_thunderbird_approx;
+    background-color: $color_fair_pink_approx;
+  }
+  .pl-mi1 {
+    color: $color_apple_approx;
+    background-color: $color_hint_of_green_approx;
+  }
+  .pl-mdr {
+    font-weight: bold;
+    color: $color_deluge_approx;
+  }
+  .pl-mo {
+    color: $color_bay_of_many_approx;
+  }
+  .octicon {
+    display: inline-block;
+    fill: currentColor;
+    vertical-align: text-bottom;
+  }
+  a {
+    background-color: transparent;
+    text-decoration: none;
+    &:active {
+      outline-width: 0;
+      text-decoration: underline;
+    }
+    &:hover {
+      outline-width: 0;
+      text-decoration: underline;
+    }
+    &:not([href]) {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+  strong {
+    font-weight: 600;
+  }
+  h1 {
+    margin: 0.67em 0;
+    font-weight: 600;
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid $color_gallery_approx;
+    @extend %extend_1;
+    .octicon-link {
+      @extend %extend_3;
+    }
+    &:hover .anchor {
+      text-decoration: none;
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+  }
+  img {
+    border-style: none;
+    max-width: 100%;
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: content-box;
+    background-color: $white;
+  }
+  code {
+    font-size: 1em;
+    font-family: $font_2, $font_3, $font_4, $font_5, $font_1;
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    background-color: $black_4;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 3px;
+  }
+  kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 1em $font_2, $font_3, $font_4, $font_5, $font_1;
+    line-height: 10px;
+    color: $color_fuscous_gray_approx;
+    vertical-align: middle;
+    background-color: $color_alabaster_approx;
+    border: solid 1px $color_celeste_approx;
+    border-bottom-color: $color_pink_swan_approx;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 3px;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: inset 0 -1px 0 $color_pink_swan_approx;
+  }
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font: 1em $font_2, $font_3, $font_4, $font_5, $font_1;
+    word-wrap: normal;
+    @extend %extend_4;
+    > code {
+      padding: 0;
+      margin: 0;
+      font-size: 100%;
+      //Instead of the line below you could use @include word-break($value)
+      word-break: normal;
+      white-space: pre;
+      background: transparent;
+      border: 0;
+    }
+    code {
+      display: inline;
+      max-width: auto;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0;
+    }
+    code::before {
+      content: normal;
+    }
+    code::after {
+      content: normal;
+    }
+  }
+  hr {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: content-box;
+    overflow: visible;
+    height: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid $color_alto_approx;
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: $color_mercury_approx;
+    border: 0;
+    border-bottom-color: $color_gallery_approx;
+  }
+  input {
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-feature-settings: "liga" 0;
+  }
+  [type="checkbox"] {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    padding: 0;
+  }
+  * {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+  }
+  hr::before {
+    display: table;
+    content: "";
+  }
+  hr::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: 100%;
+    overflow: auto;
+    margin-top: 0;
+    margin-bottom: 16px;
+    th {
+      font-weight: bold;
+      padding: 6px 13px;
+      border: 1px solid $color_alto_approx;
+    }
+    td {
+      padding: 6px 13px;
+      border: 1px solid $color_alto_approx;
+    }
+    tr {
+      background-color: $white;
+      border-top: 1px solid $color_celeste_approx;
+      &:nth-child(2n) {
+        background-color: $color_desert_storm_approx;
+      }
+    }
+  }
+  td {
+    padding: 0;
+  }
+  th {
+    padding: 0;
+  }
+  h2 {
+    @extend %extend_1;
+    font-weight: 600;
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid $color_gallery_approx;
+    .octicon-link {
+      @extend %extend_3;
+    }
+    &:hover .anchor {
+      text-decoration: none;
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+  }
+  h3 {
+    @extend %extend_1;
+    font-weight: 600;
+    font-size: 1.25em;
+    .octicon-link {
+      @extend %extend_3;
+    }
+    &:hover .anchor {
+      text-decoration: none;
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+  }
+  h4 {
+    @extend %extend_1;
+    font-weight: 600;
+    font-size: 1em;
+    .octicon-link {
+      @extend %extend_3;
+    }
+    &:hover .anchor {
+      text-decoration: none;
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+  }
+  h5 {
+    @extend %extend_1;
+    font-weight: 600;
+    font-size: 0.875em;
+    .octicon-link {
+      @extend %extend_3;
+    }
+    &:hover .anchor {
+      text-decoration: none;
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+  }
+  h6 {
+    @extend %extend_1;
+    font-weight: 600;
+    font-size: 0.85em;
+    color: $color_tapa_approx;
+    .octicon-link {
+      @extend %extend_3;
+    }
+    &:hover .anchor {
+      text-decoration: none;
+      .octicon-link {
+        visibility: visible;
+      }
+    }
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  blockquote {
+    margin: 0;
+    padding: 0 1em;
+    margin-bottom: 16px;
+    > {
+      :first-child {
+        margin-top: 0;
+      }
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  ul {
+    @extend %extend_2;
+    margin-top: 0;
+    margin-bottom: 16px;
+    ol {
+      list-style-type: lower-roman;
+      margin-top: 0;
+      margin-bottom: 0;
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }
+  ol {
+    @extend %extend_2;
+    margin-top: 0;
+    margin-bottom: 16px;
+    ol {
+      list-style-type: lower-roman;
+      margin-top: 0;
+      margin-bottom: 0;
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }
+  dd {
+    margin-left: 0;
+  }
+  > * {
+    &:first-child {
+      margin-top: 0 !important;
+    }
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+  .anchor {
+    float: left;
+    padding-right: 4px;
+    margin-left: -20px;
+    line-height: 1;
+    &:focus {
+      outline: none;
+    }
+  }
+  dl {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding: 0;
+    dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: bold;
+    }
+    dd {
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+  }
+  li {
+    > p {
+      margin-top: 16px;
+    }
+    + li {
+      margin-top: 0.25em;
+    }
+  }
+  code::before {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+  code::after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+  .highlight {
+    margin-bottom: 16px;
+    pre {
+      margin-bottom: 0;
+      //Instead of the line below you could use @include word-break($value)
+      word-break: normal;
+      @extend %extend_4;
+    }
+  }
+  .pl-0 {
+    padding-left: 0 !important;
+  }
+  .pl-1 {
+    padding-left: 3px !important;
+  }
+  .pl-2 {
+    padding-left: 6px !important;
+  }
+  .pl-3 {
+    padding-left: 12px !important;
+  }
+  .pl-4 {
+    padding-left: 24px !important;
+  }
+  .pl-5 {
+    padding-left: 36px !important;
+  }
+  .pl-6 {
+    padding-left: 48px !important;
+  }
+  .task-list-item {
+    list-style-type: none;
+    input {
+      margin: 0 0.2em 0.25em -1.6em;
+      vertical-align: middle;
+    }
+    + .task-list-item {
+      margin-top: 3px;
+    }
+  }
+  svg:not(:root) {
+    overflow: hidden;
+  }
+  .full-commit .btn-outline:not(:disabled):hover {
+    color: $color_steel_blue_approx;
+    border: 1px solid $color_steel_blue_approx;
+  }
+  :checked + .radio-label {
+    position: relative;
+    z-index: 1;
+    border-color: $color_steel_blue_approx;
+  }
+}
+
+.markdown-body::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body::after {
+  display: table;
+  clear: both;
+  content: "";
+}

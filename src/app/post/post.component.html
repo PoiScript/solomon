@@ -1,4 +1,4 @@
-<div class="post-container">
+<div class="post-container" [class.dark]="isDark">
   <button id="back-fab" md-fab (click)="backClicked()" [@backState]="backVisibility">
     <md-icon>keyboard_backspace</md-icon>
   </button>
@@ -17,6 +17,9 @@
         <strong>{{post?.intro.category.zh_CHS}}</strong>
         <span>{{post?.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
       </div>
+      <button md-icon-button [mdTooltip]="'Toggle Theme'" (click)="toggleTheme()">
+        <md-icon>color_lens</md-icon>
+      </button>
       <a md-icon-button [mdTooltip]="'View Source'" target="_blank"
          href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/blob/master/{{post?.intro.slug}}.md">
         <md-icon>open_in_new</md-icon>
@@ -51,5 +54,5 @@
       </div>
     </footer>
   </div>
-  <comment [issue_number]="post?.intro.issue_number"></comment>
+  <comment [issue_number]="post?.intro.issue_number" [comments]="comments"></comment>
 </div>

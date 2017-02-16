@@ -11,7 +11,7 @@ import {GitHubService} from "../share/service/github"
 
 @Component({
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css'],
+  styleUrls: ['./post.component.scss'],
   animations: [
     trigger('toTopState', [
       state('true', style({transform: 'translateY(0)'})),
@@ -43,6 +43,11 @@ export class PostComponent implements OnInit {
               private themeService: ThemeService,
               private githubService: GitHubService,
               private router: ActivatedRoute) {
+  }
+
+  toggleTheme(): void {
+    this.isDark = !this.isDark
+    this.themeService.toggleTheme()
   }
 
   backClicked(): void {
@@ -79,6 +84,5 @@ export class PostComponent implements OnInit {
     this.router.params
       .subscribe(params => this.getPost(params['slug']))
     this.isDark = this.themeService.getTheme()
-    console.log(this.isDark)
   }
 }

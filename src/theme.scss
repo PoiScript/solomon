@@ -1,15 +1,25 @@
 @import '~@angular/material/core/theming/all-theme';
+@import "github-markdown";
+@import "app/home/home.component";
+@import "app/post/component/comment/comment.component";
 @include md-core();
 
 $primary: md-palette($md-deep-purple);
 $accent:  md-palette($md-amber, A200, A100, A400);
 $theme: md-light-theme($primary, $accent);
 @include angular-material-theme($theme);
+@include side-nav-theme($theme);
+@include markdown-theme($theme);
+@include comment-theme($theme);
 
 .dark {
-  $dark-primary: md-palette($md-pink, 700, 500, 900);
+  $dark-primary: md-palette($md-blue, 800, 600, 900);
   $dark-accent:  md-palette($md-blue-grey, A200, A100, A400);
   $dark-warn:    md-palette($md-deep-orange);
   $dark-theme: md-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
+  @include side-nav-theme($dark-theme);
+  @include markdown-theme($dark-theme);
+  @include comment-theme($dark-theme);
 }
+

@@ -8,6 +8,7 @@ import {AppRouting} from "./app.routing"
 import {ShareModule} from "./share"
 import {HomeComponent} from "./home/home.component"
 import {CONFIG, CONFIG_TOKEN} from "./config"
+import {ThemeService} from "./share/service/theme"
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {CONFIG, CONFIG_TOKEN} from "./config"
   bootstrap: [AppComponent],
   providers: [
     {provide: CONFIG_TOKEN, useValue: CONFIG},
+    ThemeService
   ]
 })
 export class AppModule {

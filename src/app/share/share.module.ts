@@ -20,8 +20,7 @@ import {ThemeService} from "./service/theme"
   ],
   providers: [
     PostService,
-    GitHubService,
-    ThemeService
+    GitHubService
   ]
 })
 export class ShareModule {

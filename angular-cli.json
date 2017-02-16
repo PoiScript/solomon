@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "github-markdown.css",
+        "github-markdown.scss",
         "theme.scss"
       ],
       "scripts": [],
