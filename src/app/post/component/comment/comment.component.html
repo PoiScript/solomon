@@ -1,7 +1,8 @@
 <div class="comment-area">
   <div class="receptacle">
     <h5 align="center" i18n>Login to GitHub and left your comments in
-      <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank"> this issue </a>
+      <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">
+        this issue </a>
       , then your comment will show here. :)</h5>
     <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
       <h3>{{comments?.length}} comments</h3>
@@ -14,6 +15,7 @@
         <button md-menu-item>Newest First</button>
       </md-menu>
     </header>
+    <h4 *ngIf="comments?.length === 0" align="center">No comment now,<br/>be the first to comment!</h4>
     <div *ngFor="let comment of comments">
       <header [fxLayout]="'row'">
         <a [href]="comment.user.html_url" target="_blank">

@@ -7,8 +7,7 @@ import {MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule, MdListModul
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {SearchResultComponent} from "./component/search-result/search-result.component"
 import {ShareModule} from "../../../share"
-import {SearchBarComponent} from "./component/search-bar"
-import {HomeShareModule} from "../share"
+import {HomeShareModule} from "../share/share.module"
 
 @NgModule({
   imports: [
@@ -26,7 +25,6 @@ import {HomeShareModule} from "../share"
   ],
   declarations: [
     SearchComponent,
-    SearchBarComponent,
     SearchResultComponent
   ]
 })

@@ -1,4 +1,4 @@
-import {animate, Component, HostListener, OnInit, state, style, transition, trigger} from "@angular/core"
+import {animate, Component, HostListener, Inject, OnInit, state, style, transition, trigger} from "@angular/core"
 import {ActivatedRoute} from "@angular/router"
 import {DomSanitizer, SafeHtml, Title} from "@angular/platform-browser"
 import {Post} from "../share/classes/Post"
@@ -7,6 +7,8 @@ import {Location} from "@angular/common"
 import {PostService} from "../share/service/post"
 import {ThemeService} from "../share/service/theme"
 import {GitHubService} from "../share/service/github"
+import {SolomonConfig} from "../share/interface/solomon-config"
+import {CONFIG_TOKEN} from "../config"
 
 
 @Component({
@@ -29,6 +31,8 @@ import {GitHubService} from "../share/service/github"
 })
 
 export class PostComponent implements OnInit {
+  private GITHUB_USERNAME: string
+  private GITHUB_POST_REPO: string
   toTopVisibility: boolean = false
   backVisibility: boolean = false
   isDark: boolean
@@ -36,13 +40,16 @@ export class PostComponent implements OnInit {
   post: Post
   comments: Comment[]
 
-  constructor(private postService: PostService,
+  constructor(@Inject(CONFIG_TOKEN) config: SolomonConfig,
+              private postService: PostService,
               private location: Location,
               private titleService: Title,
               private sanitizer: DomSanitizer,
               private themeService: ThemeService,
               private githubService: GitHubService,
               private router: ActivatedRoute) {
+    this.GITHUB_USERNAME = config.GITHUB_USERNAME
+    this.GITHUB_POST_REPO = config.GITHUB_POST_REPO
   }
 
   toggleTheme(): void {
@@ -60,6 +67,10 @@ export class PostComponent implements OnInit {
 
   jumpTo(id: string): void {
     window.location.hash = id
+  }
+
+  viewSourceClicked(): void {
+    window.open(`https://github.com/${this.GITHUB_USERNAME}/${this.GITHUB_POST_REPO}/blob/master/${this.post.intro.slug}.md`)
   }
 
   @HostListener('window:scroll', ['$event'])

@@ -11,8 +11,8 @@ import {SolomonConfig} from "../share/interface/solomon-config"
 import {CONFIG_TOKEN} from "../config"
 
 @Component({
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.scss'],
   providers: [
     ResizeService,
     CategoryService,

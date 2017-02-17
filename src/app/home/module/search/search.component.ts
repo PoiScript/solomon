@@ -9,14 +9,14 @@ import {GitHubService} from "../../../share/service/github"
   template: `
     <app-header [title]="title"></app-header>
     <div class="container">
-      <div [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
+      <md-card [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
         <md-input-container [style.width]="'100%'">
           <input #input md-input (keyup.enter)="keywordChanged(input.value)">
         </md-input-container>
         <button md-icon-button (click)="keywordChanged(input.value)">
           <md-icon>search</md-icon>
         </button>
-      </div>
+      </md-card>
       <search-result *ngIf="result" [result]="result" [intros]="intros"></search-result>
     </div>
   `

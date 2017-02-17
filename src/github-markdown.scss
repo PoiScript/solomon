@@ -27,6 +27,17 @@
     h1, h2 {
       border-bottom: 1px solid $text-color;
     }
+
+    hr {
+      //Instead of the line below you could use @include box-sizing($bs)
+      box-sizing: content-box;
+      overflow: visible;
+      margin: 15px 0;
+      height: 0.25em;
+      padding: 0;
+      background-color: $pre-background-color;
+      border: 0;
+    }
   }
 }
 
@@ -323,22 +334,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     code::after {
       content: normal;
     }
-  }
-  hr {
-    //Instead of the line below you could use @include box-sizing($bs)
-    box-sizing: content-box;
-    overflow: visible;
-    height: 0;
-    margin: 15px 0;
-    overflow: hidden;
-    background: transparent;
-    border-bottom: 1px solid $color_alto_approx;
-    height: 0.25em;
-    padding: 0;
-    margin: 24px 0;
-    background-color: $color_mercury_approx;
-    border: 0;
-    border-bottom-color: $color_gallery_approx;
   }
   input {
     font: inherit;
