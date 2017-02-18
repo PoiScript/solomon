@@ -9,11 +9,23 @@ import {ShareModule} from "./share"
 import {HomeComponent} from "./home/home.component"
 import {CONFIG, CONFIG_TOKEN} from "./config"
 import {ThemeService} from "./share/service/theme"
+import {AngularFireModule} from "angularfire2"
+import {UserProfileComponent} from "./component/user-profile"
+import {TokenService} from "./share/service/token"
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAtCLgC-zOhSg2VojAhvrPrvEyL8scBNPc",
+  authDomain: "poi-works.firebaseapp.com",
+  databaseURL: "https://poi-works.firebaseio.com",
+  storageBucket: "poi-works.appspot.com",
+  messagingSenderId: "306363697436"
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    UserProfileComponent
   ],
   imports: [
     ShareModule,
@@ -22,11 +34,16 @@ import {ThemeService} from "./share/service/theme"
     AppRouting,
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [AppComponent],
   providers: [
-    {provide: CONFIG_TOKEN, useValue: CONFIG},
-    ThemeService
+    ThemeService,
+    TokenService,
+    {provide: CONFIG_TOKEN, useValue: CONFIG}
+  ],
+  entryComponents: [
+    UserProfileComponent
   ]
 })
 export class AppModule {

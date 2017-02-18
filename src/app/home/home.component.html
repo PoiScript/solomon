@@ -4,11 +4,12 @@
     [style.width]="isSMLayout?'280px':'320px'"
     [opened]="!isSMLayout"
     [mode]="isSMLayout?'over':'side'">
-    <md-toolbar [color]="'primary'">
+    <md-toolbar [color]="'primary'" [ngSwitch]="isAuth">
       <h4 [style.width]="'100%'" (click)="titleClick()">{{BLOG_NAME}}</h4>
-      <!--<button md-icon-button (click)="toggleTheme()">-->
-      <!--<md-icon>settings</md-icon>-->
-      <!--</button>-->
+      <button md-icon-button (click)="viewProfile()" *ngSwitchCase="false">
+        <md-icon>account_circle</md-icon>
+      </button>
+      <img [src]="user.auth.photoURL" (click)="viewProfile()" class="nav-avatar" *ngSwitchCase="true">
     </md-toolbar>
     <md-nav-list>
       <md-list-item i18n routerLinkActive="active" [routerLink]="'/recent'">Recent</md-list-item>

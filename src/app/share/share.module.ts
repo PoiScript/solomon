@@ -5,7 +5,6 @@ import {RouterModule} from "@angular/router"
 import {PostService} from "./service/post"
 import {GitHubService} from "./service/github"
 import {FlexLayoutModule} from "@angular/flex-layout"
-import {ThemeService} from "./service/theme"
 
 @NgModule({
   imports: [

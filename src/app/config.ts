@@ -9,6 +9,7 @@ export const CONFIG: SolomonConfig = {
   GITHUB_USERNAME: 'PoiScript',
   GITHUB_POST_REPO: 'Solomon-Post',
   KITSU_ID: 140033
+
 }
 
 export const CONFIG_TOKEN = new OpaqueToken('config')
