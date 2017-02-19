@@ -1,14 +1,14 @@
-import {animate, Component, HostListener, Inject, OnInit, state, style, transition, trigger} from "@angular/core"
-import {ActivatedRoute} from "@angular/router"
-import {DomSanitizer, SafeHtml, Title} from "@angular/platform-browser"
-import {Post} from "../share/classes/Post"
-import {Comment} from "../share/classes/Comment"
-import {Location} from "@angular/common"
-import {PostService} from "../share/service/post"
-import {ThemeService} from "../share/service/theme"
-import {GitHubService} from "../share/service/github"
-import {SolomonConfig} from "../share/interface/solomon-config"
-import {CONFIG_TOKEN} from "../config"
+import {animate, Component, HostListener, Inject, OnInit, state, style, transition, trigger} from '@angular/core'
+import {ActivatedRoute} from '@angular/router'
+import {DomSanitizer, SafeHtml, Title} from '@angular/platform-browser'
+import {Post} from '../share/classes/Post'
+import {Comment} from '../share/classes/Comment'
+import {Location} from '@angular/common'
+import {PostService} from '../share/service/post'
+import {ThemeService} from '../share/service/theme'
+import {GitHubService} from '../share/service/github'
+import {SolomonConfig} from '../share/interface/solomon-config'
+import {CONFIG_TOKEN} from '../config'
 
 
 @Component({

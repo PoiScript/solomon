@@ -1,7 +1,7 @@
-import {Component} from "@angular/core"
-import {AngularFire, AuthMethods, AuthProviders, FirebaseAuthState} from "angularfire2"
-import {MdSnackBar} from "@angular/material"
-import {TokenService} from "../../share/service/token"
+import {Component} from '@angular/core'
+import {AngularFire, AuthMethods, AuthProviders, FirebaseAuthState} from 'angularfire2'
+import {MdSnackBar} from '@angular/material'
+import {TokenService} from '../../share/service/token'
 
 @Component({
   selector: 'user-profile',
@@ -31,20 +31,22 @@ export class UserProfileComponent {
   login(): void {
     this.af.auth.login({
       provider: AuthProviders.Github,
-      method: AuthMethods.Popup
+      method: AuthMethods.Popup,
+      scope: ['public_repo']
     }).then((res: any) => {
-      if ('accessToken' in res.gihub) this.tokenService.setToken(res.gihub.accessToken)
-      else this.snackBarOpen("Access Token Not Found, Re-login Please.", 1000)
+      console.log(res)
+      if ('accessToken' in res.github) this.tokenService.setToken(res.github.accessToken)
+      else this.snackBarOpen('Access Token Not Found, Re-login Please.', 1000)
     })
   }
 
   logout(): void {
     this.af.auth.logout()
-      .then(() => this.snackBarOpen("Logout successfully", 1000))
+      .then(() => this.snackBarOpen('Logout successfully', 1000))
   }
 
   private snackBarOpen(msg: string, duration: number) {
-    this.snackBar.open(msg, "", {
+    this.snackBar.open(msg, '', {
       duration: duration
     })
   }

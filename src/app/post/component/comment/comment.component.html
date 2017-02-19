@@ -1,9 +1,5 @@
 <div class="comment-area">
   <div class="receptacle">
-    <h5 align="center" i18n>Login to GitHub and left your comments in
-      <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">
-        this issue </a>
-      , then your comment will show here. :)</h5>
     <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
       <h3>{{comments?.length}} comments</h3>
       <span class="spacer"></span>
@@ -27,12 +23,33 @@
         </div>
       </header>
       <div class="text">{{comment.body}}</div>
-      <div class="reaction" [fxLayout]="center" *ngIf="comment.reactions.total_count">
-        <md-icon *ngIf="comment.reactions['+1']">thumb_up</md-icon>
-        <span>{{comment.reactions['+1']}}</span>
-        <md-icon *ngIf="comment.reactions['-1']">thumb_down</md-icon>
-        <span>{{comment.reactions['-1']}}</span>
+      <div class="reaction">
+        <button md-icon-button (click)="createReaction(comment.id, '+1')">
+          <md-icon>thumb_up</md-icon>
+        </button>
+        {{comment.reactions['+1']}}
+        <button md-icon-button (click)="createReaction(comment.id, '-1')">
+          <md-icon>thumb_down</md-icon>
+        </button>
+        {{comment.reactions['-1']}}
       </div>
     </div>
+    <header [fxLayout]="'row'" [fxLayoutAlign]="'end end'" [ngSwitch]="isAuth">
+      <button md-icon-button (click)="viewProfile()" *ngSwitchCase="false">
+        <md-icon>account_circle</md-icon>
+      </button>
+      <img [src]="user.auth.photoURL" (click)="viewProfile()" class="avatar" *ngSwitchCase="true">
+      <md-input-container [style.width]="'100%'">
+        <input #comment_body md-input placeholder="Left your comment"
+               (keyup.enter)="postComment(comment_body.value)">
+      </md-input-container>
+      <button md-icon-button (click)="postComment(comment_body.value)">
+        <md-icon>send</md-icon>
+      </button>
+    </header>
+    <h5 align="center" i18n>Login to GitHub and left your comments in
+      <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">
+        this issue </a>
+      , then your comment will show here. :)</h5>
   </div>
 </div>

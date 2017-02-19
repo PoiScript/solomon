@@ -43,5 +43,5 @@ Thumbs.db
 src/json
 src/markdown
 
-# Compiled File
-render.js
+# log
+*.log
