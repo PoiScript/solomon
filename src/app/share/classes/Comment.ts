@@ -2,7 +2,7 @@ export class Comment {
   id: number
 	created_at: Date
 	updated_at: Date
-	body: string
+	body_html: string
 	user: {
 		login: string
 		avatar_url: string

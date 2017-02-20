@@ -1,5 +1,5 @@
 <div class="comment-area">
-  <div class="receptacle">
+  <div class="receptacle markdown-body">
     <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
       <h3>{{comments?.length}} comments</h3>
       <span class="spacer"></span>
@@ -22,7 +22,7 @@
           <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
         </div>
       </header>
-      <div class="text">{{comment.body}}</div>
+      <div class="text" [innerHTML]="comment.body_html"></div>
       <div class="reaction">
         <button md-icon-button (click)="createReaction(comment.id, '+1')">
           <md-icon>thumb_up</md-icon>

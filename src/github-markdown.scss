@@ -233,6 +233,7 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     vertical-align: text-bottom;
   }
   a {
+    word-wrap: break-word;
     background-color: transparent;
     text-decoration: none;
     &:active {

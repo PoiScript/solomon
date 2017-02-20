@@ -15,7 +15,7 @@
     "build-i18n:zh-Hans": "ng build --output-path=dist/zh-Hans --prod --bh /zh-Hans/ --i18n-file=src/i18n/messages.zh-Hans.xlf --i18n-format=xlf --locale=zh-Hans",
     "build-i18n:zh-Hant": "ng build --output-path=dist/zh-Hant --prod --bh /zh-Hant/ --i18n-file=src/i18n/messages.zh-Hant.xlf --i18n-format=xlf --locale=zh-Hant",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:zh-Hans && npm run build-i18n:zh-Hant",
-    "render": "node render.js"
+    "render": "tsc render.ts --skipLibCheck && node render.js"
   },
   "private": true,
   "dependencies": {

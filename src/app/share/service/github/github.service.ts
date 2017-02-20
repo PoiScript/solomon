@@ -39,6 +39,7 @@ export class GitHubService {
   getIssueComments(number: Number): Promise<Comment[]> {
     let headers = new Headers()
     headers.append('Accept', 'application/vnd.github.squirrel-girl-preview')
+    headers.append('Accept', 'application/vnd.github.VERSION.html+json')
     return this.http
       .get(`https://api.github.com/repos/${this.GITHUB_USERNAME}/${this.GITHUB_POST_REPO}/issues/${number}/comments`, {
         headers: headers
