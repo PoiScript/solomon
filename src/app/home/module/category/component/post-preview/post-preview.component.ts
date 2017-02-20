@@ -8,7 +8,7 @@ import {GitHubService} from "../../../../../share/service/github"
 @Component({
   selector: 'post-preview',
   templateUrl: './post-preview.component.html',
-  styleUrls: ['./post-preview.component.css']
+  styleUrls: ['./post-preview.component.scss']
 })
 export class PostPreviewComponent implements OnInit {
   @Input() intro: Intro

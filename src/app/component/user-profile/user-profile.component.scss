@@ -1,3 +1,10 @@
+@import '~@angular/material/core/theming/all-theme';
+
+@mixin user-profile-theme($theme) {
+  $primary: map-get($theme, primary);
+
+}
+
 md-icon {
   margin-right: 16px;
 }

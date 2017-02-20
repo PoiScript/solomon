@@ -2,6 +2,7 @@
 @import "github-markdown";
 @import "app/home/home.component";
 @import "app/post/component/comment/comment.component";
+@import "app/component/user-profile/user-profile.component";
 
 @include mat-core();
 
@@ -12,6 +13,7 @@ $theme: mat-light-theme($primary, $accent);
 @include side-nav-theme($theme);
 @include markdown-theme($theme);
 @include comment-theme($theme);
+@include user-profile-theme($theme);
 
 .dark {
   $dark-primary: mat-palette($mat-blue, 800, 600, 900);
@@ -22,5 +24,6 @@ $theme: mat-light-theme($primary, $accent);
   @include side-nav-theme($dark-theme);
   @include markdown-theme($dark-theme);
   @include comment-theme($dark-theme);
+  @include user-profile-theme($dark-theme);
 }
 

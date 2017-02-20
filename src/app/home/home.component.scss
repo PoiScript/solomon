@@ -1,3 +1,13 @@
+@import '~@angular/material/core/theming/all-theme';
+
+@mixin side-nav-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .active {
+    color: mat-color($primary);
+  }
+}
+
 md-sidenav-container.dark {
   background: #212121;
 }
@@ -10,14 +20,4 @@ md-sidenav-container {
   width: 36px;
   height: 36px;
   border-radius: 18px;
-}
-
-@import '~@angular/material/core/theming/all-theme';
-
-@mixin side-nav-theme($theme) {
-  $primary: map-get($theme, primary);
-
-  .active {
-    color: md-color($primary);
-  }
 }

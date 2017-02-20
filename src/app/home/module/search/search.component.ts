@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core"
-import {Title} from "@angular/platform-browser"
-import {SearchResult} from "../../../share/classes/SearchResult"
-import {Intro} from "../../../share/classes/Post"
-import {PostService} from "../../../share/service/post"
-import {GitHubService} from "../../../share/service/github"
+import {Component, OnInit} from '@angular/core'
+import {Title} from '@angular/platform-browser'
+import {SearchResult} from '../../../share/classes/SearchResult'
+import {Intro} from '../../../share/classes/Post'
+import {PostService} from '../../../share/service/post'
+import {GitHubService} from '../../../share/service/github'
 
 @Component({
   template: `
@@ -11,7 +11,7 @@ import {GitHubService} from "../../../share/service/github"
     <div class="container">
       <md-card [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
         <md-input-container [style.width]="'100%'">
-          <input #input md-input (keyup.enter)="keywordChanged(input.value)">
+          <input #input mdInput (keyup.enter)="keywordChanged(input.value)">
         </md-input-container>
         <button md-icon-button (click)="keywordChanged(input.value)">
           <md-icon>search</md-icon>
@@ -24,7 +24,7 @@ import {GitHubService} from "../../../share/service/github"
 export class SearchComponent implements OnInit {
   intros: Intro[]
   result: SearchResult
-  title: string = "Search"
+  title: string = 'Search'
 
   constructor(private githubService: GitHubService,
               private postService: PostService,
