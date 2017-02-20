@@ -32,8 +32,8 @@ export const firebaseConfig = {
     BrowserModule,
     HttpModule,
     AppRouting,
-    MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    MaterialModule,
+    FlexLayoutModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [AppComponent],

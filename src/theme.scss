@@ -2,21 +2,22 @@
 @import "github-markdown";
 @import "app/home/home.component";
 @import "app/post/component/comment/comment.component";
-@include md-core();
 
-$primary: md-palette($md-deep-purple);
-$accent:  md-palette($md-amber, A200, A100, A400);
-$theme: md-light-theme($primary, $accent);
+@include mat-core();
+
+$primary: mat-palette($mat-deep-purple);
+$accent: mat-palette($mat-amber, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
 @include angular-material-theme($theme);
 @include side-nav-theme($theme);
 @include markdown-theme($theme);
 @include comment-theme($theme);
 
 .dark {
-  $dark-primary: md-palette($md-blue, 800, 600, 900);
-  $dark-accent:  md-palette($md-blue-grey, A200, A100, A400);
-  $dark-warn:    md-palette($md-deep-orange);
-  $dark-theme: md-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  $dark-primary: mat-palette($mat-blue, 800, 600, 900);
+  $dark-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+  $dark-warn: mat-palette($mat-deep-orange);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
   @include side-nav-theme($dark-theme);
   @include markdown-theme($dark-theme);

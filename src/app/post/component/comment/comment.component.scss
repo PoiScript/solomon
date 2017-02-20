@@ -4,15 +4,15 @@
   $primary: map-get($theme, primary);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
-  $background-color: invert(md-color($background, card, 0.2)) !default;
-  $text-color: invert(md-color($background, card, 0.6)) !default;
+  $background-color: invert(mat-color($background, card, 0.2)) !default;
+  $text-color: invert(mat-color($background, card, 0.6)) !default;
 
   .comment-area {
     color: $text-color;
     background: $background-color;
 
     a {
-      color: md-color($primary);
+      color: mat-color($primary);
       font-weight: 700;
       text-decoration: none;
     }

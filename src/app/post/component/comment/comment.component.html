@@ -40,7 +40,7 @@
       </button>
       <img [src]="user.auth.photoURL" (click)="viewProfile()" class="avatar" *ngSwitchCase="true">
       <md-input-container [style.width]="'100%'">
-        <input #comment_body md-input placeholder="Left your comment"
+        <input #comment_body mdInput placeholder="Left your comment"
                (keyup.enter)="postComment(comment_body.value)">
       </md-input-container>
       <button md-icon-button (click)="postComment(comment_body.value)">
