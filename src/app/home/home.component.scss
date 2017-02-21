@@ -2,18 +2,14 @@
 
 @mixin side-nav-theme($theme) {
   $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
 
   .active {
     color: mat-color($primary);
   }
-}
-
-md-sidenav-container.dark {
-  background: #212121;
-}
-
-md-sidenav-container {
-  background: rgba(255, 255, 255, 0.87);
+  md-sidenav-container.dark {
+    background: invert(mat-color($background, card, 0.8));
+  }
 }
 
 .nav-avatar {

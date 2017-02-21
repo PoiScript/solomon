@@ -5,8 +5,8 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
   $pre-background-color: invert(mat-color($background, card, 0.1)) !default;
-  $quote-color: invert(mat-color($background, card, 0.4)) !default;
-  $text-color: invert(mat-color($background, card, 0.6)) !default;
+  $quote-color: invert(mat-color($background, card, 0.7)) !default;
+  $text-color: mat-color($foreground, text);
 
   .markdown-body {
     color: $text-color;
@@ -25,11 +25,10 @@
     }
 
     h1, h2 {
-      border-bottom: 1px solid $text-color;
+      border-bottom: 1px solid $quote-color;
     }
 
     hr {
-      //Instead of the line below you could use @include box-sizing($bs)
       box-sizing: content-box;
       overflow: visible;
       margin: 15px 0;

@@ -9,7 +9,7 @@ import {TokenService} from '../../../share/service/token/token.service'
 import {GitHubService} from '../../../share/service/github/github.service'
 
 export const enum Sort {
-  Oldest, Newest
+  Oldest, Newest, Reaction
 }
 
 @Component({
@@ -24,7 +24,6 @@ export class CommentComponent implements OnInit {
   user: FirebaseAuthState
   @Input() issue_number: number
   @Input() comments: Comment[]
-  sortBy: Sort = Sort.Newest
   GITHUB_USERNAME: string
   GITHUB_POST_REPO: string
 
@@ -49,6 +48,20 @@ export class CommentComponent implements OnInit {
       },
       error => console.trace(error)
     )
+  }
+
+  sortComment(sortBy: Sort): void {
+    switch (sortBy) {
+      case Sort.Newest:
+        this.comments.sort((c1, c2) => Date.parse(c1.updated_at) - Date.parse(c2.updated_at))
+        break
+      case Sort.Oldest:
+        this.comments.sort((c1, c2) => Date.parse(c2.updated_at) - Date.parse(c1.updated_at))
+        break
+      case Sort.Reaction:
+      default:
+        this.comments.sort((c1, c2) => c2.reactions.total_count - c1.reactions.total_count)
+    }
   }
 
   postComment(body: string): void {
