@@ -1,24 +1,25 @@
-import {BrowserModule} from "@angular/platform-browser"
-import {NgModule} from "@angular/core"
-import {HttpModule} from "@angular/http"
-import {MaterialModule} from "@angular/material"
-import {FlexLayoutModule} from "@angular/flex-layout"
-import {AppComponent} from "./app.component"
-import {AppRouting} from "./app.routing"
-import {ShareModule} from "./share"
-import {HomeComponent} from "./home/home.component"
-import {CONFIG, CONFIG_TOKEN} from "./config"
-import {ThemeService} from "./share/service/theme"
-import {AngularFireModule} from "angularfire2"
-import {UserProfileComponent} from "./component/user-profile"
-import {TokenService} from "./share/service/token"
+import {BrowserModule} from '@angular/platform-browser'
+import {NgModule} from '@angular/core'
+import {HttpModule} from '@angular/http'
+import {MaterialModule} from '@angular/material'
+import {FlexLayoutModule} from '@angular/flex-layout'
+import {AppComponent} from './app.component'
+import {AppRouting} from './app.routing'
+import {ShareModule} from './share'
+import {HomeComponent} from './home/home.component'
+import {CONFIG, CONFIG_TOKEN} from './config'
+import {ThemeService} from './share/service/theme'
+import {AngularFireModule} from 'angularfire2'
+import {UserProfileComponent} from './component/user-profile'
+import {TokenService} from './share/service/token'
+import {HashLocationStrategy, LocationStrategy} from '@angular/common'
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAtCLgC-zOhSg2VojAhvrPrvEyL8scBNPc",
-  authDomain: "poi-works.firebaseapp.com",
-  databaseURL: "https://poi-works.firebaseio.com",
-  storageBucket: "poi-works.appspot.com",
-  messagingSenderId: "306363697436"
+  apiKey: 'AIzaSyAtCLgC-zOhSg2VojAhvrPrvEyL8scBNPc',
+  authDomain: 'poi-works.firebaseapp.com',
+  databaseURL: 'https://poi-works.firebaseio.com',
+  storageBucket: 'poi-works.appspot.com',
+  messagingSenderId: '306363697436'
 }
 
 @NgModule({
@@ -40,6 +41,7 @@ export const firebaseConfig = {
   providers: [
     ThemeService,
     TokenService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: CONFIG_TOKEN, useValue: CONFIG}
   ],
   entryComponents: [
