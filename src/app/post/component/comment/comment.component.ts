@@ -45,6 +45,7 @@ export class CommentComponent implements OnInit {
           this.isAuth = false
           this.token = ''
         }
+        console.log(this.isAuth)
       },
       error => console.trace(error)
     )
