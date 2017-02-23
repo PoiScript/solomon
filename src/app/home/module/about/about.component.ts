@@ -5,7 +5,7 @@ import {Post} from "../../../share/classes/Post"
 
 @Component({
   template: `
-    <app-header [title]="'About'"></app-header>
+    <app-header i18n-title title="About"></app-header>
     <div class="container">
       <div class="markdown-body" [innerHTML]="post?.html"></div>
     </div>

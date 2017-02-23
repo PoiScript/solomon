@@ -7,7 +7,7 @@ import {GitHubService} from '../../../share/service/github'
 
 @Component({
   template: `
-    <app-header [title]="title"></app-header>
+    <app-header i18n-title title="title"></app-header>
     <div class="container">
       <md-card [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
         <md-input-container [style.width]="'100%'">

@@ -5,7 +5,7 @@ import {LinkService} from "./service/link"
 
 @Component({
 	template:`
-    <app-header [title]="'Link'"></app-header>
+    <app-header i18n-title title="Link"></app-header>
     <link-list [links]="links"></link-list>
 	`
 })

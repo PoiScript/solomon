@@ -5,7 +5,7 @@ import {PostService} from "../../../share/service/post"
 
 @Component({
 	template: `
-    <app-header [title]="'Archive'"></app-header>
+    <app-header i18n-title title="Archive"></app-header>
     <post-list *ngFor="let year of years" [intros]="intros|yearPipe:year" [title]="year"></post-list>
 	`,
 })

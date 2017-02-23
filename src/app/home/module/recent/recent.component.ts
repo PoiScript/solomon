@@ -9,8 +9,8 @@ import {Intro} from "../../../share/classes/Post"
 
 @Component({
 	template: `
-    <app-header [title]="'Recent'"></app-header>
-    <post-list [intros]="intros" [limit]="6" [title]="'Recent Posts'"></post-list>
+    <app-header i18n-title title="Recent"></app-header>
+    <post-list [intros]="intros" [limit]="6" i18n-title title="Recent Posts"></post-list>
     <repo-list [repos]="repos"></repo-list>
     <anime-list [animes]="animes"></anime-list>
 	`,

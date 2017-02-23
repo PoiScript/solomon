@@ -10,10 +10,9 @@
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
     "build": "ng build --prod",
-    "extract-i18n": "cd src && ng-xi18n",
-    "build-i18n:en": "ng build --output-path=dist/en --prod --bh /en/ --i18n-file=src/i18n/messages.en.xlf --i18n-format=xlf --locale=en",
-    "build-i18n:zh-Hans": "ng build --output-path=dist/zh-Hans --prod --bh /zh-Hans/ --i18n-file=src/i18n/messages.zh-Hans.xlf --i18n-format=xlf --locale=zh-Hans",
-    "build-i18n:zh-Hant": "ng build --output-path=dist/zh-Hant --prod --bh /zh-Hant/ --i18n-file=src/i18n/messages.zh-Hant.xlf --i18n-format=xlf --locale=zh-Hant",
+    "build-i18n:en": "ng build --output-path=dist/en --prod --bh /en/ --i18n-file=i18n/messages.en.xlf --i18n-format=xlf --locale=en",
+    "build-i18n:zh-Hans": "ng build --output-path=dist/zh-Hans --prod --bh /zh-Hans/ --i18n-file=i18n/messages.zh-Hans.xlf --i18n-format=xlf --locale=zh-Hans",
+    "build-i18n:zh-Hant": "ng build --output-path=dist/zh-Hant --prod --bh /zh-Hant/ --i18n-file=i18n/messages.zh-Hant.xlf --i18n-format=xlf --locale=zh-Hant",
     "build-i18n": "npm run build-i18n:en && npm run build-i18n:zh-Hans && npm run build-i18n:zh-Hant",
     "render": "tsc render.ts --skipLibCheck && node render.js"
   },

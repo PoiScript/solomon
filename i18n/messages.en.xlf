@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4ba13198c728f88f88df60d1358e729db6efdd14" datatype="html">
+        <source>Logged in as:</source>
+        <target>Logged in as:</target>
+      </trans-unit>
+      <trans-unit id="4c989b74876012dd7d918466d01bb97daa51c39b" datatype="html">
+        <source>Not Logged In</source>
+        <target>Not Logged In</target>
+      </trans-unit>
+      <trans-unit id="601360dcb0e46da6b619da435c7f569e9c4c7fde" datatype="html">
+        <source>How it works</source>
+        <target>How it works</target>
+      </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="dea597d706dced2e5ee599210b9f3efca0f6bb38" datatype="html">
+        <source>Recent</source>
+        <target>Recent</target>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+        <source>About</source>
+        <target>About</target>
+      </trans-unit>
+      <trans-unit id="e03b6cba7c88318e4f91a60a079870e8fba4bee7" datatype="html">
+        <source>Link</source>
+        <target>Link</target>
+      </trans-unit>
+      <trans-unit id="22c9be90eb27c5c613348fbb621792223afe5d1b" datatype="html">
+        <source>Archive</source>
+        <target>Archive</target>
+      </trans-unit>
+      <trans-unit id="955bf13d3662d71b3991647aee547e73fd5ee49c" datatype="html">
+        <source>Night Mode</source>
+        <target>Night Mode</target>
+      </trans-unit>
+      <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
+        <source>Categories</source>
+        <target>Categories</target>
+      </trans-unit>
+      <trans-unit id="81ec3b49292b91a7b92cff7fc62b220d87a573f6" datatype="html">
+        <source><x id="INTERPOLATION"/> | <x id="INTERPOLATION_1"/> comments</source>
+        <target><x id="INTERPOLATION"/> | <x id="INTERPOLATION_1"/> comments</target>
+      </trans-unit>
+      <trans-unit id="9b934c17e6025b2c09a858c80c3f58c0943cf6a8" datatype="html">
+        <source>Read More</source>
+        <target>Read More</target>
+      </trans-unit>
+      <trans-unit id="ad6a997a4b33f00f02e9e6e4aedf1542eeb2cef3" datatype="html">
+        <source>View
+      Source</source>
+        <target>View
+      Source</target>
+      </trans-unit>
+      <trans-unit id="5755fca01c0c53d73caac77323a2f11d72e62e09" datatype="html">
+        <source>Recent Animes</source>
+        <target>Recent Animes</target>
+      </trans-unit>
+      <trans-unit id="f2579661245ca9dc9efa7c01b7f128e6f472edfe" datatype="html">
+        <source>Poster of <x id="INTERPOLATION"/></source>
+        <target>Poster of <x id="INTERPOLATION"/></target>
+      </trans-unit>
+      <trans-unit id="84e0d9be7005fc8c4824f0d68add601e75ba2fbb" datatype="html">
+        <source>Recent Projects</source>
+        <target>Recent Projects</target>
+      </trans-unit>
+      <trans-unit id="cdca67293dcd55c5bf4d2ce234dc440ad01f273f" datatype="html">
+        <source>Recent Posts</source>
+        <target>Recent Posts</target>
+      </trans-unit>
+      <trans-unit id="01843b796cec8c0739a1c1b243bcf433ac539138" datatype="html">
+        <source>View Source</source>
+        <target>View Source</target>
+      </trans-unit>
+      <trans-unit id="a817ef2e565053d06453d5b831a730da41223092" datatype="html">
+        <source>title</source>
+        <target>title</target>
+      </trans-unit>
+      <trans-unit id="170661f691339e7b971b6704f6646fe700370b74" datatype="html">
+        <source><x id="INTERPOLATION"/> comments</source>
+        <target><x id="INTERPOLATION"/> comments</target>
+      </trans-unit>
+      <trans-unit id="5d43539fc358c3a548b9d487be821db73e2702ff" datatype="html">
+        <source>Sort</source>
+        <target>Sort</target>
+      </trans-unit>
+      <trans-unit id="30cf5f51214194db93572fb64f875a13d7e57275" datatype="html">
+        <source>Newest First</source>
+        <target>Newest First</target>
+      </trans-unit>
+      <trans-unit id="bd5f183f3f3dd1bd1b7e43e4f03ee4dd155d8a87" datatype="html">
+        <source>Oldest First</source>
+        <target>Oldest First</target>
+      </trans-unit>
+      <trans-unit id="f673af3bc6bf0a257a6fe135bc00f9cb4b036ee3" datatype="html">
+        <source>Reaction</source>
+        <target>Reaction</target>
+      </trans-unit>
+      <trans-unit id="065669f27670e3d7042060eba6cb4f1dcb18356c" datatype="html">
+        <source>No comment now,<x id="LINE_BREAK" ctype="lb"/>be the first to comment!</source>
+        <target>No comment now,<x id="LINE_BREAK" ctype="lb"/>be the first to comment!</target>
+      </trans-unit>
+      <trans-unit id="abfb2bbc93dbacaca5d2d1a9c12b8e4a563a3b52" datatype="html">
+        <source>Add comment</source>
+        <target>Add comment</target>
+      </trans-unit>
+      <trans-unit id="59f691245cadf8306d9cbefbe2034a20af23777c" datatype="html">
+        <source>Logged in as</source>
+        <target>Logged in as</target>
+      </trans-unit>
+      <trans-unit id="7319f991fb79562a9c42b0b12d1652cf058438cb" datatype="html">
+        <source>Click here to Login</source>
+        <target>Click here to Login</target>
+      </trans-unit>
+      <trans-unit id="5b2309ea644f240311584ee5732379a381c36cca" datatype="html">
+        <source>Tips: You can mention someone by clicking his/her username.</source>
+        <target>Tips: You can mention someone by clicking his/her username.</target>
+      </trans-unit>
+      <trans-unit id="613adaef8619701edbe6da8d7f729b4fb5ca185c" datatype="html">
+        <source>CLEAR</source>
+        <target>CLEAR</target>
+      </trans-unit>
+      <trans-unit id="e291f86bad0c2c37bc0b2fb9c5ed7e7f847e07d3" datatype="html">
+        <source>SUBMIT
+        <x id="START_TAG_MD-ICON" ctype="x-md-icon"/>send<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/>
+      </source>
+        <target>SUBMIT
+        <x id="START_TAG_MD-ICON" ctype="x-md-icon"/>send<x id="CLOSE_TAG_MD-ICON" ctype="x-md-icon"/>
+      </target>
+      </trans-unit>
+      <trans-unit id="64ebb5e46326baddf9c07bad09b7310860ac2ea5" datatype="html">
+        <source>
+      Or you can left your comments in
+      <x id="START_LINK" ctype="x-a"/>
+        this issue<x id="CLOSE_LINK" ctype="x-a"/>.
+      :)
+    </source>
+        <target>
+      Or you can left your comments in
+      <x id="START_LINK" ctype="x-a"/>
+        this issue<x id="CLOSE_LINK" ctype="x-a"/>.
+      :)
+    </target>
+      </trans-unit>
+      <trans-unit id="2ed87b137a56c4419640704e22af462c12e9c09d" datatype="html">
+        <source>Toggle Theme</source>
+        <target>Toggle Theme</target>
+      </trans-unit>
+      <trans-unit id="702c88f43397e0ea27e5b86baf7d354809384a09" datatype="html">
+        <source>Bookmark</source>
+        <target>Bookmark</target>
+      </trans-unit>
+      <trans-unit id="57484d0b6780c6c4d630870e69da3082477cb5d8" datatype="html">
+        <source>No Bookmark</source>
+        <target>No Bookmark</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

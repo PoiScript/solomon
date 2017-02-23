@@ -3,7 +3,7 @@
        src="https://firebasestorage.googleapis.com/v0/b/poi-works.appspot.com/o/low-poly-texture-26.png?alt=media&token=f5287383-3d62-4315-be3f-6476b6d8f2e3">
   <md-dialog-content *ngSwitchCase="true">
     <md-list>
-      <h3 md-subheader>Logged in as:</h3>
+      <h3 i18n md-subheader>Logged in as:</h3>
     </md-list>
     <header [fxLayout]="'row'">
       <img [src]="user.auth.photoURL" class="avatar">
@@ -14,12 +14,12 @@
     </header>
   </md-dialog-content>
   <md-dialog-content *ngSwitchCase="false">
-    <h3 align="center">Not Logged In</h3>
+    <h3 i18n align="center">Not Logged In</h3>
   </md-dialog-content>
   <md-dialog-actions>
-    <button md-button>How it works</button>
-    <button md-raised-button [color]="'primary'" *ngSwitchCase="false" (click)="login()">Login</button>
-    <button md-raised-button [color]="'primary'" *ngSwitchCase="true" (click)="logout()">Logout</button>
+    <button i18n md-button>How it works</button>
+    <button i18n md-raised-button [color]="'primary'" *ngSwitchCase="false" (click)="login()">Login</button>
+    <button i18n md-raised-button [color]="'primary'" *ngSwitchCase="true" (click)="logout()">Logout</button>
   </md-dialog-actions>
 </ng-container>
 

@@ -5,8 +5,8 @@
       <md-list-item *ngFor="let repo of repos| slice:0:3" (click)="repoClicked(repo.html_url)">
         <md-icon md-list-avatar>code</md-icon>
         <h3 md-line>{{repo?.name}}</h3>
-        <p md-line>{{repo?.language}} </p>
-        <p md-line>{{repo?.description}} </p>
+        <p md-line>{{repo?.language}}</p>
+        <p md-line>{{repo?.description}}</p>
         <p md-line>{{repo?.pushed_at|date:"yyyy-MM-dd HH:mm:ss"}}</p>
       </md-list-item>
     </md-nav-list>
@@ -14,8 +14,8 @@
       <md-list-item *ngFor="let repo of repos| slice:3:6" (click)="repoClicked(repo.html_url)">
         <md-icon md-list-avatar>code</md-icon>
         <h3 md-line>{{repo?.name}}</h3>
-        <p md-line>{{repo?.language}} </p>
-        <p md-line>{{repo?.description}} </p>
+        <p md-line>{{repo?.language}}</p>
+        <p md-line>{{repo?.description}}</p>
         <p md-line>{{repo?.pushed_at|date:"yyyy-MM-dd HH:mm:ss"}}</p>
       </md-list-item>
     </md-nav-list>

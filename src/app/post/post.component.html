@@ -17,13 +17,13 @@
         <strong>{{post?.intro.category.zh_CHS}}</strong>
         <span>{{post?.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
       </div>
-      <button md-icon-button [mdTooltip]="'Toggle Theme'" (click)="toggleTheme()">
+      <button md-icon-button i18n-mdTooltip mdTooltip="Toggle Theme" (click)="toggleTheme()">
         <md-icon>color_lens</md-icon>
       </button>
-      <button md-icon-button [mdTooltip]="'View Source'" (click)="viewSourceClicked()">
+      <button md-icon-button i18n-mdTooltip mdTooltip="View Source" (click)="viewSourceClicked()">
         <md-icon>open_in_new</md-icon>
       </button>
-      <button md-icon-button [mdTooltip]="'Bookmark'" [mdMenuTriggerFor]="menu">
+      <button md-icon-button i18n-mdTooltip mdTooltip="Bookmark" [mdMenuTriggerFor]="menu">
         <md-icon>bookmark_border</md-icon>
       </button>
       <md-menu #menu="mdMenu" x-position="before">
