@@ -8,23 +8,18 @@ branches:
 
 before_script:
   - git clone https://github.com/PoiScript/Solomon-Post.git src/markdown
+  - mkdir src/json
+  - npm install
 
 script:
-  - mkdir src/json
-  - yarn
-  - npm install -g firebase-tools
   - npm run render
   - npm run build
 
 after_success:
+  - npm install -g firebase-tools
   - firebase deploy --token $FIREBASE_TOKEN
-  - cd dist
-  - git init
-  - git config user.name "PoiScript"
-  - git config user.email "poiscript@gmail.com"
-  - git add .
-  - git commit -m "Committed via Travis-CI"
-  - git push -f -q https://PoiScript:$GITHUB_TOKEN@github.com/PoiScript/poiscript.github.io
+  - npm install -g angular-cli-ghpages
+  - angular-cli-ghpages --repo=https://PoiScript:$GITHUB_TOKEN@github.com/PoiScript/poiscript.github.io
 
 notifications:
   email:
