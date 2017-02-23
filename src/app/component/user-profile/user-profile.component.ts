@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
 import {AngularFire, AuthMethods, AuthProviders, FirebaseAuthState} from 'angularfire2'
-import {MdSnackBar} from '@angular/material'
 import {TokenService} from '../../share/service/token'
+import {SnackBarService} from '../../share/service/snackbar'
 
 @Component({
   selector: 'user-profile',
@@ -13,7 +13,7 @@ export class UserProfileComponent {
   user: FirebaseAuthState
 
   constructor(public af: AngularFire,
-              private snackBar: MdSnackBar,
+              private snackBarService: SnackBarService,
               private tokenService: TokenService) {
     this.af.auth.subscribe(
       user => {
@@ -34,21 +34,14 @@ export class UserProfileComponent {
       method: AuthMethods.Popup,
       scope: ['public_repo']
     }).then((res: any) => {
-      console.log(res)
       if ('accessToken' in res.github) this.tokenService.setToken(res.github.accessToken)
-      else this.snackBarOpen('Access Token Not Found, Re-login Please.', 1000)
+      else this.snackBarService.openSnackBar('Access Token Not Found, Re-login Please.')
     })
   }
 
   logout(): void {
     this.af.auth.logout()
-      .then(() => this.snackBarOpen('Logout successfully', 1000))
-  }
-
-  private snackBarOpen(msg: string, duration: number) {
-    this.snackBar.open(msg, '', {
-      duration: duration
-    })
+      .then(() => this.snackBarService.openSnackBar('Logout successfully'))
   }
 
 }

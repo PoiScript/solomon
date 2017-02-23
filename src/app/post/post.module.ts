@@ -7,10 +7,12 @@ import {MdButtonModule, MdIconModule, MdInputModule, MdMenuModule, MdToolbarModu
 import {FlexLayoutModule} from '@angular/flex-layout'
 import {ShareModule} from '../share/share.module'
 import {CommentComponent} from './component/comment/comment.component'
+import {FormsModule} from '@angular/forms'
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ShareModule,
     PostRouting,
     RouterModule,

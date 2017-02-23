@@ -4,9 +4,10 @@ import {SolomonConfig} from '../../../share/interface/solomon-config'
 import {Comment} from '../../../share/classes/Comment'
 import {AngularFire, FirebaseAuthState} from 'angularfire2'
 import {UserProfileComponent} from '../../../component/user-profile/user-profile.component'
-import {MdDialog} from '@angular/material'
+import {MdDialog, MdSnackBar} from '@angular/material'
 import {TokenService} from '../../../share/service/token/token.service'
 import {GitHubService} from '../../../share/service/github/github.service'
+import {SnackBarService} from '../../../share/service/snackbar/snack-bar.service'
 
 export const enum Sort {
   Oldest, Newest, Reaction
@@ -26,10 +27,12 @@ export class CommentComponent implements OnInit {
   @Input() comments: Comment[]
   GITHUB_USERNAME: string
   GITHUB_POST_REPO: string
+  comment_body: string
 
   constructor(@Inject(CONFIG_TOKEN) config: SolomonConfig,
               private githubService: GitHubService,
               private tokenService: TokenService,
+              private snackBarService: SnackBarService,
               private dialog: MdDialog,
               private af: AngularFire) {
     this.GITHUB_USERNAME = config.GITHUB_USERNAME
@@ -40,12 +43,10 @@ export class CommentComponent implements OnInit {
         if (user) {
           this.isAuth = true
           this.user = user
-          console.log(user.uid)
         } else {
           this.isAuth = false
           this.token = ''
         }
-        console.log(this.isAuth)
       },
       error => console.trace(error)
     )
@@ -65,12 +66,27 @@ export class CommentComponent implements OnInit {
     }
   }
 
-  postComment(body: string): void {
-    if (this.issue_number && this.token) {
+  viewProfile(): void {
+    this.dialog.open(UserProfileComponent)
+  }
+
+  mention(username: string): void {
+    if (this.comment_body) this.comment_body += `@${username} `
+    else this.comment_body = `@${username} `
+  }
+
+  clearComment(): void {
+    this.comment_body = ''
+  }
+
+  postComment(): void {
+    if (this.token && this.comment_body) {
       this.githubService
-        .createComment(this.token, this.issue_number, body)
-    } else {
-      console.error('Token missing')
+        .createComment(this.token, this.issue_number, this.comment_body)
+    } else if (!this.comment_body) {
+      this.snackBarService.openSnackBar('Comment can not be empty!')
+    } else if (!this.token) {
+      this.snackBarService.openSnackBar('AccessToken not found, please re-login.')
     }
   }
 
@@ -108,10 +124,6 @@ export class CommentComponent implements OnInit {
     } else {
       console.error('Token missing')
     }
-  }
-
-  viewProfile(): void {
-    this.dialog.open(UserProfileComponent)
   }
 
   ngOnInit(): void {

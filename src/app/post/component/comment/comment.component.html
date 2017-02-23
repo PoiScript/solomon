@@ -19,7 +19,7 @@
           <img [src]="comment.user.avatar_url" class="avatar">
         </a>
         <div [fxLayout]="'column'">
-          <strong>{{comment.user.login}}</strong>
+          <strong (click)="mention(comment.user.login)">{{comment.user.login}}</strong>
           <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
         </div>
       </header>
@@ -35,6 +35,7 @@
         {{comment.reactions['-1']}}
       </div>
     </div>
+    <hr/>
     <h3>Add comment</h3>
     <header [fxLayout]="'row'" [ngSwitch]="isAuth">
       <img class="avatar" *ngSwitchCase="true" (click)="viewProfile()" [src]="user.auth.photoURL">
@@ -49,10 +50,12 @@
       </div>
     </header>
     <md-input-container [style.width]="'100%'">
-      <textarea #comment_body [disabled]="!isAuth" mdInput></textarea>
+      <textarea [disabled]="!isAuth" mdInput [(ngModel)]="comment_body"></textarea>
     </md-input-container>
-    <footer [fxLayout]="'row'">
-      <button md-raised-button [color]="'primary'" (click)="postComment(comment_body.value)">SUBMIT
+    <p>Tips: You can mention someone by clicking his/her username.</p>
+    <footer [fxLayout]="'row'" fxLayoutAlign="space-between">
+      <button md-button (click)="clearComment()">CLEAR</button>
+      <button md-raised-button [color]="'primary'" (click)="postComment()">SUBMIT
         <md-icon>send</md-icon>
       </button>
     </footer>
