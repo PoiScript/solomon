@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="isPost">
+  <md-toolbar [color]="'primary'" *ngSwitchCase="false">
+    <button i18n md-button [routerLink]="'/'">SOLOMON</button>
+    <button i18n md-button [routerLink]="'/about'">ABOUT</button>
+    <button i18n md-button [routerLink]="'/archive'">ARCHIVE</button>
+    <button i18n md-button [routerLink]="'/link'">LINK</button>
+  </md-toolbar>
+  <md-toolbar [color]="'primary'" *ngSwitchCase="true">
+    post
+  </md-toolbar>
+</ng-container>

@@ -1,0 +1,61 @@
+@import '../../../../../../node_modules/@angular/material/core/theming/all-theme';
+
+@mixin comment-theme($theme) {
+  $primary: map-get($theme, primary);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $background-color: invert(mat-color($background, card, 0.2)) !default;
+  $text-color: invert(mat-color($background, card, 0.6)) !default;
+
+  .comment-area {
+    color: $text-color;
+    background: $background-color;
+
+    a {
+      color: mat-color($primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  margin-right: 16px;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+.text {
+  line-height: 1.5em;
+  margin-bottom: 16px;
+}
+
+.receptacle {
+  max-width: 960px;
+  margin: auto;
+  padding: 16px;
+}
+
+.reaction {
+  margin-bottom: 16px;
+}
+
+.comment-tips {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+.login-icon {
+  height: 64px;
+  width: 64px;
+}

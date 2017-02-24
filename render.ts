@@ -2,9 +2,8 @@ import fs = require('fs')
 import marked = require('marked')
 import cheerio = require('cheerio')
 import path = require('path')
-import {Post} from "./src/app/share/classes/Post"
-import {Category} from "./src/app/share/classes/Category"
-import {Link} from "./src/app/share/classes/Link"
+import {Post} from './src/app/class/post'
+import {Link} from './src/app/class/link'
 
 let renderer = new marked.Renderer()
 
@@ -30,7 +29,7 @@ function walk(walkPath) {
         walk(walkPath + '/' + item)
       else if (item === 'link.md')
         return
-      else if (path.extname(item) === ".md")
+      else if (path.extname(item) === '.md')
         files.push(fs.readFileSync(`${walkPath}/${item}`, 'utf8'))
     })
 }
@@ -79,28 +78,10 @@ function generatePostJSON() {
     })
 }
 
-function generateCategoryJSON() {
-  let categories: Category[] = []
-  posts
-    .filter(post => post.intro.slug !== 'about')
-    .forEach(post => {
-      let i = categories.map(category => JSON.stringify(category.title)).indexOf(JSON.stringify(post.intro.category))
-      if (i === -1)
-        categories.push({title: post.intro.category, intros: [post.intro]} as Category)
-      else
-        categories[i].intros.push(post.intro)
-    })
-  categories.forEach(category => category.count = category.intros.length)
-  fs.writeFile("src/json/categories.json", JSON.stringify(categories), (err) => {
-    if (err) console.error(err)
-    console.log("[GENERATED] categories.json")
-  })
-}
-
 function generateArchiveJSON() {
-  fs.writeFile("src/json/archive.json", JSON.stringify(posts.map(post => post.intro).filter(intro => intro.slug !== 'about')), (err) => {
+  fs.writeFile('src/json/archive.json', JSON.stringify(posts.map(post => post.intro).filter(intro => intro.slug !== 'about')), (err) => {
     if (err) console.error(err)
-    console.log("[GENERATED] archive.json")
+    console.log('[GENERATED] archive.json')
   })
 }
 
@@ -118,9 +99,9 @@ function generateLinkJSON(walkPath) {
         bio: line.split('|')[4] || ''
       })
     })
-  fs.writeFile("src/json/link.json", JSON.stringify(links), (err) => {
+  fs.writeFile('src/json/link.json', JSON.stringify(links), (err) => {
     if (err) console.error(err)
-    console.log("[GENERATED] link.json")
+    console.log('[GENERATED] link.json')
   })
 }
 
@@ -128,6 +109,5 @@ walk('src/markdown')
 console.log(`[INFO] ${files.length} files found.`)
 parse()
 generatePostJSON()
-generateCategoryJSON()
 generateArchiveJSON()
 generateLinkJSON('src/markdown')

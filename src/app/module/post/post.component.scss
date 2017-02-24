@@ -1,0 +1,29 @@
+.dark {
+  background: #212121;
+}
+
+#back-fab {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#top-fab {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transform: translateY(200%);
+}
+
+.post-area {
+  max-width: 960px;
+  margin: auto;
+  padding: 16px;
+}
+
+header {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

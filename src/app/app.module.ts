@@ -5,31 +5,31 @@ import {MaterialModule} from '@angular/material'
 import {FlexLayoutModule} from '@angular/flex-layout'
 import {AppComponent} from './app.component'
 import {AppRouting} from './app.routing'
-import {ShareModule} from './share'
-import {HomeComponent} from './home/home.component'
-import {CONFIG, CONFIG_TOKEN} from './config'
-import {ThemeService} from './share/service/theme'
+import {CONFIG, CONFIG_TOKEN, firebaseConfig} from './config'
+import {ThemeService} from './service/theme'
 import {AngularFireModule} from 'angularfire2'
 import {UserProfileComponent} from './component/user-profile'
-import {TokenService} from './share/service/token'
+import {TokenService} from './service/token'
 import {HashLocationStrategy, LocationStrategy} from '@angular/common'
-
-export const firebaseConfig = {
-  apiKey: 'AIzaSyAtCLgC-zOhSg2VojAhvrPrvEyL8scBNPc',
-  authDomain: 'poi-works.firebaseapp.com',
-  databaseURL: 'https://poi-works.firebaseio.com',
-  storageBucket: 'poi-works.appspot.com',
-  messagingSenderId: '306363697436'
-}
+import {HeaderComponent} from './component/header'
+import {PostListComponent} from './component/post-list/post.component'
+import {OddPipe} from './pipe/odd.pipe'
+import {StepPipe} from './pipe/step.pipe'
+import {YearPipe} from './pipe/year.pipe'
+import {GitHubService} from './service/github/github.service'
+import {PostService} from './service/post/post.service'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HeaderComponent,
+    PostListComponent,
+    OddPipe,
+    StepPipe,
+    YearPipe
   ],
   imports: [
-    ShareModule,
     BrowserModule,
     HttpModule,
     AppRouting,
@@ -39,8 +39,10 @@ export const firebaseConfig = {
   ],
   bootstrap: [AppComponent],
   providers: [
+    GitHubService,
     ThemeService,
     TokenService,
+    PostService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: CONFIG_TOKEN, useValue: CONFIG}
   ],

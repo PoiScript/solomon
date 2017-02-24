@@ -1,10 +1,10 @@
 import {Component} from '@angular/core'
 import {AngularFire, AuthMethods, AuthProviders, FirebaseAuthState} from 'angularfire2'
-import {TokenService} from '../../share/service/token'
-import {SnackBarService} from '../../share/service/snackbar'
+import {TokenService} from '../../service/token'
+import {SnackBarService} from '../../service/snackbar'
 
 @Component({
-  selector: 'user-profile',
+  selector: 'solomon-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
