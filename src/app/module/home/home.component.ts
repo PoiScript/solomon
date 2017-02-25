@@ -1,7 +1,23 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
+import {PostService} from '../../service/post'
+import {Intro} from '../../class/post'
 
 @Component({
-  template: `<p>home</p>`,
+  templateUrl: './home.component.html',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  intros: Intro[]
+
+  constructor(private postService: PostService) {
+  }
+
+  getArchive(): void {
+    this.postService
+      .getArchive()
+      .then(intros => this.intros = intros)
+  }
+
+  ngOnInit(): void {
+    this.getArchive()
+  }
 }

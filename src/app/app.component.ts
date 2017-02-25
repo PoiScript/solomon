@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
 
 @Component({
-  selector: 'app',
+  selector: 'solomon',
   template: `
     <solomon-header></solomon-header>
     <router-outlet></router-outlet>

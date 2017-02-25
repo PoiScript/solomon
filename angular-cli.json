@@ -10,6 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
+        "markdown",
         "json"
       ],
       "index": "index.html",
@@ -17,7 +18,7 @@
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "app",
+      "prefix": "solomon",
       "styles": [
         "styles.scss",
         "github-markdown.scss",
