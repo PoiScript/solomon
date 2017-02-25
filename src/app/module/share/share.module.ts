@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {HeaderComponent} from './component/header'
 import {MdButtonModule, MdIconModule, MdMenuModule, MdToolbarModule} from '@angular/material'
+
+import {HeaderComponent} from './component/header'
 import {RouterModule} from '@angular/router'
+import {PostPreviewComponent} from './component/post-preview'
 
 @NgModule({
   imports: [
@@ -14,10 +16,12 @@ import {RouterModule} from '@angular/router'
     MdMenuModule
   ],
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    PostPreviewComponent
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    PostPreviewComponent
   ]
 })
 export class ShareModule {

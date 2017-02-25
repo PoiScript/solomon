@@ -4,7 +4,6 @@ import {CommonModule} from '@angular/common'
 import {ArchiveRouting} from './archive.routing'
 import {ArchiveComponent} from './archive.component'
 import {ShareModule} from '../share'
-import {PostPreviewComponent} from './component/post-preview'
 
 @NgModule({
   imports: [
@@ -13,8 +12,7 @@ import {PostPreviewComponent} from './component/post-preview'
     ShareModule
   ],
   declarations: [
-    ArchiveComponent,
-    PostPreviewComponent
+    ArchiveComponent
   ]
 })
 export class ArchiveModule {

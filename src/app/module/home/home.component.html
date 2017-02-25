@@ -12,12 +12,12 @@
 <div class="container">
   <div fxLayout="row" [fxLayout.xs]="'column'" fxLayoutAlign="center" *ngIf="intros">
     <div [fxLayout]="'column'" fxFlex="50%">
-      <solomon-post-preview [intro]="intros[0]"></solomon-post-preview>
-      <solomon-post-preview [intro]="intros[1]"></solomon-post-preview>
+      <solomon-post-card [intro]="intros[0]"></solomon-post-card>
+      <solomon-post-card [intro]="intros[1]"></solomon-post-card>
     </div>
     <div [fxLayout]="'column'" fxFlex="50%">
-      <solomon-post-preview [intro]="intros[2]"></solomon-post-preview>
-      <solomon-post-preview [intro]="intros[3]"></solomon-post-preview>
+      <solomon-post-card [intro]="intros[2]"></solomon-post-card>
+      <solomon-post-card [intro]="intros[3]"></solomon-post-card>
     </div>
   </div>
   <button i18n class="read-more-button" [routerLink]="'archive'" md-raised-button [color]="'warn'">READ MORE</button>

@@ -49,10 +49,6 @@ export class PostComponent implements OnInit {
     window.scrollTo(0, 0)
   }
 
-  jumpTo(id: string): void {
-    window.location.hash = id
-  }
-
   viewSourceClicked(): void {
     window.open(`https://github.com/${this.GITHUB_USERNAME}/${this.GITHUB_POST_REPO}/blob/master/${this.post.intro.slug}.md`)
   }

@@ -5,7 +5,7 @@ import {HomeRouting} from './home.routing'
 import {MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdToolbarModule} from '@angular/material'
 import {FlexLayoutModule} from '@angular/flex-layout'
 import {ShareModule} from '../share'
-import {PostPreviewComponent} from './component/post-preview'
+import {PostCardComponent} from './component/post-card'
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import {PostPreviewComponent} from './component/post-preview'
   ],
   declarations: [
     HomeComponent,
-    PostPreviewComponent
+    PostCardComponent
   ]
 })
 export class HomeModule {
