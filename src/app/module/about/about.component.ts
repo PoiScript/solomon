@@ -4,13 +4,7 @@ import {Post} from '../../class/post'
 import {PostService} from '../../service/post/post.service'
 
 @Component({
-  template: `
-    <solomon-header></solomon-header>
-    <div class="container">
-      <h3 i18n class="primary-header">About</h3>
-      <div class="markdown-body" [innerHTML]="post?.html"></div>
-    </div>
-  `,
+  templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
 
