@@ -1,6 +1,6 @@
 import {animate, Component, HostListener, Inject, OnInit, state, style, transition, trigger} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
-import {DomSanitizer, SafeHtml, Title} from '@angular/platform-browser'
+import {Title} from '@angular/platform-browser'
 import {Post} from '../../class/post'
 import {CONFIG_TOKEN} from '../../config'
 import {PostService} from '../../service/post/post.service'
@@ -27,14 +27,12 @@ export class PostComponent implements OnInit {
   private GITHUB_POST_REPO: string
   toTopVisibility: boolean = false
   isDark: boolean
-  safeHtml: SafeHtml
   post: Post
   comments: Comment[]
 
   constructor(@Inject(CONFIG_TOKEN) config: SolomonConfig,
               private postService: PostService,
               private titleService: Title,
-              private sanitizer: DomSanitizer,
               private themeService: ThemeService,
               private githubService: GitHubService,
               private router: ActivatedRoute) {
@@ -69,7 +67,6 @@ export class PostComponent implements OnInit {
       .getPost(slug)
       .then(post => {
         this.post = post
-        this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.post.html)
         this.titleService.setTitle(`${post.intro.title} - Solomon`)
         return post.intro.issue_number
       })

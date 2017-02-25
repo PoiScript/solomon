@@ -5,7 +5,8 @@ import {LinkComponent} from "./link.component"
 import {LinkRouting} from "./link.routing"
 import {FlexLayoutModule} from "@angular/flex-layout"
 import {LinkService} from "./service/link"
-import {LinkListComponent} from './component/link-list/link.component'
+import {LinkListComponent} from './component/link-list'
+import {ShareModule} from '../share'
 
 @NgModule({
 	imports: [
@@ -13,7 +14,8 @@ import {LinkListComponent} from './component/link-list/link.component'
 		LinkRouting,
 		MdListModule,
 		MdCardModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+    ShareModule
 	],
 	declarations: [
 		LinkComponent,

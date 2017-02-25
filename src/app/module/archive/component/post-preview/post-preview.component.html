@@ -1,0 +1,2 @@
+<a class="post-preview-link" [routerLink]="['/post', intro?.slug]">{{intro.title}}</a>
+<p>{{intro.date|date:'yyyy-MM-dd'}}<span *ngFor="let tag of intro.tags"> {{tag}}</span></p>

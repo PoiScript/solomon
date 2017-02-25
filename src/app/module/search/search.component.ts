@@ -7,6 +7,7 @@ import {PostService} from '../../service/post/post.service'
 
 @Component({
   template: `
+    <solomon-post-header></solomon-post-header>
     <div class="container">
       <md-card [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
         <md-input-container [style.width]="'100%'">

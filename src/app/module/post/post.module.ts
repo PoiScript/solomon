@@ -1,14 +1,17 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {PostComponent} from './post.component'
-import {PostRouting} from './post.routing'
 import {RouterModule} from '@angular/router'
+import {FormsModule} from '@angular/forms'
 import {MdButtonModule, MdIconModule, MdInputModule, MdMenuModule, MdToolbarModule, MdTooltipModule} from '@angular/material'
 import {FlexLayoutModule} from '@angular/flex-layout'
-import {CommentComponent} from './component/comment/comment.component'
-import {FormsModule} from '@angular/forms'
-import {PostService} from '../../service/post/post.service'
-import {SnackBarService} from '../../service/snackbar/snack-bar.service'
+
+import {PostComponent} from './post.component'
+import {PostRouting} from './post.routing'
+import {CommentComponent} from './component/comment'
+import {PostService} from '../../service/post'
+import {SnackBarService} from '../../service/snackbar'
+import {HeaderPostComponent} from './component/post-header'
+import {PostFooterComponent} from './component/post-footer'
 
 @NgModule({
   imports: [
@@ -26,7 +29,9 @@ import {SnackBarService} from '../../service/snackbar/snack-bar.service'
   ],
   declarations: [
     PostComponent,
-    CommentComponent
+    CommentComponent,
+    HeaderPostComponent,
+    PostFooterComponent
   ],
   providers: [
     SnackBarService,

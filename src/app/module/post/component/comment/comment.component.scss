@@ -4,7 +4,7 @@
   $primary: map-get($theme, primary);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
-  $background-color: invert(mat-color($background, card, 0.2)) !default;
+  $background-color: invert(mat-color($background, card, 0.05)) !default;
   $text-color: invert(mat-color($background, card, 0.6)) !default;
 
   .comment-area {
@@ -31,6 +31,14 @@
   margin-right: 16px;
 }
 
+strong {
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 400;
+}
+
 header {
   margin-bottom: 16px;
 }
@@ -38,12 +46,6 @@ header {
 .text {
   line-height: 1.5em;
   margin-bottom: 16px;
-}
-
-.receptacle {
-  max-width: 960px;
-  margin: auto;
-  padding: 16px;
 }
 
 .reaction {

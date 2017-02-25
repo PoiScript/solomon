@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {Router} from '@angular/router'
-import {ResizeService} from '../../service/resize/resize.service'
+import {ResizeService} from '../../../../service/resize/resize.service'
 
 @Component({
   selector: 'solomon-header',
@@ -9,13 +8,9 @@ import {ResizeService} from '../../service/resize/resize.service'
   providers: [ResizeService]
 })
 export class HeaderComponent implements OnInit {
-  title: string
-  isPost: boolean = false
   isSMLayout: boolean
 
-  constructor(private router: Router,
-              private resizeService: ResizeService) {
-    router.events.subscribe(val => this.isPost = val.url.split('/')[1] === 'post')
+  constructor(private resizeService: ResizeService) {
     resizeService.window.subscribe(val => {
       if (val) {
         this.isSMLayout = val.innerWidth <= 960

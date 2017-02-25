@@ -1,7 +1,7 @@
 <div class="comment-area">
-  <div class="receptacle markdown-body">
+  <div class="container">
     <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
-      <h3 i18n>{{comments?.length}} comments</h3>
+      <h2 i18n>{{comments?.length}} comments</h2>
       <span class="spacer"></span>
       <button md-icon-button i18n-mdTooltip mdTooltip="Sort" [mdMenuTriggerFor]="menu">
         <md-icon>sort</md-icon>
@@ -23,7 +23,7 @@
           <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
         </div>
       </header>
-      <div class="text" [innerHTML]="comment.body_html"></div>
+      <div class="text markdown-body" [innerHTML]="comment.body_html"></div>
       <div class="reaction">
         <button md-icon-button (click)="createReaction(comment.id, '+1')">
           <md-icon>thumb_up</md-icon>
@@ -35,8 +35,7 @@
         {{comment.reactions['-1']}}
       </div>
     </div>
-    <hr/>
-    <h3 i18n>Add comment</h3>
+    <h2 i18n>Add comment</h2>
     <header [fxLayout]="'row'" [ngSwitch]="isAuth">
       <img class="avatar" *ngSwitchCase="true" (click)="viewProfile()" [src]="user.auth.photoURL">
       <img class="avatar" *ngSwitchCase="false" (click)="viewProfile()" src="assets/img/chrome-crash-icon.png">

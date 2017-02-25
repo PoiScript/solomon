@@ -4,9 +4,8 @@ import {LinkService} from './service/link'
 import {Link} from '../../class/link'
 
 @Component({
-  template: `
-    <solomon-link-list [links]="links"></solomon-link-list>
-  `
+  templateUrl: './link.component.html',
+  styleUrls: ['./link.component.scss']
 })
 export class LinkComponent implements OnInit {
   links: Link[]

@@ -5,7 +5,8 @@ import {SearchComponent} from './search.component'
 import {FormsModule} from '@angular/forms'
 import {MdButtonModule, MdCardModule, MdCheckboxModule, MdIconModule, MdInputModule, MdListModule} from '@angular/material'
 import {FlexLayoutModule} from '@angular/flex-layout'
-import {SearchResultComponent} from './component/search-result/search-result.component'
+import {SearchResultComponent} from './component/search-result'
+import {ShareModule} from '../share'
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {SearchResultComponent} from './component/search-result/search-result.com
     MdIconModule,
     MdListModule,
     MdButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ShareModule
   ],
   declarations: [
     SearchComponent,

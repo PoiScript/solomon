@@ -5,10 +5,13 @@ import {PostService} from '../../service/post/post.service'
 
 @Component({
   template: `
+    <solomon-header></solomon-header>
     <div class="container">
+      <h3 i18n class="primary-header">About</h3>
       <div class="markdown-body" [innerHTML]="post?.html"></div>
     </div>
-  `
+  `,
+  styleUrls: ['./about.component.scss']
 })
 
 export class AboutComponent implements OnInit {
