@@ -1,14 +1,16 @@
 <solomon-post-header [intro]="post?.intro"></solomon-post-header>
-<div class="container" [class.dark]="isDark">
-  <button id="top-fab" md-fab (click)="toTopClicked()" [@toTopState]="toTopVisibility" [color]="'primary'">
-    <md-icon>keyboard_arrow_up</md-icon>
-  </button>
-  <h1 class="primary-header">{{post?.intro.title}}</h1>
-  <div class="markdown-body" [innerHTML]="post?.html"></div>
-  <solomon-post-footer
-    [previousPostTitle]="post?.previous_title"
-    [previousPostSlug]="post?.previous_slug"
-    [nextPostTitle]="post?.next_title"
-    [nextPostSlug]="post?.next_slug"></solomon-post-footer>
+<div class="content">
+  <div class="container">
+    <button id="top-fab" md-fab (click)="toTopClicked()" [@toTopState]="toTopVisibility" [color]="'primary'">
+      <md-icon>keyboard_arrow_up</md-icon>
+    </button>
+    <h1 class="primary-header">{{post?.intro.title}}</h1>
+    <div class="markdown-body" [innerHTML]="post?.html"></div>
+    <solomon-post-footer
+      [previousPostTitle]="post?.previous_title"
+      [previousPostSlug]="post?.previous_slug"
+      [nextPostTitle]="post?.next_title"
+      [nextPostSlug]="post?.next_slug"></solomon-post-footer>
+    <comment [issue_number]="post?.intro.issue_number" [comments]="comments"></comment>
+  </div>
 </div>
-<comment [issue_number]="post?.intro.issue_number" [comments]="comments"></comment>

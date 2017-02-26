@@ -1,0 +1,18 @@
+@import '~@angular/material/core/theming/all-theme';
+
+@mixin post-footer-theme($theme) {
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $pre-background-color: invert(mat-color($background, card, 0.05)) !default;
+  $quote-color: invert(mat-color($background, card, 0.5)) !default;
+  $text-color: invert(mat-color($background, card, 0.6)) !default;
+
+  .post-footer {
+    color: $text-color;
+
+    strong {
+      font-weight: 400;
+    }
+  }
+}

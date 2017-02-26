@@ -4,20 +4,18 @@
   $primary: map-get($theme, primary);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
-  $background-color: invert(mat-color($background, card, 0.05)) !default;
+  $background-color: mat-color($background, card, 0.5) !default;
   $text-color: invert(mat-color($background, card, 0.6)) !default;
 
-  .comment-area {
-    color: $text-color;
-    background: $background-color;
-
-    a {
-      color: mat-color($primary);
-      font-weight: 700;
-      text-decoration: none;
-    }
+  a {
+    color: mat-color($primary);
+    font-weight: 700;
+    text-decoration: none;
   }
 
+  .comment {
+    color: $text-color;
+  }
 }
 
 .spacer {

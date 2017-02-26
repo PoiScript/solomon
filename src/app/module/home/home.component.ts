@@ -1,4 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core'
+import {Title} from '@angular/platform-browser'
 
 import {PostService} from '../../service/post'
 import {Intro} from '../../class/post'
@@ -15,18 +16,20 @@ export class HomeComponent implements OnInit {
   BLOG_DESCRIPTION: string
 
   constructor(private postService: PostService,
+              private title: Title,
               @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.BLOG_NAME = config.BLOG_NAME
     this.BLOG_DESCRIPTION = config.BLOG_DESCRIPTION
   }
 
-  getArchive(): void {
+  getRecent(): void {
     this.postService
-      .getArchive()
+      .getRecent()
       .then(intros => this.intros = intros)
   }
 
   ngOnInit(): void {
-    this.getArchive()
+    this.title.setTitle(this.BLOG_NAME)
+    this.getRecent()
   }
 }

@@ -13,9 +13,4 @@ export class ThemeService {
     this.isDark = !this.isDark
     this.toggleThemeSource.next(this.isDark)
   }
-
-  getTheme(): boolean {
-    return this.isDark
-  }
-
 }

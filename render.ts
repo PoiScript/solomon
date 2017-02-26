@@ -2,22 +2,8 @@ import fs = require('fs')
 import marked = require('marked')
 import cheerio = require('cheerio')
 import path = require('path')
-import {Post} from './src/app/class/post'
+import {Intro, Post} from './src/app/class/post'
 import {Link} from './src/app/class/link'
-
-let renderer = new marked.Renderer()
-
-renderer.heading = (text: string, level: number) => {
-  let escapedText = text.replace(/[^\u2E80-\u9FFF|^\w]+/g, '-')
-
-  return `
-		<h${level} id="${escapedText}">
-			<a class="anchor" name="${escapedText}" href="#${escapedText}">
-				<span class="header-link"></span>
-			</a>${text}
-		</h${level}>
-	`
-}
 
 let files: string[] = []
 let posts: Post[] = []
@@ -42,7 +28,7 @@ function parse() {
       if (tokenStart === -1) return console.error('[ERROR] Markdown Metadata Missed')
       let post = new Post()
       post.intro = JSON.parse(file.substr(tokenStart + 8, tokenEnd - 9))
-      post.html = marked(file.substr(tokenEnd + 3), {renderer: renderer})
+      post.html = marked(file.substr(tokenEnd + 3))
       post.bookmark = []
       let $ = cheerio.load(post.html)
       $('.anchor').each((i, item) => {
@@ -85,6 +71,18 @@ function generateArchiveJSON() {
   })
 }
 
+function generateRecentJSON() {
+  let recent = posts
+    .map(post => post.intro)
+    .filter(intro => intro.slug !== 'about')
+    .sort((i1: Intro, i2: Intro) => Date.parse(i2.date) - Date.parse(i1.date))
+    .slice(0, 4)
+  fs.writeFile('src/json/recent.json', JSON.stringify(recent), (err) => {
+    if (err) console.error(err)
+    console.log('[GENERATED] recent.json')
+  })
+}
+
 function generateLinkJSON(walkPath) {
   let links: Link[] = []
   let file = fs.readFileSync(`${walkPath}/link.md`, 'utf8')
@@ -110,4 +108,5 @@ console.log(`[INFO] ${files.length} files found.`)
 parse()
 generatePostJSON()
 generateArchiveJSON()
+generateRecentJSON()
 generateLinkJSON('src/markdown')

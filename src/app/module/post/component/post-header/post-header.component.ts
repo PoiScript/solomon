@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core'
-import {Location} from '@angular/common'
 
 import {Intro} from '../../../../class/post'
+import {ThemeService} from '../../../../service/theme'
 
 @Component({
   selector: 'solomon-post-header',
@@ -11,10 +11,11 @@ import {Intro} from '../../../../class/post'
 export class HeaderPostComponent {
   @Input() intro: Intro
 
-  constructor(private location: Location) {
+  constructor(private themeService: ThemeService) {
   }
 
-  backClicked(): void {
-    this.location.back()
+  toggleTheme(): void {
+    this.themeService.toggleTheme()
   }
+
 }

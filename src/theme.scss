@@ -1,5 +1,7 @@
 @import '~@angular/material/core/theming/all-theme';
 @import "github-markdown";
+@import "styles";
+@import "app/module/post/component/post-footer/post-footer.component";
 @import "app/module/post/component/comment/comment.component";
 @import "app/component/user-profile/user-profile.component";
 
@@ -12,6 +14,8 @@ $theme: mat-light-theme($primary, $accent);
 @include markdown-theme($theme);
 @include comment-theme($theme);
 @include user-profile-theme($theme);
+@include post-footer-theme($theme);
+@include global-theme($theme);
 
 .dark {
   $dark-primary: mat-palette($mat-blue, 800, 600, 900);
@@ -21,6 +25,7 @@ $theme: mat-light-theme($primary, $accent);
   @include angular-material-theme($dark-theme);
   @include markdown-theme($dark-theme);
   @include comment-theme($dark-theme);
+  @include post-footer-theme($dark-theme);
   @include user-profile-theme($dark-theme);
+  @include global-theme($dark-theme);
 }
-

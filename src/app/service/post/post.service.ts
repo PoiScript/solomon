@@ -1,14 +1,24 @@
-import {Injectable} from "@angular/core"
-import {Http} from "@angular/http"
-import "rxjs/add/operator/toPromise"
+import {Injectable} from '@angular/core'
+import {Http} from '@angular/http'
+import 'rxjs/add/operator/toPromise'
 
-import {Intro, Post} from "../../class/post"
+import {Intro, Post} from '../../class/post'
 
 @Injectable()
 export class PostService {
-  archive: Intro[]
+  private archive: Intro[]
+  private recent: Intro[]
 
   constructor(private http: Http) {
+  }
+
+  getRecent(): Promise<Intro []> {
+    if (this.recent) return new Promise(resolve => resolve(this.recent))
+    return this.http.get('/json/recent.json')
+      .toPromise()
+      .then(res => res.json() as Intro[])
+      .then(recent => this.recent = recent)
+      .catch(PostService.handleError)
   }
 
   getArchive(): Promise<Intro []> {

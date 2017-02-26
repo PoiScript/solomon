@@ -6,7 +6,7 @@
   $foreground: map-get($theme, foreground);
   $pre-background-color: invert(mat-color($background, card, 0.05)) !default;
   $quote-color: invert(mat-color($background, card, 0.5)) !default;
-  $text-color: mat-color($foreground, text);
+  $text-color: invert(mat-color($background, card, 0.6)) !default;
 
   .markdown-body {
     color: $text-color;
@@ -232,14 +232,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     word-wrap: break-word;
     background-color: transparent;
     text-decoration: none;
-    &:active {
-      outline-width: 0;
-      text-decoration: underline;
-    }
-    &:hover {
-      outline-width: 0;
-      text-decoration: underline;
-    }
     &:not([href]) {
       color: inherit;
       text-decoration: none;

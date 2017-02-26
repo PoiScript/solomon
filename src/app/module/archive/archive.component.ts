@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core'
-import {PostService} from '../../service/post/post.service'
+import {Component, Inject, OnInit} from '@angular/core'
+import {Title} from '@angular/platform-browser'
+
+import {PostService} from '../../service/post'
 import {Intro} from '../../class/post'
+import {SolomonConfig} from '../../interface/solomon-config'
+import {CONFIG_TOKEN} from '../../config'
 
 @Component({
   selector: 'app-archive',
@@ -9,8 +13,12 @@ import {Intro} from '../../class/post'
 })
 export class ArchiveComponent implements OnInit {
   intros: Intro[]
+  private BLOG_NAME: string
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService,
+              private titleService: Title,
+              @Inject(CONFIG_TOKEN) config: SolomonConfig) {
+    this.BLOG_NAME = config.BLOG_NAME
   }
 
   getArchive(): void {
@@ -20,6 +28,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle(`Archive - ${this.BLOG_NAME}`)
     this.getArchive()
   }
 

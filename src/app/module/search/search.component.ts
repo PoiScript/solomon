@@ -1,38 +1,29 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, Inject, OnInit} from '@angular/core'
 import {Title} from '@angular/platform-browser'
+
 import {Intro} from '../../class/post'
 import {SearchResult} from '../../class/searchResult'
-import {GitHubService} from '../../service/github/github.service'
-import {PostService} from '../../service/post/post.service'
+import {GitHubService} from '../../service/github'
+import {PostService} from '../../service/post'
+import {SolomonConfig} from '../../interface/solomon-config'
+import {CONFIG_TOKEN} from '../../config'
 
 @Component({
-  template: `
-    <solomon-post-header></solomon-post-header>
-    <div class="container">
-      <md-card [fxLayout]="'row'" [fxLayoutAlign]="'end end'">
-        <md-input-container [style.width]="'100%'">
-          <input #input mdInput (keyup.enter)="keywordChanged(input.value)">
-        </md-input-container>
-        <button md-icon-button (click)="keywordChanged(input.value)">
-          <md-icon>search</md-icon>
-        </button>
-      </md-card>
-      <solomon-search-result *ngIf="result" [result]="result" [intros]="intros"></solomon-search-result>
-    </div>
-  `
+  templateUrl: './search.component.html'
 })
 export class SearchComponent implements OnInit {
   intros: Intro[]
   result: SearchResult
-  title: string = 'Search'
+  private BLOG_NAME: string
 
   constructor(private githubService: GitHubService,
               private postService: PostService,
-              private titleService: Title) {
+              private titleService: Title,
+              @Inject(CONFIG_TOKEN) config: SolomonConfig,) {
+    this.BLOG_NAME = config.BLOG_NAME
   }
 
   keywordChanged(keyword: string) {
-    this.title = `Search "${keyword}"`
     this.githubService
       .searchCode(keyword)
       .then(result => this.result = result)
@@ -45,7 +36,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('Search - Solomon')
+    this.titleService.setTitle(`Search - ${this.BLOG_NAME}`)
     this.getArchive()
   }
 }

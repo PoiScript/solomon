@@ -1,68 +1,66 @@
-<div class="comment-area">
-  <div class="container">
-    <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
-      <h2 i18n>{{comments?.length}} comments</h2>
-      <span class="spacer"></span>
-      <button md-icon-button i18n-mdTooltip mdTooltip="Sort" [mdMenuTriggerFor]="menu">
-        <md-icon>sort</md-icon>
-      </button>
-      <md-menu #menu="mdMenu" x-position="before">
-        <button i18n md-menu-item (click)="sortComment(0)">Newest First</button>
-        <button i18n md-menu-item (click)="sortComment(1)">Oldest First</button>
-        <button i18n md-menu-item (click)="sortComment(2)">Reaction</button>
-      </md-menu>
-    </header>
-    <h4 i18n *ngIf="comments?.length === 0" align="center">No comment now,<br/>be the first to comment!</h4>
-    <div *ngFor="let comment of comments">
-      <header [fxLayout]="'row'">
-        <a [href]="comment.user.html_url" target="_blank">
-          <img [src]="comment.user.avatar_url" class="avatar">
-        </a>
-        <div [fxLayout]="'column'">
-          <strong (click)="mention(comment.user.login)">{{comment.user.login}}</strong>
-          <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
-        </div>
-      </header>
-      <div class="text markdown-body" [innerHTML]="comment.body_html"></div>
-      <div class="reaction">
-        <button md-icon-button (click)="createReaction(comment.id, '+1')">
-          <md-icon>thumb_up</md-icon>
-        </button>
-        {{comment.reactions['+1']}}
-        <button md-icon-button (click)="createReaction(comment.id, '-1')">
-          <md-icon>thumb_down</md-icon>
-        </button>
-        {{comment.reactions['-1']}}
+<div class="comment">
+  <header [fxLayout]="'row'" [fxLayoutAlign]="'space-between center'">
+    <h1 class="primary-header">{{comments?.length}} comments</h1>
+    <span class="spacer"></span>
+    <button md-icon-button i18n-mdTooltip mdTooltip="Sort" [mdMenuTriggerFor]="menu">
+      <md-icon>sort</md-icon>
+    </button>
+    <md-menu #menu="mdMenu" x-position="before">
+      <button i18n md-menu-item (click)="sortComment(0)">Newest First</button>
+      <button i18n md-menu-item (click)="sortComment(1)">Oldest First</button>
+      <button i18n md-menu-item (click)="sortComment(2)">Reaction</button>
+    </md-menu>
+  </header>
+  <h4 i18n *ngIf="comments?.length === 0" align="center">No comment now,<br/>be the first to comment!</h4>
+  <div *ngFor="let comment of comments">
+    <header [fxLayout]="'row'">
+      <a [href]="comment.user.html_url" target="_blank">
+        <img [src]="comment.user.avatar_url" class="avatar">
+      </a>
+      <div [fxLayout]="'column'">
+        <strong (click)="mention(comment.user.login)">{{comment.user.login}}</strong>
+        <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
       </div>
+    </header>
+    <div class="text markdown-body" [innerHTML]="comment.body_html"></div>
+    <div class="reaction">
+      <button md-icon-button (click)="createReaction(comment.id, '+1')">
+        <md-icon>thumb_up</md-icon>
+      </button>
+      {{comment.reactions['+1']}}
+      <button md-icon-button (click)="createReaction(comment.id, '-1')">
+        <md-icon>thumb_down</md-icon>
+      </button>
+      {{comment.reactions['-1']}}
     </div>
-    <h2 i18n>Add comment</h2>
-    <header [fxLayout]="'row'" [ngSwitch]="isAuth">
-      <img class="avatar" *ngSwitchCase="true" (click)="viewProfile()" [src]="user.auth.photoURL">
-      <img class="avatar" *ngSwitchCase="false" (click)="viewProfile()" src="assets/img/chrome-crash-icon.png">
-      <div [fxLayout]="'column'" *ngSwitchCase="true">
-        <span i18n>Logged in as</span>
-        <strong>{{user?.auth.displayName}}</strong>
-      </div>
-      <div [fxLayout]="'column'" (click)="viewProfile()" *ngSwitchCase="false">
-        <span i18n>Not Logged In</span>
-        <strong i18n>Click here to Login</strong>
-      </div>
-    </header>
-    <md-input-container [style.width]="'100%'">
-      <textarea [disabled]="!isAuth" mdInput [(ngModel)]="comment_body"></textarea>
-    </md-input-container>
-    <p i18n>Tips: You can mention someone by clicking his/her username.</p>
-    <footer [fxLayout]="'row'" fxLayoutAlign="space-between">
-      <button i18n md-button (click)="clearComment()">CLEAR</button>
-      <button i18n md-raised-button [color]="'primary'" (click)="postComment()">SUBMIT
-        <md-icon>send</md-icon>
-      </button>
-    </footer>
-    <h5 i18n class="comment-tips" align="center">
-      Or you can left your comments in
-      <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">
-        this issue</a>.
-      :)
-    </h5>
   </div>
+  <h1 i18n class="primary-header">Add comment</h1>
+  <header [fxLayout]="'row'" [ngSwitch]="isAuth">
+    <img class="avatar" *ngSwitchCase="true" (click)="viewProfile()" [src]="user.auth.photoURL">
+    <img class="avatar" *ngSwitchCase="false" (click)="viewProfile()" src="assets/img/chrome-crash-icon.png">
+    <div [fxLayout]="'column'" *ngSwitchCase="true">
+      <span i18n>Logged in as</span>
+      <strong>{{user?.auth.displayName}}</strong>
+    </div>
+    <div [fxLayout]="'column'" (click)="viewProfile()" *ngSwitchCase="false">
+      <span i18n>Not Logged In</span>
+      <strong i18n>Click here to Login</strong>
+    </div>
+  </header>
+  <md-input-container [style.width]="'100%'">
+    <textarea [disabled]="!isAuth" mdInput [(ngModel)]="comment_body"></textarea>
+  </md-input-container>
+  <p i18n>Tips: You can mention someone by clicking his/her username.</p>
+  <footer [fxLayout]="'row'" fxLayoutAlign="space-between">
+    <button i18n md-button (click)="clearComment()">CLEAR</button>
+    <button i18n md-raised-button [color]="'primary'" (click)="postComment()">SUBMIT
+      <md-icon>send</md-icon>
+    </button>
+  </footer>
+  <h5 i18n class="comment-tips" align="center">
+    Or you can left your comments in
+    <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">
+      this issue</a>.
+    :)
+  </h5>
 </div>

@@ -1,5 +1,7 @@
 <solomon-header [headline]="'TAG'"></solomon-header>
-<div class="container">
-  <h1 class="primary-header">Tag: {{tag}}</h1>
-  <solomon-post-preview *ngFor="let intro of intros|tag:tag" [intro]="intro"></solomon-post-preview>
+<div class="content">
+  <div class="container">
+    <h1 class="primary-header">Tag: {{tag}}</h1>
+    <solomon-post-preview *ngFor="let intro of intros|tag:tag" [intro]="intro"></solomon-post-preview>
+  </div>
 </div>
