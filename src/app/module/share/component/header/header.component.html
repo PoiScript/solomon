@@ -17,6 +17,12 @@
     <button i18n md-button [routerLink]="'/link'">LINK</button>
   </ng-container>
   <div class="spacer"></div>
+  <button md-icon-button (click)="toggleSearchBar()">
+    <md-icon>search</md-icon>
+  </button>
+  <md-input-container [@searchBarState]="searchBarVisibility">
+    <input mdInput>
+  </md-input-container>
   <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>more_vert</md-icon>
   </button>

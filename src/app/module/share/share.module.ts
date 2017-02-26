@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {MdButtonModule, MdIconModule, MdMenuModule, MdToolbarModule} from '@angular/material'
+import {MdButtonModule, MdIconModule, MdInputModule, MdMenuModule, MdToolbarModule} from '@angular/material'
 
 import {HeaderComponent} from './component/header'
 import {RouterModule} from '@angular/router'
@@ -12,6 +12,7 @@ import {PostPreviewComponent} from './component/post-preview'
     MdToolbarModule,
     MdButtonModule,
     MdIconModule,
+    MdInputModule,
     RouterModule,
     MdMenuModule
   ],

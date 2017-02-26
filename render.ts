@@ -65,7 +65,11 @@ function generatePostJSON() {
 }
 
 function generateArchiveJSON() {
-  fs.writeFile('src/json/archive.json', JSON.stringify(posts.map(post => post.intro).filter(intro => intro.slug !== 'about')), (err) => {
+  let archive = posts
+    .map(post => post.intro)
+    .filter(intro => intro.slug !== 'about')
+    .sort((i1: Intro, i2: Intro) => Date.parse(i2.date) - Date.parse(i1.date))
+  fs.writeFile('src/json/archive.json', JSON.stringify(archive), (err) => {
     if (err) console.error(err)
     console.log('[GENERATED] archive.json')
   })

@@ -4,10 +4,17 @@
   </button>
   {{intro?.title}}
   <div class="spacer"></div>
+  <button md-icon-button (click)="toggleSearchBar()">
+    <md-icon>search</md-icon>
+  </button>
+  <md-input-container [@searchBarState]="searchBarVisibility">
+    <input mdInput>
+  </md-input-container>
   <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>more_vert</md-icon>
   </button>
   <md-menu #menu="mdMenu">
-    <button md-menu-item (click)="toggleTheme()">Toggle Theme</button>
+    <button i18n md-menu-item (click)="toggleTheme()">Toggle Theme</button>
+    <button i18n md-menu-item (click)="viewSource()">View Source</button>
   </md-menu>
 </md-toolbar>
