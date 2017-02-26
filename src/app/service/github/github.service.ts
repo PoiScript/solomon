@@ -18,13 +18,6 @@ export class GitHubService {
     this.GITHUB_POST_REPO = config.GITHUB_POST_REPO
   }
 
-  getRepos(): Promise<Repo[]> {
-    return this.http
-      .get(`https://api.github.com/users/${this.GITHUB_USERNAME}/repos?type=all&sort=pushed`)
-      .toPromise()
-      .then(res => res.json() as Repo[])
-  }
-
   getIssueCommentCount(title: string): Promise<number> {
     if (this.issues) return new Promise(resolve => resolve(this.issues.find(issue => issue.title === title).comments))
     return this.http

@@ -2,10 +2,10 @@
 <md-toolbar [color]="'primary'">
   <md-toolbar-row></md-toolbar-row>
   <md-toolbar-row [fxLayoutAlign]="'center center'">
-    <h1>Solomon</h1>
+    <h1>{{BLOG_NAME}}</h1>
   </md-toolbar-row>
   <md-toolbar-row [fxLayoutAlign]="'center center'">
-    <h4>PoiScript's Blog</h4>
+    <h4>{{BLOG_DESCRIPTION}}</h4>
   </md-toolbar-row>
   <md-toolbar-row></md-toolbar-row>
 </md-toolbar>
@@ -20,5 +20,7 @@
       <solomon-post-card [intro]="intros[3]"></solomon-post-card>
     </div>
   </div>
-  <button i18n class="read-more-button" [routerLink]="'archive'" md-raised-button [color]="'warn'">READ MORE</button>
+  <div align="center">
+    <button i18n class="read-more-button" [routerLink]="'archive'" md-raised-button [color]="'warn'">READ MORE</button>
+  </div>
 </div>
