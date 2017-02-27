@@ -2,9 +2,7 @@
 
 @mixin comment-theme($theme) {
   $primary: map-get($theme, primary);
-  $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
-  $background-color: mat-color($background, card, 0.5) !default;
   $text-color: invert(mat-color($background, card, 0.6)) !default;
 
   a {

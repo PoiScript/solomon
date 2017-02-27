@@ -8,19 +8,17 @@
   </md-toolbar-row>
   <md-toolbar-row></md-toolbar-row>
 </md-toolbar>
-<div class="content">
-  <div class="container">
-    <div fxLayout="row" [fxLayout.xs]="'column'" fxLayoutAlign="center">
-      <div [fxLayout]="'column'" fxFlex="50%">
-        <solomon-post-card *ngFor="let intro of intros|slice:0:2" [intro]="intro"></solomon-post-card>
-      </div>
-      <div [fxLayout]="'column'" fxFlex="50%">
-        <solomon-post-card *ngFor="let intro of intros|slice:2:4" [intro]="intro"></solomon-post-card>
-      </div>
+<div class="container">
+  <div fxLayout="row" [fxLayout.xs]="'column'" fxLayoutAlign="center">
+    <div [fxLayout]="'column'" fxFlex="50%">
+      <solomon-post-card *ngFor="let intro of intros|slice:0:2" [intro]="intro"></solomon-post-card>
     </div>
-    <div align="center">
-      <button i18n class="read-more-button" [routerLink]="'archive'" md-raised-button [color]="'warn'">READ MORE
-      </button>
+    <div [fxLayout]="'column'" fxFlex="50%">
+      <solomon-post-card *ngFor="let intro of intros|slice:2:4" [intro]="intro"></solomon-post-card>
     </div>
+  </div>
+  <div align="center">
+    <button i18n class="read-more-button" [routerLink]="'archive'" md-raised-button [color]="'warn'">READ MORE
+    </button>
   </div>
 </div>

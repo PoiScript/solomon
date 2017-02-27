@@ -1,7 +1,5 @@
-<div class="content">
-  <div class="container">
-    <h3 i18n class="primary-header">Archive</h3>
-    <p i18n>{{intros?.length}} posts</p>
-    <solomon-post-preview *ngFor="let intro of intros" [intro]="intro"></solomon-post-preview>
-  </div>
+<div class="container">
+  <h3 i18n class="primary-header">Archive</h3>
+  <p i18n>{{intros?.length}} posts</p>
+  <solomon-post-preview *ngFor="let intro of intros" [intro]="intro"></solomon-post-preview>
 </div>
