@@ -24,9 +24,9 @@ export class SearchResultComponent {
   @Input()
   set result(result: SearchResult) {
     this._result = result
-    this._result.items.forEach(item => {
-      item.intro = this.intros.find(intro => intro.slug === item.name.substring(0, item.name.length - 3))
-    })
+    this._result.items
+      .filter(item => item.name !== 'about.md' && item.name != 'link.md ')
+      .forEach(item => item.intro = this.intros.find(intro => intro.slug === item.name.substring(0, item.name.length - 3)))
   }
 
   get result(): SearchResult {

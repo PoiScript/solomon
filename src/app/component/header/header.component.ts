@@ -4,6 +4,7 @@ import {Intro} from '../../class/post'
 import {ResizeService} from '../../service/resize'
 import {ThemeService} from '../../service/theme'
 import {HeaderService} from '../../service/header'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'solomon-header',
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private resizeService: ResizeService,
               private themeService: ThemeService,
+              private router: Router,
               private headerService: HeaderService) {
     resizeService.window.subscribe(val => {
       if (val) this.isSMLayout = val.innerWidth <= 480
@@ -47,6 +49,10 @@ export class HeaderComponent implements OnInit {
 
   viewSource(): void {
     window.open(`/markdown/${this.intro.slug}.md`)
+  }
+
+  searchFor(keyword: string): void {
+    if (keyword != '') this.router.navigate(['/search', {q: keyword}])
   }
 
   ngOnInit(): void {

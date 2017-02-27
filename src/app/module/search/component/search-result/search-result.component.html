@@ -1,15 +1,11 @@
-<md-card *ngFor="let item of result?.items">
+<md-card *ngFor="let item of result?.items" [routerLink]="['/post', item.intro?.slug]">
   <header [fxLayout]="'column'">
-    <strong>{{item.intro.title}}</strong>
-    <span>{{item.intro.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+    <strong>{{item.intro?.title}}</strong>
+    <span>{{item.intro?.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
   </header>
   <md-card-content class="markdown-body" *ngFor="let text of item?.text_matches">
     <pre lang="markdown">
       <code>{{text.fragment}}</code>
     </pre>
   </md-card-content>
-  <md-card-actions>
-    <a i18n md-button [routerLink]="['/post', item.intro.slug]" i18n>Read More</a>
-    <a i18n md-button target="_blank" href='https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/blob/master/{{item.intro.slug}}.md' i18n>View Source</a>
-  </md-card-actions>
 </md-card>

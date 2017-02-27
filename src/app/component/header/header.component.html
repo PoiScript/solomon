@@ -29,7 +29,7 @@
     <md-icon>search</md-icon>
   </button>
   <md-input-container [@searchBarState]="searchBarVisibility" dividerColor="accent">
-    <input mdInput>
+    <input #search_bar mdInput (keyup.enter)="searchFor(search_bar.value)">
   </md-input-container>
   <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>more_vert</md-icon>
