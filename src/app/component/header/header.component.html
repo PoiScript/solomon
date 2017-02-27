@@ -1,0 +1,41 @@
+<md-toolbar [color]="'primary'" [ngSwitch]="isPost">
+  <ng-container *ngSwitchCase="false" [ngSwitch]="isSMLayout">
+    <ng-container *ngSwitchCase="true">
+      <button md-button [mdMenuTriggerFor]="menu">{{title}}
+        <md-icon>arrow_drop_down</md-icon>
+      </button>
+      <md-menu #menu="mdMenu">
+        <button i18n md-menu-item [routerLink]="'/'">SOLOMON</button>
+        <button i18n md-menu-item [routerLink]="'/about'">ABOUT</button>
+        <button i18n md-menu-item [routerLink]="'/archive'">ARCHIVE</button>
+        <button i18n md-menu-item [routerLink]="'/link'">LINK</button>
+      </md-menu>
+    </ng-container>
+    <ng-container *ngSwitchCase="false">
+      <button i18n md-button [routerLink]="'/'">SOLOMON</button>
+      <button i18n md-button [routerLink]="'/about'">ABOUT</button>
+      <button i18n md-button [routerLink]="'/archive'">ARCHIVE</button>
+      <button i18n md-button [routerLink]="'/link'">LINK</button>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="true">
+    <button md-icon-button [routerLink]="'/archive'">
+      <md-icon>keyboard_arrow_left</md-icon>
+    </button>
+    {{intro?.title}}
+  </ng-container>
+  <div class="spacer"></div>
+  <button md-icon-button (click)="toggleSearchBar()">
+    <md-icon>search</md-icon>
+  </button>
+  <md-input-container [@searchBarState]="searchBarVisibility" dividerColor="accent">
+    <input mdInput>
+  </md-input-container>
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button i18n md-menu-item (click)="toggleTheme()">Toggle Theme</button>
+    <button i18n md-menu-item (click)="viewSource()" *ngIf="isPost">View Source</button>
+  </md-menu>
+</md-toolbar>

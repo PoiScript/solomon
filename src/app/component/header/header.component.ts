@@ -1,6 +1,9 @@
-import {animate, Component, Input, OnInit, state, style, transition, trigger} from '@angular/core'
-import {ResizeService} from '../../../../service/resize/resize.service'
-import {ThemeService} from '../../../../service/theme/theme.service'
+import {animate, Component, OnInit, state, style, transition, trigger} from '@angular/core'
+
+import {Intro} from '../../class/post'
+import {ResizeService} from '../../service/resize'
+import {ThemeService} from '../../service/theme'
+import {HeaderService} from '../../service/header'
 
 @Component({
   selector: 'solomon-header',
@@ -19,15 +22,19 @@ import {ThemeService} from '../../../../service/theme/theme.service'
 export class HeaderComponent implements OnInit {
   searchBarVisibility: boolean = false
   isSMLayout: boolean
-  @Input() headline: string
+  isPost: boolean
+  title: string
+  intro: Intro
 
   constructor(private resizeService: ResizeService,
-              private themeService: ThemeService) {
+              private themeService: ThemeService,
+              private headerService: HeaderService) {
     resizeService.window.subscribe(val => {
-      if (val) {
-        this.isSMLayout = val.innerWidth <= 480
-      }
+      if (val) this.isSMLayout = val.innerWidth <= 480
     })
+    headerService.intro$.subscribe(intro => this.intro = intro)
+    headerService.isPost$.subscribe(isPost => this.isPost = isPost)
+    headerService.title$.subscribe(title => this.title = title)
   }
 
   toggleTheme(): void {
@@ -36,6 +43,10 @@ export class HeaderComponent implements OnInit {
 
   toggleSearchBar(): void {
     this.searchBarVisibility = !this.searchBarVisibility
+  }
+
+  viewSource(): void {
+    window.open(`/markdown/${this.intro.slug}.md`)
   }
 
   ngOnInit(): void {

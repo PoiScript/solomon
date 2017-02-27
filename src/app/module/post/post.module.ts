@@ -10,7 +10,6 @@ import {PostRouting} from './post.routing'
 import {CommentComponent} from './component/comment'
 import {PostService} from '../../service/post'
 import {SnackBarService} from '../../service/snackbar'
-import {HeaderPostComponent} from './component/post-header'
 import {PostFooterComponent} from './component/post-footer'
 
 @NgModule({
@@ -30,7 +29,6 @@ import {PostFooterComponent} from './component/post-footer'
   declarations: [
     PostComponent,
     CommentComponent,
-    HeaderPostComponent,
     PostFooterComponent
   ],
   providers: [

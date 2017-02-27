@@ -1,9 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core'
 import {Title} from '@angular/platform-browser'
+
 import {Post} from '../../class/post'
-import {PostService} from '../../service/post/post.service'
+import {PostService} from '../../service/post'
 import {CONFIG_TOKEN} from '../../config'
 import {SolomonConfig} from '../../interface/solomon-config'
+import {HeaderService} from '../../service/header'
 
 @Component({
   templateUrl: './about.component.html',
@@ -16,6 +18,7 @@ export class AboutComponent implements OnInit {
 
   constructor(private titleService: Title,
               private postService: PostService,
+              private headerService: HeaderService,
               @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.BLOG_NAME = config.BLOG_NAME
   }
@@ -27,6 +30,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.headerService.changeHomeHeader('About')
     this.titleService.setTitle(`About - ${this.BLOG_NAME}`)
     this.getAbout()
   }

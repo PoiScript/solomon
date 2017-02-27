@@ -5,6 +5,7 @@ import {PostService} from '../../service/post'
 import {Intro} from '../../class/post'
 import {SolomonConfig} from '../../interface/solomon-config'
 import {CONFIG_TOKEN} from '../../config'
+import {HeaderService} from '../../service/header/header.service'
 
 @Component({
   selector: 'app-archive',
@@ -17,6 +18,7 @@ export class ArchiveComponent implements OnInit {
 
   constructor(private postService: PostService,
               private titleService: Title,
+              private headerService: HeaderService,
               @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.BLOG_NAME = config.BLOG_NAME
   }
@@ -28,6 +30,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.headerService.changeHomeHeader('Archive')
     this.titleService.setTitle(`Archive - ${this.BLOG_NAME}`)
     this.getArchive()
   }

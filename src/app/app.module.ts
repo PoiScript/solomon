@@ -14,11 +14,14 @@ import {UserProfileComponent} from './component/user-profile'
 import {TokenService} from './service/token'
 import {GitHubService} from './service/github'
 import {PostService} from './service/post'
+import {HeaderService} from './service/header'
+import {HeaderComponent} from './component/header'
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import {PostService} from './service/post'
     ThemeService,
     TokenService,
     PostService,
+    HeaderService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: CONFIG_TOKEN, useValue: CONFIG}
   ],
