@@ -18,7 +18,7 @@ $theme: mat-light-theme($primary, $accent);
 @include global-theme($theme);
 
 .dark {
-  $dark-primary: mat-palette($mat-blue, 800, 600, 900);
+  $dark-primary: mat-palette($mat-deep-purple);
   $dark-accent: mat-palette($mat-blue-grey, A200, A100, A400);
   $dark-warn: mat-palette($mat-deep-orange);
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
