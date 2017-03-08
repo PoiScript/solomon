@@ -2,8 +2,6 @@ import {animate, Component, OnInit, state, style, transition, trigger} from '@an
 
 import {Intro} from '../../class/post'
 import {ResizeService} from '../../service/resize'
-import {ThemeService} from '../../service/theme'
-import {HeaderService} from '../../service/header'
 import {Router} from '@angular/router'
 
 @Component({
@@ -24,31 +22,17 @@ export class HeaderComponent implements OnInit {
   searchBarVisibility: boolean = false
   isSMLayout: boolean
   isPost: boolean
-  title: string
   intro: Intro
 
   constructor(private resizeService: ResizeService,
-              private themeService: ThemeService,
-              private router: Router,
-              private headerService: HeaderService) {
+              private router: Router) {
     resizeService.window.subscribe(val => {
       if (val) this.isSMLayout = val.innerWidth <= 480
     })
-    headerService.intro$.subscribe(intro => this.intro = intro)
-    headerService.isPost$.subscribe(isPost => this.isPost = isPost)
-    headerService.title$.subscribe(title => this.title = title)
-  }
-
-  toggleTheme(): void {
-    this.themeService.toggleTheme()
   }
 
   toggleSearchBar(): void {
     this.searchBarVisibility = !this.searchBarVisibility
-  }
-
-  viewSource(): void {
-    window.open(`/markdown/${this.intro.slug}.md`)
   }
 
   searchFor(keyword: string): void {

@@ -5,7 +5,6 @@ import {LinkService} from './service/link'
 import {Link} from '../../class/link'
 import {SolomonConfig} from '../../interface/solomon-config'
 import {CONFIG_TOKEN} from '../../config'
-import {HeaderService} from '../../service/header/header.service'
 
 @Component({
   templateUrl: './link.component.html',
@@ -17,7 +16,6 @@ export class LinkComponent implements OnInit {
 
   constructor(private linkService: LinkService,
               private titleService: Title,
-              private headerService: HeaderService,
               @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.BLOG_NAME = config.BLOG_NAME
   }
@@ -28,7 +26,6 @@ export class LinkComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.headerService.changeHomeHeader('Link')
     this.getLinks()
     this.titleService.setTitle(`Link - ${this.BLOG_NAME}`)
   }

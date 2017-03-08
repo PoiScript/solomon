@@ -6,10 +6,9 @@ import {SearchResult} from '../../class/searchResult'
 import {GitHubService} from '../../service/github'
 import {SolomonConfig} from '../../interface/solomon-config'
 import {CONFIG_TOKEN} from '../../config'
-import {HeaderService} from '../../service/header'
 import {Subscription} from 'rxjs'
 import {ActivatedRoute, Params} from '@angular/router'
-import {PostService} from '../../service/post/post.service'
+import {PostService} from '../../service/post'
 
 @Component({
   templateUrl: './search.component.html'
@@ -25,7 +24,6 @@ export class SearchComponent implements OnInit, OnDestroy {
               private titleService: Title,
               private route: ActivatedRoute,
               private postService: PostService,
-              private headerService: HeaderService,
               @Inject(CONFIG_TOKEN) config: SolomonConfig,) {
     this.BLOG_NAME = config.BLOG_NAME
     this.sub = this.route.params.subscribe((params: Params) => {
@@ -44,7 +42,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getArchive()
-    this.headerService.changeHomeHeader('Search')
     this.titleService.setTitle(`Search - ${this.BLOG_NAME}`)
   }
 

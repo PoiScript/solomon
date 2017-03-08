@@ -14,8 +14,8 @@ import {UserProfileComponent} from './component/user-profile'
 import {TokenService} from './service/token'
 import {GitHubService} from './service/github'
 import {PostService} from './service/post'
-import {HeaderService} from './service/header'
 import {HeaderComponent} from './component/header'
+import {FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import {HeaderComponent} from './component/header'
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     AppRouting,
     MaterialModule,
     FlexLayoutModule,
@@ -37,7 +38,6 @@ import {HeaderComponent} from './component/header'
     ThemeService,
     TokenService,
     PostService,
-    HeaderService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: CONFIG_TOKEN, useValue: CONFIG}
   ],

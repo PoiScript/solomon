@@ -7,7 +7,6 @@ import {CONFIG_TOKEN} from '../../config'
 import {PostService} from '../../service/post'
 import {SolomonConfig} from '../../interface/solomon-config'
 import {GitHubService} from '../../service/github'
-import {HeaderService} from '../../service/header/header.service'
 
 
 @Component({
@@ -34,7 +33,6 @@ export class PostComponent implements OnInit {
   constructor(@Inject(CONFIG_TOKEN) config: SolomonConfig,
               private postService: PostService,
               private titleService: Title,
-              private headerService: HeaderService,
               private githubService: GitHubService,
               private router: ActivatedRoute) {
     this.GITHUB_USERNAME = config.GITHUB_USERNAME
@@ -56,7 +54,6 @@ export class PostComponent implements OnInit {
       .getPost(slug)
       .then(post => {
         this.post = post
-        this.headerService.changePostHeader(post.intro)
         this.titleService.setTitle(`${post.intro.title} - ${this.BLOG_NAME}`)
         return post.intro.issue_number
       })
