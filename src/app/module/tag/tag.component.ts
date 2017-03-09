@@ -19,7 +19,7 @@ export class TagComponent implements OnInit {
   constructor(private postService: PostService,
               private titleService: Title,
               private router: ActivatedRoute,
-              @Inject(CONFIG_TOKEN) config: SolomonConfig,) {
+              @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.BLOG_NAME = config.BLOG_NAME
   }
 
