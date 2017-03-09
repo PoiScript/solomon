@@ -3,7 +3,7 @@
     <h1 i18n class="primary-header">{{comments?.length}} comments</h1>
     <span class="spacer"></span>
     <button md-icon-button i18n-mdTooltip mdTooltip="Sort" [mdMenuTriggerFor]="menu">
-      <md-icon>sort</md-icon>
+      <md-icon svgIcon="sort"></md-icon>
     </button>
     <md-menu #menu="mdMenu" x-position="before">
       <button i18n md-menu-item (click)="sortComment(0)">Newest First</button>
@@ -25,11 +25,11 @@
     <div class="text markdown-body" [innerHTML]="comment.body_html"></div>
     <div class="reaction">
       <button md-icon-button (click)="createReaction(comment.id, '+1')">
-        <md-icon>thumb_up</md-icon>
+        <md-icon svgIcon="like"></md-icon>
       </button>
       {{comment.reactions['+1']}}
       <button md-icon-button (click)="createReaction(comment.id, '-1')">
-        <md-icon>thumb_down</md-icon>
+        <md-icon svgIcon="dislike"></md-icon>
       </button>
       {{comment.reactions['-1']}}
     </div>
@@ -53,14 +53,11 @@
   <p i18n>Tips: You can mention someone by clicking his/her username.</p>
   <footer [fxLayout]="'row'" fxLayoutAlign="space-between">
     <button i18n md-button (click)="clearComment()">CLEAR</button>
-    <button i18n md-raised-button [color]="'primary'" (click)="postComment()">SUBMIT
-      <md-icon>send</md-icon>
-    </button>
+    <button i18n md-raised-button [color]="'primary'" (click)="postComment()">SUBMIT</button>
   </footer>
   <h5 i18n class="comment-tips" align="center">
     Or you can left your comments in
-    <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">
-      this issue</a>.
-    :)
+    <a href="https://github.com/{{GITHUB_USERNAME}}/{{GITHUB_POST_REPO}}/issues/{{issue_number}}" target="_blank">this
+      issue</a>. :)
   </h5>
 </div>

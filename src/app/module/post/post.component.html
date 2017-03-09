@@ -1,6 +1,6 @@
 <div class="container">
   <button id="top-fab" md-fab (click)="toTopClicked()" [@toTopState]="toTopVisibility" [color]="'primary'">
-    <md-icon>keyboard_arrow_up</md-icon>
+    <md-icon svgIcon="arrow_up"></md-icon>
   </button>
   <h1 class="primary-header">{{post?.intro.title}}</h1>
   <div class="markdown-body" [innerHTML]="post?.html"></div>

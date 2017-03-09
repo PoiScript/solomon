@@ -1,13 +1,15 @@
 import {Component, Inject, Input, OnInit} from '@angular/core'
 import {AngularFire, FirebaseAuthState} from 'angularfire2'
-import {MdDialog} from '@angular/material'
-import {SnackBarService} from '../../../../service/snackbar/snack-bar.service'
-import {TokenService} from '../../../../service/token/token.service'
-import {GitHubService} from '../../../../service/github/github.service'
+import {MdDialog, MdIconRegistry} from '@angular/material'
+import {DomSanitizer} from '@angular/platform-browser'
+
+import {SnackBarService} from '../../../../service/snackbar'
+import {TokenService} from '../../../../service/token'
+import {GitHubService} from '../../../../service/github'
 import {SolomonConfig} from '../../../../interface/solomon-config'
 import {CONFIG_TOKEN} from '../../../../config'
 import {Comment} from '../../../../class/comment'
-import {UserProfileComponent} from '../../../../component/user-profile/user-profile.component'
+import {UserProfileComponent} from '../../../../component/user-profile'
 
 export const enum Sort {
   Oldest, Newest, Reaction
@@ -33,6 +35,8 @@ export class CommentComponent implements OnInit {
               private githubService: GitHubService,
               private tokenService: TokenService,
               private snackBarService: SnackBarService,
+              private iconRegistry: MdIconRegistry,
+              private sanitizer: DomSanitizer,
               private dialog: MdDialog,
               private af: AngularFire) {
     this.GITHUB_USERNAME = config.GITHUB_USERNAME
@@ -50,6 +54,10 @@ export class CommentComponent implements OnInit {
       },
       error => console.trace(error)
     )
+    iconRegistry.addSvgIcon('sort', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/sort.svg'))
+    iconRegistry.addSvgIcon('like', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/like.svg'))
+    iconRegistry.addSvgIcon('dislike', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/dislike.svg'))
+    iconRegistry.addSvgIcon('send', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/send.svg'))
   }
 
   sortComment(sortBy: Sort): void {

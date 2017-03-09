@@ -7,21 +7,21 @@
   </ng-container>
   <ng-container *ngSwitchCase="true">
     <button md-icon-button i18n-mdTooltip mdTooltip="SOLOMON" [routerLink]="'/'">
-      <md-icon>border_all</md-icon>
+      <md-icon svgIcon="solomon"></md-icon>
     </button>
     <button md-icon-button i18n-mdTooltip mdTooltip="ABOUT" [routerLink]="'/about'">
-      <md-icon>account_box</md-icon>
+      <md-icon svgIcon="about"></md-icon>
     </button>
     <button md-icon-button i18n-mdTooltip mdTooltip="ARCHIVE" [routerLink]="'/archive'">
-      <md-icon>inbox</md-icon>
+      <md-icon svgIcon="archive"></md-icon>
     </button>
     <button md-icon-button i18n-mdTooltip mdTooltip="LINK" [routerLink]="'/link'">
-      <md-icon>link</md-icon>
+      <md-icon svgIcon="link"></md-icon>
     </button>
   </ng-container>
   <div class="spacer"></div>
   <button md-icon-button (click)="toggleSearchBar()">
-    <md-icon>search</md-icon>
+    <md-icon svgIcon="search"></md-icon>
   </button>
   <md-input-container [@searchBarState]="searchBarVisibility" dividerColor="accent">
     <input #search_bar mdInput (keyup.enter)="searchFor(search_bar.value)">

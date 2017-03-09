@@ -1,12 +1,13 @@
 import {animate, Component, HostListener, Inject, OnInit, state, style, transition, trigger} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
-import {Title} from '@angular/platform-browser'
+import {DomSanitizer, Title} from '@angular/platform-browser'
 
 import {Post} from '../../class/post'
 import {CONFIG_TOKEN} from '../../config'
 import {PostService} from '../../service/post'
 import {SolomonConfig} from '../../interface/solomon-config'
 import {GitHubService} from '../../service/github'
+import {MdIconRegistry} from '@angular/material'
 
 
 @Component({
@@ -34,10 +35,13 @@ export class PostComponent implements OnInit {
               private postService: PostService,
               private titleService: Title,
               private githubService: GitHubService,
+              private iconRegistry: MdIconRegistry,
+              private sanitizer: DomSanitizer,
               private router: ActivatedRoute) {
     this.GITHUB_USERNAME = config.GITHUB_USERNAME
     this.GITHUB_POST_REPO = config.GITHUB_POST_REPO
     this.BLOG_NAME = config.BLOG_NAME
+    iconRegistry.addSvgIcon('arrow_up', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/arrow_up.svg'))
   }
 
   toTopClicked(): void {
