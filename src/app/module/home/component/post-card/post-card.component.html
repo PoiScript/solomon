@@ -1,14 +1,6 @@
-<md-card>
+<md-card [routerLink]="['/post', intro.slug]">
   <img *ngIf="intro.image" md-card-image [src]="intro.image">
-  <header [fxLayout]="'row'" fxLayoutAlign="space-between center">
-    <md-chip-list class="mat-chip-list-stacked">
-      <md-chip *ngFor="let tag of intro.tags" [routerLink]="['/tag', tag]">
-        {{tag}}
-      </md-chip>
-    </md-chip-list>
-    <span i18n>{{intro.date|date:"yyyy-MM-dd"}}</span>
-  </header>
   <md-card-content>
-    <h2 class="card-post-title" [routerLink]="['/post', intro.slug]">{{intro.title}}</h2>
+    <h3>{{intro.title}}</h3>
   </md-card-content>
 </md-card>
