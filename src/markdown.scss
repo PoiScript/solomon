@@ -12,6 +12,7 @@
     color: $text-color;
 
     a {
+      font-weight: 400;
       color: mat-color($primary);
     }
 
@@ -21,7 +22,7 @@
 
     blockquote {
       color: $quote-color;
-      border-left: $quote-color 0.2em solid;
+      border-left: $pre-background-color 0.3em solid;
     }
 
     hr {
@@ -37,24 +38,8 @@
 }
 
 //colors
-$color_mountain_mist_approx: #969896;
-$color_bondi_blue_approx: #0086b3;
-$color_deluge_approx: #795da3;
-$color_mine_shaft_approx: #333;
-$color_fruit_salad_approx: #63a35c;
-$color_jazzberry_jam_approx: #a71d5d;
-$color_torea_bay_approx: #183691;
-$color_burnt_sienna_approx: #ed6a43;
-$color_thunderbird_approx: #b52a1d;
 $color_desert_storm_approx: #f8f8f8;
-$color_sepia_approx: #693a17;
-$color_bay_of_many_approx: #1d3e81;
-$teal: #008080;
-$color_fair_pink_approx: #ffecec;
-$color_apple_approx: #55a532;
-$color_hint_of_green_approx: #eaffea;
 $color_alto_approx: #ddd;
-$color_mercury_approx: #e7e7e7;
 $color_fuscous_gray_approx: #555;
 $color_alabaster_approx: #fcfcfc;
 $color_celeste_approx: #ccc;
@@ -84,7 +69,7 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
 %extend_1 {
   margin-top: 24px;
   margin-bottom: 16px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.25;
 }
 
@@ -94,14 +79,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 2em;
-}
-
-//original selectors
-//.markdown-body h1 .octicon-link, .markdown-body h2 .octicon-link, .markdown-body h3 .octicon-link, .markdown-body h4 .octicon-link, .markdown-body h5 .octicon-link, .markdown-body h6 .octicon-link
-%extend_3 {
-  color: $black;
-  vertical-align: middle;
-  visibility: hidden;
 }
 
 //original selectors
@@ -122,112 +99,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
 }
 
 .markdown-body {
-  margin-bottom: 80px;
-  .pl-c {
-    color: $color_mountain_mist_approx;
-  }
-  .pl-c1 {
-    color: $color_bondi_blue_approx;
-  }
-  .pl-s {
-    color: $color_torea_bay_approx;
-    .pl-v {
-      color: $color_bondi_blue_approx;
-    }
-    .pl-s1 {
-      color: $color_mine_shaft_approx;
-    }
-    .pl-pse .pl-s1 {
-      color: $color_torea_bay_approx;
-    }
-  }
-  .pl-e {
-    color: $color_deluge_approx;
-  }
-  .pl-en {
-    color: $color_deluge_approx;
-  }
-  .pl-smi {
-    color: $color_mine_shaft_approx;
-  }
-  .pl-ent {
-    color: $color_fruit_salad_approx;
-  }
-  .pl-k {
-    color: $color_jazzberry_jam_approx;
-  }
-  .pl-pds {
-    color: $color_torea_bay_approx;
-  }
-  .pl-sr {
-    color: $color_torea_bay_approx;
-    .pl-cce {
-      font-weight: bold;
-      color: $color_fruit_salad_approx;
-    }
-    .pl-sre {
-      color: $color_torea_bay_approx;
-    }
-    .pl-sra {
-      color: $color_torea_bay_approx;
-    }
-  }
-  .pl-v {
-    color: $color_burnt_sienna_approx;
-  }
-  .pl-id {
-    color: $color_thunderbird_approx;
-  }
-  .pl-ii {
-    color: $color_desert_storm_approx;
-    background-color: $color_thunderbird_approx;
-  }
-  .pl-ml {
-    color: $color_sepia_approx;
-  }
-  .pl-mh {
-    font-weight: bold;
-    color: $color_bay_of_many_approx;
-    .pl-en {
-      font-weight: bold;
-      color: $color_bay_of_many_approx;
-    }
-  }
-  .pl-ms {
-    font-weight: bold;
-    color: $color_bay_of_many_approx;
-  }
-  .pl-mq {
-    color: $teal;
-  }
-  .pl-mi {
-    font-style: italic;
-    color: $color_mine_shaft_approx;
-  }
-  .pl-mb {
-    font-weight: bold;
-    color: $color_mine_shaft_approx;
-  }
-  .pl-md {
-    color: $color_thunderbird_approx;
-    background-color: $color_fair_pink_approx;
-  }
-  .pl-mi1 {
-    color: $color_apple_approx;
-    background-color: $color_hint_of_green_approx;
-  }
-  .pl-mdr {
-    font-weight: bold;
-    color: $color_deluge_approx;
-  }
-  .pl-mo {
-    color: $color_bay_of_many_approx;
-  }
-  .octicon {
-    display: inline-block;
-    fill: currentColor;
-    vertical-align: text-bottom;
-  }
   a {
     word-wrap: break-word;
     background-color: transparent;
@@ -246,14 +117,8 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     margin-bottom: 30px;
     font-size: 2em;
     @extend %extend_1;
-    .octicon-link {
-      @extend %extend_3;
-    }
     &:hover .anchor {
       text-decoration: none;
-      .octicon-link {
-        visibility: visible;
-      }
     }
   }
   img {
@@ -266,9 +131,7 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
   code {
     font-size: 1em;
     font-family: $font_2, $font_3, $font_4, $font_5, $font_1;
-    padding: 0;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    padding: 0.2em 0;
     margin: 0;
     background-color: $black_4;
     //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
@@ -383,76 +246,25 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
   }
   h2 {
     @extend %extend_1;
-    font-weight: 400;
     margin-top: 80px;
     margin-bottom: 30px;
     font-size: 1.5em;
-    .octicon-link {
-      @extend %extend_3;
-    }
-    &:hover .anchor {
-      text-decoration: none;
-      .octicon-link {
-        visibility: visible;
-      }
-    }
   }
   h3 {
     @extend %extend_1;
-    font-weight: 400;
     font-size: 1.25em;
-    .octicon-link {
-      @extend %extend_3;
-    }
-    &:hover .anchor {
-      text-decoration: none;
-      .octicon-link {
-        visibility: visible;
-      }
-    }
   }
   h4 {
     @extend %extend_1;
-    font-weight: 400;
     font-size: 1em;
-    .octicon-link {
-      @extend %extend_3;
-    }
-    &:hover .anchor {
-      text-decoration: none;
-      .octicon-link {
-        visibility: visible;
-      }
-    }
   }
   h5 {
     @extend %extend_1;
-    font-weight: 400;
     font-size: 0.875em;
-    .octicon-link {
-      @extend %extend_3;
-    }
-    &:hover .anchor {
-      text-decoration: none;
-      .octicon-link {
-        visibility: visible;
-      }
-    }
   }
   h6 {
     @extend %extend_1;
-    font-weight: 400;
     font-size: 0.85em;
-    color: $color_tapa_approx;
-    .octicon-link {
-      @extend %extend_3;
-    }
-    &:hover .anchor {
-      text-decoration: none;
-      .octicon-link {
-        visibility: visible;
-      }
-    }
   }
   p {
     margin-top: 0;
@@ -522,15 +334,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
       margin-bottom: 0 !important;
     }
   }
-  .anchor {
-    float: left;
-    padding-right: 4px;
-    margin-left: -20px;
-    line-height: 1;
-    &:focus {
-      outline: none;
-    }
-  }
   dl {
     margin-top: 0;
     margin-bottom: 16px;
@@ -571,27 +374,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
       word-break: normal;
       @extend %extend_4;
     }
-  }
-  .pl-0 {
-    padding-left: 0 !important;
-  }
-  .pl-1 {
-    padding-left: 3px !important;
-  }
-  .pl-2 {
-    padding-left: 6px !important;
-  }
-  .pl-3 {
-    padding-left: 12px !important;
-  }
-  .pl-4 {
-    padding-left: 24px !important;
-  }
-  .pl-5 {
-    padding-left: 36px !important;
-  }
-  .pl-6 {
-    padding-left: 48px !important;
   }
   .task-list-item {
     list-style-type: none;

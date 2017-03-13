@@ -564,6 +564,10 @@ binary-extensions@^1.0.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.8.0.tgz#48ec8d16df4377eae5fa5884682480af4d95c774"
 
+bindings@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
+
 blob@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.4.tgz#bcf13052ca54463f30f9fc7e95b9a47630a94921"
@@ -2972,6 +2976,13 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+libxmljs@0.15.x:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/libxmljs/-/libxmljs-0.15.0.tgz#e83dc490e59aa0bc22941fe5a6ad9ef99294f965"
+  dependencies:
+    bindings "1.2.1"
+    nan "2.0.7"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -3399,6 +3410,10 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
+nan@2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.0.7.tgz#c726ce45dbd863b46234e4dfe5bf02d0cb309cd8"
+
 nan@^2.3.0, nan@^2.3.2:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
@@ -3486,6 +3501,12 @@ node-pre-gyp@^0.6.29:
     semver "~5.3.0"
     tar "~2.2.1"
     tar-pack "~3.3.0"
+
+node-rss@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/node-rss/-/node-rss-1.0.5.tgz#41fe66572e8b93be1d1da822a09c77c7b9d96dbc"
+  dependencies:
+    libxmljs "0.15.x"
 
 node-sass@^4.3.0:
   version "4.5.0"

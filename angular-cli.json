@@ -22,7 +22,7 @@
       "prefix": "solomon",
       "styles": [
         "styles.scss",
-        "github-markdown.scss",
+        "markdown.scss",
         "theme.scss"
       ],
       "scripts": [

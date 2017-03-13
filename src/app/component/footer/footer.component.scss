@@ -1,9 +1,11 @@
 .solomon-footer {
-  margin: 0;
   color: #757575;
   background-color: #212121;
+  margin-top: 80px;
 
-  h5 {
+  md-toolbar-row > a {
+    color: #757575;
+    text-decoration: none;
     font-weight: 300;
   }
 }

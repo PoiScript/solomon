@@ -8,6 +8,12 @@
   $text-color: invert(mat-color($background, card, 0.6)) !default;
   $background-color: invert(mat-color($foreground, text, 0.8)) !default;
 
+  body {
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+  }
+
   .primary-header {
     color: $text-color;
     font-size: 30px;
@@ -25,11 +31,6 @@
     color: $text-color;
   }
 
-}
-
-body {
-  margin: 0;
-  padding: 0;
 }
 
 .container {
