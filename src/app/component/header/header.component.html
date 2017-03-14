@@ -1,11 +1,5 @@
-<md-toolbar [color]="'primary'" [ngSwitch]="isSMLayout">
-  <ng-container *ngSwitchCase="false">
-    <button i18n md-button [routerLink]="'/'">SOLOMON</button>
-    <button i18n md-button [routerLink]="'/about'">ABOUT</button>
-    <button i18n md-button [routerLink]="'/archive'">ARCHIVE</button>
-    <button i18n md-button [routerLink]="'/link'">LINK</button>
-  </ng-container>
-  <ng-container *ngSwitchCase="true">
+<md-toolbar [color]="'primary'">
+  <div fxHide="false" fxHide.gt-sm>
     <button md-icon-button i18n-mdTooltip mdTooltip="SOLOMON" [routerLink]="'/'">
       <md-icon svgIcon="solomon"></md-icon>
     </button>
@@ -18,8 +12,14 @@
     <button md-icon-button i18n-mdTooltip mdTooltip="LINK" [routerLink]="'/link'">
       <md-icon svgIcon="link"></md-icon>
     </button>
-  </ng-container>
-  <div class="spacer"></div>
+  </div>
+  <div fxShow="false" fxShow.gt-sm>
+    <button i18n md-button [routerLink]="'/'">SOLOMON</button>
+    <button i18n md-button [routerLink]="'/about'">ABOUT</button>
+    <button i18n md-button [routerLink]="'/archive'">ARCHIVE</button>
+    <button i18n md-button [routerLink]="'/link'">LINK</button>
+  </div>
+  <div fxFlex></div>
   <button md-icon-button (click)="toggleSearchBar()">
     <md-icon svgIcon="search"></md-icon>
   </button>
