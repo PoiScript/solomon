@@ -1,4 +1,4 @@
-<md-toolbar [color]="'primary'">
+<md-toolbar class="solomon-home-header" [color]="'primary'">
   <md-toolbar-row></md-toolbar-row>
   <md-toolbar-row [fxLayoutAlign]="'center center'">
     <h1>{{BLOG_NAME}}</h1>
@@ -9,16 +9,12 @@
   <md-toolbar-row></md-toolbar-row>
 </md-toolbar>
 <div class="container">
-  <div fxLayout="row" [fxLayout.xs]="'column'" fxLayoutAlign="center">
-    <div [fxLayout]="'column'" fxFlex="50%">
-      <solomon-post-card *ngFor="let intro of intros|slice:0:2" [intro]="intro"></solomon-post-card>
+  <div [fxLayout]="'row'" [fxLayout.xs]="'column'" [fxLayoutAlign]="'center'">
+    <div [fxLayout]="'column'" [fxFlex]="50">
+      <solomon-home-column *ngFor="let intro of intros|slice:0:2" [intro]="intro"></solomon-home-column>
     </div>
-    <div [fxLayout]="'column'" fxFlex="50%">
-      <solomon-post-card *ngFor="let intro of intros|slice:2:4" [intro]="intro"></solomon-post-card>
+    <div [fxLayout]="'column'" [fxFlex]="50">
+      <solomon-home-column *ngFor="let intro of intros|slice:2:4" [intro]="intro"></solomon-home-column>
     </div>
-  </div>
-  <div align="center">
-    <button i18n class="read-more-button" [routerLink]="'archive'" md-raised-button [color]="'warn'">READ MORE
-    </button>
   </div>
 </div>

@@ -3,7 +3,7 @@ export class Intro {
   slug: string
   date: string
   issue_number: number
-  image: string
+  sub_header: string
   tags: string[]
 }
 

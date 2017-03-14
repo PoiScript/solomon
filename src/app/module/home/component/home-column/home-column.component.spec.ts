@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostPreviewComponent } from './post-card.component';
+import { HomeColumnComponent } from './home-column.component';
 
-describe('PostPreviewComponent', () => {
-  let component: PostPreviewComponent;
-  let fixture: ComponentFixture<PostPreviewComponent>;
+describe('HomeColumnComponent', () => {
+  let component: HomeColumnComponent;
+  let fixture: ComponentFixture<HomeColumnComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostPreviewComponent ]
+      declarations: [ HomeColumnComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostPreviewComponent);
+    fixture = TestBed.createComponent(HomeColumnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

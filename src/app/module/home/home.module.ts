@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core'
-import {CommonModule} from '@angular/common'
-import {HomeComponent} from './home.component'
 import {HomeRouting} from './home.routing'
-import {MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdToolbarModule} from '@angular/material'
+import {CommonModule} from '@angular/common'
 import {FlexLayoutModule} from '@angular/flex-layout'
+import {MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdToolbarModule} from '@angular/material'
+
+import {HomeComponent} from './home.component'
 import {ShareModule} from '../share'
-import {PostCardComponent} from './component/post-card'
+import {HomeColumnComponent} from './component/home-column'
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import {PostCardComponent} from './component/post-card'
   ],
   declarations: [
     HomeComponent,
-    PostCardComponent
+    HomeColumnComponent
   ]
 })
 export class HomeModule {
