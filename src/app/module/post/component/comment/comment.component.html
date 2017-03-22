@@ -19,7 +19,7 @@
       </a>
       <div [fxLayout]="'column'">
         <strong (click)="mention(comment.user.login)">{{comment.user.login}}</strong>
-        <span>{{comment.updated_at|date:"yyyy-MM-dd hh:mm:ss"}}</span>
+        <span>{{comment.updated_at|date:'longDate'}}</span>
       </div>
     </header>
     <div class="text markdown-body" [innerHTML]="comment.body_html"></div>

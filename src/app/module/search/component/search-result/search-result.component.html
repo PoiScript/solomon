@@ -1,7 +1,7 @@
 <md-card *ngFor="let item of result?.items" [routerLink]="['/post', item.intro?.slug]">
   <header [fxLayout]="'column'">
     <strong>{{item.intro?.title}}</strong>
-    <span>{{item.intro?.date|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+    <span>{{item.intro?.date|date:'longDate'}}</span>
   </header>
   <md-card-content class="markdown-body" *ngFor="let text of item?.text_matches">
     <pre lang="markdown">
