@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core'
-import {CommonModule} from '@angular/common'
-import {AboutRouting} from './about.routing'
-import {AboutComponent} from './about.component'
-import {ShareModule} from '../share'
-import {MdSidenavModule} from '@angular/material'
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AboutRouting} from './about.routing';
+import {AboutComponent} from './about.component';
+import {ShareModule} from '../share';
+import {MdSidenavModule} from '@angular/material';
 
 @NgModule({
   imports: [

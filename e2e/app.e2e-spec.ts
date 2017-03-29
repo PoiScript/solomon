@@ -1,6 +1,6 @@
-import { SolomonPage } from './app.po';
+import {SolomonPage} from './app.po';
 
-describe('solomon App', function() {
+describe('solomon-ng4 App', () => {
   let page: SolomonPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('solomon App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('solomon works!');
   });
 });

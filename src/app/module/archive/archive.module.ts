@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core'
-import {CommonModule} from '@angular/common'
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import {ArchiveRouting} from './archive.routing'
-import {ArchiveComponent} from './archive.component'
-import {ShareModule} from '../share'
+import {ArchiveRouting} from './archive.routing';
+import {ArchiveComponent} from './archive.component';
+import {ShareModule} from '../share';
 
 @NgModule({
   imports: [

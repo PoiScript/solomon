@@ -1,4 +1,4 @@
 export class Issue {
-  title: string
-  comments: number
+  title: string;
+  comments: number;
 }

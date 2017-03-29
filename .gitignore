@@ -3,7 +3,10 @@
 # compiled output
 /dist
 /tmp
+/out-tsc
 render.js
+src/app/class/*.js
+src/json
 
 # dependencies
 /node_modules
@@ -15,6 +18,7 @@ render.js
 .c9/
 *.launch
 .settings/
+*.sublime-workspace
 
 # IDE - VSCode
 .vscode/*
@@ -26,7 +30,7 @@ render.js
 # misc
 /.sass-cache
 /connect.lock
-/coverage/*
+/coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
@@ -36,13 +40,9 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
 
-# Post Content
-src/json
+# markdown files
 src/markdown
-
-# log
-*.log

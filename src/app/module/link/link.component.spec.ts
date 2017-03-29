@@ -1,20 +1,20 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from "@angular/core/testing"
-import {LinkComponent} from "./link.component"
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {LinkComponent} from './link.component';
 
 describe('LinkComponent', () => {
-	let component: LinkComponent;
-	let fixture: ComponentFixture<LinkComponent>;
+  let component: LinkComponent;
+  let fixture: ComponentFixture<LinkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-	    declarations: [LinkComponent]
+      declarations: [LinkComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-	  fixture = TestBed.createComponent(LinkComponent);
+    fixture = TestBed.createComponent(LinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

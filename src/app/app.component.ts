@@ -1,15 +1,15 @@
-import {Component} from '@angular/core'
-import {ThemeService} from './service/theme/theme.service'
+import {Component} from '@angular/core';
+import {ThemeService} from './service/theme/theme.service';
 
 @Component({
-  selector: 'solomon',
+  selector: 'solomon-root',
   templateUrl: './app.component.html'
 })
 
 export class AppComponent {
-  isDark: boolean
+  isDark: boolean;
 
   constructor(private themeService: ThemeService) {
-    themeService.toggleTheme$.subscribe(isDark => this.isDark = isDark)
+    themeService.toggleTheme$.subscribe(isDark => this.isDark = isDark);
   }
 }

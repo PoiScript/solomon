@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core'
-import {Link} from '../../../../class/link'
+import {Component, Input} from '@angular/core';
+
+import {Link} from '../../../../class/link';
 
 @Component({
   selector: 'solomon-link-list',
@@ -7,9 +8,9 @@ import {Link} from '../../../../class/link'
   styleUrls: ['./link.component.scss']
 })
 export class LinkListComponent {
-  @Input() links: Link[]
+  @Input() links: Link[];
 
   lickClicked(link_address: string): void {
-    window.open(link_address)
+    window.open(link_address);
   }
 }

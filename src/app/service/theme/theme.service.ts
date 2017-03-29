@@ -1,16 +1,16 @@
-import {Injectable} from "@angular/core"
-import {Subject} from "rxjs"
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ThemeService {
-  private isDark: boolean = false
+  private isDark = false;
 
-  private toggleThemeSource = new Subject<boolean>()
+  private toggleThemeSource = new Subject<boolean>();
 
-  toggleTheme$ = this.toggleThemeSource.asObservable()
+  toggleTheme$ = this.toggleThemeSource.asObservable();
 
-  toggleTheme() {
-    this.isDark = !this.isDark
-    this.toggleThemeSource.next(this.isDark)
+  toggleTheme () {
+    this.isDark = !this.isDark;
+    this.toggleThemeSource.next(this.isDark);
   }
 }
