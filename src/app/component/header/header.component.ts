@@ -1,4 +1,5 @@
-import {animate, Component, state, style, transition, trigger} from '@angular/core';
+import {Component} from '@angular/core';
+import {trigger, state, style, animate, transition} from '@angular/animations';
 import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
@@ -9,10 +10,9 @@ import {MdIconRegistry} from '@angular/material';
   styleUrls: ['./header.component.scss'],
   animations: [
     trigger('searchBarState', [
-      state('true', style({width: '240px'})),
-      state('false', style({width: '0'})),
-      transition('1 => 0', animate(200)),
-      transition('0 => 1', animate(200))
+      state('active', style({width: '240px'})),
+      state('inactive', style({width: '0'})),
+      transition('active <=> inactive', animate(200))
     ])
   ]
 })

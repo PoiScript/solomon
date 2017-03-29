@@ -1,11 +1,12 @@
 {
   "name": "solomon",
-  "version": "0.0.0",
+  "version": "0.0.2",
+  "description": "A blog framework.",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

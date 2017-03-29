@@ -23,7 +23,7 @@
   <button md-icon-button (click)="toggleSearchBar()">
     <md-icon svgIcon="search"></md-icon>
   </button>
-  <md-input-container [@searchBarState]="searchBarVisibility" dividerColor="accent">
+  <md-input-container [@searchBarState]="searchBarVisibility" [dividerColor]="'accent'">
     <input #search_bar mdInput (keyup.enter)="searchFor(search_bar.value)">
   </md-input-container>
 </md-toolbar>

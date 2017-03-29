@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {AngularFireModule} from 'angularfire2';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -42,7 +41,6 @@ import {CONFIG, CONFIG_TOKEN, firebaseConfig} from './config';
     ThemeService,
     TokenService,
     PostService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: CONFIG_TOKEN, useValue: CONFIG}
   ],
   entryComponents: [

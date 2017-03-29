@@ -10,26 +10,13 @@ import {SolomonConfig} from '../../interface/solomon-config';
 export class GitHubService {
   private GITHUB_USERNAME: string;
   private GITHUB_POST_REPO: string;
-  private API_URL = '${this.API_URL}';
+  private API_URL = 'https://api.github.com/';
   issues: Issue[];
 
   constructor (private http: Http,
                @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.GITHUB_USERNAME = config.GITHUB_USERNAME;
     this.GITHUB_POST_REPO = config.GITHUB_POST_REPO;
-  }
-
-  getIssueCommentCount (title: string): Promise<number> {
-    if (this.issues) {
-      return new Promise(resolve => resolve(this.issues.find(issue => issue.title === title).comments));
-    } else {
-      return this.http
-        .get(`${this.API_URL}repos/${this.GITHUB_USERNAME}/${this.GITHUB_POST_REPO}/issues`)
-        .toPromise()
-        .then(res => res.json() as Issue[])
-        .then(issues => this.issues = issues)
-        .then(issues => issues.find(issue => issue.title === title).comments);
-    }
   }
 
   getIssueComments (number: Number): Promise<Comment[]> {

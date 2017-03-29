@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { TokenService } from './token.service';
+import {TestBed, inject} from '@angular/core/testing';
+import {TokenService} from './token.service';
 
 describe('TokenService', () => {
   beforeEach(() => {

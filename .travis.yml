@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "7"
+
+branches:
+  only:
+    - master
+
+before_script:
+  - git clone --depth=1 https://github.com/PoiScript/Solomon-Post.git src/markdown
+  - mkdir src/json
+
+script:
+  - npm run render
+  - npm run build
+
+after_success:
+  - npm install -g firebase-tools
+  - firebase deploy --token $FIREBASE_TOKEN
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change

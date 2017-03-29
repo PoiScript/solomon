@@ -9,7 +9,6 @@ export class Intro {
 
 export class Post {
   intro: Intro;
-  bookmark: string[];
   previous_title: string;
   previous_slug: string;
   next_title: string;

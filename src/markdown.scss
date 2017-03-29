@@ -170,7 +170,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     }
     code {
       display: inline;
-      max-width: auto;
       padding: 0;
       margin: 0;
       overflow: visible;
@@ -190,8 +189,6 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     font: inherit;
     margin: 0;
     overflow: visible;
-    font-family: inherit;
-    font-size: inherit;
     line-height: inherit;
     font-feature-settings: "liga" 0;
   }
@@ -271,9 +268,8 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     margin-bottom: 10px;
   }
   blockquote {
-    margin: 0;
+    margin: 0 0 16px 0;
     padding: 0 1em;
-    margin-bottom: 16px;
     > {
       :first-child {
         margin-top: 0;
