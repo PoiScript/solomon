@@ -1,4 +1,4 @@
-import {OpaqueToken} from '@angular/core';
+import {InjectionToken} from '@angular/core';
 import {SolomonConfig} from './interface/solomon-config';
 
 export const CONFIG: SolomonConfig = {
@@ -16,4 +16,4 @@ export const firebaseConfig = {
   messagingSenderId: '306363697436'
 };
 
-export const CONFIG_TOKEN = new OpaqueToken('config');
+export const CONFIG_TOKEN = new InjectionToken('config');

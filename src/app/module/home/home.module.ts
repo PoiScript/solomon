@@ -7,6 +7,7 @@ import {MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdToolbarModu
 import {HomeComponent} from './home.component';
 import {ShareModule} from '../share';
 import {HomeColumnComponent} from './component/home-column';
+import { HomeHeaderComponent } from './component/home-header';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {HomeColumnComponent} from './component/home-column';
   ],
   declarations: [
     HomeComponent,
-    HomeColumnComponent
+    HomeColumnComponent,
+    HomeHeaderComponent
   ]
 })
 export class HomeModule {

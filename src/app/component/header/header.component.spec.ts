@@ -1,4 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {MaterialModule} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {HeaderComponent} from './header.component';
 
@@ -8,7 +12,15 @@ describe('HeaderPostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [
+        HeaderComponent
+      ],
+      imports: [
+        MaterialModule,
+        FlexLayoutModule,
+        RouterTestingModule,
+        BrowserAnimationsModule
+      ]
     })
       .compileComponents();
   }));

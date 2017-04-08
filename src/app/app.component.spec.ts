@@ -1,14 +1,33 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {RouterModule} from '@angular/router';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MaterialModule} from '@angular/material';
+
+import {AppComponent} from './app.component';
+import {FooterComponent} from './component/footer';
+import {HeaderComponent} from './component/header';
+import {ThemeService} from './service/theme';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        FooterComponent
       ],
+      imports: [
+        RouterModule,
+        MaterialModule,
+        FlexLayoutModule,
+        RouterTestingModule
+      ],
+      providers: [
+        ThemeService
+      ]
     });
     TestBed.compileComponents();
   });

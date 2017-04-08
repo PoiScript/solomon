@@ -2,8 +2,8 @@ import fs = require('fs');
 import marked = require('marked');
 import path = require('path');
 
-import {Intro, Post} from './src/app/class/post';
-import {Link} from './src/app/class/link';
+import {Intro, Post} from '../src/app/class/post';
+import {Link} from '../src/app/class/link';
 
 const files: string[] = [];
 const posts: Post[] = [];
