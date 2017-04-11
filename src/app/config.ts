@@ -9,11 +9,12 @@ export const CONFIG: SolomonConfig = {
 };
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyAtCLgC-zOhSg2VojAhvrPrvEyL8scBNPc',
-  authDomain: 'poi-works.firebaseapp.com',
-  databaseURL: 'https://poi-works.firebaseio.com',
-  storageBucket: 'poi-works.appspot.com',
-  messagingSenderId: '306363697436'
+  apiKey: 'AIzaSyDptUPQOWYnHIDanDsPY_PFtB3fn2v2VfY',
+  authDomain: 'solomon-poi.firebaseapp.com',
+  databaseURL: 'https://solomon-poi.firebaseio.com',
+  projectId: 'solomon-poi',
+  storageBucket: 'solomon-poi.appspot.com',
+  messagingSenderId: '90437469860'
 };
 
 export const CONFIG_TOKEN = new InjectionToken('config');
