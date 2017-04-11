@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
-import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireModule} from 'angularfire2';
 import {FormsModule} from '@angular/forms';
@@ -17,6 +16,7 @@ import {UserProfileComponent} from './component/user-profile';
 import {HeaderComponent} from './component/header';
 import {FooterComponent} from './component/footer';
 import {CONFIG, CONFIG_TOKEN, firebaseConfig} from './config';
+import {SolomonMaterialModule} from './module/material';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ import {CONFIG, CONFIG_TOKEN, firebaseConfig} from './config';
     HttpModule,
     FormsModule,
     AppRouting,
-    MaterialModule,
     FlexLayoutModule,
+    SolomonMaterialModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
