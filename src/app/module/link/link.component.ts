@@ -4,7 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {LinkService} from './service/link';
 import {Link} from '../../class/link';
 import {SolomonConfig} from '../../interface/solomon-config';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 
 @Component({
   templateUrl: './link.component.html',

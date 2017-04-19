@@ -3,7 +3,7 @@ import {Component, Inject, Input} from '@angular/core';
 import {SearchResult} from '../../../../class/searchResult';
 import {Intro} from '../../../../class/post';
 import {SolomonConfig} from '../../../../interface/solomon-config';
-import {CONFIG_TOKEN} from '../../../../config';
+import {CONFIG_TOKEN} from '../../../../../config';
 
 
 @Component({

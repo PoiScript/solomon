@@ -4,7 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {PostService} from '../../service/post';
 import {Intro} from '../../class/post';
 import {SolomonConfig} from '../../interface/solomon-config';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 
 @Component({
   selector: 'solomon-archive',

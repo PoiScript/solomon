@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {CONFIG_TOKEN} from '../../../../config';
+import {CONFIG_TOKEN} from '../../../../../config';
 import {SolomonConfig} from '../../../../interface/solomon-config';
 
 @Component({

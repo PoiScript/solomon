@@ -7,7 +7,7 @@ import {SnackBarService} from '../../../../service/snackbar';
 import {TokenService} from '../../../../service/token';
 import {GitHubService} from '../../../../service/github';
 import {SolomonConfig} from '../../../../interface/solomon-config';
-import {CONFIG_TOKEN} from '../../../../config';
+import {CONFIG_TOKEN} from '../../../../../config';
 import {Comment} from '../../../../class/comment';
 import {UserProfileComponent} from '../../../../component/user-profile';
 

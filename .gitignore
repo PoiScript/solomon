@@ -4,8 +4,8 @@
 /dist
 /tmp
 /out-tsc
-render.js
 src/app/class/*.js
+scripts/*.js
 src/json
 
 # dependencies

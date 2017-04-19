@@ -3,7 +3,7 @@ import {Title} from '@angular/platform-browser';
 
 import {Post} from '../../class/post';
 import {PostService} from '../../service/post';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 import {SolomonConfig} from '../../interface/solomon-config';
 
 @Component({

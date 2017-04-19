@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
 import {Post} from '../../class/post';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 import {PostService} from '../../service/post';
 import {SolomonConfig} from '../../interface/solomon-config';
 import {GitHubService} from '../../service/github';

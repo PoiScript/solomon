@@ -3,7 +3,7 @@ import {Headers, Http} from '@angular/http';
 
 import {Issue} from '../../class/issue';
 import {SearchResult} from '../../class/searchResult';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 import {SolomonConfig} from '../../interface/solomon-config';
 
 @Injectable()

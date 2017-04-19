@@ -15,7 +15,7 @@ import {PostService} from './service/post';
 import {UserProfileComponent} from './component/user-profile';
 import {HeaderComponent} from './component/header';
 import {FooterComponent} from './component/footer';
-import {CONFIG, CONFIG_TOKEN, firebaseConfig} from './config';
+import {CONFIG, CONFIG_TOKEN, firebaseConfig} from '../config';
 import {SolomonMaterialModule} from './module/material';
 
 @NgModule({

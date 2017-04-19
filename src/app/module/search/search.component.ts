@@ -7,7 +7,7 @@ import {Intro} from '../../class/post';
 import {SearchResult} from '../../class/searchResult';
 import {GitHubService} from '../../service/github';
 import {SolomonConfig} from '../../interface/solomon-config';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 import {PostService} from '../../service/post';
 
 @Component({

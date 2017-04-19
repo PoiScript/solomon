@@ -5,7 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {PostService} from '../../service/post';
 import {Intro} from '../../class/post';
 import {SolomonConfig} from '../../interface/solomon-config';
-import {CONFIG_TOKEN} from '../../config';
+import {CONFIG_TOKEN} from '../../../config';
 
 @Component({
   templateUrl: './tag.component.html',
@@ -16,24 +16,23 @@ export class TagComponent implements OnInit {
   intros: Intro[];
   tag: string;
 
-  constructor(private postService: PostService,
-              private titleService: Title,
-              private router: ActivatedRoute,
-              @Inject(CONFIG_TOKEN) config: SolomonConfig) {
+  constructor (private postService: PostService,
+               private titleService: Title,
+               private router: ActivatedRoute,
+               @Inject(CONFIG_TOKEN) config: SolomonConfig) {
     this.BLOG_NAME = config.BLOG_NAME;
   }
 
-  getArchive(): void {
+  getArchive (): void {
     this.postService
       .getArchive()
       .then(intros => this.intros = intros);
   }
 
-  ngOnInit(): void {
-    this.titleService.setTitle(`Tag - ${this.BLOG_NAME}`);
+  ngOnInit (): void {
     this.getArchive();
-    this.router.params
-      .subscribe(params => this.tag = params['tag']);
+    this.router.params.subscribe(params => this.tag = params['tag']);
+    this.titleService.setTitle(`#${this.tag} - ${this.BLOG_NAME}`);
   }
 
 }
