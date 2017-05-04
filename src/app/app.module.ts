@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -15,7 +16,8 @@ import {PostService} from './service/post';
 import {UserProfileComponent} from './component/user-profile';
 import {HeaderComponent} from './component/header';
 import {FooterComponent} from './component/footer';
-import {CONFIG, CONFIG_TOKEN, firebaseConfig} from '../config';
+import {CONFIG, CONFIG_TOKEN} from '../config';
+import {environment} from '../environments/environment';
 import {SolomonMaterialModule} from './module/material';
 
 @NgModule({
@@ -33,7 +35,8 @@ import {SolomonMaterialModule} from './module/material';
     FlexLayoutModule,
     SolomonMaterialModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase, 'Solomon')
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -1,3 +1,11 @@
 export const environment = {
-  production: true
+  production: true,
+  firebase: {
+    apiKey: 'AIzaSyDptUPQOWYnHIDanDsPY_PFtB3fn2v2VfY',
+    authDomain: 'solomon-poi.firebaseapp.com',
+    databaseURL: 'https://solomon-poi.firebaseio.com',
+    projectId: 'solomon-poi',
+    storageBucket: 'solomon-poi.appspot.com',
+    messagingSenderId: '90437469860'
+  }
 };

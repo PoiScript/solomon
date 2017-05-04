@@ -1,7 +1,9 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {AngularFire, FirebaseAuthState} from 'angularfire2';
 import {MdDialog, MdIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {User} from 'firebase/app';
+import {Observable} from 'rxjs/Observable';
 
 import {SnackBarService} from '../../../../service/snackbar';
 import {TokenService} from '../../../../service/token';
@@ -24,7 +26,7 @@ export const enum Sort {
 export class CommentComponent implements OnInit {
   private token: string;
   isAuth: boolean;
-  user: FirebaseAuthState;
+  user: Observable<User>;
   @Input() issue_number: number;
   @Input() comments: Comment[];
   GITHUB_USERNAME: string;
@@ -38,22 +40,11 @@ export class CommentComponent implements OnInit {
                private iconRegistry: MdIconRegistry,
                private sanitizer: DomSanitizer,
                private dialog: MdDialog,
-               private af: AngularFire) {
+               public afAuth: AngularFireAuth) {
     this.GITHUB_USERNAME = config.GITHUB_USERNAME;
     this.GITHUB_POST_REPO = config.GITHUB_POST_REPO;
     this.tokenService.token$.subscribe(token => this.token = token);
-    this.af.auth.subscribe(
-      user => {
-        if (user) {
-          this.isAuth = true;
-          this.user = user;
-        } else {
-          this.isAuth = false;
-          this.token = '';
-        }
-      },
-      error => console.log(error)
-    );
+    this.user = afAuth.authState;
     iconRegistry.addSvgIcon('sort', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/sort.svg'));
     iconRegistry.addSvgIcon('like', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/like.svg'));
     iconRegistry.addSvgIcon('dislike', sanitizer.bypassSecurityTrustResourceUrl('assets/icon/dislike.svg'));

@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {AngularFire, AuthMethods, AuthProviders, FirebaseAuthState} from 'angularfire2';
+import {AngularFireAuth} from 'angularfire2/auth';
 import {TokenService} from '../../service/token';
 import {SnackBarService} from '../../service/snackbar';
+import {Observable} from 'rxjs/Observable';
+import {User, auth} from 'firebase/app';
 
 @Component({
   selector: 'solomon-user-profile',
@@ -10,40 +12,27 @@ import {SnackBarService} from '../../service/snackbar';
 })
 export class UserProfileComponent {
   isAuth = false;
-  user: FirebaseAuthState;
+  user: Observable<User>;
 
-  constructor (public af: AngularFire,
+  constructor (public afAuth: AngularFireAuth,
                private snackBarService: SnackBarService,
                private tokenService: TokenService) {
-    this.af.auth.subscribe(
-      user => {
-        if (user) {
-          this.isAuth = true;
-          this.user = user;
-        } else {
-          this.isAuth = false;
-        }
-      },
-      error => console.log(error)
-    );
+    this.user = afAuth.authState;
   }
 
   login (): void {
-    this.af.auth.login({
-      provider: AuthProviders.Github,
-      method: AuthMethods.Popup,
-      scope: ['public_repo']
-    }).then((res: any) => {
-      if ('accessToken' in res.github) {
-        this.tokenService.setToken(res.github.accessToken);
-      } else {
-        this.snackBarService.openSnackBar('Access Token Not Found, Re-login Please.');
-      }
-    });
+    this.afAuth.auth.signInWithPopup(new auth.GithubAuthProvider())
+      .then((res: any) => {
+        if ('accessToken' in res.github) {
+          this.tokenService.setToken(res.github.accessToken);
+        } else {
+          this.snackBarService.openSnackBar('Access Token Not Found, Re-login Please.');
+        }
+      });
   }
 
   logout (): void {
-    this.af.auth.logout()
+    this.afAuth.auth.signOut()
       .then(() => this.snackBarService.openSnackBar('Logout successfully'));
   }
 
