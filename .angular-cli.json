@@ -11,6 +11,7 @@
         "assets",
         "favicon.ico",
         "icon.png",
+        "atom.xml",
         "markdown",
         "json"
       ],
