@@ -14,17 +14,21 @@ const feed = new RSS({
 });
 
 export function addFeedItem (posts: Post[]) {
-  posts.forEach(post => {
-    feed.item({
-      title: post.intro.title,
-      description: 'A Post From Solomon',
-      url: `https://poi.works/posts/${post.intro.slug}`,
-      guid: post.intro.slug,
-      categories: post.intro.tags,
-      author: 'PoiScript',
-      date: post.intro.date
+  posts
+    .map(post => post.intro)
+    .filter(intro => intro.slug !== 'about')
+    .sort((i1, i2) => Date.parse(i2.date) - Date.parse(i1.date))
+    .forEach(intro => {
+      feed.item({
+        title: intro.title,
+        description: 'A Post From Solomon',
+        url: `https://poi.works/posts/${intro.slug}`,
+        guid: intro.slug,
+        categories: intro.tags,
+        author: 'PoiScript',
+        date: intro.date
+      });
     });
-  });
 }
 
 export function extraXml (): string {
