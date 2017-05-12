@@ -22,7 +22,7 @@ export function addFeedItem (posts: Post[]) {
       feed.item({
         title: intro.title,
         description: 'A Post From Solomon',
-        url: `https://poi.works/posts/${intro.slug}`,
+        url: `https://poi.works/post/${intro.slug}`,
         guid: intro.slug,
         categories: intro.tags,
         author: 'PoiScript',
