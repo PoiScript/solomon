@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate": "tsc scripts/index.ts --skipLibCheck && node scripts/index.js"
+    "generate": "ts-node generate"
   },
   "private": true,
   "dependencies": {
