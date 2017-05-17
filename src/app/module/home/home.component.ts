@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 import {PostService} from '../../service/post';
 import {Intro} from '../../class/post';
@@ -10,7 +11,8 @@ import {Intro} from '../../class/post';
 export class HomeComponent implements OnInit {
   intros: Intro[];
 
-  constructor (private postService: PostService) {}
+  constructor (private postService: PostService,
+               private title: Title) {}
 
   getRecent (): void {
     this.postService
@@ -20,5 +22,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit (): void {
     this.getRecent();
+    this.title.setTitle('Solomon');
   }
 }

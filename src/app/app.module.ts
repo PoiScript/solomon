@@ -16,7 +16,6 @@ import {PostService} from './service/post';
 import {UserProfileComponent} from './component/user-profile';
 import {HeaderComponent} from './component/header';
 import {FooterComponent} from './component/footer';
-import {CONFIG, CONFIG_TOKEN} from '../config';
 import {environment} from '../environments/environment';
 import {SolomonMaterialModule} from './module/material';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
@@ -45,8 +44,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     GitHubService,
     ThemeService,
     TokenService,
-    PostService,
-    {provide: CONFIG_TOKEN, useValue: CONFIG}
+    PostService
   ],
   entryComponents: [
     UserProfileComponent

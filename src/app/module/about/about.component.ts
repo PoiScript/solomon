@@ -1,10 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {Post} from '../../class/post';
 import {PostService} from '../../service/post';
-import {CONFIG_TOKEN} from '../../../config';
-import {SolomonConfig} from '../../interface/solomon-config';
 
 @Component({
   templateUrl: './about.component.html',
@@ -13,12 +11,9 @@ import {SolomonConfig} from '../../interface/solomon-config';
 
 export class AboutComponent implements OnInit {
   post: Post;
-  private BLOG_NAME: string;
 
   constructor(private titleService: Title,
-              private postService: PostService,
-              @Inject(CONFIG_TOKEN) config: SolomonConfig) {
-    this.BLOG_NAME = config.BLOG_NAME;
+              private postService: PostService) {
   }
 
   getAbout(): void {
@@ -28,7 +23,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle(`About - ${this.BLOG_NAME}`);
+    this.titleService.setTitle('About - Solomon');
     this.getAbout();
   }
 }
