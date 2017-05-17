@@ -30,13 +30,14 @@
     "angularfire2": "^4.0.0-rc.0",
     "core-js": "^2.4.1",
     "firebase": "^3.9.0",
+    "font-awesome": "^4.7.0",
     "marked": "^0.3.6",
     "rss": "^1.2.2",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.2",
+    "@angular/cli": "^1.0.4",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",

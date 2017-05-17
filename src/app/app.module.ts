@@ -19,6 +19,7 @@ import {FooterComponent} from './component/footer';
 import {CONFIG, CONFIG_TOKEN} from '../config';
 import {environment} from '../environments/environment';
 import {SolomonMaterialModule} from './module/material';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {SolomonMaterialModule} from './module/material';
     SolomonMaterialModule,
     BrowserAnimationsModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase, 'Solomon')
   ],
   bootstrap: [AppComponent],

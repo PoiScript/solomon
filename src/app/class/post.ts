@@ -2,7 +2,6 @@ export class Intro {
   title: string;
   slug: string;
   date: string;
-  issue_number: number;
   sub_header: string;
   tags: string[];
 }
