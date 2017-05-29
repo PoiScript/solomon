@@ -1,5 +1,20 @@
-<div [class.dark]="isDark">
-  <solomon-header></solomon-header>
-  <router-outlet></router-outlet>
-  <solomon-footer></solomon-footer>
-</div>
+<md-toolbar [color]="'primary'">
+  <button i18n md-button [routerLink]="'/'">SOLOMON</button>
+  <button i18n md-button [routerLink]="'/about'">ABOUT</button>
+  <button i18n md-button [routerLink]="'/link'">LINK</button>
+</md-toolbar>
+
+<router-outlet></router-outlet>
+
+<md-toolbar class="solomon-footer">
+  <md-toolbar-row>
+    <a i18n href="https://github.com/PoiScript/Solomon">GitHub</a>
+    <a i18n href="https://amp.poi.works/">AMP</a>
+    <a i18n href="/atom.xml">RSS</a>
+  </md-toolbar-row>
+  <md-toolbar-row class="license">
+    <a i18n href="https://github.com/PoiScript/Solomon-Post/blob/master/LICENSE">
+      Content Licensed under CC-BY-SA-4.0
+    </a>
+  </md-toolbar-row>
+</md-toolbar>

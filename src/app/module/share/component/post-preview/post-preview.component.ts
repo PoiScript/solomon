@@ -1,6 +1,4 @@
-import {Component, Input} from '@angular/core';
-
-import {Intro} from '../../../../class/post';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'solomon-post-preview',
@@ -8,5 +6,4 @@ import {Intro} from '../../../../class/post';
   styleUrls: ['./post-preview.component.scss']
 })
 export class PostPreviewComponent {
-  @Input() intro: Intro;
 }

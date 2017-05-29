@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {FormsModule} from '@angular/forms';
@@ -9,31 +8,36 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {AppRouting} from './app.routing';
-import {ThemeService} from './service/theme';
-import {TokenService} from './service/token';
-import {GitHubService} from './service/github';
-import {PostService} from './service/post';
-import {UserProfileComponent} from './component/user-profile';
-import {HeaderComponent} from './component/header';
-import {FooterComponent} from './component/footer';
 import {environment} from '../environments/environment';
-import {SolomonMaterialModule} from './module/material';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {HomepageComponent} from './pages/homepage';
+import {PostComponent} from './pages/post';
+import {LinkComponent} from './pages/link';
+import {SharedModule} from './shared/shared.module';
+import {AboutComponent} from './pages/about';
+import {TagComponent} from './pages/tag';
+import {MdButtonModule, MdIconModule, MdListModule, MdToolbarModule} from '@angular/material';
+import {SOLOMON_POST, SOLOMON_LINK} from 'app/app.config';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent,
-    HeaderComponent,
-    FooterComponent
+    HomepageComponent,
+    AboutComponent,
+    PostComponent,
+    LinkComponent,
+    TagComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     AppRouting,
-    FlexLayoutModule,
-    SolomonMaterialModule,
+    SharedModule,
+    MdListModule,
+    MdIconModule,
+    MdButtonModule,
+    MdToolbarModule,
     BrowserAnimationsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -41,13 +45,8 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
   ],
   bootstrap: [AppComponent],
   providers: [
-    GitHubService,
-    ThemeService,
-    TokenService,
-    PostService
-  ],
-  entryComponents: [
-    UserProfileComponent
+    {provide: SOLOMON_POST, useValue: environment.post},
+    {provide: SOLOMON_LINK, useValue: environment.link}
   ]
 })
 export class AppModule {

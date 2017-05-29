@@ -4,9 +4,6 @@
 /dist
 /tmp
 /out-tsc
-src/app/class/*.js
-scripts/*.js
-src/json
 src/atom.xml
 
 # dependencies
@@ -45,5 +42,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# markdown files
-src/markdown
+# post files
+/content

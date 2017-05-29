@@ -8,7 +8,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {PostComponent} from './post.component';
 import {PostRouting} from './post.routing';
 import {CommentComponent} from './component/comment';
-import {PostService} from '../../service/post';
 import {SnackBarService} from '../../service/snackbar';
 import {PostFooterComponent} from './component/post-footer';
 
@@ -32,8 +31,7 @@ import {PostFooterComponent} from './component/post-footer';
     PostFooterComponent
   ],
   providers: [
-    SnackBarService,
-    PostService
+    SnackBarService
   ]
 })
 export class PostModule {

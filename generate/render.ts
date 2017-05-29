@@ -2,7 +2,7 @@ import fs = require('fs');
 import marked = require('marked');
 import path = require('path');
 
-import {Post} from '../src/app/class/post';
+import {Post} from '../src/app/shared/post';
 
 function walk (walkPath: string, files: string[]) {
   fs.readdirSync(walkPath)

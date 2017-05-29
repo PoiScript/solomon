@@ -1,6 +1,6 @@
 import RSS = require('rss');
 
-import {Post} from '../src/app/class/post';
+import {Post} from '../src/app/shared/post';
 
 const feed = new RSS({
   title: 'Solomon',

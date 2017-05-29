@@ -1,14 +1,18 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+import {HomepageComponent} from './pages/homepage';
+import {PostComponent} from './pages/post';
+import {LinkComponent} from './pages/link';
+import {AboutComponent} from './pages/about';
+import {TagComponent} from './pages/tag';
+
 const routes: Routes = [
-  {path: '', loadChildren: './module/home/home.module#HomeModule'},
-  {path: 'post', loadChildren: './module/post/post.module#PostModule'},
-  {path: 'archive', loadChildren: './module/archive/archive.module#ArchiveModule'},
-  {path: 'link', loadChildren: './module/link/link.module#LinkModule'},
-  {path: 'about', loadChildren: './module/about/about.module#AboutModule'},
-  {path: 'search', loadChildren: './module/search/search.module#SearchModule'},
-  {path: 'tag', loadChildren: './module/tag/tag.module#TagModule'}
+  {path: '', component: HomepageComponent, pathMatch: 'full'},
+  {path: 'post', component: PostComponent},
+  {path: 'link', component: LinkComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'tag', component: TagComponent}
 ];
 
 @NgModule({

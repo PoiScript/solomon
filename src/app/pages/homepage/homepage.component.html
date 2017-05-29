@@ -1,0 +1,14 @@
+<md-toolbar class="solomon-home-header" [color]="'primary'">
+  <md-toolbar-row></md-toolbar-row>
+  <md-toolbar-row>
+    <h1>Solomon</h1>
+  </md-toolbar-row>
+  <md-toolbar-row>
+    <h4>PoiScript's Blog</h4>
+  </md-toolbar-row>
+  <md-toolbar-row></md-toolbar-row>
+</md-toolbar>
+
+<div class="docs-component-category-list">
+  <md-card *ngFor="let post of posts">{{post.title}}</md-card>
+</div>

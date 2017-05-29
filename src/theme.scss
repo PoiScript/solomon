@@ -3,7 +3,6 @@
 @import "styles";
 @import "app/module/post/component/post-footer/post-footer.component";
 @import "app/module/post/component/comment/comment.component";
-@import "app/component/user-profile/user-profile.component";
 
 @include mat-core();
 
@@ -13,10 +12,8 @@ $theme: mat-light-theme($primary, $accent);
 @include angular-material-theme($theme);
 @include markdown-theme($theme);
 @include comment-theme($theme);
-@include user-profile-theme($theme);
 @include post-footer-theme($theme);
 @include global-theme($theme);
-
 .dark {
   $dark-primary: mat-palette($mat-deep-purple);
   $dark-accent: mat-palette($mat-blue-grey, A200, A100, A400);
@@ -26,6 +23,5 @@ $theme: mat-light-theme($primary, $accent);
   @include markdown-theme($dark-theme);
   @include comment-theme($dark-theme);
   @include post-footer-theme($dark-theme);
-  @include user-profile-theme($dark-theme);
   @include global-theme($dark-theme);
 }

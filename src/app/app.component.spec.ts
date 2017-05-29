@@ -7,8 +7,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {FooterComponent} from './component/footer';
-import {HeaderComponent} from './component/header';
 import {ThemeService} from './service/theme';
 
 describe('AppComponent', () => {
@@ -16,8 +14,6 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        HeaderComponent,
-        FooterComponent
       ],
       imports: [
         RouterModule,

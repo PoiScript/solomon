@@ -1,8 +1,0 @@
-<md-nav-list>
-  <md-list-item *ngFor="let link of links" (click)="lickClicked(link.link_address)">
-    <img md-list-avatar [src]="'https://github.com/' + link.github_username + '.png?size=40'">
-    <h3 md-line> {{link.link_text}} </h3>
-    <p md-line> {{link.display_name}} </p>
-    <p md-line> {{link.bio}} </p>
-  </md-list-item>
-</md-nav-list>

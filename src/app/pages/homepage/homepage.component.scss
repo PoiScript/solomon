@@ -1,0 +1,23 @@
+.docs-component-category-list {
+  //padding: 20px;
+  margin: auto;
+
+  //@media (max-width: 840px) {
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  justify-content: center;
+  //}
+}
+
+.docs-component-category-list-card {
+  display: inline-block;
+  width: 420px;
+  margin: auto;
+  vertical-align: top;
+  cursor: pointer;
+
+  .mat-card-title {
+    font-size: 20px;
+  }
+}
+

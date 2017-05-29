@@ -1,8 +1,8 @@
 import fs = require('fs');
 import rl = require('readline');
 
-import {Intro, Post} from '../src/app/class/post';
-import {Link} from '../src/app/class/link';
+import {Intro, Post} from '../src/app/shared/post';
+import {Link} from '../src/app/shared/link';
 
 export function post (posts: Post[]) {
   posts
