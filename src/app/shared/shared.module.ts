@@ -1,15 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PostItems} from './post-items/post-items';
-import {ViewerComponent} from './viewer';
+import {ViewerComponent} from './html-viewer';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  providers: [
-    PostItems
-  ],
+  imports: [CommonModule],
   declarations: [ViewerComponent],
   exports: [ViewerComponent]
 })

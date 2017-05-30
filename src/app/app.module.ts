@@ -1,22 +1,22 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import {FormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-import {AppComponent} from './app.component';
-import {AppRouting} from './app.routing';
-import {environment} from '../environments/environment';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {HomepageComponent} from './pages/homepage';
-import {PostComponent} from './pages/post';
-import {LinkComponent} from './pages/link';
-import {SharedModule} from './shared/shared.module';
-import {AboutComponent} from './pages/about';
-import {TagComponent} from './pages/tag';
-import {MdButtonModule, MdIconModule, MdListModule, MdToolbarModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdButtonModule, MdIconModule, MdListModule, MdMenuModule, MdToolbarModule} from '@angular/material';
+
+import {AppComponent} from 'app/app.component';
+import {AppRouting} from 'app/app.routing';
+import {environment} from '../environments/environment';
+import {HomepageComponent} from 'app/pages/homepage';
+import {PostComponent} from 'app/pages/post';
+import {LinkComponent} from 'app/pages/link';
+import {SharedModule} from 'app/shared/shared.module';
+import {AboutComponent} from 'app/pages/about';
+import {TagComponent} from 'app/pages/tag';
 import {SOLOMON_POST, SOLOMON_LINK} from 'app/app.config';
 
 @NgModule({
@@ -36,6 +36,7 @@ import {SOLOMON_POST, SOLOMON_LINK} from 'app/app.config';
     SharedModule,
     MdListModule,
     MdIconModule,
+    MdMenuModule,
     MdButtonModule,
     MdToolbarModule,
     BrowserAnimationsModule,

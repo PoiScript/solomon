@@ -10,5 +10,10 @@
 </md-toolbar>
 
 <div class="docs-component-category-list">
-  <md-card *ngFor="let post of posts">{{post.title}}</md-card>
+  <div *ngFor="let post of post.item">
+    <a class="post-preview-link" [routerLink]="['/post', post?.slug]">{{post.title}}</a>
+    <p>{{post.date|date:'longDate'}}
+      <span class="hash-tag" *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]">#{{tag}}</span>
+    </p>
+  </div>
 </div>

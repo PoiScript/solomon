@@ -1,3 +1,39 @@
-<p>
-  post works!
-</p>
+<div class="container">
+  <h1 class="primary-header">{{post?.intro.title}}</h1>
+  <div class="markdown-body" [innerHTML]="post?.html"></div>
+
+  <div class="comment">
+    <div *ngFor="let comment of comments | async">
+      <header>
+        <img [src]="comment.avatar" class="avatar">
+        <div>
+          <strong>{{comment.name}}</strong>
+          <span>{{ comment.updated|date:'longDate'}}</span>
+        </div>
+      </header>
+      <div class="text markdown-body">{{comment.content}}</div>
+    </div>
+  </div>
+
+  <footer class="post-footer">
+    <div>
+      <button md-icon-button [routerLink]="['/post', previousPostSlug]" *ngIf="previousPostTitle">
+        <!--<md-icon svgIcon="arrow_left"></md-icon>-->
+      </button>
+      <div *ngIf="previousPostTitle">
+        <span>Previous</span>
+        <strong>{{previousPostTitle}}</strong>
+      </div>
+    </div>
+    <div *ngIf="nextPostTitle">
+      <div align="right">
+        <span>Next</span>
+        <strong>{{nextPostTitle}}</strong>
+      </div>
+      <button md-icon-button [routerLink]="['/post', nextPostSlug]">
+        <!--<md-icon svgIcon="arrow_right"></md-icon>-->
+      </button>
+    </div>
+  </footer>
+
+</div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SOLOMON_POST, Post} from 'app/app.config';
 
 @Component({
   selector: 'solomon-post',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
+  private posts: Post[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor (injector: Injector,
+               private route: ActivatedRoute,
+               private router: Router) {
+    this.posts = injector.get(SOLOMON_POST).item;
   }
 
+  ngOnInit () {
+  }
 }

@@ -8,7 +8,7 @@ export interface Link {
   bio: string;
 }
 
-interface SolomonLink {
+export interface SolomonLink {
   count: number;
   item: Link[];
 }
@@ -26,7 +26,7 @@ export interface Post {
   html: string;
 }
 
-interface SolomonPost {
+export interface SolomonPost {
   count: number;
   item: Post[];
 }

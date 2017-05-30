@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewerComponent } from './viewer.component';
+import { ViewerComponent } from './html-viewer.component';
 
 describe('ViewerComponent', () => {
   let component: ViewerComponent;

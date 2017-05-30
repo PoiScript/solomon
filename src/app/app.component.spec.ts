@@ -7,7 +7,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {ThemeService} from './service/theme';
+import {ThemeService} from './shared/theme-service';
 
 describe('AppComponent', () => {
   beforeEach(() => {

@@ -2,7 +2,7 @@ import {Component, ElementRef, Input} from '@angular/core';
 import {Http} from '@angular/http';
 
 @Component({
-  selector: 'solomon-viewer',
+  selector: 'solomon-html-viewer',
   template: 'loading...'
 })
 export class ViewerComponent {
@@ -10,7 +10,7 @@ export class ViewerComponent {
   constructor (private _http: Http, private _elementRef: ElementRef) { }
 
   @Input()
-  set postUrl (url: string) {
+  set htmlUrl (url: string) {
     this._getHtml(url);
   }
 
@@ -21,12 +21,12 @@ export class ViewerComponent {
           this._elementRef.nativeElement.innerHTML = response.text();
         } else {
           this._elementRef.nativeElement.innerText =
-            `Failed to load document: ${url}. Error: ${response.status}`;
+            `Failed to load html: ${url}. Error: ${response.status}`;
         }
       },
       error => {
         this._elementRef.nativeElement.innerText =
-          `Failed to load document: ${url}. Error: ${error}`;
+          `Failed to load html: ${url}. Error: ${error}`;
       });
   }
 

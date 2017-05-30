@@ -1,7 +1,16 @@
 <md-toolbar [color]="'primary'">
+  <!-- TODO: show a drawer instead in small screen-->
   <button i18n md-button [routerLink]="'/'">SOLOMON</button>
   <button i18n md-button [routerLink]="'/about'">ABOUT</button>
   <button i18n md-button [routerLink]="'/link'">LINK</button>
+  <span class="toolbar-spacer"></span>
+  <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <!-- TODO: toggle theme-->
+    <button i18n md-menu-item>Toggle Theme</button>
+  </md-menu>
 </md-toolbar>
 
 <router-outlet></router-outlet>
