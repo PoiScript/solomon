@@ -17,7 +17,6 @@ import {LinkComponent} from 'app/pages/link';
 import {SharedModule} from 'app/shared/shared.module';
 import {AboutComponent} from 'app/pages/about';
 import {TagComponent} from 'app/pages/tag';
-import {SOLOMON_POST, SOLOMON_LINK} from 'app/app.config';
 
 @NgModule({
   declarations: [
@@ -45,10 +44,6 @@ import {SOLOMON_POST, SOLOMON_LINK} from 'app/app.config';
     AngularFireModule.initializeApp(environment.firebase, 'Solomon')
   ],
   bootstrap: [AppComponent],
-  providers: [
-    {provide: SOLOMON_POST, useValue: environment.post},
-    {provide: SOLOMON_LINK, useValue: environment.link}
-  ]
 })
 export class AppModule {
 }

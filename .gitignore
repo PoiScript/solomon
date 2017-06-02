@@ -4,7 +4,8 @@
 /dist
 /tmp
 /out-tsc
-src/atom.xml
+/src/assets/json
+/src/assets/html
 
 # dependencies
 /node_modules

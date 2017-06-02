@@ -10,7 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate": "ts-node generate"
+    "post": "ts-node scripts/generate-post",
+    "links": "ts-node scripts/generate-link",
+    "rss": "ts-node scripts/generate-rss"
   },
   "private": true,
   "dependencies": {
@@ -25,12 +27,9 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "@types/marked": "^0.0.28",
-    "@types/rss": "^0.0.27",
     "angularfire2": "^4.0.0-rc.0",
     "core-js": "^2.4.1",
     "firebase": "^3.9.0",
-    "font-awesome": "^4.7.0",
     "marked": "^0.3.6",
     "rss": "^1.2.2",
     "rxjs": "^5.1.0",
@@ -41,6 +40,8 @@
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "@types/marked": "^0.0.28",
+    "@types/rss": "^0.0.27",
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",

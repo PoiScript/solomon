@@ -1,5 +1,4 @@
-import {Component, Injector} from '@angular/core';
-import {SOLOMON_POST, SolomonPost} from 'app/app.config';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'solomon-homepage',
@@ -7,9 +6,4 @@ import {SOLOMON_POST, SolomonPost} from 'app/app.config';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
-  post: SolomonPost;
-
-  constructor (injector: Injector) {
-    this.post = injector.get(SOLOMON_POST);
-  }
 }

@@ -10,10 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "icon.png",
-        "atom.xml",
-        "markdown",
-        "json"
+        "icon.png"
       ],
       "index": "index.html",
       "main": "main.ts",

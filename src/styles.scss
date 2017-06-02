@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
-@import 'variables';
-@import '../node_modules/font-awesome/scss/font-awesome';
 
 @mixin global-theme($theme) {
   $primary: map-get($theme, primary);
