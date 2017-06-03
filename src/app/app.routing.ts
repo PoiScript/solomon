@@ -9,10 +9,11 @@ import {TagComponent} from 'app/pages/tag';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent, pathMatch: 'full'},
+  {path: 'post/about', redirectTo: 'about', pathMatch: 'full'},
   {path: 'post/:slug', component: PostComponent},
   {path: 'link', component: LinkComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'tag', component: TagComponent}
+  {path: 'tag/:tag', component: TagComponent}
 ];
 
 @NgModule({

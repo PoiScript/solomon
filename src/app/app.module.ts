@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {AngularFireModule} from 'angularfire2';
@@ -17,6 +17,11 @@ import {LinkComponent} from 'app/pages/link';
 import {SharedModule} from 'app/shared/shared.module';
 import {AboutComponent} from 'app/pages/about';
 import {TagComponent} from 'app/pages/tag';
+import {PostService} from 'app/shared/post-service';
+
+export function init (postService: PostService) {
+  return () => postService.load();
+}
 
 @NgModule({
   declarations: [
@@ -42,6 +47,14 @@ import {TagComponent} from 'app/pages/tag';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase, 'Solomon')
+  ],
+  providers: [
+    {
+      'provide': APP_INITIALIZER,
+      'useFactory': init,
+      'deps': [PostService],
+      'multi': true
+    }
   ],
   bootstrap: [AppComponent],
 })

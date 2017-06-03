@@ -1,8 +1,8 @@
 import * as RSS from 'rss';
 import {existsSync, mkdirSync, writeFile} from 'fs';
 
-import {Post} from '../src/app/app.types';
 import {parse} from './render';
+import {Post} from 'app/app.types';
 
 const OUTPUT_DIR = 'dist';
 const BLOG_TITLE = 'Solomon';

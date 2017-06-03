@@ -1,7 +1,7 @@
 import {createReadStream, existsSync, mkdirSync, writeFile} from 'fs';
 import {createInterface} from 'readline';
 
-import {Link} from '../src/app/app.types';
+import {Link} from 'app/app.types';
 
 const LINK_FILE = 'content/link.md';
 const OUTPUT_DIR = 'src/assets/json';

@@ -1,8 +1,9 @@
 import {existsSync, mkdirSync, writeFile} from 'fs';
 
 import {parse} from './render';
-import {Post} from '../src/app/app.types';
+import {Post} from 'app/app.types';
 
+const XHR_PATH = '/assets/html';
 const HTML_OUTPUT_DIR = 'src/assets/html';
 const JSON_OUTPUT_DIR = 'src/assets/json';
 
@@ -21,17 +22,19 @@ posts.forEach(post => {
     }
   });
 
-  post.html = `${HTML_OUTPUT_DIR}/${post.slug}.html`;
+  post.html = `${XHR_PATH}/${post.slug}.html`;
 });
 
 if (!existsSync(JSON_OUTPUT_DIR)) {
   mkdirSync(JSON_OUTPUT_DIR);
 }
 
-writeFile(`${JSON_OUTPUT_DIR}/post.json`, JSON.stringify(posts), (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`[GENERATED] post.json`);
-  }
-});
+writeFile(`${JSON_OUTPUT_DIR}/post.json`,
+  JSON.stringify(posts.filter(post => post.slug !== 'about')),
+  (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`[GENERATED] post.json`);
+    }
+  });

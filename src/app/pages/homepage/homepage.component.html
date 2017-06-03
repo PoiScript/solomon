@@ -9,7 +9,7 @@
   <md-toolbar-row></md-toolbar-row>
 </md-toolbar>
 
-<div class="docs-component-category-list">
+<div>
   <div *ngFor="let post of posts">
     <a class="post-preview-link" [routerLink]="['/post', post?.slug]">{{post.title}}</a>
     <p>{{post.date|date:'longDate'}}

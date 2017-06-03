@@ -2,7 +2,7 @@ import {readdirSync, readFileSync} from 'fs';
 import {extname} from 'path';
 import * as marked from 'marked';
 
-import {Post} from '../src/app/app.types';
+import {Post} from 'app/app.types';
 
 const MD_FILE_DIR = 'content';
 

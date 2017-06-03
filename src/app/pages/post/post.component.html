@@ -1,6 +1,7 @@
 <div class="container">
-  <h1 class="primary-header">{{post?.intro.title}}</h1>
-  <div class="markdown-body" [innerHTML]="post?.html"></div>
+  <h1 class="primary-header">{{current?.title}}</h1>
+
+  <solomon-html-viewer class="markdown-body" [htmlUrl]="current?.html"></solomon-html-viewer>
 
   <div class="comment">
     <div *ngFor="let comment of comments | async">
@@ -17,20 +18,20 @@
 
   <footer class="post-footer">
     <div>
-      <button md-icon-button [routerLink]="['/post', previousPostSlug]" *ngIf="previousPostTitle">
+      <button md-icon-button [routerLink]="['/post', prior?.slug]">
         <!--<md-icon svgIcon="arrow_left"></md-icon>-->
       </button>
-      <div *ngIf="previousPostTitle">
-        <span>Previous</span>
-        <strong>{{previousPostTitle}}</strong>
+      <div *ngIf="prior">
+        <span>Prior</span>
+        <strong>{{prior?.title}}</strong>
       </div>
     </div>
-    <div *ngIf="nextPostTitle">
+    <div *ngIf="next">
       <div align="right">
         <span>Next</span>
-        <strong>{{nextPostTitle}}</strong>
+        <strong>{{next?.title}}</strong>
       </div>
-      <button md-icon-button [routerLink]="['/post', nextPostSlug]">
+      <button md-icon-button [routerLink]="['/post', next?.slug]">
         <!--<md-icon svgIcon="arrow_right"></md-icon>-->
       </button>
     </div>
