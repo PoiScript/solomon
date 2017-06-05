@@ -1,10 +1,10 @@
 import {createReadStream, existsSync, mkdirSync, writeFile} from 'fs';
 import {createInterface} from 'readline';
+import {Link} from '../main/src/app/app.types';
 
-import {Link} from 'app/app.types';
 
 const LINK_FILE = 'content/link.md';
-const OUTPUT_DIR = 'src/assets/json';
+const NG_OUTPUT_DIR = 'main/src/assets/json';
 const TABLE_START = '|GitHub Username|Nickname|Link Text|Link Address|Bio|';
 const TABLE_END = '|:--:|:--:|:--:|:--:|:--:|';
 
@@ -25,11 +25,11 @@ createInterface({input: createReadStream(LINK_FILE)})
     }
   })
   .on('close', () => {
-    if (!existsSync(OUTPUT_DIR)) {
-      mkdirSync(OUTPUT_DIR);
+    if (!existsSync(NG_OUTPUT_DIR)) {
+      mkdirSync(NG_OUTPUT_DIR);
     }
 
-    writeFile(`${OUTPUT_DIR}/link.json`, JSON.stringify(links), (err) => {
+    writeFile(`${NG_OUTPUT_DIR}/link.json`, JSON.stringify(links), (err) => {
       if (err) {
         console.error(err);
       } else {

@@ -2,7 +2,7 @@ import * as RSS from 'rss';
 import {existsSync, mkdirSync, writeFile} from 'fs';
 
 import {parse} from './render';
-import {Post} from 'app/app.types';
+import {Post} from '../main/src/app/app.types';
 
 const OUTPUT_DIR = 'dist';
 const BLOG_TITLE = 'Solomon';

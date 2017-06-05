@@ -1,20 +1,20 @@
 import {existsSync, mkdirSync, writeFile} from 'fs';
 
 import {parse} from './render';
-import {Post} from 'app/app.types';
+import {Post} from '../main/src/app/app.types';
 
 const XHR_PATH = '/assets/html';
-const HTML_OUTPUT_DIR = 'src/assets/html';
-const JSON_OUTPUT_DIR = 'src/assets/json';
+const NG_HTML_OUTPUT_DIR = 'main/src/assets/html';
+const NG_JSON_OUTPUT_DIR = 'main/src/assets/json';
 
 const posts: Post[] = parse();
 
 posts.forEach(post => {
-  if (!existsSync(HTML_OUTPUT_DIR)) {
-    mkdirSync(HTML_OUTPUT_DIR);
+  if (!existsSync(NG_HTML_OUTPUT_DIR)) {
+    mkdirSync(NG_HTML_OUTPUT_DIR);
   }
 
-  writeFile(`${HTML_OUTPUT_DIR}/${post.slug}.html`, post.html, (err) => {
+  writeFile(`${NG_HTML_OUTPUT_DIR}/${post.slug}.html`, post.html, (err) => {
     if (err) {
       console.error(err);
     } else {
@@ -25,11 +25,11 @@ posts.forEach(post => {
   post.html = `${XHR_PATH}/${post.slug}.html`;
 });
 
-if (!existsSync(JSON_OUTPUT_DIR)) {
-  mkdirSync(JSON_OUTPUT_DIR);
+if (!existsSync(NG_JSON_OUTPUT_DIR)) {
+  mkdirSync(NG_JSON_OUTPUT_DIR);
 }
 
-writeFile(`${JSON_OUTPUT_DIR}/post.json`,
+writeFile(`${NG_JSON_OUTPUT_DIR}/post.json`,
   JSON.stringify(posts.filter(post => post.slug !== 'about')),
   (err) => {
     if (err) {
