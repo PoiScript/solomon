@@ -6,21 +6,19 @@
   "repository": "git@github.com:PoiScript/Solomon.git",
   "author": "PoiScript <poiscript@gmail.com>",
   "scripts": {
-    "post": "ts-node scripts/generate-post",
-    "links": "ts-node scripts/generate-link",
-    "rss": "ts-node scripts/generate-rss"
+    "post": "node scripts/generate-post",
+    "links": "node scripts/generate-link",
+    "rss": "node scripts/generate-rss"
   },
   "private": true,
   "dependencies": {
+    "express": "^4.15.3",
     "marked": "^0.3.6",
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-rc.2",
     "rss": "^1.2.2"
   },
   "devDependencies": {
-    "@types/marked": "^0.0.28",
-    "@types/node": "^7.0.27",
-    "@types/rss": "^0.0.27",
-    "ts-node": "^3.0.4",
-    "tslint": "^5.4.2",
-    "typescript": "^2.3.4"
+    "standard": "^10.0.2"
   }
 }

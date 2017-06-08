@@ -1,0 +1,24 @@
+{
+  "name": "solomon-react",
+  "version": "0.0.2",
+  "description": "React Blog Site for PoiScript",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && react-snapshot",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+  },
+  "private": true,
+  "dependencies": {
+    "material-ui": "^0.18.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "react-snapshot": "^1.1.0",
+    "react-tap-event-plugin": "^2.0.1"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.7"
+  }
+}
