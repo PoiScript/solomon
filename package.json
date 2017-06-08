@@ -9,8 +9,10 @@
     "setup": "bash ./scripts/setup.sh",
     "ng:start": "cd ng && yarn start",
     "ng:build": "cd ng && yarn build",
-    "react:start": "cd react && yarn start",
-    "react:build": "cd react && yarn build",
+    "react:start": "cd react && react-scripts start",
+    "react:build": "cd react && react-scripts build && react-snapshot",
+    "react:test": "cd react && react-scripts test --env=jsdom",
+    "react:eject": "cd react && react-scripts eject",
     "generate:post": "node scripts/generate-post",
     "generate:link": "node scripts/generate-link",
     "generate:rss": "node scripts/generate-rss"
@@ -19,11 +21,18 @@
   "dependencies": {
     "express": "^4.15.3",
     "marked": "^0.3.6",
+    "material-ui": "^0.18.2",
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "react-snapshot": "^1.1.0",
+    "react-tap-event-plugin": "^2.0.1",
     "rss": "^1.2.2"
   },
   "devDependencies": {
+    "react-scripts": "1.0.7",
     "standard": "^10.0.2"
   }
 }

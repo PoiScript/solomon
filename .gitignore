@@ -11,3 +11,17 @@
 /dist
 /public/json
 /public/html
+/react/build
+/react/public/json
+/react/public/html
+
+# testing
+/react/coverage
+
+# assets
+/react/public/favicon.ico
+/react/public/icon.png
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
