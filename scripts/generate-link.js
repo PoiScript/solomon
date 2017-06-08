@@ -2,7 +2,7 @@ const fs = require('fs')
 const rl = require('readline')
 
 const LINK_FILE = 'content/link.md'
-const NG_OUTPUT_DIR = 'ng/src/assets/json'
+const OUTPUT_DIR = 'public/json'
 const TABLE_START = '|GitHub Username|Nickname|Link Text|Link Address|Bio|'
 const TABLE_END = '|:--:|:--:|:--:|:--:|:--:|'
 
@@ -23,11 +23,11 @@ rl.createInterface({input: fs.createReadStream(LINK_FILE)})
     }
   })
   .on('close', () => {
-    if (!fs.existsSync(NG_OUTPUT_DIR)) {
-      fs.mkdirSync(NG_OUTPUT_DIR)
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR)
     }
 
-    fs.writeFile(`${NG_OUTPUT_DIR}/link.json`, JSON.stringify(links), (err) => {
+    fs.writeFile(`${OUTPUT_DIR}/link.json`, JSON.stringify(links), (err) => {
       if (err) {
         console.error(err)
       } else {

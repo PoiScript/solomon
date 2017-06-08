@@ -26,6 +26,10 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# assets
+/src/favicon.ico
+/src/icon.png
+
 # misc
 /.sass-cache
 /connect.lock

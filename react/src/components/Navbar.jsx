@@ -6,9 +6,18 @@ import { Link } from 'react-router-dom'
 const Navbar = () => (
   <Toolbar>
     <ToolbarGroup>
-      <FlatButton style={{marginLeft: 0, marginRight: 0}} label='solomon' containerElement={<Link to='/' />} />
-      <FlatButton style={{marginLeft: 0, marginRight: 0}} label='about' containerElement={<Link to='/about' />} />
-      <FlatButton style={{marginLeft: 0, marginRight: 0}} label='link' containerElement={<Link to='/link' />} />
+      <FlatButton
+        style={{marginLeft: 0, marginRight: 0}}
+        label='solomon'
+        containerElement={<Link to='/' />} />
+      <FlatButton
+        style={{marginLeft: 0, marginRight: 0}}
+        label='about'
+        containerElement={<Link to='/about' />} />
+      <FlatButton
+        style={{marginLeft: 0, marginRight: 0}}
+        label='link'
+        containerElement={<Link to='/link' />} />
     </ToolbarGroup>
   </Toolbar>
 )

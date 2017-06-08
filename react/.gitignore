@@ -9,6 +9,14 @@
 # production
 /build
 
+# assets
+/public/favicon.ico
+/public/icon.png
+
+# compiled output
+/public/json
+/public/html
+
 # misc
 .DS_Store
 .env.local

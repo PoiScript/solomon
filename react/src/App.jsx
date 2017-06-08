@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import Footer from './components/Footer/Footer'
+import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 
 injectTapEventPlugin()

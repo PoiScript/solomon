@@ -9,3 +9,5 @@
 
 # compiled output
 /dist
+/public/json
+/public/html
