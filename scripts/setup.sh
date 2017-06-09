@@ -25,5 +25,5 @@ output=( html json )
 for i in "${output[@]}"
 do
 	cp public/$i ng/src/assets/$1 -r
-	cp public/$i react/public/$1 -r
+	cp public/$i react/src/$1 -r
 done

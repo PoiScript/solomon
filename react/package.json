@@ -1,0 +1,8 @@
+{
+  "name": "solomon-react",
+  "version": "0.0.2",
+  "description": "React Blog Site for PoiScript",
+  "main": "index.js",
+  "author": "PoiScript",
+  "license": "MIT"
+}

@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/react/node_modules
 
 # post files
 /content
@@ -12,8 +13,8 @@
 /public/json
 /public/html
 /react/build
-/react/public/json
-/react/public/html
+/react/src/json
+/react/src/html
 
 # testing
 /react/coverage
