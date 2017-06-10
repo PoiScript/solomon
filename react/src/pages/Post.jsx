@@ -1,10 +1,17 @@
 import React from 'react'
+import {Helmet} from 'react-helmet'
+
+import Main from '../components/Main'
+import Header from '../components/Header'
 
 const Post = ({ post }) => (
-  <main className='container'>
-    <h3 className='primary-header'>{post.title}</h3>
+  <Main>
+    <Helmet>
+      <title>{post.title} - Solomon</title>
+    </Helmet>
+    <Header>{post.title}</Header>
     <article>{/* replace with `/public/html/${post.slug}.html` */}</article>
-  </main>
+  </Main>
 )
 
 export default Post

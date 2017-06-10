@@ -9,9 +9,9 @@ import Links from './pages/Links'
 import Homepage from './pages/Homepage'
 import Post from './pages/Post'
 import About from './pages/About'
+import Tag from './pages/Tag'
 
 import posts from './json/post.json'
-import './style.css'
 
 injectTapEventPlugin()
 
@@ -23,6 +23,7 @@ const App = () => (
         <Route exact path='/' component={Homepage} />
         <Route path='/about' component={About} />
         <Route path='/link' component={Links} />
+        <Route path='/tag/:tag' component={Tag} />
         <Route path='/post/:slug' render={({ match }) => (
           <Post post={posts.find(p => p.slug === match.params.slug)} />
         )} />

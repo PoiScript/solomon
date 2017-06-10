@@ -1,10 +1,12 @@
 import React from 'react'
-import posts from '../json/post.json'
 import { Card, CardTitle, CardHeader, CardText } from 'material-ui/Card'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 
 import Main from '../components/Main'
+import Header from '../components/Header'
+
+import posts from '../json/post.json'
 
 const styles = {
   title: {
@@ -16,12 +18,13 @@ const styles = {
   }
 }
 
-const Homepage = () => (
+const Tag = ({ match }) => (
   <Main>
     <Helmet>
-      <title>Solomon</title>
+      <title>#{match.params.tag} - Solomon</title>
     </Helmet>
-    {posts.map((post) =>
+    <Header>#{match.params.tag}</Header>
+    {posts.filter(post => post.tags.includes(match.params.tag)).map((post) =>
       <Card key={post.slug}>
         <CardTitle
           style={styles.title}
@@ -30,12 +33,10 @@ const Homepage = () => (
             <Link style={styles.link} to={`/tag/${tag}`} key={tag}>#{tag} </Link>
           ))} />
         <CardHeader title={(new Date(post.date)).toDateString()} actAsExpander showExpandableButton />
-        <CardText expandable>
-          {post.summary}
-        </CardText>
+        <CardText expandable>{post.summary}</CardText>
       </Card>
     )}
   </Main>
 )
 
-export default Homepage
+export default Tag
