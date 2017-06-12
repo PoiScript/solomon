@@ -13,7 +13,7 @@ const Links = () => (
     <Helmet>
       <title>Link - Solomon</title>
     </Helmet>
-    <Header>Link</Header>
+    <Header title='Link' />
     <List>
       {links.map((link) =>
         <ListItem

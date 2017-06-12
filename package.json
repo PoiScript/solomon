@@ -10,7 +10,8 @@
     "ng:start": "cd ng && yarn start",
     "ng:build": "cd ng && yarn build",
     "react:start": "cd react && react-scripts start",
-    "react:build": "cd react && react-scripts build && react-snapshot",
+    "react:watch-scss": "cd react && node-sass-chokidar src/ -o src/ && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "react:build": "cd react && node-sass-chokidar src/ -o src/ --output-style compressed && react-scripts build && react-snapshot",
     "react:test": "cd react && react-scripts test --env=jsdom",
     "react:eject": "cd react && react-scripts eject",
     "generate:post": "node scripts/generate-post",
@@ -33,6 +34,8 @@
     "rss": "^1.2.2"
   },
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.1",
+    "node-sass-chokidar": "^0.0.2",
     "react-scripts": "1.0.7",
     "standard": "^10.0.2"
   }

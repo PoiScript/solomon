@@ -1,7 +1,7 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
@@ -13,20 +13,43 @@ import Tag from './pages/Tag'
 
 import posts from './json/post.json'
 
+import './markdown.css'
+
 injectTapEventPlugin()
+
+const routes = [
+  {
+    path: '/',
+    component: Homepage,
+    exact: true
+  }, {
+    path: '/about',
+    component: About
+  }, {
+    path: '/link',
+    component: Links
+  }, {
+    path: '/tag/:tag',
+    component: Tag
+  }, {
+    path: '/post/:slug',
+    render: ({ match }) => (
+      <Post post={posts.find(p => p.slug === match.params.slug)} />
+    )
+  }
+]
 
 const App = () => (
   <Router>
     <MuiThemeProvider>
       <div>
         <Navbar />
-        <Route exact path='/' component={Homepage} />
-        <Route path='/about' component={About} />
-        <Route path='/link' component={Links} />
-        <Route path='/tag/:tag' component={Tag} />
-        <Route path='/post/:slug' render={({ match }) => (
-          <Post post={posts.find(p => p.slug === match.params.slug)} />
-        )} />
+        <Switch>
+          {routes.map((route, i) => (
+            <Route key={i} {...route} />
+          ))}
+          {/* TODO: add not match component */}
+        </Switch>
         <Footer />
       </div>
     </MuiThemeProvider>

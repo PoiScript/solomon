@@ -15,6 +15,7 @@
 /react/build
 /react/src/json
 /react/src/html
+/react/**/*.css
 
 # testing
 /react/coverage

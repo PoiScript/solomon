@@ -5,7 +5,7 @@ const Header = (props) => (
     fontSize: '30px',
     fontWeight: 300,
     padding: '50px 0'
-  }} {...props} />
+  }}>{props.title}</h3>
 )
 
 export default Header

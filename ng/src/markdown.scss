@@ -83,7 +83,7 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
 
 //original selectors
 //.markdown-body .highlight pre, .markdown-body pre
-%extend_4 {
+%extend_3 {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -157,7 +157,7 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
     margin-bottom: 16px;
     font: 1em $font_2, $font_3, $font_4, $font_5, $font_1;
     word-wrap: normal;
-    @extend %extend_4;
+    @extend %extend_3;
     > code {
       padding: 0;
       margin: 0;
@@ -368,7 +368,7 @@ $url_0: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAA
       margin-bottom: 0;
       //Instead of the line below you could use @include word-break($value)
       word-break: normal;
-      @extend %extend_4;
+      @extend %extend_3;
     }
   }
   .task-list-item {
