@@ -10,11 +10,9 @@
 
 # compiled output
 /dist
-/public/json
-/public/html
+json/
+html/
 /react/build
-/react/src/json
-/react/src/html
 /react/**/*.css
 
 # testing

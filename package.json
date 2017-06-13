@@ -31,7 +31,8 @@
     "react-router-dom": "^4.1.1",
     "react-snapshot": "^1.1.0",
     "react-tap-event-plugin": "^2.0.1",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.1",

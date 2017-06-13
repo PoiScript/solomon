@@ -2,6 +2,7 @@ import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import 'whatwg-fetch'
 
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
