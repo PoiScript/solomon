@@ -9,9 +9,7 @@ import posts from '../json/post.json'
 
 const Tag = ({ match }) => (
   <Main>
-    <Helmet>
-      <title>#{match.params.tag} - Solomon</title>
-    </Helmet>
+    <Helmet title={`#${match.params.tag} - Solomon`} />
     <Header title={`#${match.params.tag}`} />
     <PostList posts={posts.filter(post => post.tags.includes(match.params.tag))} />
   </Main>

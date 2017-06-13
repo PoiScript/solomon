@@ -10,9 +10,7 @@ import links from '../json/link.json'
 
 const Links = () => (
   <Main>
-    <Helmet>
-      <title>Link - Solomon</title>
-    </Helmet>
+    <Helmet title='Link - Solomon' />
     <Header title='Link' />
     <List>
       {links.map((link) =>

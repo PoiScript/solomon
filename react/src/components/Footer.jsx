@@ -1,36 +1,45 @@
 import React from 'react'
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar'
-import FlatButton from 'material-ui/FlatButton'
+import { blueGrey50, blueGrey300, blueGrey800, blueGrey900 } from 'material-ui/styles/colors'
 
 const styles = {
-  center: {
-    marginLeft: 'auto',
-    marginRight: 'auto'
+  footer: {
+    fontSize: '13px',
+    padding: '48px 0',
+    textAlign: 'center',
+    color: blueGrey300,
+    backgroundColor: blueGrey900
   },
-  button: {
-    marginLeft: 0,
-    marginRight: 0
+  section: {
+    padding: '24px 0',
+    textAlign: 'center',
+    backgroundColor: blueGrey800
   },
-  license: {
-    fontSize: '.7em'
+  link: {
+    margin: '10px',
+    color: blueGrey50,
+    textDecoration: 'none'
   }
 }
 
+const links = [
+  {address: 'https://poi.works/atom.xml', text: 'RSS'},
+  {address: 'https://github.com/PoiScript/Solomon', text: 'GitHub'},
+  {address: 'https://amp.poi.works', text: 'AMP'}
+]
+
 const Footer = () => (
-  <footer>
-    <Toolbar>
-      <ToolbarGroup style={styles.center}>
-        <FlatButton style={styles.button} href='https://poi.works/atom.xml' label='rss' />
-        <FlatButton style={styles.button} href='https://github.com/PoiScript/Solomon' label='github' />
-        <FlatButton style={styles.button} href='https://amp.poi.works' label='amp' />
-      </ToolbarGroup>
-    </Toolbar>
-    <Toolbar>
-      <ToolbarGroup style={{...styles.center, ...styles.license}}>
-        All Content Licensed Under CC-BY-SA-4.0
-      </ToolbarGroup>
-    </Toolbar>
-  </footer>
+  <div style={{paddingTop: '80px'}}>
+    <section style={styles.section}>
+      {
+        links.map(link => (
+          <a style={styles.link} key={link.text} href={link.address}>{link.text}</a>
+        ))
+      }
+    </section>
+    <footer style={styles.footer}>
+      Content Licensed Under CC-BY-SA-4.0
+    </footer>
+  </div>
 )
 
 export default Footer
