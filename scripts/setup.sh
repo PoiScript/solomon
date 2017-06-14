@@ -1,3 +1,7 @@
+# install dependencies
+
+yarn
+
 # copy assets files
 
 assets=( favicon.ico icon.png )

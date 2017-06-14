@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import LinearProgress from 'material-ui/LinearProgress'
 
 import Main from '../components/Main'
 import Header from '../components/Header'
@@ -28,9 +27,7 @@ class Post extends React.Component {
           this.state ? (
             <article dangerouslySetInnerHTML={{__html: this.state.html}} />
           ) : (
-            <article>
-              <LinearProgress />
-            </article>
+            <article>{/* replace with `/public/post/${post.slug}.html` */}</article>
           )
         }
       </Main>
