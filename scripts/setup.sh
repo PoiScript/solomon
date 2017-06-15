@@ -4,12 +4,12 @@ yarn
 
 # copy assets files
 
-assets=( favicon.ico icon.png )
+assets=( favicon.ico icon.png fonts )
 
 for i in "${assets[@]}"
 do
-	cp public/$i ng/src/$1
-	cp public/$i react/public/$1
+	cp public/$i ng/src/$1 -r
+	cp public/$i react/public/$1 -r
 done
 
 # fetch post

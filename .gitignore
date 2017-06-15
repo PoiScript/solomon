@@ -20,6 +20,8 @@ html/
 /react/coverage
 
 # assets
+/ng/src/fonts
+/react/public/fonts
 /react/public/favicon.ico
 /react/public/icon.png
 

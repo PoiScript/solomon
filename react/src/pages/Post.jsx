@@ -5,9 +5,20 @@ import { Helmet } from 'react-helmet'
 
 import Main from '../components/Main'
 import Header from '../components/Header'
+import UpNext from '../components/UpNext'
 
 class Post extends React.Component {
-  componentDidMount () {
+  componentWillReceiveProps (nextProps) {
+    if (this.props.post.slug !== nextProps.post.slug) {
+      fetch(`/html/${nextProps.post.slug}.html`)
+        .then(res => res.text())
+        .then(data => {
+          this.setState({html: data})
+        })
+    }
+  }
+
+  componentWillMount () {
     fetch(`/html/${this.props.post.slug}.html`)
       .then(res => res.text())
       .then(data => {
@@ -30,6 +41,7 @@ class Post extends React.Component {
             <article>{/* replace with `/public/post/${post.slug}.html` */}</article>
           )
         }
+        <UpNext slug={this.props.post.slug} />
       </Main>
     )
   }
