@@ -40,7 +40,7 @@ module.exports.parse = () => {
     })
   }
 
-  posts.sort((p1, p2) => Date.parse(p1.date) - Date.parse(p2.date))
+  posts.sort((p1, p2) => Date.parse(p2.date) - Date.parse(p1.date))
 
   return posts
 }

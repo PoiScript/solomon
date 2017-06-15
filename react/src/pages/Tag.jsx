@@ -5,7 +5,7 @@ import Main from '../components/Main'
 import Header from '../components/Header'
 import PostList from '../components/PostList'
 
-import posts from '../json/post.json'
+import posts from '../post.json'
 
 const Tag = ({ match }) => (
   <Main>

@@ -10,7 +10,8 @@
 
 # compiled output
 /dist
-json/
+post.json
+link.json
 html/
 /react/build
 /react/**/*.css

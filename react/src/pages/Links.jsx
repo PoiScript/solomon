@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 import Main from '../components/Main'
 import Header from '../components/Header'
 
-import links from '../json/link.json'
+import links from '../link.json'
 
 const Links = () => (
   <Main>

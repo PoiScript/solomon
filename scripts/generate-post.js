@@ -1,8 +1,8 @@
 const fs = require('fs')
 const render = require('./render')
 
+const JSON_OUTPUT_DIR = 'public'
 const HTML_OUTPUT_DIR = 'public/html'
-const JSON_OUTPUT_DIR = 'public/json'
 
 const posts = render.parse()
 

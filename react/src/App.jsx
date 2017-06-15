@@ -12,7 +12,7 @@ import Post from './pages/Post'
 import About from './pages/About'
 import Tag from './pages/Tag'
 
-import posts from './json/post.json'
+import posts from './post.json'
 
 import './markdown.css'
 

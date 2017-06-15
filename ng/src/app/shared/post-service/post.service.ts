@@ -11,7 +11,7 @@ export class PostService {
   constructor (private http: Http) { }
 
   load (): Promise<Post[]> {
-    const promise = this.http.get('/assets/json/post.json').map(res => res.json()).toPromise();
+    const promise = this.http.get('/post.json').map(res => res.json()).toPromise();
     promise.then(posts => this.posts = posts);
     return promise;
   }

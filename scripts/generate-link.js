@@ -1,8 +1,8 @@
 const fs = require('fs')
 const rl = require('readline')
 
+const OUTPUT_DIR = 'public'
 const LINK_FILE = 'content/link.md'
-const OUTPUT_DIR = 'public/json'
 const TABLE_START = '|GitHub Username|Nickname|Link Text|Link Address|Bio|'
 const TABLE_END = '|:--:|:--:|:--:|:--:|:--:|'
 

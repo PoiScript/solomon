@@ -22,12 +22,17 @@ yarn generate:post
 yarn generate:link
 yarn generate:rss
 
-# copy output files
+# copy json files
 
-output=( html json )
+json=( link.json post.json )
 
-for i in "${output[@]}"
+for i in "${json[@]}"
 do
-	cp public/$i ng/src/assets/$1 -r
-	cp public/$i react/src/$1 -r
+	cp public/$i ng/src/$i # Angular
+	cp public/$i react/src/$i # React
 done
+
+# copy html files
+
+cp public/html ng/src/html -r # Angular
+cp public/html react/public/html -r # React
