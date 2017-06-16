@@ -28,13 +28,13 @@ module.exports.parse = () => {
 
     if (info.tags) {
       info.tags = info.tags.map(tag => tag.toLowerCase())
+      info.tags.sort()
     }
 
     posts.push({
       title: info.title || 'not title',
       slug: info.slug || 'not slug',
       date: info.date || 'not date',
-      summary: info.summary || 'not summary',
       tags: info.tags || [],
       html: marked(file.substr(tokenEnd + 3).trim())
     })

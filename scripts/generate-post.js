@@ -26,12 +26,10 @@ if (!fs.existsSync(JSON_OUTPUT_DIR)) {
   fs.mkdirSync(JSON_OUTPUT_DIR)
 }
 
-fs.writeFile(`${JSON_OUTPUT_DIR}/post.json`,
-  JSON.stringify(posts.filter(post => post.slug !== 'about')),
-  (err) => {
-    if (err) {
-      console.error(err)
-    } else {
-      console.log(`[GENERATED] post.json`)
-    }
-  })
+fs.writeFile(`${JSON_OUTPUT_DIR}/post.json`, JSON.stringify(posts), (err) => {
+  if (err) {
+    console.error(err)
+  } else {
+    console.log(`[GENERATED] post.json`)
+  }
+})

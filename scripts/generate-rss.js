@@ -23,21 +23,19 @@ const feed = new RSS({
 
 const posts = render.parse()
 
-posts
-  .filter(post => post.slug !== 'about')
-  .forEach(post => {
-    feed.item({
-      title: post.title,
-      description: post.summary,
-      url: `${BLOG_URL}/post/${post.slug}`,
-      guid: post.slug,
-      categories: post.tags,
-      author: 'PoiScript',
-      date: post.date
-    })
+posts.forEach(post => {
+  feed.item({
+    title: post.title,
+    description: post.html,
+    url: `${BLOG_URL}/post/${post.slug}`,
+    guid: post.slug,
+    categories: post.tags,
+    author: 'PoiScript',
+    date: post.date
   })
+})
 
-fs.writeFile(`${OUTPUT_DIR}/atom.xml`, feed.xml({indent: true}), (err) => {
+fs.writeFile(`${OUTPUT_DIR}/atom.xml`, feed.xml(), (err) => {
   if (err) {
     console.error(err)
   } else {
