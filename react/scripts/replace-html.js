@@ -11,10 +11,10 @@ fs.readdirSync('build/post').forEach(item => {
   })
 })
 
-fs.readdirSync('src/html').forEach(item => {
+fs.readdirSync('public/html').forEach(item => {
   posts.push({
     filename: item.slice(0, -5),
-    content: fs.readFileSync(`src/html/${item}`, 'utf8')
+    content: fs.readFileSync(`public/html/${item}`, 'utf8')
   })
 })
 
