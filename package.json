@@ -15,7 +15,6 @@
     "react:test": "cd react && react-scripts test --env=jsdom",
     "react:eject": "cd react && react-scripts eject",
     "generate:post": "node scripts/generate-post",
-    "generate:link": "node scripts/generate-link",
     "generate:rss": "node scripts/generate-rss"
   },
   "private": true,

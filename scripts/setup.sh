@@ -12,14 +12,9 @@ do
 	cp public/$i react/public/$1 -r
 done
 
-# fetch post
-
-git clone --depth=1 https://github.com/PoiScript/Solomon-Post.git content
-
-# render markdown and link
+# render markdown
 
 yarn generate:post
-yarn generate:link
 yarn generate:rss
 
 # copy json files

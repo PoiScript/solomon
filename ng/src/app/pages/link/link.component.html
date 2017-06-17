@@ -2,11 +2,10 @@
   <h1 i18n class="primary-header">Link</h1>
   <p i18n>{{link?.count}} links</p>
   <md-nav-list>
-    <md-list-item *ngFor="let link of link.item">
-      <img md-list-avatar [src]="'https://github.com/' + link.github_username + '.png?size=40'">
-      <h3 md-line> {{link.link_text}} </h3>
-      <p md-line> {{link.display_name}} </p>
-      <p md-line> {{link.bio}} </p>
+    <md-list-item *ngFor="let link of links">
+      <img md-list-avatar [src]=link.avatar_url>
+      <h3 md-line> {{link.text}} </h3>
+      <p md-line> {{link.name}} </p>
     </md-list-item>
   </md-nav-list>
 </div>
