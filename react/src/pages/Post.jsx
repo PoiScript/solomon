@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import Main from '../components/Main'
 import Header from '../components/Header'
 import UpNext from '../components/UpNext'
+import Comment from '../components/Comment'
 
 class Post extends React.Component {
   componentWillReceiveProps (nextProps) {
@@ -42,6 +43,7 @@ class Post extends React.Component {
           )
         }
         <UpNext slug={this.props.post.slug} />
+        <Comment slug={this.props.post.slug} />
       </Main>
     )
   }
