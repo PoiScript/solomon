@@ -26,3 +26,9 @@ cp -R public/html react/public/html
 
 cp public/post.json ng/src/post.json
 cp -R public/html ng/src/html
+
+# save git commit hash to .env files as environment variables
+
+echo "REACT_APP_GIT_HASH=$(git rev-parse --short HEAD)" > react/.env
+cd content
+echo "REACT_APP_CONTENT_GIT_HASH=$(git rev-parse --short HEAD)" >> ../react/.env
