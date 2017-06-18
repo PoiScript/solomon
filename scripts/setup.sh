@@ -17,17 +17,12 @@ done
 yarn generate:post
 yarn generate:rss
 
-# copy json files
+# copy json & html to React directory
 
-json=( link.json post.json )
+cp public/post.json react/src/post.json
+cp -R public/html react/public/html
 
-for i in "${json[@]}"
-do
-	cp public/$i ng/src/$i # Angular
-	cp public/$i react/src/$i # React
-done
+# copy json & html to Angular directory
 
-# copy html files
-
-cp public/html ng/src/html -r # Angular
-cp public/html react/public/html -r # React
+cp public/post.json ng/src/post.json
+cp -R public/html ng/src/html
