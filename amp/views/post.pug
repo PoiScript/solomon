@@ -1,0 +1,15 @@
+extends template
+
+block title
+  title= `${post.title} - Solomon`
+
+block link
+  link(rel='amphtml' href=`https://poi.works/post/${post.slug}/`)
+  link(rel='canonical' href=`https://poi.works/amp/${post.slug}.html`)
+
+block linkedData
+  script(type='application/ld+json') !{JSON.stringify(ld)}
+
+block content
+  h3= post.title
+  article!= html

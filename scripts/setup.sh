@@ -17,6 +17,10 @@ done
 yarn generate:post
 yarn generate:rss
 
+# copy json to AMP directory
+
+cp public/post.json amp/post.json
+
 # copy json & html to React directory
 
 cp public/post.json react/src/post.json

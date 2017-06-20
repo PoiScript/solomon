@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const marked = require('marked')
+const minify = require('html-minifier').minify
 
 const MD_FILE_DIR = 'content'
 
@@ -31,12 +32,14 @@ module.exports.parse = () => {
       info.tags.sort()
     }
 
+    const html = marked(file.substr(tokenEnd + 3).trim())
+
     posts.push({
       title: info.title || 'not title',
       slug: info.slug || 'not slug',
       date: info.date || 'not date',
       tags: info.tags || [],
-      html: marked(file.substr(tokenEnd + 3).trim())
+      html: minify(html, { collapseWhitespace: true })
     })
   }
 

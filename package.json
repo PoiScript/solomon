@@ -7,6 +7,8 @@
   "author": "PoiScript <poiscript@gmail.com>",
   "scripts": {
     "setup": "bash scripts/setup.sh",
+    "amp:start": "nodemon amp/scripts/server.js",
+    "amp:build": "node amp/scripts/extra.js",
     "ng:start": "cd ng && yarn start",
     "ng:build": "cd ng && yarn build",
     "react:start": "cd react && react-scripts start",
@@ -14,6 +16,7 @@
     "react:watch-scss": "cd react && node-sass-chokidar src/ -o src/ && node-sass-chokidar src/ -o src/ --watch --recursive",
     "react:test": "cd react && react-scripts test --env=jsdom",
     "react:eject": "cd react && react-scripts eject",
+    "generate:amp": "node scripts/generate-amp",
     "generate:post": "node scripts/generate-post",
     "generate:rss": "node scripts/generate-rss"
   },
@@ -37,7 +40,10 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.1",
+    "html-minifier": "^3.5.2",
+    "jstransformer-scss": "^0.1.4",
     "node-sass-chokidar": "^0.0.2",
+    "nodemon": "^1.11.0",
     "react-scripts": "1.0.7",
     "standard": "^10.0.2"
   }
