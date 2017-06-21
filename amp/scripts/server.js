@@ -18,7 +18,6 @@ app.get('/post/:slug', (req, res) => {
     res.status(404).send('Not found')
   }
   const html = fs.readFileSync(`amp/html/${post.slug}.html`, 'utf8')
-  console.log(ld.getLinkedData(post))
   res.render('post', {post: post, html: html, ld: ld.getLinkedData(post)}, (err, html) => {
     if (err) {
       console.log(err)
