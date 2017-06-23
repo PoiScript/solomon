@@ -16,7 +16,6 @@
     "react:watch-scss": "cd react && node-sass-chokidar src/ -o src/ && node-sass-chokidar src/ -o src/ --watch --recursive",
     "react:test": "cd react && react-scripts test --env=jsdom",
     "react:eject": "cd react && react-scripts eject",
-    "generate:amp": "node scripts/generate-amp",
     "generate:post": "node scripts/generate-post",
     "generate:rss": "node scripts/generate-rss"
   },

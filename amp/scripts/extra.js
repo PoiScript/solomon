@@ -3,6 +3,7 @@ const pug = require('pug')
 const minify = require('html-minifier').minify
 const posts = require('../post.json')
 const ld = require('./linkedData')
+const parse = require('./render').parse
 
 const HTML_OUTPUT_DIR = 'dist/amp'
 
@@ -13,8 +14,7 @@ if (!fs.existsSync(HTML_OUTPUT_DIR)) {
 }
 
 posts.map(post => {
-  const html = fs.readFileSync(`amp/html/${post.slug}.html`, 'utf8')
-  const amphtml = compiledFunction({post: post, html: html, ld: ld.getLinkedData(post)})
+  const amphtml = compiledFunction({post: post, html: parse(post.slug), ld: ld.getLinkedData(post)})
   const mini = minify(amphtml, {collapseWhitespace: true, minifyCSS: true})
   fs.writeFile(`${HTML_OUTPUT_DIR}/${post.slug}.html`, mini, (err) => {
     if (err) {

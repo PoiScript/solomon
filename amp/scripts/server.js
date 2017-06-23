@@ -1,9 +1,9 @@
-const fs = require('fs')
 const express = require('express')
 const app = express()
 const minify = require('html-minifier').minify
 const posts = require('../post.json')
 const ld = require('./linkedData')
+const parse = require('./render').parse
 
 app.set('views', 'amp/views')
 app.set('view engine', 'pug')
@@ -17,8 +17,7 @@ app.get('/post/:slug', (req, res) => {
   if (!post) {
     res.status(404).send('Not found')
   }
-  const html = fs.readFileSync(`amp/html/${post.slug}.html`, 'utf8')
-  res.render('post', {post: post, html: html, ld: ld.getLinkedData(post)}, (err, html) => {
+  res.render('post', {post: post, html: parse(post.slug), ld: ld.getLinkedData(post)}, (err, html) => {
     if (err) {
       console.log(err)
     }
