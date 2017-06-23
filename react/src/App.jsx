@@ -12,8 +12,6 @@ import Post from './pages/Post'
 import About from './pages/About'
 import Tag from './pages/Tag'
 
-import posts from './post.json'
-
 import './markdown.css'
 
 injectTapEventPlugin()
@@ -31,11 +29,13 @@ const routes = [
     component: Links
   }, {
     path: '/tag/:tag',
-    component: Tag
+    render: ({ match }) => (
+      <Tag tag={match.params.tag} />
+    )
   }, {
     path: '/post/:slug',
     render: ({ match }) => (
-      <Post post={posts.find(p => p.slug === match.params.slug)} />
+      <Post slug={match.params.slug} />
     )
   }
 ]

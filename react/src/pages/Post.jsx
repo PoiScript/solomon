@@ -8,42 +8,63 @@ import Header from '../components/Header'
 import UpNext from '../components/UpNext'
 import Comment from '../components/Comment'
 
+import posts from '../post.json'
+
 class Post extends React.Component {
-  componentWillReceiveProps (nextProps) {
-    if (this.props.post.slug !== nextProps.post.slug) {
-      fetch(`/html/${nextProps.post.slug}.html`)
-        .then(res => res.text())
-        .then(data => {
-          this.setState({html: data})
-        })
-    }
+  componentWillMount () {
+    const index = posts.findIndex(post => post.slug === this.props.slug)
+    this.setState({
+      post: posts[index],
+      prior: posts[index - 1],
+      next: posts[index + 1]
+    })
   }
 
-  componentWillMount () {
-    fetch(`/html/${this.props.post.slug}.html`)
+  componentDidMount () {
+    fetch(`/html/${this.state.post.slug}.html`)
       .then(res => res.text())
       .then(data => {
-        this.setState({html: data})
+        this.setState({html: data, ...this.state})
       })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.slug !== nextProps.slug) {
+      const index = posts.findIndex(post => post.slug === nextProps.slug)
+      this.setState({html: null, post: posts[index]})
+      // TODO: if not post found (index === -1), route to not match component
+      fetch(`/html/${nextProps.slug}.html`)
+        .then(res => res.text())
+        .then(data => {
+          this.setState({
+            html: data,
+            post: posts[index],
+            prior: posts[index - 1],
+            next: posts[index + 1]
+          })
+        })
+    }
   }
 
   render () {
     return (
       <Main>
         <Helmet titleTemplate='%s - Solomon'>
-          <title>{this.props.post.title}</title>
+          <title>{this.state.post.title}</title>
           <script type='application/ld+json'>{this.getLinkedData()}</script>
         </Helmet>
-        <Header title={this.props.post.title} />
+        <Header title={this.state.post.title} />
         {
-          this.state ? (
+          this.state.html ? (
             <article dangerouslySetInnerHTML={{__html: this.state.html}} />
           ) : (
-            <article>{/* replace with `/public/post/${post.slug}.html` */}</article>
+            <article>
+              <i>Loading {this.state.post.slug} ...</i>
+            </article>
           )
         }
-        <UpNext slug={this.props.post.slug} />
-        <Comment slug={this.props.post.slug} />
+        <UpNext prior={this.state.prior} next={this.state.next} />
+        <Comment slug={this.state.post.slug} />
       </Main>
     )
   }
@@ -56,7 +77,7 @@ class Post extends React.Component {
         '@type': 'WebPage',
         '@id': 'https://google.com/BlogPosting'
       },
-      headline: this.props.post.title,
+      headline: this.state.post.title,
       image: {
         '@type': 'ImageObject',
         url: 'https://google.com/thumbnail1.jpg',
@@ -74,7 +95,7 @@ class Post extends React.Component {
         name: 'PoiScript',
         email: 'poiscript@gmail.com'
       },
-      description: this.props.post.summary
+      description: this.state.post.summary
     })
   }
 }

@@ -7,11 +7,13 @@ import PostList from '../components/PostList'
 
 import posts from '../post.json'
 
-const Tag = ({ match }) => (
+const Tag = ({ tag }) => (
   <Main>
-    <Helmet title={`#${match.params.tag} - Solomon`} />
-    <Header title={`#${match.params.tag}`} />
-    <PostList posts={posts.filter(post => post.tags.includes(match.params.tag))} />
+    <Helmet titleTemplate='#%s - Solomon'>
+      <title>{tag}</title>
+    </Helmet>
+    <Header title={`#${tag}`} />
+    <PostList posts={posts.filter(post => post.tags.includes(tag))} />
   </Main>
 )
 

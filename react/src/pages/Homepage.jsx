@@ -13,7 +13,7 @@ const styles = {
     textAlign: 'center',
     color: deepPurple50,
     backgroundColor: deepPurple500,
-    fontFamily: '"Rouge Script", cursive'
+    fontFamily: 'Rouge Script, cursive'
   },
   firstRow: {
     margin: 0,

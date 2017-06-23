@@ -7,25 +7,17 @@ const millisecondsInADay = 8.64e+7
  */
 
 class Forever17 extends React.Component {
-  constructor (props) {
-    super(props)
-
-    const birthday = new Date(props.birthday)
+  componentDidMount () {
+    const birthday = new Date(this.props.birthday)
     const seventeenYearsAgo = new Date().setFullYear(new Date().getFullYear() - 17)
-
-    /**
-     * @type {object}
-     * @property {string} birthday your birthday
-     */
-
-    this.state = {
+    this.setState = {
       days: (seventeenYearsAgo - birthday) / millisecondsInADay
     }
   }
 
   render () {
     return (
-      <span>17 岁 + {this.state.days ? Math.floor(this.state.days) : 'N'} 天</span>
+      <span>17 岁 + {this.state ? Math.floor(this.state.days) : 'N'} 天</span>
     )
   }
 }

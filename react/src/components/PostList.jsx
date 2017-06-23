@@ -46,7 +46,7 @@ const PostList = ({ posts }) => (
           }
         </div>
       )
-      : (<p>No Posts :(</p>)
+      : (<i>No Posts :(</i>)
     }
   </div>
 )
