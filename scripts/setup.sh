@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # install dependencies
 
 yarn
@@ -8,8 +10,8 @@ assets=( favicon.ico icon.png fonts )
 
 for i in "${assets[@]}"
 do
-	cp public/$i ng/src/$1 -r
-	cp public/$i react/public/$1 -r
+	cp public/${i} ng/src/${i} -r
+	cp public/${i} react/public/${i} -r
 done
 
 # render markdown
