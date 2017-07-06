@@ -20,8 +20,8 @@ const styles = {
 
 const routes = [
   {label: 'solomon', path: '/'},
-  {label: 'about', path: '/about'},
-  {label: 'link', path: '/link'}
+  {label: 'about', path: '/about/'},
+  {label: 'link', path: '/link/'}
 ]
 
 const Navbar = () => (

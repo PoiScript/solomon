@@ -1,31 +1,17 @@
 const fs = require('fs')
 const cheerio = require('cheerio')
+const posts = require('../src/post.json')
 
-const output = []
-const posts = []
-
-fs.readdirSync('build/post').forEach(item => {
-  output.push({
-    filename: item.slice(0, -5),
-    content: fs.readFileSync(`build/post/${item}`, 'utf8')
-  })
-})
-
-fs.readdirSync('public/html').forEach(item => {
-  posts.push({
-    filename: item.slice(0, -5),
-    content: fs.readFileSync(`public/html/${item}`, 'utf8')
-  })
-})
-
-output.forEach(i => {
-  const $ = cheerio.load(i.content, { decodeEntities: false })
-  $('article').html(posts.find(p => p.filename === i.filename).content)
-  fs.writeFile(`build/post/${i.filename}.html`, $.html(), (err) => {
+posts.forEach(post => {
+  const html = fs.readFileSync(`build/post/${post.slug}/index.html`, 'utf8')
+  const content = fs.readFileSync(`public/html/${post.slug}.html`, 'utf8')
+  const $ = cheerio.load(html, {decodeEntities: false})
+  $('article').html(content)
+  fs.writeFile(`build/post/${post.slug}/index.html`, $.html(), (err) => {
     if (err) {
       console.error(err)
     } else {
-      console.log(`[GENERATED] ${i.filename}.html`)
+      console.log(`[GENERATED] build/post/${post.slug}/index.html`)
     }
   })
 })

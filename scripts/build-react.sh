@@ -18,10 +18,6 @@ react-snapshot
 
 node scripts/replace-html.js
 
-# Move All HTML Files to /path/to/file/index.html
-
-node scripts/moving-html.js
-
 # Move Compiled Output to Deploy Directory
 
 cp -R build/. ../dist

@@ -31,7 +31,7 @@ const UpNext = ({ prior, next }) => (
     <Col xs={12} sm={6}>
       {
         prior ? (
-          <Link to={`/post/${prior.slug}`} style={styles.link}>
+          <Link to={`/post/${prior.slug}/`} style={styles.link}>
             <FontIcon className='solomon-icon'>prior</FontIcon>
             <div style={styles.prior}>
               <strong>Prior</strong>
@@ -46,7 +46,7 @@ const UpNext = ({ prior, next }) => (
     <Col xs={12} sm={6}>
       {
         next ? (
-          <Link to={`/post/${next.slug}`} style={styles.link}>
+          <Link to={`/post/${next.slug}/`} style={styles.link}>
             <div style={styles.next}>
               <strong>Next</strong>
               <span>{next.title}</span>

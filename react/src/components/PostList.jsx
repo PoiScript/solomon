@@ -32,12 +32,12 @@ const PostList = ({ posts }) => (
           {
             posts.map(post => (
               <div key={post.slug}>
-                <Link style={styles.title} to={`/post/${post.slug}`}>{post.title}</Link>
+                <Link style={styles.title} to={`/post/${post.slug}/`}>{post.title}</Link>
                 <p>
                   <span>{(new Date(post.date)).toDateString()}</span>
                   {
                     post.tags.map(tag => (
-                      <Link style={styles.tag} to={`/tag/${tag}`} key={tag}> #{tag} </Link>
+                      <Link style={styles.tag} to={`/tag/${tag}/`} key={tag}> #{tag} </Link>
                     ))
                   }
                 </p>
