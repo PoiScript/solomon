@@ -1,17 +1,15 @@
 const fs = require('fs')
-const render = require('./render')
+const path = require('path')
+const parse = require('./render').parse
 
-const JSON_OUTPUT_DIR = 'public'
-const HTML_OUTPUT_DIR = 'public/html'
+const posts = parse(path.resolve('public/content'))
 
-const posts = render.parse()
+if (!fs.existsSync('public/html')) {
+  fs.mkdirSync('public/html')
+}
 
 posts.forEach(post => {
-  if (!fs.existsSync(HTML_OUTPUT_DIR)) {
-    fs.mkdirSync(HTML_OUTPUT_DIR)
-  }
-
-  fs.writeFile(`${HTML_OUTPUT_DIR}/${post.slug}.html`, post.html, (err) => {
+  fs.writeFile(`public/html/${post.slug}.html`, post.html, (err) => {
     if (err) {
       console.error(err)
     } else {
@@ -22,14 +20,10 @@ posts.forEach(post => {
   delete post.html
 })
 
-if (!fs.existsSync(JSON_OUTPUT_DIR)) {
-  fs.mkdirSync(JSON_OUTPUT_DIR)
-}
-
-fs.writeFile(`${JSON_OUTPUT_DIR}/post.json`, JSON.stringify(posts), (err) => {
+fs.writeFile('public/post.json', JSON.stringify(posts), (err) => {
   if (err) {
     console.error(err)
   } else {
-    console.log(`[GENERATED] post.json`)
+    console.log('[GENERATED] post.json')
   }
 })

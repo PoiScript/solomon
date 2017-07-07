@@ -1,6 +1,7 @@
 const fs = require('fs')
 const RSS = require('rss')
-const render = require('./render')
+const path = require('path')
+const parse = require('./render').parse
 
 const OUTPUT_DIR = 'dist'
 const BLOG_TITLE = 'Solomon'
@@ -21,7 +22,7 @@ const feed = new RSS({
   language: BLOG_LANGUAGE
 })
 
-const posts = render.parse()
+const posts = parse(path.resolve('public/content'))
 
 posts.forEach(post => {
   feed.item({

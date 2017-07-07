@@ -27,7 +27,7 @@ git clone https://github.com/PoiScript/solomon.git
 2. (optional) update submodule: 
 
 ```
-cd content && git pull
+cd public/content && git pull
 ```
 
 3. setup:

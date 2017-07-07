@@ -3,14 +3,12 @@ const path = require('path')
 const marked = require('marked')
 const minify = require('html-minifier').minify
 
-const MD_FILE_DIR = 'content'
-
-module.exports.parse = () => {
+module.exports.parse = (dir) => {
   const files = []
 
-  fs.readdirSync(MD_FILE_DIR).forEach(item => {
+  fs.readdirSync(dir).forEach(item => {
     if (path.extname(item) === '.md' && item !== 'link.md') {
-      files.push(fs.readFileSync(`${MD_FILE_DIR}/${item}`, 'utf8'))
+      files.push(fs.readFileSync(`${dir}/${item}`, 'utf8'))
     }
   })
 
