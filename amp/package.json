@@ -1,0 +1,20 @@
+{
+  "name": "solomon-amp",
+  "version": "0.0.2",
+  "description": "AMP Blog Site for PoiScript",
+  "license": "MIT",
+  "repository": "git@github.com:PoiScript/solomon.git",
+  "author": "PoiScript <poiscript@gmail.com>",
+  "scripts": {
+    "start": "nodemon scripts/server.js",
+    "build": "node scripts/extra.js"
+  },
+  "private": true,
+  "devDependencies": {
+    "express": "^4.15.3",
+    "html-minifier": "^3.5.2",
+    "jstransformer-scss": "^0.1.4",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-rc.2"
+  }
+}

@@ -1,8 +1,9 @@
 const fs = require('fs')
+const path = require('path')
 const marked = require('marked')
 const renderer = new marked.Renderer()
 
-const MD_FILE_DIR = 'content'
+const dir = path.resolve('../public/content')
 
 renderer.image = (href, title, text) => {
   return `<amp-img src='${href}' layout='responsive' height='480' width='960'
@@ -14,7 +15,7 @@ renderer.image = (href, title, text) => {
 }
 
 module.exports.parse = (slug) => {
-  const md = fs.readFileSync(`${MD_FILE_DIR}/${slug}.md`, 'utf8')
+  const md = fs.readFileSync(`${dir}/${slug}.md`, 'utf8')
 
   const tokenEnd = md.indexOf('```', 1)
 

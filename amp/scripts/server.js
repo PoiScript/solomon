@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
 const minify = require('html-minifier').minify
-const posts = require('../post.json')
+const posts = require('../public/post.json')
 const ld = require('./linkedData')
 const parse = require('./render').parse
 
-app.set('views', 'amp/views')
+app.set('views', 'views')
 app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
