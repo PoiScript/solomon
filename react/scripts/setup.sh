@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# install dependencies
+
+yarn
+
 # save git commit hash to .env files as environment variables
 
 echo "REACT_APP_GIT_HASH=$(git rev-parse --short HEAD)" > .env

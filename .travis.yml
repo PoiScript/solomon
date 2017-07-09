@@ -4,19 +4,15 @@ node_js:
 
 before_script:
   - yarn setup
+  - cd amp/ && yarn
+  - cd ../react/ && yarn setup
 
-matrix:
-  include:
-    - env: BUILD_DIR='amp'
-    - env: BUILD_DIR='react'
 script:
-  - cd $BUILD_DIR
-  - yarn
-  - yarn setup
-  - yarn build
+  - cd $TRAVIS_BUILD_DIR
+  - yarn amp:build
+  - yarn react:build
 
 after_success:
-  - cd $TRAVIS_BUILD_DIR
   - yarn global add firebase-tools
   - test $TRAVIS_BRANCH = "dev" && firebase use dev
   - firebase deploy --token $FIREBASE_TOKEN
