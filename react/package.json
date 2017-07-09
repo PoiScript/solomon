@@ -6,6 +6,7 @@
   "repository": "git@github.com:PoiScript/solomon.git",
   "author": "PoiScript <poiscript@gmail.com>",
   "scripts": {
+    "setup": "bash scripts/setup.sh",
     "start": "react-scripts start",
     "build": "yarn build-scss && react-scripts build && react-snapshot && node scripts/replace-html.js && cp -r build/ ../dist",
     "watch-scss": "yarn build-scss && node-sass-chokidar src/ -o src/ --watch --recursive",

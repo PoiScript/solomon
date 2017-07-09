@@ -3,6 +3,8 @@
 
 # assets
 /public
+markdown.scss
+post.json
 
 # logs
 npm-debug.log*
@@ -11,4 +13,5 @@ yarn-error.log*
 
 # compiled output
 /build
+.env
 markdown.css
