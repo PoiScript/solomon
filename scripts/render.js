@@ -1,47 +1,61 @@
-const fs = require('fs')
-const path = require('path')
+const pug = require('pug')
 const marked = require('marked')
 const minify = require('html-minifier').minify
+const ampRenderer = new marked.Renderer()
 
-module.exports.parse = (dir) => {
-  const files = []
+ampRenderer.image = (href, title, text) => {
+  return `<amp-img src='${href}' layout='responsive' height='480' width='960'
+  ${title ? `title='${title}'` : ''} ${text ? `alt='${text}'` : ''}>
+  <noscript>
+    <img src='${href}' ${title ? `title='${title}'` : ''} ${text ? `alt='${text}'` : ''} />
+  </noscript>
+</amp-img>`
+}
 
-  fs.readdirSync(dir).forEach(item => {
-    if (path.extname(item) === '.md' && item !== 'link.md') {
-      files.push(fs.readFileSync(`${dir}/${item}`, 'utf8'))
-    }
-  })
+const compilePost = pug.compileFile('amp/post.pug')
 
-  const posts = []
+function getLinkedData (post) {
+  return {
+    '@context': 'http://schema.org',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://google.com/BlogPosting'
+    },
+    headline: post.title,
+    image: {
+      '@type': 'ImageObject',
+      url: 'https://google.com/thumbnail1.jpg',
+      height: 800,
+      width: 800
+    },
+    datePublished: '2015-02-05T08:00:00+08:00',
+    dateModified: '2015-02-05T09:20:00+08:00',
+    author: {
+      '@type': 'Person',
+      name: 'PoiScript'
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'PoiScript',
+      email: 'poiscript@gmail.com'
+    },
+    description: 'An about page for Solomon'
+  }
+}
 
-  for (const file of files) {
-    const tokenStart = file.indexOf('```json')
-    const tokenEnd = file.indexOf('```', 1)
+module.exports = (post, amp = false) => {
+  let html
 
-    if (tokenStart === -1) {
-      console.error('[ERROR] Markdown Metadata Missed')
-      continue
-    }
-
-    const info = JSON.parse(file.substr(tokenStart + 8, tokenEnd - 9))
-
-    if (info.tags) {
-      info.tags = info.tags.map(tag => tag.toLowerCase())
-      info.tags.sort()
-    }
-
-    const html = marked(file.substr(tokenEnd + 3).trim())
-
-    posts.push({
-      title: info.title || 'not title',
-      slug: info.slug || 'not slug',
-      date: info.date || 'not date',
-      tags: info.tags || [],
-      html: minify(html, { collapseWhitespace: true })
+  if (!amp) {
+    html = marked(post.content)
+  } else {
+    html = compilePost({
+      ...post,
+      ld: getLinkedData(post),
+      html: marked(post.content, {renderer: ampRenderer})
     })
   }
 
-  posts.sort((p1, p2) => Date.parse(p2.date) - Date.parse(p1.date))
-
-  return posts
+  return minify(html, {collapseWhitespace: true})
 }

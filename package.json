@@ -19,7 +19,12 @@
   },
   "private": true,
   "devDependencies": {
+    "express": "^4.15.3",
+    "html-minifier": "^3.5.2",
+    "jstransformer-scss": "^0.1.4",
     "marked": "^0.3.6",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-rc.2",
     "rss": "^1.2.2",
     "standard": "^10.0.2"
   }

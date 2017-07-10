@@ -1,0 +1,60 @@
+nav {
+  box-sizing: border-box;
+  background-color: #673ab7;
+  height: 56px;
+  padding: 0 12px;
+}
+
+nav a {
+  display: inline-block;
+  font-family: Roboto, sans-serif;
+  margin: 10px 0;
+  height: 36px;
+  line-height: 36px;
+  min-width: 88px;
+  text-align: center;
+}
+
+nav a span {
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #eceff1;
+}
+
+main {
+  max-width: 960px;
+  margin: auto;
+  padding: 16px;
+}
+
+main h3 {
+  font-size: 30px;
+  font-weight: 300;
+  padding: 50px 0;
+}
+
+footer {
+  padding-top: 80px;
+}
+
+.link {
+  padding: 24px 0;
+  text-align: center;
+  background-color: #37474F;
+}
+
+.link a {
+  margin: 10px;
+  color: #eceff1;
+  text-decoration: none;
+}
+
+.license {
+  font-size: 13px;
+  padding: 48px 0;
+  text-align: center;
+  color: #90a4ae;
+  background-color: #263238;
+}

@@ -32,5 +32,13 @@
     "react-scripts": "1.0.7",
     "node-sass": "^4.5.3",
     "react-snapshot": "^1.1.0"
+  },
+  "proxy": {
+    "/amp": {
+      "target": "http://localhost:8000"
+    },
+    "/html": {
+      "target": "http://localhost:8000"
+    }
   }
 }

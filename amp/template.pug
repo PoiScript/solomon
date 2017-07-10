@@ -8,8 +8,8 @@ html(amp lang='zh-Hans')
     meta(name='viewport' content='width=device-width,minimum-scale=1,initial-scale=1')
     block linkedData
     style(amp-custom)
+      include index.css
       include:scss ../public/markdown.scss
-      include:scss ../index.scss
     style(amp-boilerplate).
       body {
         -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
@@ -74,16 +74,16 @@ html(amp lang='zh-Hans')
   body
     nav
       div
-        a(href="https://poi.works")
+        a(href="/")
           span SOLOMON
-        a(href="https://poi.works/about")
+        a(href="/about")
           span ABOUT
-        a(href="https://poi.works/link")
+        a(href="/link")
           span LINK
     main
       block content
     footer
       section.link
-        a(href="https://poi.works/atom.xml") RSS
+        a(href="/atom.xml") RSS
         a(href="https://github.com/PoiScript/Solomon") GitHub
       section.license Content Licensed Under CC-BY-SA-4.0

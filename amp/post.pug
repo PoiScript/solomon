@@ -8,8 +8,8 @@ block link
   link(rel='canonical' href=`https://poi.works/amp/${post.slug}.html`)
 
 block linkedData
-  script(type='application/ld+json') !{JSON.stringify(ld)}
+  script(type='application/ld+json') !{JSON.stringify(post.ld)}
 
 block content
   h3= post.title
-  article!= html
+  article!= post.html
