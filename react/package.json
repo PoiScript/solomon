@@ -8,7 +8,7 @@
   "scripts": {
     "setup": "bash scripts/setup.sh",
     "start": "react-scripts start",
-    "build": "yarn build-scss && react-scripts build && react-snapshot && node scripts/replace-html.js && cp -r build/ ../dist",
+    "build": "yarn build-scss && react-scripts build && react-snapshot && node scripts/replace-html.js && mv build/* ../public/",
     "watch-scss": "yarn build-scss && node-sass-chokidar src/ -o src/ --watch --recursive",
     "build-scss": "node-sass-chokidar src/ -o src/ --output-style compressed",
     "test": "react-scripts test --env=jsdom",
@@ -33,12 +33,5 @@
     "node-sass": "^4.5.3",
     "react-snapshot": "^1.1.0"
   },
-  "proxy": {
-    "/amp": {
-      "target": "http://localhost:8000"
-    },
-    "/html": {
-      "target": "http://localhost:8000"
-    }
-  }
+  "proxy": "http://localhost:8000"
 }

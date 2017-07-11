@@ -5,11 +5,13 @@
 /.idea
 
 # compiled output
-/dist
-/public/amp
-/public/html
-/public/atom.xml
-post.json
+public/*
+!public/*.scss
+!public/fonts/
+!public/icon.png
+!public/markdown/
+!public/favicon.ico
+!public/manifest.json
 
 # logs
 npm-debug.log*
