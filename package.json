@@ -6,21 +6,18 @@
   "repository": "git@github.com:PoiScript/solomon.git",
   "author": "PoiScript <poiscript@gmail.com>",
   "scripts": {
-    "setup": "bash scripts/setup.sh",
-    "amp:start": "cd amp && yarn start",
-    "amp:build": "cd amp && yarn build",
+    "server": "http-server -p 8000",
+    "writer": "node scripts/writer",
     "ng:start": "cd ng && yarn start",
     "ng:build": "cd ng && yarn build",
     "react:setup": "cd react && yarn setup",
     "react:start": "cd react && yarn start",
-    "react:build": "cd react && yarn build",
-    "generate:post": "node scripts/generate-post",
-    "generate:rss": "node scripts/generate-rss"
+    "react:build": "cd react && yarn build"
   },
   "private": true,
   "devDependencies": {
-    "express": "^4.15.3",
     "html-minifier": "^3.5.2",
+    "http-server": "^0.10.0",
     "jstransformer-scss": "^0.1.4",
     "marked": "^0.3.6",
     "nodemon": "^1.11.0",
