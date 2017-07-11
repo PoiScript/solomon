@@ -6,7 +6,7 @@ const render = require('./render')
 const output = path.resolve('public')
 const ampDir = path.resolve('public/amp')
 const htmlDir = path.resolve('public/html')
-const markdownDir = path.resolve('public/content')
+const markdownDir = path.resolve('public/markdown')
 
 const posts = []
 
