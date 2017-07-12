@@ -17,7 +17,7 @@ import {LinkComponent} from 'app/pages/link';
 import {SharedModule} from 'app/shared/shared.module';
 import {AboutComponent} from 'app/pages/about';
 import {TagComponent} from 'app/pages/tag';
-import {PostService} from 'app/shared/post-service';
+import {PostService} from './shared/post-service';
 
 export function init (postService: PostService) {
   return () => postService.load();

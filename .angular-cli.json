@@ -5,16 +5,8 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "../public",
-      "assets": [
-        "assets",
-        "html",
-        "post.json",
-        "link.json",
-        "favicon.ico",
-        "icon.png"
-      ],
+      "root": "angular/src",
+      "outDir": "public/ng",
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -27,7 +19,6 @@
         "markdown.scss",
         "theme.scss"
       ],
-      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -37,27 +28,26 @@
   ],
   "e2e": {
     "protractor": {
-      "config": "./protractor.conf.js"
+      "config": "./angular/protractor.conf.js"
     }
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "project": "angular/src/tsconfig.app.json"
     },
     {
-      "project": "src/tsconfig.spec.json"
+      "project": "angular/src/tsconfig.spec.json"
     },
     {
-      "project": "e2e/tsconfig.e2e.json"
+      "project": "angular/e2e/tsconfig.e2e.json"
     }
   ],
   "test": {
     "karma": {
-      "config": "./karma.conf.js"
+      "config": "./angular/karma.conf.js"
     }
   },
   "defaults": {
-    "styleExt": "scss",
-    "component": {}
+    "styleExt": "scss"
   }
 }

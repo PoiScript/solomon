@@ -8,6 +8,14 @@ const ampDir = path.resolve('public/amp')
 const htmlDir = path.resolve('public/html')
 const markdownDir = path.resolve('public/markdown')
 
+if (!fs.existsSync(ampDir)) {
+  fs.mkdirSync(ampDir)
+}
+
+if (!fs.existsSync(htmlDir)) {
+  fs.mkdirSync(htmlDir)
+}
+
 const posts = []
 
 fs.readdirSync(markdownDir).forEach(item => {
