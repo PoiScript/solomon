@@ -8,30 +8,10 @@
   "scripts": {
     "setup": "bash scripts/setup.sh",
     "start": "react-scripts start",
-    "build": "yarn build-scss && react-scripts build && react-snapshot && node scripts/replace-html.js && mv build/* ../public/",
-    "watch-scss": "yarn build-scss && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "build-scss": "node-sass-chokidar src/ -o src/ --output-style compressed",
+    "build": "react-scripts build && react-snapshot && node scripts/replace-html.js && mv build/* ../public/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "private": true,
-  "dependencies": {
-    "firebase": "^4.1.2",
-    "material-ui": "^0.18.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-flexbox-grid": "^1.1.3",
-    "react-helmet": "^5.1.3",
-    "react-router-dom": "^4.1.1",
-    "react-tap-event-plugin": "^2.0.1",
-    "whatwg-fetch": "^2.0.3"
-  },
-  "devDependencies": {
-    "cheerio": "^1.0.0-rc.1",
-    "node-sass-chokidar": "^0.0.2",
-    "react-scripts": "1.0.7",
-    "node-sass": "^4.5.3",
-    "react-snapshot": "^1.1.0"
-  },
   "proxy": "http://localhost:8000"
 }

@@ -59,13 +59,20 @@ fs.readdirSync(markdownDir).forEach(item => {
   }
 })
 
-fs.writeFile(`${output}/post.json`, JSON.stringify(posts.map(p => delete p.content)), (err) => {
-  if (err) {
-    console.error(err)
-  } else {
-    console.log(`[GENERATED] ${output}/post.json`)
-  }
-})
+fs.writeFile(`${output}/post.json`,
+  JSON.stringify(posts.map(p => {
+    delete p.ld
+    delete p.html
+    delete p.content
+    return p
+  })),
+  err => {
+    if (err) {
+      console.error(err)
+    } else {
+      console.log(`[GENERATED] ${output}/post.json`)
+    }
+  })
 
 fs.writeFile(`${output}/atom.xml`, rss(posts), (err) => {
   if (err) {

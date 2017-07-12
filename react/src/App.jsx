@@ -12,8 +12,6 @@ import Post from './pages/Post'
 import About from './pages/About'
 import Tag from './pages/Tag'
 
-import './markdown.css'
-
 injectTapEventPlugin()
 
 const routes = [

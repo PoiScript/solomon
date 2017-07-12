@@ -3,14 +3,12 @@ node_js:
   - "7"
 
 before_script:
-  - yarn setup
-  - cd amp/ && yarn
-  - cd ../react/ && yarn setup
+  - yarn
 
 script:
-  - cd $TRAVIS_BUILD_DIR
-  - yarn amp:build
-  - yarn react:build
+  - yarn writer
+  - yarn react:setup
+  - yarn build
 
 after_success:
   - yarn global add firebase-tools
