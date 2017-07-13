@@ -8,7 +8,7 @@
   "scripts": {
     "setup": "bash scripts/setup.sh",
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot && node scripts/replace-html.js && mv build/* ../public/",
+    "build": "react-scripts build && react-snapshot",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

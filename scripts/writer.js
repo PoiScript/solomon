@@ -6,6 +6,7 @@ const render = require('./render')
 const output = path.resolve('public')
 const ampDir = path.resolve('public/amp')
 const htmlDir = path.resolve('public/html')
+const reactSrcDir = path.resolve('react/src')
 const markdownDir = path.resolve('public/markdown')
 
 if (!fs.existsSync(ampDir)) {
@@ -41,43 +42,22 @@ fs.readdirSync(markdownDir).forEach(item => {
 
     post.content = markdown.substr(tokenEnd + 3)
 
-    fs.writeFile(`${htmlDir}/${post.slug}.html`, render(post), (err) => {
-      if (err) {
-        console.error(err)
-      } else {
-        console.log(`[GENERATED] ${htmlDir}/${post.slug}.html`)
-      }
-    })
+    fs.writeFileSync(`${htmlDir}/${post.slug}.html`, render(post))
 
-    fs.writeFile(`${ampDir}/${post.slug}.html`, render(post, true), (err) => {
-      if (err) {
-        console.error(err)
-      } else {
-        console.log(`[GENERATED] ${ampDir}/${post.slug}.html`)
-      }
-    })
+    fs.writeFileSync(`${ampDir}/${post.slug}.html`, render(post, true))
   }
 })
 
-fs.writeFile(`${output}/post.json`,
-  JSON.stringify(posts.map(p => {
-    delete p.ld
-    delete p.html
-    delete p.content
-    return p
-  })),
-  err => {
-    if (err) {
-      console.error(err)
-    } else {
-      console.log(`[GENERATED] ${output}/post.json`)
-    }
-  })
+posts.sort((a, b) => (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0))
 
-fs.writeFile(`${output}/atom.xml`, rss(posts), (err) => {
-  if (err) {
-    console.error(err)
-  } else {
-    console.log(`[GENERATED] ${output}/atom.xml`)
-  }
-})
+fs.writeFileSync(`${output}/atom.xml`, rss(posts))
+
+const json = JSON.stringify(posts.map(p => {
+  delete p.ld
+  delete p.html
+  delete p.content
+  return p
+}))
+
+fs.writeFileSync(`${output}/post.json`, json)
+fs.writeFileSync(`${reactSrcDir}/post.json`, json)

@@ -6,9 +6,7 @@ before_script:
   - yarn
 
 script:
-  - yarn writer
-  - yarn react:setup
-  - yarn build
+  - bash scripts/build.sh
 
 after_success:
   - yarn global add firebase-tools
