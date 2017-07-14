@@ -31,7 +31,7 @@ export class LinkComponent {
       'avatar_url': 'https://github.com/felixonmars.png?size=200',
       'name': 'Felix Yan',
       'text': 'Felix\'s Blog',
-      'address': 'http://blog.felixc.at/'
+      'address': 'https://blog.felixc.at/'
     }, {
       'avatar_url': 'https://github.com/PeterCxy.png?size=200',
       'name': 'PeterCxy',
@@ -46,12 +46,17 @@ export class LinkComponent {
       'avatar_url': 'https://github.com/VOID001.png?size=200',
       'name': 'VOID001',
       'text': 'VOID001\'s WOWO',
-      'address': 'https://voidisprogramer.com'
+      'address': 'https://void-shana.moe/'
     }, {
       'avatar_url': 'https://github.com/wengxt.png?size=200',
       'name': 'CS Slayer',
       'text': '恋符「Master Spark」',
-      'address': 'https://marisa-kirisa.me'
+      'address': 'https://marisa-kirisa.me/'
+    }, {
+      'avatar_url': 'https://github.com/xiaoyu2016.png?size=200',
+      'name': 'NyanRabbit',
+      'text': '伊妮卡丽因 - 某兔子の御用花园',
+      'address': 'https://www.rabbittu.com/'
     }
   ];
 
