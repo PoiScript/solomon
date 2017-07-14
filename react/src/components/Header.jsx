@@ -1,5 +1,10 @@
 import React from 'react'
 
+/**
+ * @param props
+ * @param props.title
+ * @constructor
+ */
 const Header = (props) => (
   <h3 style={{
     fontSize: '30px',
@@ -8,4 +13,7 @@ const Header = (props) => (
   }}>{props.title}</h3>
 )
 
+/**
+ * header component
+ */
 export default Header

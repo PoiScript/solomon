@@ -5,8 +5,15 @@ import Main from '../components/Main'
 import Header from '../components/Header'
 import PostList from '../components/PostList'
 
+/**
+ * @type {Post[]}
+ */
 import posts from '../post.json'
 
+/**
+ * @param {string} tag
+ * @constructor
+ */
 const Tag = ({ tag }) => (
   <Main>
     <Helmet titleTemplate='#%s - Solomon'>
@@ -17,4 +24,7 @@ const Tag = ({ tag }) => (
   </Main>
 )
 
+/**
+ * tag component
+ */
 export default Tag

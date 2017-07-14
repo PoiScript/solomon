@@ -26,6 +26,11 @@ const styles = {
   }
 }
 
+/**
+ * @param {Post} prior
+ * @param {Post} next
+ * @constructor
+ */
 const UpNext = ({ prior, next }) => (
   <Row style={styles.row}>
     <Col xs={12} sm={6}>
@@ -61,4 +66,7 @@ const UpNext = ({ prior, next }) => (
   </Row>
 )
 
+/**
+ * upnext component, showing the recent posts
+ */
 export default UpNext

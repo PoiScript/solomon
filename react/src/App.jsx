@@ -38,6 +38,9 @@ const routes = [
   }
 ]
 
+/**
+ * @constructor
+ */
 const App = () => (
   <Router>
     <MuiThemeProvider>
@@ -55,4 +58,7 @@ const App = () => (
   </Router>
 )
 
+/**
+ * app component
+ */
 export default App

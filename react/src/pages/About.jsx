@@ -5,6 +5,9 @@ import Main from '../components/Main'
 import Header from '../components/Header'
 import Forever17 from '../components/Forever17'
 
+/**
+ * @type {string}
+ */
 const linkedData = JSON.stringify({
   '@context': 'http://schema.org',
   '@type': 'BlogPosting',
@@ -33,6 +36,9 @@ const linkedData = JSON.stringify({
   description: 'An about page for Solomon'
 })
 
+/**
+ * @constructor
+ */
 const About = () => (
   <Main>
     <Helmet title='About - Solomon'>
@@ -68,4 +74,7 @@ const About = () => (
   </Main>
 )
 
+/**
+ * about component
+ */
 export default About

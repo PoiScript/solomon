@@ -23,6 +23,10 @@ const styles = {
   }
 }
 
+/**
+ * @param {Post[]} posts
+ * @constructor
+ */
 const PostList = ({ posts }) => (
   <div>
     {posts.length
@@ -51,4 +55,7 @@ const PostList = ({ posts }) => (
   </div>
 )
 
+/**
+ * postlist component
+ */
 export default PostList

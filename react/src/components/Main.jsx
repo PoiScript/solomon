@@ -1,5 +1,9 @@
 import React from 'react'
 
+/**
+ * @param {Object} props
+ * @constructor
+ */
 const Main = (props) => (
   <main style={{
     maxWidth: '960px',
@@ -8,4 +12,7 @@ const Main = (props) => (
   }} {...props} />
 )
 
+/**
+ * main component
+ */
 export default Main
