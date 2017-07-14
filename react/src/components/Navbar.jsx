@@ -18,12 +18,22 @@ const styles = {
   }
 }
 
+/**
+ * @typedef {Object} Route
+ * @property {string} label - text showing on the button
+ * @property {string} path - relative path
+ *
+ * @type {Route[]}
+ */
 const routes = [
   {label: 'solomon', path: '/'},
   {label: 'about', path: '/about/'},
   {label: 'link', path: '/link/'}
 ]
 
+/**
+ * @constructor
+ */
 const Navbar = () => (
   <Toolbar style={styles.toolbar}>
     <ToolbarGroup>
@@ -43,4 +53,7 @@ const Navbar = () => (
   </Toolbar>
 )
 
+/**
+ * navbar component
+ */
 export default Navbar

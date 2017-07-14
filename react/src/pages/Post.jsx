@@ -8,9 +8,16 @@ import Header from '../components/Header'
 import UpNext from '../components/UpNext'
 import Comment from '../components/Comment'
 
+/**
+ * a punch of posts
+ * @type {Post[]}
+ */
 import posts from '../post.json'
 
 class Post extends React.Component {
+  /**
+   * called before mounting
+   */
   componentWillMount () {
     const index = posts.findIndex(post => post.slug === this.props.slug)
     this.setState({
@@ -20,6 +27,9 @@ class Post extends React.Component {
     })
   }
 
+  /**
+   * called after the component is mounted
+   */
   componentDidMount () {
     fetch(`/html/${this.state.post.slug}.html`)
       .then(res => res.text())
@@ -28,6 +38,10 @@ class Post extends React.Component {
       })
   }
 
+  /**
+   * called before component receives new props
+   * @param {Post} nextProps
+   */
   componentWillReceiveProps (nextProps) {
     if (this.props.slug !== nextProps.slug) {
       const index = posts.findIndex(post => post.slug === nextProps.slug)
@@ -46,6 +60,10 @@ class Post extends React.Component {
     }
   }
 
+  /**
+   * render
+   * @returns {ReactElement} markup
+   */
   render () {
     return (
       <Main>
@@ -69,6 +87,10 @@ class Post extends React.Component {
     )
   }
 
+  /**
+   * return linked data based on the state
+   * @return {string} linked data
+   */
   getLinkedData () {
     return JSON.stringify({
       '@context': 'http://schema.org',
@@ -100,4 +122,7 @@ class Post extends React.Component {
   }
 }
 
+/**
+ * post component
+ */
 export default Post

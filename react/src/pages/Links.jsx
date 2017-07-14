@@ -6,6 +6,19 @@ import { Helmet } from 'react-helmet'
 import Main from '../components/Main'
 import Header from '../components/Header'
 
+/**
+ * Link to another website.
+ * @typedef {Object} Link
+ * @property {string} avatar_url - owner avatar
+ * @property {string} name - owner
+ * @property {string} text - description
+ * @property {string} address - address
+ */
+
+/**
+ * a bunch of links
+ * @type {Link[]}
+ */
 const links = [
   {
     'avatar_url': 'https://github.com/FiveYellowMice.png?size=200',
@@ -60,6 +73,9 @@ const links = [
   }
 ]
 
+/**
+ * @constructor
+ */
 const Links = () => (
   <Main>
     <Helmet title='Link - Solomon' />
@@ -78,4 +94,7 @@ const Links = () => (
   </Main>
 )
 
+/**
+ * Links Component
+ */
 export default Links

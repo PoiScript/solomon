@@ -25,12 +25,24 @@ const styles = {
   }
 }
 
-const links = [
-  {address: 'https://poi.works/atom.xml', text: 'RSS'},
-  {address: 'https://github.com/PoiScript/Solomon', text: 'GitHub'},
-  {address: 'https://amp.poi.works', text: 'AMP'}
+/**
+ * @typedef {Object} HyperLink
+ * @property {string} href
+ * @property {string} text
+ *
+ * @type {HyperLink[]}
+ */
+const hyperlinks = [
+  {address: '/atom.xml', text: 'RSS'},
+  {address: 'https://github.com/PoiScript/Solomon', text: 'GitHub'}
 ]
 
+/**
+ * generate a link to specific commit in specific repo
+ * @param {string} hash
+ * @param {string} repo
+ * @constructor
+ */
 const Commit = ({ hash, repo }) => (
   <span>
     {
@@ -41,12 +53,15 @@ const Commit = ({ hash, repo }) => (
   </span>
 )
 
+/**
+ * @constructor
+ */
 const Footer = () => (
   <div style={{paddingTop: '80px'}}>
     <section style={styles.section}>
       {
-        links.map(link => (
-          <a style={styles.link} key={link.text} href={link.address}>{link.text}</a>
+        hyperlinks.map((hyperlink, i) => (
+          <a style={styles.link} key={i} href={hyperlink.href}>{hyperlink.text}</a>
         ))
       }
     </section>
@@ -59,4 +74,7 @@ const Footer = () => (
   </div>
 )
 
+/**
+ * footer component
+ */
 export default Footer

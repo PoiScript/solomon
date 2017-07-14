@@ -29,12 +29,19 @@ const styles = {
 }
 
 class Comment extends Component {
+  /**
+   * called before mounting
+   */
   componentWillMount () {
     database().ref(`/comment/${this.props.slug}`).once('value').then(snap => {
       this.setState({comments: snap.val()})
     })
   }
 
+  /**
+   * called before component receives new props
+   * @param {Post} nextProps
+   */
   componentWillReceiveProps (nextProps) {
     if (nextProps.slug !== this.props.slug) {
       database().ref(`/comment/${nextProps.slug}`).once('value').then(snap => {
@@ -43,6 +50,10 @@ class Comment extends Component {
     }
   }
 
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
   render () {
     return (
       <div>
@@ -78,4 +89,7 @@ class Comment extends Component {
   }
 }
 
+/**
+ * comment component, showing comment get from firebase database
+ */
 export default Comment
