@@ -11,6 +11,7 @@ script:
 after_success:
   - yarn global add firebase-tools
   - test $TRAVIS_BRANCH = "dev" && firebase use dev
+  - test $TRAVIS_BRANCH = "master" && firebase use default
   - firebase deploy --token $FIREBASE_TOKEN
 
 notifications:
