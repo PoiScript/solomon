@@ -9,32 +9,30 @@ _Blog Site for PoiScript_
 structure
 ---
 
-1. `react` - a react app bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app)
+1. `amp` - template for extracting AMP HTML
 
-2. `ng` - an angular app bootstrapped with [angular-cli](https://github.com/angular/angular-cli)
+2. `angular` - an angular app bootstrapped with [angular-cli](https://github.com/angular/angular-cli)
 
-usage
+3. `public` - static files, also the deploy directory
+
+4. `react` - a react app bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app)
+
+requirements
 ---
 
-1. clone it:
+- node.js
+
+- yarn
+
+build
+---
 
 ```
-git clone https://github.com/PoiScript/solomon.git
+$ yarn
+$ bash scripts/build.sh
 ```
 
-2. (optional) update submodule: 
+license
+---
 
-```
-cd public/markdown && git pull
-```
-
-3. setup:
-
-```
-yarn setup
-```
-
-4. build:
-```
-yarn react:build
-```
+[MIT](https://github.com/PoiScript/solomon/blob/master/LICENSE)
