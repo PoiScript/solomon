@@ -6,12 +6,11 @@
   "repository": "git@github.com:PoiScript/solomon.git",
   "author": "PoiScript <poiscript@gmail.com>",
   "scripts": {
-    "build": "yarn build-scss && yarn react:build",
-    "build-scss": "node-sass public/ -o public/ --output-style compressed",
-    "react:build": "cd react && yarn build",
-    "react:setup": "cd react && yarn setup",
-    "react:start": "cd react && yarn start",
-    "server": "http-server -p 8000",
+    "build": "react-scripts build && react-snapshot",
+    "eject": "react-scripts eject",
+    "scss": "node-sass public/ -o public/ --output-style compressed",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom",
     "writer": "node scripts/writer"
   },
   "private": true,
@@ -29,7 +28,6 @@
   "devDependencies": {
     "cheerio": "^1.0.0-rc.1",
     "html-minifier": "^3.5.2",
-    "http-server": "^0.10.0",
     "marked": "^0.3.6",
     "node-sass": "^4.5.3",
     "pug": "^2.0.0-rc.2",

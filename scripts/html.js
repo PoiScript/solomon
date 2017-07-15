@@ -4,7 +4,7 @@ const cheerio = require('cheerio')
 
 const htmlDir = path.resolve('public/html')
 const jsonDir = path.resolve('public/post.json')
-const buildDir = path.resolve('react/build/post')
+const buildDir = path.resolve('build/post')
 
 const posts = require(jsonDir)
 
