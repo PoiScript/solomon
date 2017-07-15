@@ -5,11 +5,15 @@
 /.idea
 
 # compiled output
+.env
+post.json
+/build
 public/*
 !public/*.scss
 !public/fonts/
 !public/icon.png
 !public/markdown/
+!public/index.html
 !public/favicon.ico
 !public/manifest.json
 
