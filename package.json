@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository": "git@github.com:PoiScript/solomon.git",
   "author": "PoiScript <poiscript@gmail.com>",
+  "homepage": "https://blog.poi.cat",
   "scripts": {
     "build": "react-scripts build && react-snapshot",
     "eject": "react-scripts eject",
