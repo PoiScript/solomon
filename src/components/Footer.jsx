@@ -33,8 +33,8 @@ const styles = {
  * @type {HyperLink[]}
  */
 const hyperlinks = [
-  {address: '/atom.xml', text: 'RSS'},
-  {address: 'https://github.com/PoiScript/Solomon', text: 'GitHub'}
+  {href: '/atom.xml', text: 'RSS'},
+  {href: 'https://github.com/PoiScript/Solomon', text: 'GitHub'}
 ]
 
 /**
