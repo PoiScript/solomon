@@ -70,6 +70,7 @@ class Post extends React.Component {
         <Helmet titleTemplate='%s - Solomon'>
           <title>{this.state.post.title}</title>
           <script type='application/ld+json'>{this.getLinkedData()}</script>
+          <link rel='amphtml' href={`https://blog.poi.cat/amp/${this.state.post.slug}.html`} />
         </Helmet>
         <Header title={this.state.post.title} />
         {
@@ -102,12 +103,12 @@ class Post extends React.Component {
       headline: this.state.post.title,
       image: {
         '@type': 'ImageObject',
-        url: 'https://google.com/thumbnail1.jpg',
-        height: 800,
-        width: 800
+        url: 'https://blog.poi.cat/icon.png',
+        height: 192,
+        width: 192
       },
-      datePublished: '2015-02-05T08:00:00+08:00',
-      dateModified: '2015-02-05T09:20:00+08:00',
+      datePublished: this.state.post.date,
+      dateModified: this.state.post.date,
       author: {
         '@type': 'Person',
         name: 'PoiScript'
@@ -117,7 +118,7 @@ class Post extends React.Component {
         name: 'PoiScript',
         email: 'poiscript@gmail.com'
       },
-      description: this.state.post.summary
+      description: this.state.post.title
     })
   }
 }

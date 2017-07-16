@@ -4,11 +4,10 @@ block title
   title= `${title} - Solomon`
 
 block link
-  link(rel='amphtml' href=`https://poi.works/post/${slug}/`)
-  link(rel='canonical' href=`https://poi.works/amp/${slug}.html`)
+  link(rel='canonical' href=`https://blog.poi.cat/post/${slug}/`)
 
 block linkedData
-  script(type='application/ld+json') !{JSON.stringify(ld)}
+  script(type='application/ld+json')= ld
 
 block content
   h3= title

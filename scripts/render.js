@@ -15,7 +15,7 @@ ampRenderer.image = (href, title, text) => {
 const compilePost = pug.compileFile('amp/post.pug')
 
 function getLinkedData (post) {
-  return {
+  return JSON.stringify({
     '@context': 'http://schema.org',
     '@type': 'BlogPosting',
     mainEntityOfPage: {
@@ -25,12 +25,12 @@ function getLinkedData (post) {
     headline: post.title,
     image: {
       '@type': 'ImageObject',
-      url: 'https://google.com/thumbnail1.jpg',
-      height: 800,
-      width: 800
+      url: 'https://blog.poi.cat/icon.png',
+      height: 192,
+      width: 192
     },
-    datePublished: '2015-02-05T08:00:00+08:00',
-    dateModified: '2015-02-05T09:20:00+08:00',
+    datePublished: post.date,
+    dateModified: post.date,
     author: {
       '@type': 'Person',
       name: 'PoiScript'
@@ -40,8 +40,8 @@ function getLinkedData (post) {
       name: 'PoiScript',
       email: 'poiscript@gmail.com'
     },
-    description: 'An about page for Solomon'
-  }
+    description: post.title
+  })
 }
 
 module.exports = (post, amp = false) => {
@@ -55,5 +55,5 @@ module.exports = (post, amp = false) => {
     html = compilePost(post)
   }
 
-  return minify(html, {collapseWhitespace: true})
+  return minify(html, {collapseWhitespace: true, minifyCSS: true})
 }

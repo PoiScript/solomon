@@ -2,7 +2,7 @@ const RSS = require('rss')
 
 const BLOG_TITLE = 'Solomon'
 const BLOG_DESCRIPTION = 'PoiScript\'s Blog'
-const BLOG_URL = 'https://poi.works'
+const BLOG_URL = 'https://blog.poi.cat'
 const BLOG_LANGUAGE = 'zh-Hans'
 
 module.exports = (posts) => {
