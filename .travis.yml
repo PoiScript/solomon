@@ -2,9 +2,6 @@ language: node_js
 node_js:
   - "7"
 
-before_script:
-  - yarn
-
 script:
   - bash scripts/build.sh
 
@@ -12,7 +9,7 @@ after_success:
   - yarn global add firebase-tools
   - test $TRAVIS_BRANCH = "dev" && firebase use dev
   - test $TRAVIS_BRANCH = "master" && firebase use default
-  - firebase deploy --token $FIREBASE_TOKEN
+  - firebase deploy --non-interactive --token $FIREBASE_TOKEN
 
 notifications:
   email:
