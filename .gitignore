@@ -13,6 +13,7 @@ public/*
 !public/fonts/
 !public/icon.png
 !public/markdown/
+!public/link.json
 !public/index.html
 !public/favicon.ico
 !public/manifest.json
