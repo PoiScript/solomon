@@ -34,7 +34,7 @@ const styles = {
  */
 const hyperlinks = [
   {href: '/atom.xml', text: 'RSS'},
-  {href: 'https://github.com/PoiScript/Solomon', text: 'GitHub'}
+  {href: 'https://github.com/PoiScript/solomon', text: 'GitHub'}
 ]
 
 /**
