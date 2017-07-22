@@ -9,34 +9,12 @@ import UpNext from '../components/UpNext'
 import CommentEditor from '../components/CommentEditor'
 import CommentViewer from '../components/CommentViewer'
 
-/**
- * a punch of posts
- * @type {Post[]}
- */
-import posts from '../post.json'
-
 class Post extends React.Component {
-  /**
-   * called before mounting
-   */
-  componentWillMount () {
-    const index = posts.findIndex(post => post.slug === this.props.slug)
-    this.setState({
-      post: posts[index],
-      prior: posts[index - 1],
-      next: posts[index + 1]
-    })
-  }
-
   /**
    * called after the component is mounted
    */
-  componentDidMount () {
-    fetch(`/html/${this.state.post.slug}.html`)
-      .then(res => res.text())
-      .then(data => {
-        this.setState({html: data, ...this.state})
-      })
+  componentWillMount () {
+    this.fetchPost(this.props.current.slug)
   }
 
   /**
@@ -44,51 +22,20 @@ class Post extends React.Component {
    * @param {Post} nextProps
    */
   componentWillReceiveProps (nextProps) {
-    if (this.props.slug !== nextProps.slug) {
-      const index = posts.findIndex(post => post.slug === nextProps.slug)
-      this.setState({html: null, post: posts[index]})
-      // TODO: if not post found (index === -1), route to not match component
-      fetch(`/html/${nextProps.slug}.html`)
-        .then(res => res.text())
-        .then(data => {
-          this.setState({
-            html: data,
-            post: posts[index],
-            prior: posts[index - 1],
-            next: posts[index + 1]
-          })
-        })
+    if (this.props !== nextProps) {
+      this.forceUpdate()
+      this.fetchPost(nextProps.current.slug)
     }
   }
 
   /**
-   * render
-   * @returns {ReactElement} markup
+   * get post html via fetch API
+   * @param {string} slug
    */
-  render () {
-    return (
-      <Main>
-        <Helmet titleTemplate='%s - Solomon'>
-          <title>{this.state.post.title}</title>
-          <script type='application/ld+json'>{this.getLinkedData()}</script>
-          <link rel='amphtml' href={`https://blog.poi.cat/amp/${this.state.post.slug}.html`} />
-        </Helmet>
-        <Header title={this.state.post.title} />
-        {
-          this.state.html ? (
-            <article dangerouslySetInnerHTML={{__html: this.state.html}} />
-          ) : (
-            <article>
-              <i>Loading {this.state.post.slug} ...</i>
-            </article>
-          )
-        }
-        <UpNext prior={this.state.prior} next={this.state.next} />
-        <Header title='Comment' />
-        <CommentEditor slug={this.state.post.slug} />
-        <CommentViewer slug={this.state.post.slug} />
-      </Main>
-    )
+  fetchPost (slug) {
+    fetch(`/html/${slug}.html`)
+      .then(res => res.text())
+      .then(html => this.setState({html}))
   }
 
   /**
@@ -96,6 +43,8 @@ class Post extends React.Component {
    * @return {string} linked data
    */
   getLinkedData () {
+    const {title, date} = this.props.current
+
     return JSON.stringify({
       '@context': 'http://schema.org',
       '@type': 'BlogPosting',
@@ -103,15 +52,15 @@ class Post extends React.Component {
         '@type': 'WebPage',
         '@id': 'https://google.com/BlogPosting'
       },
-      headline: this.state.post.title,
+      headline: title,
       image: {
         '@type': 'ImageObject',
         url: 'https://blog.poi.cat/icon.png',
         height: 192,
         width: 192
       },
-      datePublished: this.state.post.date,
-      dateModified: this.state.post.date,
+      datePublished: date,
+      dateModified: date,
       author: {
         '@type': 'Person',
         name: 'PoiScript'
@@ -121,8 +70,40 @@ class Post extends React.Component {
         name: 'PoiScript',
         email: 'poiscript@gmail.com'
       },
-      description: this.state.post.title
+      description: title
     })
+  }
+
+  /**
+   * render
+   * @returns {ReactElement} markup
+   */
+  render () {
+    const {prior, next} = this.props
+    const {title, slug} = this.props.current
+
+    return (
+      <Main>
+        <Helmet titleTemplate='%s - Solomon'>
+          <title>{title}</title>
+          <script type='application/ld+json'>{this.getLinkedData()}</script>
+          <link rel='amphtml' href={`https://blog.poi.cat/amp/${slug}.html`} />
+        </Helmet>
+        <Header title={title} />
+        {(this.state && this.state.html)
+          ? (<article dangerouslySetInnerHTML={{__html: this.state.html}} />)
+          : (
+            <article>
+              <i>Loading {slug} ...</i>
+            </article>
+          )
+        }
+        <UpNext prior={prior} next={next} />
+        <Header title='Comment' />
+        <CommentEditor slug={slug} />
+        <CommentViewer slug={slug} />
+      </Main>
+    )
   }
 }
 

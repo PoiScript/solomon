@@ -8,10 +8,7 @@ class CommentEditor extends React.Component {
 
     this.state = {user: null}
 
-    auth().onAuthStateChanged(user => {
-      console.log(user)
-      this.setState({ user })
-    })
+    auth().onAuthStateChanged(user => this.setState({user}))
   }
 
   githubSignIn () {

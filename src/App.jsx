@@ -12,6 +12,12 @@ import Post from './pages/Post'
 import About from './pages/About'
 import Tag from './pages/Tag'
 
+/**
+ * a punch of posts
+ * @type {Post[]}
+ */
+import posts from './post.json'
+
 injectTapEventPlugin()
 
 const routes = [
@@ -32,9 +38,13 @@ const routes = [
     )
   }, {
     path: '/post/:slug',
-    render: ({ match }) => (
-      <Post slug={match.params.slug} />
-    )
+    render: ({ match }) => {
+      const index = posts.findIndex(post => post.slug === match.params.slug)
+
+      return (
+        <Post current={posts[index]} prior={posts[index - 1]} next={posts[index + 1]} />
+      )
+    }
   }
 ]
 

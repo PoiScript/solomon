@@ -86,6 +86,6 @@ class CommentViewer extends React.Component {
 }
 
 /**
- * comment component, showing comment get from firebase database
+ * comment-view component, showing comment get from firebase database
  */
 export default CommentViewer
