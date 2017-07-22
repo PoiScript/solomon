@@ -6,7 +6,8 @@ import { Helmet } from 'react-helmet'
 import Main from '../components/Main'
 import Header from '../components/Header'
 import UpNext from '../components/UpNext'
-import Comment from '../components/Comment'
+import CommentEditor from '../components/CommentEditor'
+import CommentViewer from '../components/CommentViewer'
 
 /**
  * a punch of posts
@@ -83,7 +84,9 @@ class Post extends React.Component {
           )
         }
         <UpNext prior={this.state.prior} next={this.state.next} />
-        <Comment slug={this.state.post.slug} />
+        <Header title='Comment' />
+        <CommentEditor slug={this.state.post.slug} />
+        <CommentViewer slug={this.state.post.slug} />
       </Main>
     )
   }
