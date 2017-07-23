@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
 import Main from '../components/Main'
@@ -11,7 +12,6 @@ import PostList from '../components/PostList'
 import posts from '../post.json'
 
 /**
- * @param {string} tag
  * @constructor
  */
 const Tag = ({ tag }) => (
@@ -23,6 +23,10 @@ const Tag = ({ tag }) => (
     <PostList posts={posts.filter(post => post.tags.includes(tag))} />
   </Main>
 )
+
+Tag.PropTypes = {
+  tag: PropTypes.string.isRequired
+}
 
 /**
  * tag component

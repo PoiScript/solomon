@@ -1,5 +1,6 @@
 import React from 'react'
 import { auth } from 'firebase'
+import PropTypes from 'prop-types'
 import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper'
 
 class CommentEditor extends React.Component {
@@ -72,6 +73,10 @@ class CommentEditor extends React.Component {
       </Stepper>
     )
   }
+}
+
+CommentEditor.PropTypes = {
+  slug: PropTypes.string.isRequired
 }
 
 export default CommentEditor

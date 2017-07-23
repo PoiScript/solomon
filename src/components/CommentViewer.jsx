@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
 import { blueGrey800 } from 'material-ui/styles/colors'
 import { database } from 'firebase'
@@ -83,6 +84,10 @@ class CommentViewer extends React.Component {
       </div>
     )
   }
+}
+
+CommentViewer.PropTypes = {
+  slug: PropTypes.string.isRequired
 }
 
 /**

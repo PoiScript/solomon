@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const millisecondsInADay = 8.64e+7
 
@@ -21,6 +22,10 @@ class Forever17 extends React.Component {
       <span>17 岁 + {this.state ? Math.floor(this.state.days) : 'N'} 天</span>
     )
   }
+}
+
+Forever17.PropTypes = {
+  birthday: PropTypes.string.isRequired
 }
 
 /**

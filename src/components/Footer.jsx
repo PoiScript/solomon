@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { blueGrey50, blueGrey300, blueGrey800, blueGrey900 } from 'material-ui/styles/colors'
 
 const styles = {
@@ -39,19 +40,21 @@ const hyperlinks = [
 
 /**
  * generate a link to specific commit in specific repo
- * @param {string} hash
- * @param {string} repo
  * @constructor
  */
 const Commit = ({ hash, repo }) => (
   <span>
-    {
-      hash ? (
-        <a style={styles.commit} href={`https://github.com/PoiScript/${repo}/commit/${hash}`}>{hash}</a>
-      ) : ('unknown')
+    {hash
+      ? (<a style={styles.commit} href={`https://github.com/PoiScript/${repo}/commit/${hash}`}>{hash}</a>)
+      : ('unknown')
     }
   </span>
 )
+
+Commit.PropTypes = {
+  hash: PropTypes.string,
+  repo: PropTypes.string.isRequired
+}
 
 /**
  * @constructor

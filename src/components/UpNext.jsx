@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import FontIcon from 'material-ui/FontIcon'
 import { Row, Col } from 'react-flexbox-grid'
 import { Link } from 'react-router-dom'
@@ -27,8 +28,6 @@ const styles = {
 }
 
 /**
- * @param {Post} prior
- * @param {Post} next
  * @constructor
  */
 const UpNext = ({ prior, next }) => (
@@ -66,7 +65,19 @@ const UpNext = ({ prior, next }) => (
   </Row>
 )
 
+UpNext.PropTypes = {
+  next: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  }),
+
+  prior: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  })
+}
+
 /**
- * upnext component, showing the recent posts
+ * up-next component, showing the recent posts
  */
 export default UpNext

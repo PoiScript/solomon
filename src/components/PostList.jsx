@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { deepPurple500, blue500 } from 'material-ui/styles/colors'
 
@@ -24,7 +25,6 @@ const styles = {
 }
 
 /**
- * @param {Post[]} posts
  * @constructor
  */
 const PostList = ({ posts }) => (
@@ -54,6 +54,15 @@ const PostList = ({ posts }) => (
     }
   </div>
 )
+
+PostList.PropTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired
+  }))
+}
 
 /**
  * postlist component

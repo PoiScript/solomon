@@ -1,17 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 /**
- * @param props
- * @param props.title
  * @constructor
  */
-const Header = (props) => (
+const Header = ({ title }) => (
   <h3 style={{
     fontSize: '30px',
     fontWeight: 300,
     padding: '50px 0'
-  }}>{props.title}</h3>
+  }}>{title}</h3>
 )
+
+Header.PropTypes = {
+  title: PropTypes.string.isRequired
+}
 
 /**
  * header component

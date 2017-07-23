@@ -1,6 +1,7 @@
 /* global fetch */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
 import Main from '../components/Main'
@@ -105,6 +106,15 @@ class Post extends React.Component {
       </Main>
     )
   }
+}
+
+Post.PropTypes = {
+  next: PropTypes.object,
+  prior: PropTypes.object,
+  current: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  }).isRequired
 }
 
 /**
