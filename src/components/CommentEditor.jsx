@@ -1,7 +1,7 @@
 import React from 'react'
-import { auth } from 'firebase'
 import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
+import { auth, database } from 'firebase'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -30,7 +30,8 @@ class CommentEditor extends React.Component {
     this.state = {user: null}
 
     // manually binding, in oder to use setState()
-    this.clearInput = this.clearInput.bind(this)
+    this.clearValue = this.clearValue.bind(this)
+    this.postComment = this.postComment.bind(this)
     this.handleChange = this.handleChange.bind(this)
 
     // listening on user information
@@ -82,17 +83,49 @@ class CommentEditor extends React.Component {
   }
 
   /**
-   * save input into state
+   * save input value into state
    */
   handleChange (e) {
-    this.setState({input: e.target.value})
+    const value = e.target.value
+
+    this.setState({
+      value,
+      // showing a error message when comment is shorter than 20 or longer than 200
+      errorText: (!value || (value.length >= 10 && value.length <= 200))
+        ? ''
+        : 'Your comment should be longer than 10 char, or shorter than 200 char.'
+    })
   }
 
   /**
-   * clear input in text field
+   * clear input value in text field
    */
-  clearInput () {
-    this.setState({input: ''})
+  clearValue () {
+    this.setState({value: ''})
+  }
+
+  /**
+   * write comment to firebase database
+   */
+  postComment () {
+    const {user, value} = this.state
+    const current = new Date()
+
+    // TODO: check if comment is longer than 20 and shorter than 200
+
+    database().ref('comment/' + this.props.slug).push().set({
+      uid: user.uid,
+      avatar: user.photoURL,
+      name: user.displayName,
+      provider: user.providerData.pop().providerId,
+      content: value,
+      created: current.toISOString(),
+      updated: current.toISOString()
+    }).then(() => {
+      this.clearValue()
+
+      // TODO: show a message if succeed
+    })
   }
 
   /**
@@ -100,7 +133,7 @@ class CommentEditor extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
-    const {user, input} = this.state
+    const {user, value, errorText} = this.state
 
     return (
       <div>
@@ -130,12 +163,20 @@ class CommentEditor extends React.Component {
         <TextField
           fullWidth multiLine
           rows={2} rowsMax={4}
-          value={input}
+          value={value}
           disabled={!user}
+          errorText={errorText}
           onChange={this.handleChange}
           floatingLabelText='Join the discussion' />
-        <FlatButton disabled={!user} label='Clear' onTouchTap={this.clearInput} />
-        <RaisedButton disabled={!user} label='Submit' primary />
+        <FlatButton
+          label='Clear'
+          disabled={!user}
+          onTouchTap={this.clearValue} />
+        <RaisedButton
+          primary
+          label='Submit'
+          disabled={!user}
+          onTouchTap={this.postComment} />
       </div>
     )
   }
