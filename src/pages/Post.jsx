@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
 import Main from '../components/Main'
-import Header from '../components/Header'
 import UpNext from '../components/UpNext'
 import CommentEditor from '../components/CommentEditor'
 import CommentViewer from '../components/CommentViewer'
@@ -84,13 +83,12 @@ class Post extends React.Component {
     const {title, slug} = this.props.current
 
     return (
-      <Main>
+      <Main title={title}>
         <Helmet titleTemplate='%s - Solomon'>
           <title>{title}</title>
           <script type='application/ld+json'>{this.getLinkedData()}</script>
           <link rel='amphtml' href={`https://blog.poi.cat/amp/${slug}.html`} />
         </Helmet>
-        <Header title={title} />
         {(this.state && this.state.html)
           ? (<article dangerouslySetInnerHTML={{__html: this.state.html}} />)
           : (
@@ -100,7 +98,6 @@ class Post extends React.Component {
           )
         }
         <UpNext prior={prior} next={next} />
-        <Header title='Comment' />
         <CommentEditor slug={slug} />
         <CommentViewer slug={slug} />
       </Main>

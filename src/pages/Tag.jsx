@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 
 import Main from '../components/Main'
-import Header from '../components/Header'
 import PostList from '../components/PostList'
 
 /**
@@ -15,11 +14,10 @@ import posts from '../post.json'
  * @constructor
  */
 const Tag = ({ tag }) => (
-  <Main>
+  <Main title={`#${tag}`}>
     <Helmet titleTemplate='#%s - Solomon'>
       <title>{tag}</title>
     </Helmet>
-    <Header title={`#${tag}`} />
     <PostList posts={posts.filter(post => post.tags.includes(tag))} />
   </Main>
 )

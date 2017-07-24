@@ -4,13 +4,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'whatwg-fetch'
 
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import Links from './pages/Links'
-import Homepage from './pages/Homepage'
+import Tag from './pages/Tag'
 import Post from './pages/Post'
 import About from './pages/About'
-import Tag from './pages/Tag'
+import Links from './pages/Links'
+import Homepage from './pages/Homepage'
 
 /**
  * a punch of posts
@@ -52,20 +50,16 @@ const routes = [
  * @constructor
  */
 const App = () => (
-  <Router>
-    <MuiThemeProvider>
-      <div>
-        <Navbar />
-        <Switch>
-          {routes.map((route, i) => (
-            <Route key={i} {...route} />
-          ))}
-          {/* TODO: add not match component */}
-        </Switch>
-        <Footer />
-      </div>
-    </MuiThemeProvider>
-  </Router>
+  <MuiThemeProvider>
+    <Router>
+      <Switch>
+        {routes.map((route, i) => (
+          <Route key={i} {...route} />
+        ))}
+        {/* TODO: add not match component */}
+      </Switch>
+    </Router>
+  </MuiThemeProvider>
 )
 
 /**

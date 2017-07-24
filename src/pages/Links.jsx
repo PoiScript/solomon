@@ -1,12 +1,11 @@
 /* global fetch */
 
 import React from 'react'
-import { List, ListItem } from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
 import { Helmet } from 'react-helmet'
+import Avatar from 'material-ui/Avatar'
+import { List, ListItem } from 'material-ui/List'
 
 import Main from '../components/Main'
-import Header from '../components/Header'
 
 class Links extends React.Component {
   /**
@@ -15,9 +14,7 @@ class Links extends React.Component {
   componentWillMount () {
     fetch(`/link.json`)
       .then(res => res.json())
-      .then(data => {
-        this.setState({links: data})
-      })
+      .then(links => this.setState({links}))
   }
 
   /**
@@ -26,12 +23,11 @@ class Links extends React.Component {
    */
   render () {
     return (
-      <Main>
+      <Main title='Link'>
         <Helmet title='Link - Solomon' />
-        <Header title='Link' />
         <List>
-          {
-            this.state ? this.state.links.map((link) =>
+          {this.state
+            ? this.state.links.map((link) =>
               <ListItem
                 key={link.name}
                 primaryText={link.name}
@@ -39,7 +35,8 @@ class Links extends React.Component {
                 href={link.address}
                 leftAvatar={<Avatar src={link.avatar_url} />}
               />
-            ) : (<i>Loading Links...</i>)
+            )
+            : (<i>Loading Links...</i>)
           }
         </List>
       </Main>
