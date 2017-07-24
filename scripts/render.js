@@ -51,9 +51,9 @@ module.exports = (post, amp = false) => {
     html = marked(post.content)
   } else {
     post.ld = getLinkedData(post)
-    post.html = marked(post.content, {renderer: ampRenderer})
+    post.html = marked(post.content, { renderer: ampRenderer })
     html = compilePost(post)
   }
 
-  return minify(html, {collapseWhitespace: true, minifyCSS: true})
+  return minify(html, { collapseWhitespace: true, minifyCSS: true })
 }

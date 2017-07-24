@@ -27,7 +27,7 @@ class CommentViewer extends React.Component {
     super(props)
 
     // set default value of state
-    this.state = {comments: []}
+    this.state = { comments: [] }
   }
 
   /**
@@ -53,7 +53,7 @@ class CommentViewer extends React.Component {
    */
   getComments (slug) {
     database().ref(`/comment/${slug}`).once('value').then(snap => {
-      this.setState({comments: snap.val() || []})
+      this.setState({ comments: snap.val() || [] })
     })
   }
 
@@ -62,15 +62,15 @@ class CommentViewer extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
-    const {comments} = this.state
+    const { comments } = this.state
 
     return (
-      <div style={{color: blueGrey800}}>
+      <div style={{ color: blueGrey800 }}>
         {comments.length
           ? comments.map((comment, index) => (
             <div key={index}>
               <header style={styles.header}>
-                <Avatar size={48} src={comment.avatar} style={{marginRight: '16px'}} />
+                <Avatar size={48} src={comment.avatar} style={{ marginRight: '16px' }} />
                 <div style={styles.author}>
                   <span>{comment.name}</span>
                   <span>{comment.created}</span>

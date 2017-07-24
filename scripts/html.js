@@ -11,7 +11,7 @@ const posts = require(jsonDir)
 posts.map(post => {
   const html = fs.readFileSync(`${htmlDir}/${post.slug}.html`, 'utf8')
   const page = fs.readFileSync(`${buildDir}/${post.slug}/index.html`, 'utf8')
-  const $ = cheerio.load(page, {decodeEntities: false})
+  const $ = cheerio.load(page, { decodeEntities: false })
   $('article').html(html)
   fs.writeFileSync(`${buildDir}/${post.slug}/index.html`, $.html())
 })

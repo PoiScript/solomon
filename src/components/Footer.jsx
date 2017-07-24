@@ -34,8 +34,8 @@ const styles = {
  * @type {HyperLink[]}
  */
 const hyperlinks = [
-  {href: '/atom.xml', text: 'RSS'},
-  {href: 'https://github.com/PoiScript/solomon', text: 'GitHub'}
+  { href: '/atom.xml', text: 'RSS' },
+  { href: 'https://github.com/PoiScript/solomon', text: 'GitHub' }
 ]
 
 /**
@@ -60,7 +60,7 @@ Commit.PropTypes = {
  * @constructor
  */
 const Footer = () => (
-  <div style={{paddingTop: '80px'}}>
+  <div style={{ paddingTop: '80px' }}>
     <section style={styles.section}>
       {
         hyperlinks.map((hyperlink, i) => (

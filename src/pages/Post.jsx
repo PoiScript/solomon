@@ -35,7 +35,7 @@ class Post extends React.Component {
   fetchPost (slug) {
     fetch(`/html/${slug}.html`)
       .then(res => res.text())
-      .then(html => this.setState({html}))
+      .then(html => this.setState({ html }))
   }
 
   /**
@@ -43,7 +43,7 @@ class Post extends React.Component {
    * @return {string} linked data
    */
   getLinkedData () {
-    const {title, date} = this.props.current
+    const { title, date } = this.props.current
 
     return JSON.stringify({
       '@context': 'http://schema.org',
@@ -79,8 +79,8 @@ class Post extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
-    const {prior, next} = this.props
-    const {title, slug} = this.props.current
+    const { prior, next } = this.props
+    const { title, slug } = this.props.current
 
     return (
       <Main title={title}>
@@ -90,7 +90,7 @@ class Post extends React.Component {
           <link rel='amphtml' href={`https://blog.poi.cat/amp/${slug}.html`} />
         </Helmet>
         {(this.state && this.state.html)
-          ? (<article dangerouslySetInnerHTML={{__html: this.state.html}} />)
+          ? (<article dangerouslySetInnerHTML={{ __html: this.state.html }} />)
           : (
             <article>
               <i>Loading {slug} ...</i>

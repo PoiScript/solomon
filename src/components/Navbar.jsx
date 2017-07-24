@@ -26,9 +26,9 @@ const styles = {
  * @type {Route[]}
  */
 const routes = [
-  {label: 'solomon', path: '/'},
-  {label: 'about', path: '/about/'},
-  {label: 'link', path: '/link/'}
+  { label: 'solomon', path: '/' },
+  { label: 'about', path: '/about/' },
+  { label: 'link', path: '/link/' }
 ]
 
 /**

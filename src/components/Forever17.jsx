@@ -10,7 +10,7 @@ class Forever17 extends React.Component {
   componentDidMount () {
     const birthday = new Date(this.props.birthday)
     const seventeenYearsAgo = new Date().setFullYear(new Date().getFullYear() - 17)
-    this.setState({days: (seventeenYearsAgo - birthday) / millisecondsInADay})
+    this.setState({ days: (seventeenYearsAgo - birthday) / millisecondsInADay })
   }
 
   /**

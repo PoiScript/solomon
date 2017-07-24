@@ -14,7 +14,7 @@ class Links extends React.Component {
   componentWillMount () {
     fetch(`/link.json`)
       .then(res => res.json())
-      .then(links => this.setState({links}))
+      .then(links => this.setState({ links }))
   }
 
   /**

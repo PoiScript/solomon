@@ -27,7 +27,7 @@ class CommentEditor extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {user: null}
+    this.state = { user: null }
 
     // manually binding, in oder to use setState()
     this.clearValue = this.clearValue.bind(this)
@@ -35,7 +35,7 @@ class CommentEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this)
 
     // listening on user information
-    auth().onAuthStateChanged(user => this.setState({user}))
+    auth().onAuthStateChanged(user => this.setState({ user }))
   }
 
   /**
@@ -101,14 +101,14 @@ class CommentEditor extends React.Component {
    * clear input value in text field
    */
   clearValue () {
-    this.setState({value: ''})
+    this.setState({ value: '' })
   }
 
   /**
    * write comment to firebase database
    */
   postComment () {
-    const {user, value} = this.state
+    const { user, value } = this.state
     const current = new Date()
 
     // TODO: check if comment is longer than 20 and shorter than 200
@@ -133,12 +133,12 @@ class CommentEditor extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
-    const {user, value, errorText} = this.state
+    const { user, value, errorText } = this.state
 
     return (
       <div>
         <div style={styles.account}>
-          {user && <Avatar size={60} src={user.photoURL} style={{marginRight: '16px'}} />}
+          {user && <Avatar size={60} src={user.photoURL} style={{ marginRight: '16px' }} />}
           <div style={styles.info}>
             {user
               ? <span>You had logged in as <strong>{user.displayName}</strong></span>
