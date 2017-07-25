@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
+import { Row } from 'react-flexbox-grid'
 import { auth, database } from 'firebase'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
@@ -10,7 +11,6 @@ const styles = {
   account: {
     display: 'flex',
     flexDirection: 'row',
-    marginBottom: '16px',
     alignItems: 'center'
   },
   info: {
@@ -136,7 +136,7 @@ class CommentEditor extends React.Component {
     const { user, value, errorText } = this.state
 
     return (
-      <div>
+      <div style={{ marginTop: '40px' }}>
         <div style={styles.account}>
           {user && <Avatar size={60} src={user.photoURL} style={{ marginRight: '16px' }} />}
           <div style={styles.info}>
@@ -168,15 +168,17 @@ class CommentEditor extends React.Component {
           errorText={errorText}
           onChange={this.handleChange}
           floatingLabelText='Join the discussion' />
-        <FlatButton
-          label='Clear'
-          disabled={!user}
-          onTouchTap={this.clearValue} />
-        <RaisedButton
-          primary
-          label='Submit'
-          disabled={!user}
-          onTouchTap={this.postComment} />
+        <Row end='xs'>
+          <FlatButton
+            label='Clear'
+            disabled={!user}
+            onTouchTap={this.clearValue} />
+          <RaisedButton
+            primary
+            label='Submit'
+            disabled={!user}
+            onTouchTap={this.postComment} />
+        </Row>
       </div>
     )
   }

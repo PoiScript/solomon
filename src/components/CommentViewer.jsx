@@ -19,6 +19,12 @@ const styles = {
   text: {
     lineHeight: '1.5em',
     marginBottom: '16px'
+  },
+  noComment: {
+    fontWeight: 400,
+    marginTop: '40px',
+    fontStyle: 'italic',
+    textAlign: 'center'
   }
 }
 
@@ -79,7 +85,7 @@ class CommentViewer extends React.Component {
               <div style={styles.text}>{comment.content}</div>
             </div>
           ))
-          : (<i>No comment... for now</i>)
+          : (<h3 style={styles.noComment}>No comment... for now</h3>)
         }
       </div>
     )
