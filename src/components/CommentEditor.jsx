@@ -7,6 +7,8 @@ import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 
+import Snackbar from './Snackbar'
+
 const styles = {
   account: {
     display: 'flex',
@@ -27,7 +29,7 @@ class CommentEditor extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { user: null }
+    this.state = { user: null, open: false }
 
     // manually binding, in oder to use setState()
     this.clearValue = this.clearValue.bind(this)
@@ -44,11 +46,13 @@ class CommentEditor extends React.Component {
   githubSignIn () {
     const provider = new auth.GithubAuthProvider()
 
-    auth().signInWithPopup(provider)
-    // .catch(error => {
-    // TODO: handle login error here
-    // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInWithPopup
-    // })
+    auth().signInWithPopup(provider).then(result => this.setState({
+      open: true,
+      message: `Logged in as ${result.user.displayName}`
+    }), error => this.setState({
+      open: true,
+      message: `Unfortunately, login failed. Error code: ${error.code}`
+    }))
   }
 
   /**
@@ -57,44 +61,43 @@ class CommentEditor extends React.Component {
   googleSignIn () {
     const provide = new auth.GoogleAuthProvider()
 
-    auth().signInWithPopup(provide)
-    // .catch(error => {
-    // TODO: handle login error here
-    // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInWithPopup
-    // })
+    auth().signInWithPopup(provide).then(result => this.setState({
+      open: true,
+      message: `Logged in as ${result.user.displayName}`
+    }), error => this.setState({
+      open: true,
+      message: `Unfortunately, login failed. Error code: ${error.code}`
+    }))
   }
 
   /**
    * anonymous sign in
    */
   anonymousSignIn () {
-    auth().signInAnonymously()
-    // .catch(error => {
-    // TODO: handle login error here
-    // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInAnonymously
-    // })
+    auth().signInAnonymously().then(result => this.setState({
+      open: true,
+      message: `Logged in anonymously.`
+    }), error => this.setState({
+      open: true,
+      message: `Unfortunately, login failed. Error code: ${error.code}`
+    }))
   }
 
   /**
    * sign out current account
    */
   signOut () {
-    auth().signOut()
+    auth().signOut().then(() => this.setState({
+      open: true,
+      message: 'Successfully logged out.'
+    }))
   }
 
   /**
    * save input value into state
    */
   handleChange (e) {
-    const value = e.target.value
-
-    this.setState({
-      value,
-      // showing a error message when comment is shorter than 20 or longer than 200
-      errorText: (!value || (value.length >= 10 && value.length <= 200))
-        ? ''
-        : 'Your comment should be longer than 10 char, or shorter than 200 char.'
-    })
+    this.setState({ value: e.target.value })
   }
 
   /**
@@ -109,23 +112,32 @@ class CommentEditor extends React.Component {
    */
   postComment () {
     const { user, value } = this.state
-    const current = new Date()
+    const current = (new Date()).toISOString()
 
-    // TODO: check if comment is longer than 20 and shorter than 200
+    if (value.length >= 10 && value.length <= 200) {
+      database().ref('comment/' + this.props.slug).push().set({
+        uid: user.uid,
+        avatar: user.photoURL,
+        name: user.displayName,
+        // FIXME: sometimes providerData doesn't contain a user object
+        provider: user.providerData.pop().providerId,
+        content: value,
+        created: current,
+        updated: current
+      }).then(() => {
+        this.clearValue()
 
-    database().ref('comment/' + this.props.slug).push().set({
-      uid: user.uid,
-      avatar: user.photoURL,
-      name: user.displayName,
-      provider: user.providerData.pop().providerId,
-      content: value,
-      created: current.toISOString(),
-      updated: current.toISOString()
-    }).then(() => {
-      this.clearValue()
-
-      // TODO: show a message if succeed
-    })
+        this.setState({
+          open: true,
+          message: 'Your comment has been submitted successfully.'
+        })
+      })
+    } else {
+      this.setState({
+        open: true,
+        message: 'Your comment should be longer than 10 char, or shorter than 200 char.'
+      })
+    }
   }
 
   /**
@@ -133,7 +145,7 @@ class CommentEditor extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
-    const { user, value, errorText } = this.state
+    const { user, value, open, message } = this.state
 
     return (
       <div style={{ marginTop: '40px' }}>
@@ -165,7 +177,6 @@ class CommentEditor extends React.Component {
           rows={2} rowsMax={4}
           value={value}
           disabled={!user}
-          errorText={errorText}
           onChange={this.handleChange}
           floatingLabelText='Join the discussion' />
         <Row end='xs'>
@@ -179,6 +190,7 @@ class CommentEditor extends React.Component {
             disabled={!user}
             onTouchTap={this.postComment} />
         </Row>
+        <Snackbar open={open} message={message} />
       </div>
     )
   }
