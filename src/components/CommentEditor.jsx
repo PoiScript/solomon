@@ -114,7 +114,7 @@ class CommentEditor extends React.Component {
     const { user, value } = this.state
     const current = (new Date()).toISOString()
 
-    if (value.length >= 10 && value.length <= 200) {
+    if (value && value.length >= 10 && value.length <= 200) {
       database().ref('comment/' + this.props.slug).push().set({
         uid: user.uid,
         avatar: user.photoURL,
