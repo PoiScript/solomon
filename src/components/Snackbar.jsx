@@ -5,17 +5,16 @@ import MdSnackbar from 'material-ui/Snackbar'
 /**
  * @constructor
  */
-const Snackbar = ({ open, message }) => (
+const Snackbar = ({ message }) => (
   <MdSnackbar
-    open={open}
+    open={!!message}
     message={message}
     autoHideDuration={2000}
   />
 )
 
 Snackbar.PropTypes = {
-  message: PropTypes.string,
-  open: PropTypes.bool.isRequired
+  message: PropTypes.string
 }
 
 /**

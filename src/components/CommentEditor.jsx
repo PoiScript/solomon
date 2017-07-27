@@ -29,9 +29,7 @@ class CommentEditor extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = { user: null, open: false }
-
-    // manually binding, in oder to use setState()
+    // manually binding, in oder to access state
     this.clearValue = this.clearValue.bind(this)
     this.postComment = this.postComment.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -46,13 +44,9 @@ class CommentEditor extends React.Component {
   githubSignIn () {
     const provider = new auth.GithubAuthProvider()
 
-    auth().signInWithPopup(provider).then(result => this.setState({
-      open: true,
-      message: `Logged in as ${result.user.displayName}`
-    }), error => this.setState({
-      open: true,
-      message: `Unfortunately, login failed. Error code: ${error.code}`
-    }))
+    auth().signInWithPopup(provider)
+      .then(result => this.showSnackbar(`Logged in as ${result.user.displayName}`))
+      .catch(error => this.showSnackbar(`Unfortunately, login failed. Error code: ${error.code}`))
   }
 
   /**
@@ -61,43 +55,38 @@ class CommentEditor extends React.Component {
   googleSignIn () {
     const provide = new auth.GoogleAuthProvider()
 
-    auth().signInWithPopup(provide).then(result => this.setState({
-      open: true,
-      message: `Logged in as ${result.user.displayName}`
-    }), error => this.setState({
-      open: true,
-      message: `Unfortunately, login failed. Error code: ${error.code}`
-    }))
+    auth().signInWithPopup(provide)
+      .then(result => this.showSnackbar(`Logged in as ${result.user.displayName}`))
+      .catch(error => this.showSnackbar(`Unfortunately, login failed. Error code: ${error.code}`))
   }
 
   /**
    * anonymous sign in
    */
   anonymousSignIn () {
-    auth().signInAnonymously().then(result => this.setState({
-      open: true,
-      message: `Logged in anonymously.`
-    }), error => this.setState({
-      open: true,
-      message: `Unfortunately, login failed. Error code: ${error.code}`
-    }))
+    auth().signInAnonymously()
+      .then(() => this.showSnackbar('Logged in anonymously.'))
+      .catch(error => this.showSnackbar(`Unfortunately, login failed. Error code: ${error.code}`))
   }
 
   /**
    * sign out current account
    */
   signOut () {
-    auth().signOut().then(() => this.setState({
-      open: true,
-      message: 'Successfully logged out.'
-    }))
+    auth().signOut()
+      .then(() => this.showSnackbar('Successfully signed out.'))
+      .catch(error => this.showSnackbar(`Unfortunately, sign out failed. Error code: ${error.code}`))
   }
 
   /**
    * save input value into state
    */
   handleChange (e) {
-    this.setState({ value: e.target.value })
+    // clear message state in case of not toggling a snackbar accidentally
+    this.setState({
+      message: '',
+      value: e.target.value
+    })
   }
 
   /**
@@ -105,6 +94,14 @@ class CommentEditor extends React.Component {
    */
   clearValue () {
     this.setState({ value: '' })
+  }
+
+  /**
+   * a helper function to show a snackbar
+   * @param {string} message
+   */
+  showSnackbar (message) {
+    this.setState({ message })
   }
 
   /**
@@ -126,17 +123,10 @@ class CommentEditor extends React.Component {
         updated: current
       }).then(() => {
         this.clearValue()
-
-        this.setState({
-          open: true,
-          message: 'Your comment has been submitted successfully.'
-        })
+        this.showSnackbar('Your comment has been submitted successfully.')
       })
     } else {
-      this.setState({
-        open: true,
-        message: 'Your comment should be longer than 10 char, or shorter than 200 char.'
-      })
+      this.showSnackbar('Your comment should be longer than 10 char, or shorter than 200 char.')
     }
   }
 
@@ -145,7 +135,7 @@ class CommentEditor extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
-    const { user, value, open, message } = this.state
+    const { user, value, message } = this.state || {}
 
     return (
       <div style={{ marginTop: '40px' }}>
@@ -190,7 +180,7 @@ class CommentEditor extends React.Component {
             disabled={!user}
             onTouchTap={this.postComment} />
         </Row>
-        <Snackbar open={open} message={message} />
+        <Snackbar message={message} />
       </div>
     )
   }
