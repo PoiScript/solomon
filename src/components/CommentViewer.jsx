@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { database } from 'firebase'
 import Avatar from 'material-ui/Avatar'
 import { blueGrey800 } from 'material-ui/styles/colors'
-import { database } from 'firebase'
 
 const styles = {
   header: {
@@ -29,10 +29,13 @@ const styles = {
 }
 
 class CommentViewer extends React.Component {
+  /**
+   * @constructor
+   */
   constructor (props) {
     super(props)
 
-    // set default value of state
+    // initial state
     this.state = { comments: [] }
   }
 
@@ -40,7 +43,7 @@ class CommentViewer extends React.Component {
    * called before mounting
    */
   componentWillMount () {
-    this.getComments(this.props.slug)
+    this._getComments(this.props.slug)
   }
 
   /**
@@ -49,7 +52,7 @@ class CommentViewer extends React.Component {
    */
   componentWillReceiveProps (nextProps) {
     if (nextProps.slug !== this.props.slug) {
-      this.getComments(nextProps.slug)
+      this._getComments(nextProps.slug)
     }
   }
 
@@ -57,10 +60,16 @@ class CommentViewer extends React.Component {
    * get comments from firebase database
    * @param {string} slug - post slug
    */
-  getComments (slug) {
-    database().ref(`/comment/${slug}`).once('value').then(snap => {
-      this.setState({ comments: snap.val() || [] })
-    })
+  _getComments (slug) {
+    database().ref(`/comment/${slug}`).once('value')
+      .then(snap => {
+        const comments = []
+
+        // loop through snapshot
+        snap.forEach(child => comments.push(child.val()))
+
+        this.setState({ comments })
+      })
   }
 
   /**
@@ -79,7 +88,7 @@ class CommentViewer extends React.Component {
                 <Avatar size={48} src={comment.avatar} style={{ marginRight: '16px' }} />
                 <div style={styles.author}>
                   <span>{comment.name}</span>
-                  <span>{comment.created}</span>
+                  <span>{(new Date(comment.created)).toDateString()}</span>
                 </div>
               </header>
               <div style={styles.text}>{comment.content}</div>
