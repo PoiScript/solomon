@@ -28,15 +28,20 @@ const styles = {
   }
 }
 
+const initialState = {
+  comments: []
+}
+
 class CommentViewer extends React.Component {
+  /***************/
+  /*  LIFECYCLE  */
+  /***************/
   /**
    * @constructor
    */
   constructor (props) {
     super(props)
-
-    // initial state
-    this.state = { comments: [] }
+    this.state = initialState
   }
 
   /**
@@ -44,32 +49,6 @@ class CommentViewer extends React.Component {
    */
   componentWillMount () {
     this._getComments(this.props.slug)
-  }
-
-  /**
-   * called before component receives new props
-   * @param {Post} nextProps
-   */
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.slug !== this.props.slug) {
-      this._getComments(nextProps.slug)
-    }
-  }
-
-  /**
-   * get comments from firebase database
-   * @param {string} slug - post slug
-   */
-  _getComments (slug) {
-    database().ref(`/comment/${slug}`).once('value')
-      .then(snap => {
-        const comments = []
-
-        // loop through snapshot
-        snap.forEach(child => comments.push(child.val()))
-
-        this.setState({ comments })
-      })
   }
 
   /**
@@ -82,8 +61,8 @@ class CommentViewer extends React.Component {
     return (
       <div style={{ color: blueGrey800 }}>
         {comments.length
-          ? comments.map((comment, index) => (
-            <div key={index}>
+          ? comments.map((comment, i) => (
+            <div key={i}>
               <header style={styles.header}>
                 <Avatar size={48} src={comment.avatar} style={{ marginRight: '16px' }} />
                 <div style={styles.author}>
@@ -98,6 +77,36 @@ class CommentViewer extends React.Component {
         }
       </div>
     )
+  }
+
+  /**
+   * called before component receives new props
+   * @param {Post} nextProps
+   */
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.slug !== this.props.slug) {
+      this._getComments(nextProps.slug)
+    }
+  }
+
+  /************/
+  /*  HELPER  */
+  /************/
+  /**
+   * get comments from firebase database
+   * @param {string} slug - post slug
+   */
+  _getComments (slug) {
+    this.setState(initialState)
+    database().ref(`/comment/${slug}`).once('value')
+      .then(snap => {
+        const comments = []
+
+        // loop through snapshot
+        snap.forEach(child => comments.push(child.val()))
+
+        this.setState({ comments })
+      })
   }
 }
 

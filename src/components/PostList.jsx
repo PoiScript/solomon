@@ -33,21 +33,17 @@ const PostList = ({ posts }) => (
       ? (
         <div style={styles.content}>
           <p>{posts.length} posts</p>
-          {
-            posts.map(post => (
-              <div key={post.slug}>
-                <Link style={styles.title} to={`/post/${post.slug}/`}>{post.title}</Link>
-                <p>
-                  <span>{(new Date(post.date)).toDateString()}</span>
-                  {
-                    post.tags.map(tag => (
-                      <Link style={styles.tag} to={`/tag/${tag}/`} key={tag}> #{tag} </Link>
-                    ))
-                  }
-                </p>
-              </div>
-            ))
-          }
+          {posts.map((post, i) => (
+            <div key={i}>
+              <Link style={styles.title} to={`/post/${post.slug}/`}>{post.title}</Link>
+              <p>
+                <span>{(new Date(post.date)).toDateString()}</span>
+                {post.tags.map((tag, i) => (
+                  <Link style={styles.tag} to={`/tag/${tag}/`} key={i}> #{tag} </Link>
+                ))}
+              </p>
+            </div>
+          ))}
         </div>
       )
       : (<i>No Posts :(</i>)
@@ -61,7 +57,7 @@ PostList.PropTypes = {
     date: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     title: PropTypes.string.isRequired
-  }))
+  })).isRequired
 }
 
 /**

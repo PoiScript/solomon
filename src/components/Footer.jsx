@@ -62,11 +62,9 @@ Commit.PropTypes = {
 const Footer = () => (
   <div style={{ paddingTop: '80px' }}>
     <section style={styles.section}>
-      {
-        hyperlinks.map((hyperlink, i) => (
-          <a style={styles.link} key={i} href={hyperlink.href}>{hyperlink.text}</a>
-        ))
-      }
+      {hyperlinks.map((hyperlink, i) => (
+        <a style={styles.link} key={i} href={hyperlink.href}>{hyperlink.text}</a>
+      ))}
     </section>
     <footer style={styles.footer}>
       Content Licensed Under CC-BY-SA-4.0<br />

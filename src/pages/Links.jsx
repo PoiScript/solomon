@@ -9,6 +9,14 @@ import Main from '../components/Main'
 
 class Links extends React.Component {
   /**
+   * @constructor
+   */
+  constructor (props) {
+    super(props)
+    this.state = { links: [] }
+  }
+
+  /**
    * called before mounting
    */
   componentWillMount () {
@@ -22,21 +30,23 @@ class Links extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
+    const { links } = this.state
+
     return (
       <Main title='Link'>
         <Helmet title='Link - Solomon' />
         <List>
-          {this.state
-            ? this.state.links.map((link) =>
+          {links
+            ? links.map((link, i) =>
               <ListItem
-                key={link.name}
+                key={i}
                 primaryText={link.name}
                 secondaryText={link.text}
                 href={link.address}
                 leftAvatar={<Avatar src={link.avatar_url} />}
               />
             )
-            : (<i>Loading Links...</i>)
+            : (<i>No link... for now</i>)
           }
         </List>
       </Main>

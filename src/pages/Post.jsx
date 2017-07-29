@@ -9,30 +9,79 @@ import UpNext from '../components/UpNext'
 import CommentEditor from '../components/CommentEditor'
 import CommentViewer from '../components/CommentViewer'
 
+const initialState = {
+  html: null
+}
+
 class Post extends React.Component {
+  /***************/
+  /*  LIFECYCLE  */
+  /***************/
+  /**
+   * @constructor
+   */
+  constructor (props) {
+    super(props)
+    this.state = initialState
+  }
+
   /**
    * called after the component is mounted
    */
   componentWillMount () {
-    this.fetchPost(this.props.current.slug)
+    this._fetchPost(this.props.current.slug)
+  }
+
+  /**
+   * render
+   * @returns {ReactElement} markup
+   */
+  render () {
+    const { html } = this.state
+    const { prior, next } = this.props
+    const { title, slug } = this.props.current
+
+    return (
+      <Main title={title}>
+        <Helmet titleTemplate='%s - Solomon'>
+          <title>{title}</title>
+          <script type='application/ld+json'>{this._getLinkedData()}</script>
+          <link rel='amphtml' href={`https://blog.poi.cat/amp/${slug}.html`} />
+        </Helmet>
+        {html
+          ? (<article dangerouslySetInnerHTML={{ __html: html }} />)
+          : (
+            <article>
+              <i>Loading {slug} ...</i>
+            </article>
+          )
+        }
+        <UpNext prior={prior} next={next} />
+        <CommentEditor slug={slug} />
+        <CommentViewer slug={slug} />
+      </Main>
+    )
   }
 
   /**
    * called before component receives new props
-   * @param {Post} nextProps
    */
   componentWillReceiveProps (nextProps) {
     if (this.props !== nextProps) {
-      this.forceUpdate()
-      this.fetchPost(nextProps.current.slug)
+      this._fetchPost(nextProps.current.slug)
     }
   }
 
+  /************/
+  /*  HELPER  */
+  /************/
   /**
    * get post html via fetch API
    * @param {string} slug
    */
-  fetchPost (slug) {
+  _fetchPost (slug) {
+    this.setState(initialState)
+
     fetch(`/html/${slug}.html`)
       .then(res => res.text())
       .then(html => this.setState({ html }))
@@ -42,7 +91,7 @@ class Post extends React.Component {
    * return linked data based on the state
    * @return {string} linked data
    */
-  getLinkedData () {
+  _getLinkedData () {
     const { title, date } = this.props.current
 
     return JSON.stringify({
@@ -72,36 +121,6 @@ class Post extends React.Component {
       },
       description: title
     })
-  }
-
-  /**
-   * render
-   * @returns {ReactElement} markup
-   */
-  render () {
-    const { prior, next } = this.props
-    const { title, slug } = this.props.current
-
-    return (
-      <Main title={title}>
-        <Helmet titleTemplate='%s - Solomon'>
-          <title>{title}</title>
-          <script type='application/ld+json'>{this.getLinkedData()}</script>
-          <link rel='amphtml' href={`https://blog.poi.cat/amp/${slug}.html`} />
-        </Helmet>
-        {(this.state && this.state.html)
-          ? (<article dangerouslySetInnerHTML={{ __html: this.state.html }} />)
-          : (
-            <article>
-              <i>Loading {slug} ...</i>
-            </article>
-          )
-        }
-        <UpNext prior={prior} next={next} />
-        <CommentEditor slug={slug} />
-        <CommentViewer slug={slug} />
-      </Main>
-    )
   }
 }
 

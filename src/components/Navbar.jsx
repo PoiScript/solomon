@@ -37,18 +37,16 @@ const routes = [
 const Navbar = () => (
   <Toolbar style={styles.toolbar}>
     <ToolbarGroup>
-      {
-        routes.map(route => (
-          <FlatButton
-            key={route.label}
-            style={styles.button}
-            hoverColor={deepPurple600}
-            labelStyle={styles.label}
-            label={route.label}
-            containerElement={<Link to={route.path} />}
-          />
-        ))
-      }
+      {routes.map((route, i) => (
+        <FlatButton
+          key={i}
+          style={styles.button}
+          hoverColor={deepPurple600}
+          labelStyle={styles.label}
+          label={route.label}
+          containerElement={<Link to={route.path} />}
+        />
+      ))}
     </ToolbarGroup>
   </Toolbar>
 )
