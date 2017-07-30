@@ -98,12 +98,14 @@ class CommentViewer extends React.Component {
    */
   _getComments (slug) {
     this.setState(initialState)
-    database().ref(`/comment/${slug}`).once('value')
+    database().ref(`/comment/${slug}`).orderByChild('created').once('value')
       .then(snap => {
         const comments = []
 
         // loop through snapshot
-        snap.forEach(child => comments.push(child.val()))
+        snap.forEach(child => {
+          comments.push(child.val())
+        })
 
         this.setState({ comments })
       })
