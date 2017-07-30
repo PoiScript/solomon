@@ -39,5 +39,10 @@
     "react-test-renderer": "^15.6.1",
     "rss": "^1.2.2",
     "standard": "^10.0.2"
+  },
+  "reactSnapshot": {
+    "include": [
+      "/404"
+    ]
   }
 }

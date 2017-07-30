@@ -1,7 +1,7 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import 'whatwg-fetch'
 
 import Tag from './pages/Tag'
@@ -9,6 +9,7 @@ import Post from './pages/Post'
 import About from './pages/About'
 import Links from './pages/Links'
 import Homepage from './pages/Homepage'
+import NotFound from './pages/NotFound'
 
 /**
  * a punch of posts
@@ -39,10 +40,19 @@ const routes = [
     render: ({ match }) => {
       const index = posts.findIndex(post => post.slug === match.params.slug)
 
-      return (
-        <Post current={posts[index]} prior={posts[index - 1]} next={posts[index + 1]} />
-      )
+      if (index !== -1) {
+        return (
+          <Post current={posts[index]} prior={posts[index - 1]} next={posts[index + 1]} />
+        )
+      } else {
+        return (
+          <Redirect to='/404' />
+        )
+      }
     }
+  }, {
+    path: '**',
+    component: NotFound
   }
 ]
 
@@ -56,7 +66,6 @@ const App = () => (
         {routes.map((route, i) => (
           <Route key={i} {...route} />
         ))}
-        {/* TODO: add not match component */}
       </Switch>
     </Router>
   </MuiThemeProvider>
