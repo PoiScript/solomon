@@ -3,10 +3,6 @@ import { Helmet } from 'react-helmet'
 
 import Main from '../components/Main'
 
-const comment = {
-  color: 'rgba(0,0,0,0.4)'
-}
-
 /**
  * @constructor
  */
@@ -16,15 +12,21 @@ const NotFound = () => (
     <article>
       <pre>
         <code>
-          <h3 style={comment}>// List of HTTP status codes</h3>
-          <h3>100 101 102</h3>
-          <h3>200 201 202 203 204 205 206 207 208 226</h3>
-          <h3>300 301 302 303 304 305 306 307 308</h3>
-          <h3>400 401 402 403 <span style={comment}>/* You got this: */</span> <b>404</b></h3>
-          <h3>405 406 407 408 409 410 411 412 413 414</h3>
-          <h3>415 416 417 418 421 422 423 424 426 428</h3>
-          <h3>429 431 451</h3>
-          <h3>500 501 502 503 504 505 506 507 508 510</h3>
+          <h3>HTTP/2 <b>404 Not Found</b></h3>
+          <h3>Access-Control-Max-Age: 17</h3>
+          <h3>Accept-Ranges: bytes</h3>
+          <h3>Age: 17</h3>
+          <h3>Cache-Control: max-age=17</h3>
+          <h3>Connection: Closed</h3>
+          <h3>Content-Encoding: gzip</h3>
+          <h3>Content-Language: zh-Hans</h3>
+          <h3>Content-Length: 161509</h3>
+          <h3>Content-Type: text/html; charset=utf-8</h3>
+          <h3>Date: Tue, Oct 22 1996 16:15:09 GMT</h3>
+          <h3>Set-Cookie: UserID=poi; Max-Age=17</h3>
+          <h3>Server: PoiScript/7.6.4 (Unix)</h3>
+          <h3>Strict-Transport-Security: max-age=17</h3>
+          <h3>Vary: Accept-Encoding</h3>
         </code>
       </pre>
     </article>
