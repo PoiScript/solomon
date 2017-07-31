@@ -2,7 +2,6 @@ import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import 'whatwg-fetch'
 
 import Tag from './pages/Tag'
 import Post from './pages/Post'
