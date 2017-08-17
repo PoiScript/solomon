@@ -1,5 +1,4 @@
 import React from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
@@ -59,15 +58,13 @@ const routes = [
  * @constructor
  */
 const App = () => (
-  <MuiThemeProvider>
-    <Router>
-      <Switch>
-        {routes.map((route, i) => (
-          <Route key={i} {...route} />
-        ))}
-      </Switch>
-    </Router>
-  </MuiThemeProvider>
+  <Router>
+    <Switch>
+      {routes.map((route, i) => (
+        <Route key={i} {...route} />
+      ))}
+    </Switch>
+  </Router>
 )
 
 /**

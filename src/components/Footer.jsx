@@ -1,23 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { blueGrey50, blueGrey300, blueGrey800, blueGrey900 } from 'material-ui/styles/colors'
+import { blueGrey } from 'material-ui/colors'
 
 const styles = {
   footer: {
     fontSize: '13px',
     padding: '48px 0',
     textAlign: 'center',
-    color: blueGrey300,
-    backgroundColor: blueGrey900
+    color: blueGrey[300],
+    backgroundColor: blueGrey[900]
   },
   section: {
     padding: '24px 0',
     textAlign: 'center',
-    backgroundColor: blueGrey800
+    backgroundColor: blueGrey[800]
   },
   link: {
     margin: '10px',
-    color: blueGrey50,
+    color: blueGrey[50],
     textDecoration: 'none'
   },
   commit: {

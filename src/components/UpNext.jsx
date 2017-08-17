@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FontIcon from 'material-ui/FontIcon'
-import { Row, Col } from 'react-flexbox-grid'
+import Grid from 'material-ui/Grid'
 import { Link } from 'react-router-dom'
-import { blueGrey800 } from 'material-ui/styles/colors'
+import IconButton from 'material-ui/IconButton'
+import { blueGrey } from 'material-ui/colors'
+import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft'
+import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight'
 
 const styles = {
   row: {
@@ -13,7 +15,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     textDecoration: 'none',
-    color: blueGrey800
+    color: blueGrey[800]
   },
   prior: {
     display: 'flex',
@@ -31,12 +33,14 @@ const styles = {
  * @constructor
  */
 const UpNext = ({ prior, next }) => (
-  <Row style={styles.row}>
-    <Col xs={12} sm={6}>
+  <Grid container justify='space-between'>
+    <Grid item xs={12} sm={6}>
       {prior
         ? (
           <Link to={`/post/${prior.slug}/`} style={styles.link}>
-            <FontIcon className='solomon-icon'>prior</FontIcon>
+            <IconButton aria-label='prior post'>
+              <KeyboardArrowLeft />
+            </IconButton>
             <div style={styles.prior}>
               <strong>Prior</strong>
               <span>{prior.title}</span>
@@ -45,8 +49,8 @@ const UpNext = ({ prior, next }) => (
         )
         : (<i>no prior post</i>)
       }
-    </Col>
-    <Col xs={12} sm={6}>
+    </Grid>
+    <Grid item xs={12} sm={6}>
       {next
         ? (
           <Link to={`/post/${next.slug}/`} style={styles.link}>
@@ -54,13 +58,15 @@ const UpNext = ({ prior, next }) => (
               <strong>Next</strong>
               <span>{next.title}</span>
             </div>
-            <FontIcon className='solomon-icon'>next</FontIcon>
+            <IconButton aria-label='next post'>
+              <KeyboardArrowRight />
+            </IconButton>
           </Link>
         )
         : (<i style={styles.next}>no next post</i>)
       }
-    </Col>
-  </Row>
+    </Grid>
+  </Grid>
 )
 
 UpNext.PropTypes = {

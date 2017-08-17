@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Avatar from 'material-ui/Avatar'
-import { List, ListItem } from 'material-ui/List'
+import List, { ListItem, ListItemText } from 'material-ui/List'
 
 class LinkList extends React.Component {
   /**
@@ -36,11 +36,14 @@ class LinkList extends React.Component {
           ? links.map((link, i) =>
             <ListItem
               key={i}
-              primaryText={link.name}
-              secondaryText={link.text}
+              button
+              component='a'
+              target='_blank'
               href={link.address}
-              leftAvatar={<Avatar src={link.avatar_url} />}
-            />
+            >
+              <Avatar src={link.avatar_url} />
+              <ListItemText primary={link.name} secondary={link.text} />
+            </ListItem>
           )
           : (<i>No link... for now</i>)
         }

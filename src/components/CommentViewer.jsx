@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { database } from 'firebase'
 import Avatar from 'material-ui/Avatar'
-import { blueGrey800 } from 'material-ui/styles/colors'
+import { blueGrey } from 'material-ui/colors'
 
 const styles = {
   header: {
@@ -35,6 +35,7 @@ const initialState = {
 class CommentViewer extends React.Component {
   /***************/
   /*  LIFECYCLE  */
+
   /***************/
   /**
    * @constructor
@@ -59,7 +60,7 @@ class CommentViewer extends React.Component {
     const { comments } = this.state
 
     return (
-      <div style={{ color: blueGrey800 }}>
+      <div style={{ color: blueGrey[800] }}>
         {comments.length
           ? comments.map((comment, i) => (
             <div key={i}>
@@ -91,6 +92,7 @@ class CommentViewer extends React.Component {
 
   /************/
   /*  HELPER  */
+
   /************/
   /**
    * get comments from firebase database

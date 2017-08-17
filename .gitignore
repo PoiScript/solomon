@@ -10,7 +10,6 @@ post.json
 /build
 public/*
 !public/*.scss
-!public/fonts/
 !public/icon.png
 !public/markdown/
 !public/link.json

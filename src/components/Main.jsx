@@ -32,8 +32,8 @@ const Main = ({ title, children }) => (
 )
 
 Main.PropTypes = {
-  title: PropTypes.string,
-  children: PropTypes.node
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 /**

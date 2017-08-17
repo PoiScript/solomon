@@ -1,21 +1,12 @@
 import React from 'react'
-import { deepPurple500, deepPurple600, blueGrey50 } from 'material-ui/styles/colors'
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar'
-import FlatButton from 'material-ui/FlatButton'
+import Button from 'material-ui/Button'
 import { Link } from 'react-router-dom'
+import Toolbar from 'material-ui/Toolbar'
+import { deepPurple } from 'material-ui/colors'
 
-const styles = {
-  button: {
-    marginLeft: 0,
-    marginRight: 0
-  },
-  label: {
-    color: blueGrey50
-  },
-  toolbar: {
-    padding: '0 12px',
-    backgroundColor: deepPurple500
-  }
+const style = {
+  padding: '0 12px',
+  backgroundColor: deepPurple[500]
 }
 
 /**
@@ -35,19 +26,17 @@ const routes = [
  * @constructor
  */
 const Navbar = () => (
-  <Toolbar style={styles.toolbar}>
-    <ToolbarGroup>
-      {routes.map((route, i) => (
-        <FlatButton
-          key={i}
-          style={styles.button}
-          hoverColor={deepPurple600}
-          labelStyle={styles.label}
-          label={route.label}
-          containerElement={<Link to={route.path} />}
-        />
-      ))}
-    </ToolbarGroup>
+  <Toolbar style={style}>
+    {routes.map((route, i) => (
+      <Button
+        key={i}
+        color='contrast'
+        component={Link}
+        to={route.path}
+      >
+        {route.label}
+      </Button>
+    ))}
   </Toolbar>
 )
 

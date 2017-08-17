@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Grid from 'material-ui/Grid'
 import Avatar from 'material-ui/Avatar'
-import { Row } from 'react-flexbox-grid'
+import Button from 'material-ui/Button'
 import { auth, database } from 'firebase'
 import TextField from 'material-ui/TextField'
-import FlatButton from 'material-ui/FlatButton'
-import RaisedButton from 'material-ui/RaisedButton'
 
 import Snackbar from './Snackbar'
 
@@ -19,6 +18,14 @@ const styles = {
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column'
+  },
+  grid: {
+    padding: '20px'
+  },
+  bigAvatar: {
+    width: 60,
+    height: 60,
+    marginRight: '16px'
   }
 }
 
@@ -51,7 +58,7 @@ class CommentEditor extends React.Component {
     return (
       <div style={{ marginTop: '40px' }}>
         <div style={styles.account}>
-          {user && <Avatar size={60} src={user.photoURL} style={{ marginRight: '16px' }} />}
+          {user && <Avatar src={user.photoURL} style={styles.bigAvatar} />}
           <div style={styles.info}>
             {user
               ? <span>You had logged in as <strong>{user.displayName}</strong></span>
@@ -60,37 +67,45 @@ class CommentEditor extends React.Component {
             {user
               ? (
                 <span>
-                  <FlatButton label='Sign Out' onTouchTap={this._signOut} />
+                  <Button onTouchTap={this._signOut}>Sign Out</Button>
                 </span>
               )
               : (
                 <span>
-                  <FlatButton label='GitHub' onTouchTap={this._githubSignIn} />
-                  <FlatButton label='Google' onTouchTap={this._googleSignIn} />
-                  <FlatButton label='Anonymous' onTouchTap={this._anonymousSignIn} />
+                  <Button onTouchTap={this._githubSignIn}>GitHub</Button>
+                  <Button onTouchTap={this._googleSignIn}>Google</Button>
+                  <Button onTouchTap={this._anonymousSignIn}>Anonymous</Button>
                 </span>
               )
             }
           </div>
         </div>
         <TextField
-          fullWidth multiLine
-          rows={2} rowsMax={4}
+          fullWidth multiline
+          rows={3} rowsMax={5}
           value={value}
           disabled={!user}
           onChange={this._handleChange}
-          floatingLabelText='Join the discussion' />
-        <Row end='xs'>
-          <FlatButton
-            label='Clear'
-            disabled={!user}
-            onTouchTap={this._clearValue} />
-          <RaisedButton
-            primary
-            label='Submit'
-            disabled={!user}
-            onTouchTap={this._postComment} />
-        </Row>
+          label='Join the discussion' />
+        <Grid container justify='flex-end' style={styles.grid}>
+          <Grid item>
+            <Button
+              disabled={!user}
+              onTouchTap={this._clearValue}
+            >
+              Clear
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              raised
+              disabled={!user}
+              onTouchTap={this._postComment}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
         <Snackbar message={message} />
       </div>
     )

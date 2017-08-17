@@ -1,8 +1,10 @@
 import React from 'react'
 import { render } from 'react-snapshot'
-import App from './App'
-import './index.css'
 import { initializeApp } from 'firebase'
+
+import App from './App'
+
+import './index.css'
 
 const config = {
   apiKey: 'AIzaSyDptUPQOWYnHIDanDsPY_PFtB3fn2v2VfY',

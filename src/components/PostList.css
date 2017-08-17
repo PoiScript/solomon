@@ -1,0 +1,16 @@
+.post-list-title {
+  font-weight: 400;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #673AB7;
+}
+
+.post-list-content {
+  color: rgba(0, 0, 0, .6);
+  display: block;
+}
+
+.post-list-tag {
+  color: #2196F3;
+  text-decoration: none;
+}
