@@ -1,68 +1,57 @@
 [
   {
     "address": "https://typeblog.net/",
-    "avatar_url": "https://github.com/PeterCxy.png?size=200",
-    "name": "PeterCxy",
-    "text": "Typeblog"
+    "avatar": "https://github.com/PeterCxy.png?size=400",
+    "name": "PeterCxy"
   },
   {
     "address": "https://fiveyellowmice.com/",
-    "avatar_url": "https://github.com/FiveYellowMice.png?size=200",
-    "name": "FiveYellowMice",
-    "text": "FiveYellowMice's Blog"
+    "avatar": "https://github.com/FiveYellowMice.png?size=400",
+    "name": "FiveYellowMice"
   },
   {
     "address": "http://blog.lilydjwg.me/",
-    "avatar_url": "https://github.com/lilydjwg.png?size=200",
-    "name": "依云",
-    "text": "依云's Blog"
+    "avatar": "https://github.com/lilydjwg.png?size=400",
+    "name": "依云"
   },
   {
     "address": "https://blog.yoitsu.moe/",
-    "avatar_url": "https://github.com/KenOokamiHoro.png?size=200",
-    "name": "ヨイツの賢狼ホロ",
-    "text": "约伊兹的萌狼乡手札"
+    "avatar": "https://github.com/KenOokamiHoro.png?size=400",
+    "name": "ヨイツの賢狼ホロ"
   },
   {
     "address": "https://blog.felixc.at/",
-    "avatar_url": "https://github.com/felixonmars.png?size=200",
-    "name": "Felix Yan",
-    "text": "Felix's Blog"
+    "avatar": "https://github.com/felixonmars.png?size=400",
+    "name": "Felix Yan"
   },
   {
     "address": "https://farseerfc.me/",
-    "avatar_url": "https://github.com/farseerfc.png?size=200",
-    "name": "farseerfc",
-    "text": "Farseerfc的小窩"
+    "avatar": "https://github.com/farseerfc.png?size=400",
+    "name": "farseerfc"
   },
   {
     "address": "https://tomli.blog/",
-    "avatar_url": "https://github.com/biergaizi.png?size=200",
-    "name": "比尔盖子",
-    "text": "比尔盖子 博客"
+    "avatar": "https://github.com/biergaizi.png?size=400",
+    "name": "比尔盖子"
   },
   {
     "address": "https://void-shana.moe/",
-    "avatar_url": "https://github.com/VOID001.png?size=200",
-    "name": "VOID001",
-    "text": "VOID001's WOWO"
+    "avatar": "https://github.com/VOID001.png?size=400",
+    "name": "VOID001"
   },
   {
     "address": "https://marisa-kirisa.me/",
-    "avatar_url": "https://github.com/wengxt.png?size=200",
-    "name": "CS Slayer",
-    "text": "恋符「Master Spark」"
+    "avatar": "https://github.com/wengxt.png?size=400",
+    "name": "CS Slayer"
   },
   {
     "address": "https://www.rabbittu.com/",
-    "avatar_url": "https://github.com/xiaoyu2016.png?size=200",
-    "name": "NyanRabbit",
-    "text": "伊妮卡丽因 - 某兔子の御用花园"
+    "avatar": "https://github.com/xiaoyu2016.png?size=400",
+    "name": "NyanRabbit"
   },
   {
     "address": "https://blog.nfz.moe/",
-    "avatar_url": "https://github.com/neofelhz.png?size=200",
-    "name": "neoFelhz",
-    "text": "neoFelhz's Blog"
+    "avatar": "https://github.com/neofelhz.png?size=400",
+    "name": "neoFelhz"
   }
 ]
