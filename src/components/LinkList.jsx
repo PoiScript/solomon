@@ -111,6 +111,7 @@ class LinkList extends React.Component {
               <a
                 target='_blank'
                 href={link.address}
+                rel='noopener noreferrer'
                 className={classes.imageButton}
               >
                 <Typography
