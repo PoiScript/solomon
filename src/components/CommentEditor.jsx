@@ -5,10 +5,14 @@ import Avatar from 'material-ui/Avatar'
 import Button from 'material-ui/Button'
 import { auth, database } from 'firebase'
 import TextField from 'material-ui/TextField'
+import { withStyles } from 'material-ui/styles'
 
 import Snackbar from './Snackbar'
 
-const styles = {
+const styles = theme => ({
+  root: {
+    marginTop: '40px'
+  },
   account: {
     display: 'flex',
     flexDirection: 'row',
@@ -27,7 +31,7 @@ const styles = {
     height: 60,
     marginRight: '16px'
   }
-}
+})
 
 class CommentEditor extends React.Component {
   /***************/
@@ -53,13 +57,14 @@ class CommentEditor extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
+    const { classes } = this.props
     const { user, value, message } = this.state || {}
 
     return (
-      <div style={{ marginTop: '40px' }}>
-        <div style={styles.account}>
-          {user && <Avatar src={user.photoURL} style={styles.bigAvatar} />}
-          <div style={styles.info}>
+      <div className={classes.root}>
+        <div className={classes.account}>
+          {user && <Avatar className={classes.bigAvatar} src={user.photoURL} />}
+          <div className={classes.info}>
             {user
               ? <span>You had logged in as <strong>{user.displayName}</strong></span>
               : <span>Before you comment, you may choose method to sign in:</span>
@@ -87,20 +92,14 @@ class CommentEditor extends React.Component {
           disabled={!user}
           onChange={this._handleChange}
           label='Join the discussion' />
-        <Grid container justify='flex-end' style={styles.grid}>
+        <Grid className={classes.grid} container justify='flex-end'>
           <Grid item>
-            <Button
-              disabled={!user}
-              onTouchTap={this._clearValue}
-            >
+            <Button disabled={!user} onTouchTap={this._clearValue}>
               Clear
             </Button>
           </Grid>
           <Grid item>
-            <Button
-              raised
-              disabled={!user}
-              onTouchTap={this._postComment}
+            <Button raised disabled={!user} onTouchTap={this._postComment}
             >
               Submit
             </Button>
@@ -214,10 +213,11 @@ class CommentEditor extends React.Component {
 }
 
 CommentEditor.PropTypes = {
-  slug: PropTypes.string.isRequired
+  slug: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 /**
  * comment-editor component
  */
-export default CommentEditor
+export default withStyles(styles)(CommentEditor)

@@ -3,8 +3,12 @@ import PropTypes from 'prop-types'
 import { database } from 'firebase'
 import Avatar from 'material-ui/Avatar'
 import { blueGrey } from 'material-ui/colors'
+import { withStyles } from 'material-ui/styles'
 
-const styles = {
+const styles = theme => ({
+  root: {
+    color: blueGrey[800]
+  },
   header: {
     display: 'flex',
     flexDirection: 'row',
@@ -16,6 +20,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'column'
   },
+  avatar: {
+    marginRight: '16px'
+  },
   text: {
     lineHeight: '1.5em',
     marginBottom: '16px'
@@ -26,7 +33,7 @@ const styles = {
     fontStyle: 'italic',
     textAlign: 'center'
   }
-}
+})
 
 const initialState = {
   comments: []
@@ -35,7 +42,6 @@ const initialState = {
 class CommentViewer extends React.Component {
   /***************/
   /*  LIFECYCLE  */
-
   /***************/
   /**
    * @constructor
@@ -57,24 +63,25 @@ class CommentViewer extends React.Component {
    * @returns {ReactElement} markup
    */
   render () {
+    const { classes } = this.props
     const { comments } = this.state
 
     return (
-      <div style={{ color: blueGrey[800] }}>
+      <div className={classes.root}>
         {comments.length
           ? comments.map((comment, i) => (
             <div key={i}>
-              <header style={styles.header}>
-                <Avatar size={48} src={comment.avatar} style={{ marginRight: '16px' }} />
-                <div style={styles.author}>
+              <header className={classes.header}>
+                <Avatar className={classes.avatar} size={48} src={comment.avatar} />
+                <div className={classes.author}>
                   <span>{comment.name}</span>
                   <span>{(new Date(comment.created)).toDateString()}</span>
                 </div>
               </header>
-              <div style={styles.text}>{comment.content}</div>
+              <div className={classes.text}>{comment.content}</div>
             </div>
           ))
-          : (<h3 style={styles.noComment}>No comment... for now</h3>)
+          : (<h3 className={classes.noComment}>No comment... for now</h3>)
         }
       </div>
     )
@@ -92,7 +99,6 @@ class CommentViewer extends React.Component {
 
   /************/
   /*  HELPER  */
-
   /************/
   /**
    * get comments from firebase database
@@ -115,10 +121,11 @@ class CommentViewer extends React.Component {
 }
 
 CommentViewer.PropTypes = {
-  slug: PropTypes.string.isRequired
+  slug: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 /**
  * comment-view component, showing comment get from firebase database
  */
-export default CommentViewer
+export default withStyles(styles)(CommentViewer)

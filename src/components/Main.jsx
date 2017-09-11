@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui/styles'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-const styles = {
+const styles = theme => ({
   main: {
     maxWidth: '960px',
     margin: 'auto',
@@ -15,16 +16,16 @@ const styles = {
     fontWeight: 300,
     padding: '50px 0'
   }
-}
+})
 
 /**
  * @constructor
  */
-const Main = ({ title, children }) => (
+const Main = ({ title, children, classes }) => (
   <div>
     <Navbar />
-    <main style={styles.main}>
-      <header style={styles.header}>{title}</header>
+    <main className={classes.main}>
+      <header className={classes.header}>{title}</header>
       {children}
     </main>
     <Footer />
@@ -33,10 +34,11 @@ const Main = ({ title, children }) => (
 
 Main.PropTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 /**
  * main component
  */
-export default Main
+export default withStyles(styles)(Main)

@@ -4,10 +4,11 @@ import Grid from 'material-ui/Grid'
 import { Link } from 'react-router-dom'
 import IconButton from 'material-ui/IconButton'
 import { blueGrey } from 'material-ui/colors'
+import { withStyles } from 'material-ui/styles'
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft'
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight'
 
-const styles = {
+const styles = theme => ({
   row: {
     paddingTop: '50px'
   },
@@ -27,21 +28,21 @@ const styles = {
     textAlign: 'right',
     flexDirection: 'column'
   }
-}
+})
 
 /**
  * @constructor
  */
-const UpNext = ({ prior, next }) => (
+const UpNext = ({ prior, next, classes }) => (
   <Grid container justify='space-between'>
     <Grid item xs={12} sm={6}>
       {prior
         ? (
-          <Link to={`/post/${prior.slug}/`} style={styles.link}>
+          <Link className={classes.link} to={`/post/${prior.slug}/`}>
             <IconButton aria-label='prior post'>
               <KeyboardArrowLeft />
             </IconButton>
-            <div style={styles.prior}>
+            <div className={classes.prior}>
               <strong>Prior</strong>
               <span>{prior.title}</span>
             </div>
@@ -53,8 +54,8 @@ const UpNext = ({ prior, next }) => (
     <Grid item xs={12} sm={6}>
       {next
         ? (
-          <Link to={`/post/${next.slug}/`} style={styles.link}>
-            <div style={styles.next}>
+          <Link className={classes.link} to={`/post/${next.slug}/`}>
+            <div className={classes.next}>
               <strong>Next</strong>
               <span>{next.title}</span>
             </div>
@@ -63,18 +64,18 @@ const UpNext = ({ prior, next }) => (
             </IconButton>
           </Link>
         )
-        : (<i style={styles.next}>no next post</i>)
+        : (<i className={classes.next}>no next post</i>)
       }
     </Grid>
   </Grid>
 )
 
 UpNext.PropTypes = {
+  classes: PropTypes.object.isRequired,
   next: PropTypes.shape({
     slug: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }),
-
   prior: PropTypes.shape({
     slug: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
@@ -84,4 +85,4 @@ UpNext.PropTypes = {
 /**
  * up-next component, showing the recent posts
  */
-export default UpNext
+export default withStyles(styles)(UpNext)
