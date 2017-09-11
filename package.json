@@ -12,7 +12,8 @@
     "scss": "node-sass public/ -o public/ --output-style compressed",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
-    "writer": "node scripts/writer"
+    "writer": "node scripts/writer",
+    "postinstall": "cd functions && yarn"
   },
   "private": true,
   "dependencies": {

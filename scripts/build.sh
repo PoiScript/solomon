@@ -8,3 +8,4 @@ echo "REACT_APP_BUILD_DATE=$(date +%G-%m-%d)" >> .env
 
 yarn build
 node scripts/html.js
+yarn postinstall
