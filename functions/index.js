@@ -7,7 +7,7 @@ admin.initializeApp(functions.config().firebase)
 const app = express()
 const ref = admin.database().ref()
 
-app.get('/comment/:slug', (req, res) => {
+app.get('/api/comment/:slug', (req, res) => {
   const comments = []
   ref
     .child(`/comment/${req.params.slug}`)
