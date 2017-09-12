@@ -29,4 +29,9 @@ app.get('/comment/:slug', (req, res) => {
     })
 })
 
+app.get('*', (req, res) => {
+  res.status(404)
+  res.json({ error: 'Not Found' })
+})
+
 exports.api = functions.https.onRequest(app)

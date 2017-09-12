@@ -2,7 +2,7 @@
   "hosting": {
     "public": "build",
     "rewrites": [{
-      "source": "/api",
+      "source": "/api/**",
       "function": "api"
     }]
   }
