@@ -21,7 +21,7 @@
       ],
       "assets": [
         {
-          "glob": "**/*",
+          "glob": "**/?(*.html|*.json|*.xml)",
           "input": "../assets/",
           "output": "./"
         }

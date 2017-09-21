@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "test": "ng test",
     "start": "ng serve",
-    "writer": "node scripts/writer",
+    "prestart": "node scripts/writer",
+    "preinstall": "cd functions && yarn install",
     "build": "ng build --prod && ng build --prod --app 1 --output-hashing=false && node scripts/prerender"
   },
   "private": true,

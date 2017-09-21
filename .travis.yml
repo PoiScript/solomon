@@ -1,18 +1,25 @@
 language: node_js
 node_js:
-  - "7"
+  - "8"
+
+cache:
+  directories:
+     - ./node_modules
+     - ./functions/node_modules
 
 before_script:
-  - yarn
+  - yarn run preinstall
+  - yarn run install
 
 script:
-  - bash scripts/build.sh
+  - yarn run prestart
+  - yarn run build
 
 after_success:
   - yarn global add firebase-tools
   - test $TRAVIS_BRANCH = "dev" && firebase use dev
   - test $TRAVIS_BRANCH = "master" && firebase use default
-  - firebase deploy --token $FIREBASE_TOKEN
+  - firebase deploy --non-interactive --token $FIREBASE_TOKEN
 
 notifications:
   email:
