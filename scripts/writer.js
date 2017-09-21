@@ -3,11 +3,10 @@ const path = require('path')
 const rss = require('./rss')
 const render = require('./render')
 
-const output = path.resolve('public')
-const ampDir = path.resolve('public/amp')
-const htmlDir = path.resolve('public/html')
-const reactSrcDir = path.resolve('react/src')
-const markdownDir = path.resolve('public/markdown')
+const output = path.resolve('assets')
+const ampDir = path.resolve('assets/amp')
+const htmlDir = path.resolve('assets/html')
+const markdownDir = path.resolve('assets/markdown')
 
 if (!fs.existsSync(ampDir)) {
   fs.mkdirSync(ampDir)
@@ -59,5 +58,4 @@ const json = JSON.stringify(posts.map(p => {
   return p
 }))
 
-fs.writeFileSync(`${output}/post.json`, json)
-fs.writeFileSync(`${reactSrcDir}/post.json`, json)
+fs.writeFileSync(`${output}/post.ts`, `export const posts = ${json}`)

@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "solomon-ng"
+    "name": "solomon"
   },
   "apps": [
     {
-      "root": "angular/src",
-      "outDir": "public/ng",
+      "root": "angular",
+      "outDir": "dist",
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -19,6 +19,27 @@
         "markdown.scss",
         "theme.scss"
       ],
+      "assets": [
+        {
+          "glob": "**/*",
+          "input": "../assets/",
+          "output": "./"
+        }
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "platform": "server",
+      "root": "angular",
+      "outDir": "dist/dist-server",
+      "index": "index.html",
+      "main": "main.server.ts",
+      "tsconfig": "tsconfig.server.json",
+      "prefix": "solomon",
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -28,23 +49,23 @@
   ],
   "e2e": {
     "protractor": {
-      "config": "./angular/protractor.conf.js"
+      "config": "./protractor.conf.js"
     }
   },
   "lint": [
     {
-      "project": "angular/src/tsconfig.app.json"
+      "project": "./angular/tsconfig.app.json"
     },
     {
-      "project": "angular/src/tsconfig.spec.json"
+      "project": "./angular/tsconfig.spec.json"
     },
     {
-      "project": "angular/e2e/tsconfig.e2e.json"
+      "project": "./e2e/tsconfig.e2e.json"
     }
   ],
   "test": {
     "karma": {
-      "config": "./angular/karma.conf.js"
+      "config": "./karma.conf.js"
     }
   },
   "defaults": {

@@ -1,7 +1,0 @@
-# dependencies
-/node_modules
-
-# compiled output
-post.json
-.env
-/build

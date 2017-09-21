@@ -1,17 +1,16 @@
 # dependencies
-/node_modules
+node_modules/
 
 # IDE
 /.idea
 
 # compiled output
-public/*
-!public/*.scss
-!public/fonts/
-!public/icon.png
-!public/markdown/
-!public/favicon.ico
-!public/manifest.json
+dist
+assets/amp
+assets/html
+assets/atom.xml
+assets/post.ts
+assets/post.json
 
 # logs
 npm-debug.log*
