@@ -4,10 +4,8 @@ import {TestBed, async} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {RouterModule} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MaterialModule} from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {ThemeService} from './shared/theme-service';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -17,13 +15,9 @@ describe('AppComponent', () => {
       ],
       imports: [
         RouterModule,
-        MaterialModule,
         FlexLayoutModule,
         RouterTestingModule
       ],
-      providers: [
-        ThemeService
-      ]
     });
     TestBed.compileComponents();
   });

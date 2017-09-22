@@ -1,0 +1,23 @@
+<div *ngIf="posts.length; then has_post else no_post"></div>
+
+<ng-template #has_post>
+  <div class="content">
+    <p>{{posts.length}} posts</p>
+    <div *ngFor="let post of posts">
+      <a class="title" [routerLink]="['/post', post.slug]">
+        {{post.title}}
+      </a>
+      <p>
+        <span>{{post.date | date:'mediumDate'}}</span>
+        <a class="title" *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]">
+          #{{tag}}
+        </a>
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #no_post>
+  <i>No Posts :(</i>
+</ng-template>
+
