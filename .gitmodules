@@ -1,3 +1,3 @@
-[submodule "public/markdown"]
-	path = public/markdown
+[submodule "assets/markdown"]
+	path = assets/markdown
 	url = https://github.com/PoiScript/solomon-post
