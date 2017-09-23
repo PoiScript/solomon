@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Post } from 'app/app.types';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
-import { posts } from '../../../../assets/post';
+import { Post } from 'app/shared/post.model';
+import { posts } from '../../../../solomon.conf.js';
 
 @Injectable()
 export class PostService {

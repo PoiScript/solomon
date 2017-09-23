@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Post } from 'app/app.types';
 
-import { posts } from '../../../assets/post';
+import { Post } from 'app/shared/post.model';
+import { posts } from '../../../solomon.conf.js';
 
 @Component({
   selector: 'solomon-homepage',
