@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Link } from './link.model';
-import { links } from '../../../solomon.conf.js';
+import { links } from '../../../solomon.conf';
 
 @Component({
   selector: 'solomon-link',

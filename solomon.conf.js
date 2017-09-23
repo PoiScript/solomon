@@ -1,4 +1,4 @@
-export const posts = [{
+exports.posts = [{
   title: 'Spacemacs 和 Org-mode 和 LaTeX',
   slug: 'spacemacs-plus-org-mode-plus-latex',
   tags: ['emacs', 'latex', 'org-mode'],
@@ -45,7 +45,7 @@ export const posts = [{
   date: '2017-01-05T08:30:55.961Z'
 }]
 
-export const links = [{
+exports.links = [{
   address: 'https://typeblog.net/',
   avatar: 'https://github.com/PeterCxy.png?size=400',
   name: 'PeterCxy'

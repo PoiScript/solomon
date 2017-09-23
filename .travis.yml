@@ -7,13 +7,9 @@ cache:
      - ./node_modules
      - ./functions/node_modules
 
-before_script:
-  - yarn run preinstall
-  - yarn run install
-
 script:
-  - yarn run prestart
-  - yarn run build
+  - node scripts/check
+  - yarn build
 
 after_success:
   - yarn global add firebase-tools

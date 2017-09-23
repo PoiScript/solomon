@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  origin_url: '/',
+  origin_url: 'https://blog.poi.cat/',
   firebase: {
     apiKey: 'AIzaSyDptUPQOWYnHIDanDsPY_PFtB3fn2v2VfY',
     authDomain: 'solomon-poi.firebaseapp.com',

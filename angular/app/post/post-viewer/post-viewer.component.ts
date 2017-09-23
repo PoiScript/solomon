@@ -1,6 +1,8 @@
 import { Http } from '@angular/http';
 import { Component, ElementRef, Input } from '@angular/core';
 
+import { environment} from '../../../environments/environment';
+
 @Component({
   selector: 'solomon-post-viewer',
   template: '<i>Loading {{slug}}.html...</i>'
@@ -14,7 +16,7 @@ export class PostViewerComponent {
   }
 
   private _getHtml (slug: string) {
-    this._http.get(`/html/${slug}.html`).subscribe(
+    this._http.get(`${environment.origin_url}html/${slug}.html`).subscribe(
       response => {
         if (response.ok) {
           this._elementRef.nativeElement.innerHTML = response.text();

@@ -10,9 +10,9 @@
     "lint": "ng lint",
     "test": "ng test",
     "start": "ng serve",
-    "prestart": "node scripts/writer",
-    "preinstall": "cd functions && yarn install",
-    "build": "ng build --prod && ng build --prod --app 1 --output-hashing=false && node scripts/prerender"
+    "prestart": "node scripts/check",
+    "preinstall": "cd functions && yarn",
+    "build": "ng build --prod --env=server && ng build --prod --env=server --app 1 --output-hashing=false && node scripts/prerender"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +41,7 @@
     "@types/jasmine": "2.6.0",
     "cheerio": "^1.0.0-rc.2",
     "codelyzer": "~3.2.0",
+    "fs-extra": "^4.0.2",
     "html-minifier": "^3.5.5",
     "http-server": "^0.10.0",
     "jasmine-core": "~2.8.0",

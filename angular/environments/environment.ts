@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  origin_url: '/',
   firebase: {
     apiKey: 'AIzaSyDptUPQOWYnHIDanDsPY_PFtB3fn2v2VfY',
     authDomain: 'solomon-poi.firebaseapp.com',
