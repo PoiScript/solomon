@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { PostService } from './post-service';
 import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { PostListComponent } from './post-list/post-list.component';
     CommonModule,
     RouterModule,
     PostListComponent,
-  ],
-  providers: [PostService]
+  ]
 })
 export class SharedModule {}
