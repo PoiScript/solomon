@@ -30,15 +30,15 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/cdk@^2.0.0-beta.10":
-  version "2.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-2.0.0-beta.10.tgz#7ffcc430d6f67dfde1df25e1fa693c188e4da08a"
+"@angular/cdk@^2.0.0-beta.11":
+  version "2.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-2.0.0-beta.11.tgz#b9e799574786272c63b6334c837c5ee2445bc933"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/cli@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.4.2.tgz#220a54c7e12303157cc289f4306fa46d080705ac"
+"@angular/cli@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.4.3.tgz#8389d4eeadfe34abb1d16e53836416a8f8430fb3"
   dependencies:
     "@angular-devkit/build-optimizer" "~0.0.18"
     "@angular-devkit/schematics" "~0.0.21"
@@ -141,9 +141,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/material@^2.0.0-beta.10":
-  version "2.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.10.tgz#23f5887d5e34da89dd6da1fe4da0b3f779da4807"
+"@angular/material@^2.0.0-beta.11":
+  version "2.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.11.tgz#9124a1f50f3eb7dc28640317ee1e875f71da753a"
   dependencies:
     tslib "^1.7.1"
 
@@ -2082,9 +2082,9 @@ find-up@^2.0.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.3.1.tgz#0e6132ee22af323b350d03b6eb1680bb1a6f9ee6"
+firebase@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.4.0.tgz#cffa34964c38ae24157ec930dbe147816fd8e3f4"
   dependencies:
     dom-storage "^2.0.2"
     faye-websocket "0.9.3"
@@ -5630,9 +5630,13 @@ type-is@~1.6.15:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
-"typescript@>=2.0.0 <2.6.0", typescript@^2.3.3, typescript@~2.5.2:
+"typescript@>=2.0.0 <2.6.0", typescript@^2.3.3:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.2.tgz#038a95f7d9bbb420b1bf35ba31d4c5c1dd3ffe34"
+
+"typescript@>=2.1.0 <2.4.0":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.4.tgz#3d38321828231e434f287514959c37a82b629f42"
 
 uglify-js@3.1.x:
   version "3.1.1"

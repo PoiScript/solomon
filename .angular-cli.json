@@ -42,14 +42,10 @@
       "platform": "server",
       "root": "angular",
       "outDir": "dist/dist-server",
-      "index": "index.html",
       "main": "main.server.ts",
       "tsconfig": "tsconfig.server.json",
-      "prefix": "solomon",
       "environmentSource": "environments/environment.ts",
       "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts",
         "server": "environments/environment.server.ts"
       }
     }

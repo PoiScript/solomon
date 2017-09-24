@@ -29,8 +29,11 @@ posts.forEach(post => {
   const post_html = fs.readFileSync(path.join(assets, 'html', `${post.slug}.html`), 'utf8')
   renderFactory(`/post/${post.slug}/`)
     .then(html => cheerio.load(html, {decodeEntities: false}))
-    .then($ => $('article').html(post_html))
-    .then(html => fs.outputFileSync(path.join(dist, `${post.slug}/index.html`), html))
+    .then($ => {
+      $('article').html(post_html)
+      return $.html()
+    })
+    .then(html => fs.outputFileSync(path.join(dist, `/post/${post.slug}/index.html`), html))
 })
 
 function renderFactory (url) {

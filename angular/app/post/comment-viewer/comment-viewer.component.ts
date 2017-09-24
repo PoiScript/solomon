@@ -1,6 +1,6 @@
+import { Http } from '@angular/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
 
 import { CommentResponse } from './comment.model';
 import { environment } from '../../../environments/environment';
@@ -12,12 +12,13 @@ import { environment } from '../../../environments/environment';
 })
 export class CommentViewerComponent implements OnInit {
   @Input() slug: string;
-  response$: Observable<CommentResponse>;
+  response$: Promise<CommentResponse>;
 
-  constructor (private http: HttpClient) { }
+  constructor (private http: Http) { }
 
   ngOnInit (): void {
-    this.response$ = this.http.get<CommentResponse>(`${environment.origin_url}api/comment/${this.slug}`);
-    // .subscribe(data => this.comments = data.results);
+    this.response$ = this.http.get(`${environment.origin_url}api/comment/${this.slug}`)
+      .toPromise()
+      .then(res => res.json().data as CommentResponse);
   }
 }

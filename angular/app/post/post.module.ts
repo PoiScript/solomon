@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { MdButtonModule, MdIconModule, MdListModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
 import { PostComponent } from './post.component';
@@ -11,7 +10,6 @@ import { UpNextComponent } from './up-next/up-next.component';
 
 @NgModule({
   imports: [
-    HttpClientModule,
     PostRoutingModule,
     SharedModule,
     MdIconModule,
