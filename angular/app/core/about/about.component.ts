@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 
+const birthday = 845971200000;
+const oneDay = 8.64e+7;
+const seventhYears = 5.361e+11;
+
 @Component({
   selector: 'solomon-about',
   templateUrl: './about.component.html'
 })
-export class AboutComponent {}
+export class AboutComponent {
+  days = Math.floor((Date.now() - birthday - seventhYears) / oneDay);
+}

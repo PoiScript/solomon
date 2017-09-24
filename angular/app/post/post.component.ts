@@ -18,9 +18,9 @@ export class PostComponent implements OnInit {
   ngOnInit () {
     this.route.params.subscribe((params: Params) => {
       const i = posts.findIndex(post => post.slug === params.slug);
-      this.prior = posts[i - 1];
+      this.prior = posts[i + 1];
       this.current = posts[i];
-      this.next = posts[i + 1];
+      this.next = posts[i - 1];
     });
   }
 }

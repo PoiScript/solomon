@@ -1,0 +1,16 @@
+.nav-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 0;
+
+  .nav-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+}

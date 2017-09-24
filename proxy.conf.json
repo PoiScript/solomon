@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target":  {
+      "host": "blog.poi.cat",
+      "protocol": "https:",
+      "port": 443
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}

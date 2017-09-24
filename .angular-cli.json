@@ -24,6 +24,11 @@
           "glob": "**/?(*.html|*.json|*.xml)",
           "input": "../assets/",
           "output": "./"
+        },
+        {
+          "glob": "**/?(*.eot|*ttf|*.woff|*.woff2)",
+          "input": "../node_modules/material-design-icons/iconfont/",
+          "output": "./fonts/"
         }
       ],
       "environmentSource": "environments/environment.ts",
