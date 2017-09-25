@@ -3,8 +3,7 @@ import { MdButtonModule, MdIconModule, MdListModule } from '@angular/material';
 
 import { SharedModule } from '../shared/shared.module';
 import { PostComponent } from './post.component';
-import { PostRoutingModule } from './post-routing.component';
-import { PostViewerComponent } from './post-viewer/post-viewer.component';
+import { PostRoutingModule } from './post-routing.module';
 import { CommentViewerComponent } from './comment-viewer/comment-viewer.component';
 import { UpNextComponent } from './up-next/up-next.component';
 
@@ -18,7 +17,6 @@ import { UpNextComponent } from './up-next/up-next.component';
   ],
   declarations: [
     PostComponent,
-    PostViewerComponent,
     CommentViewerComponent,
     UpNextComponent
   ],

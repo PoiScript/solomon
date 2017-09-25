@@ -1,8 +1,6 @@
 <div class="container">
-  <h1 class="primary-header">{{current?.title}}</h1>
-  <article>
-    <solomon-post-viewer [slug]=current?.slug></solomon-post-viewer>
-  </article>
-  <solomon-up-next [prior]="prior" [next]="next"></solomon-up-next>
-  <solomon-comment-viewer [slug]="current?.slug"></solomon-comment-viewer>
+  <h1 class="primary-header">{{resolve.current.title}}</h1>
+  <article [innerHtml]="resolve.html"></article>
+  <solomon-up-next [prior]="resolve.prior" [next]="resolve.next"></solomon-up-next>
+  <solomon-comment-viewer [slug]="resolve.current.slug"></solomon-comment-viewer>
 </div>

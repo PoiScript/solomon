@@ -1,6 +1,6 @@
+import 'rxjs/add/operator/toPromise';
 import { Http } from '@angular/http';
 import { Component, Input, OnInit } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
 
 import { CommentResponse } from './comment.model';
 import { environment } from '../../../environments/environment';

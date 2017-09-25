@@ -4,3 +4,10 @@ export class Post {
   date: string;
   tags: string[];
 }
+
+export class PostResolve {
+  next: Post;
+  prior: Post;
+  current: Post;
+  html: string;
+}

@@ -1,26 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { Post } from 'app/shared/post.model';
-import { posts } from '../../../solomon.conf';
+import { PostResolve } from 'app/shared/post.model';
 
 @Component({
   selector: 'solomon-post',
   templateUrl: './post.component.html'
 })
 export class PostComponent implements OnInit {
-  prior: Post;
-  current: Post;
-  next: Post;
+  resolve: PostResolve;
 
   constructor (private route: ActivatedRoute) { }
 
   ngOnInit () {
-    this.route.params.subscribe((params: Params) => {
-      const i = posts.findIndex(post => post.slug === params.slug);
-      this.prior = posts[i + 1];
-      this.current = posts[i];
-      this.next = posts[i - 1];
-    });
+    this.route.data
+      .subscribe((data: { resolve: PostResolve }) => {
+        this.resolve = data.resolve;
+      });
   }
 }
