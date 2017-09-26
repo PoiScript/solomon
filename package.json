@@ -12,8 +12,9 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "prestart": "node scripts/check",
     "preinstall": "cd functions && yarn",
-    "build": "yarn server-build && yarn server-build --app 1 --output-hashing=false && node scripts/prerender",
-    "server-build": "ng build --prod --env=server --build-optimizer"
+    "build": "yarn build:client && yarn build:server && node scripts/prerender",
+    "build:client": "ng build --prod --env=server --build-optimizer",
+    "build:server": "ng build --prod --env=server --build-optimizer --app 1 --output-hashing=false"
   },
   "private": true,
   "dependencies": {
