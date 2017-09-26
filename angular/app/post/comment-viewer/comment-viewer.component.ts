@@ -1,8 +1,9 @@
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Http } from '@angular/http';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { CommentResponse } from './comment.model';
+import { Comment } from './comment.model';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -12,13 +13,13 @@ import { environment } from '../../../environments/environment';
 })
 export class CommentViewerComponent implements OnInit {
   @Input() slug: string;
-  response$: Promise<CommentResponse>;
+  comments$: Promise<Comment[]>;
 
   constructor (private http: Http) { }
 
   ngOnInit (): void {
-    this.response$ = this.http.get(`${environment.origin_url}api/comment/${this.slug}`)
+    this.comments$ = this.http.get(`${environment.origin_url}api/comment/${this.slug}`)
       .toPromise()
-      .then(res => res.json().data as CommentResponse);
+      .then(res => res.json().data.data as Comment[]);
   }
 }

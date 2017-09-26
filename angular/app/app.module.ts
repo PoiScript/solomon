@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from 'app/app.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core/core.module';
-import { TagModule } from 'app/tag/tag.module';
 import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
@@ -18,9 +17,8 @@ import { SharedModule } from 'app/shared/shared.module';
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({appId: 'solomon'}),
     CoreModule,
-    TagModule,
     SharedModule,
-    HttpModule,
+    HttpModule
   ],
   bootstrap: [
     AppComponent

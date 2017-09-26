@@ -1,7 +1,7 @@
 <h1 class="primary-header">Comment</h1>
-<div *ngIf="response$ | async as response; else no_comment">
+<div *ngIf="comments$ | async as comments; else no_comment">
   <md-list>
-    <div *ngFor="let comment of response.data">
+    <div *ngFor="let comment of comments">
       <md-divider></md-divider>
       <md-list-item>
         <img mdListAvatar src={{comment.avatar}}>

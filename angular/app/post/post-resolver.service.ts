@@ -13,7 +13,8 @@ export class PostResolver implements Resolve<PostResolve> {
   constructor (private http: Http) {}
 
   resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PostResolve> {
-    const i = posts.findIndex(post => post.slug === route.paramMap.get('slug'));
+    const slug = route.paramMap.get('slug');
+    const i = posts.findIndex(post => post.slug === slug);
     const next = posts[i - 1];
     const prior = posts[i + 1];
     const current = posts[i];
