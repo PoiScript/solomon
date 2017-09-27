@@ -20,6 +20,6 @@ export class CommentViewerComponent implements OnInit {
   ngOnInit (): void {
     this.comments$ = this.http.get(`${environment.origin_url}api/comment/${this.slug}`)
       .toPromise()
-      .then(res => res.json().data.data as Comment[]);
+      .then(res => res.json().data as Comment[]);
   }
 }

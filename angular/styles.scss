@@ -43,6 +43,7 @@
     color: $text-color;
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
   }
 
   .primary-header {
@@ -50,11 +51,7 @@
     font-size: 30px;
     font-weight: 300;
     margin: 0;
-    padding: 50px 0;
-  }
-
-  .post-preview-link {
-    color: mat-color($primary);
+    padding: 0 0 60px 0;
   }
 
   .content {
@@ -66,5 +63,5 @@
 .container {
   max-width: 960px;
   margin: auto;
-  padding: 16px;
+  padding: 60px 16px;
 }

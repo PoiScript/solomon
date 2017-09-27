@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdToolbarModule, MdButtonModule, MdListModule } from '@angular/material';
+import { MdToolbarModule, MdButtonModule, MdListModule, MdIconModule } from '@angular/material';
 
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MdButtonModule,
     MdListModule,
     MdToolbarModule,
+    MdIconModule
   ],
   exports: [
     AboutComponent,
