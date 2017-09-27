@@ -3,11 +3,13 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const functions = require('firebase-functions')
 
-const app = express()
+// must initialize app before using any firebase-admin api
+admin.initializeApp(functions.config().firebase)
 const ref = admin.database().ref()
 const auth = admin.auth()
+
+const app = express()
 app.use(bodyParser.json())
-admin.initializeApp(functions.config().firebase)
 
 // create a new comment
 app.post('/api/comment/:slug', (req, res) => {
