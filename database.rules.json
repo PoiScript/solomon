@@ -1,0 +1,17 @@
+{
+  "rules": {
+    ".read": "false",
+    ".write": "false",
+    "comments": {
+      "$comment": {
+        ".validate": "newData.hasChildren(['uid', 'avatar', 'name', 'content', 'created', 'updated'])",
+        "uid": {
+          ".validate": "newData.isString() && newData.val().length < 128"
+        },
+        "content": {
+          ".validate": "newData.isString() && newData.val().length < 500"
+        }
+      }
+    }
+  }
+}

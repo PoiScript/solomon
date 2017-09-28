@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AboutComponent } from './core/about/about.component';
-import { LinkComponent } from './core/link/link.component';
-import { NotFoundComponent } from './core/not-found/not-found.component';
+import { AboutComponent, LinkComponent, NotFoundComponent } from 'app/core';
 
 const routes: Routes = [
   {path: '', loadChildren: './homepage/homepage.module#HomepageModule', pathMatch: 'full'},

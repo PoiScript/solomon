@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Post } from 'app/shared/post.model';
+import { Post } from 'app/shared';
 import { posts } from '../../../solomon.conf';
 
 @Component({

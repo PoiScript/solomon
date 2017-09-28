@@ -31,6 +31,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LinkComponent,
     NavComponent,
     NotFoundComponent,
-  ],
+  ]
 })
 export class CoreModule {}

@@ -1,18 +1,14 @@
-<h1 class="primary-header">Comment</h1>
 <div *ngIf="comments$ | async as comments; else no_comment">
-  <md-list>
-    <div *ngFor="let comment of comments">
-      <md-divider></md-divider>
-      <md-list-item>
-        <img mdListAvatar src={{comment.avatar}}>
-        <h4 mdLine>{{comment.name}}</h4>
-        <p mdLine>{{comment.updated | date:'longDate'}}</p>
-      </md-list-item>
-      <p>{{comment.content}}</p>
-    </div>
-  </md-list>
+  <div *ngFor="let comment of comments">
+    <md-divider></md-divider>
+    <md-list-item>
+      <img mdListAvatar src={{comment.avatar}}>
+      <h4 mdLine>{{comment.name}}</h4>
+      <p mdLine>{{comment.updated | date:'longDate'}}</p>
+    </md-list-item>
+    <p class="comment-content">{{comment.content}}</p>
+  </div>
 </div>
-
 <ng-template #no_comment>
   <i>No Comment :(</i>
 </ng-template>

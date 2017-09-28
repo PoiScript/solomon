@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { PostResolve } from 'app/shared/post.model';
+import { PostResolve } from 'app/shared';
 import { posts } from '../../../solomon.conf';
-import { environment } from '../../environments/environment';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class PostResolver implements Resolve<PostResolve> {

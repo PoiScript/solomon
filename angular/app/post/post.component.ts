@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { PostResolve } from 'app/shared/post.model';
+import { PostResolve } from 'app/shared';
 
 @Component({
   selector: 'solomon-post',

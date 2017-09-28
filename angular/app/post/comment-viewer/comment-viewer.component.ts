@@ -1,10 +1,7 @@
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { Http } from '@angular/http';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Comment } from './comment.model';
-import { environment } from '../../../environments/environment';
+import { Comment, CommentService } from '../shared';
 
 @Component({
   selector: 'solomon-comment-viewer',
@@ -15,11 +12,10 @@ export class CommentViewerComponent implements OnInit {
   @Input() slug: string;
   comments$: Promise<Comment[]>;
 
-  constructor (private http: Http) { }
+  constructor (private commentService: CommentService) { }
 
   ngOnInit (): void {
-    this.comments$ = this.http.get(`${environment.origin_url}api/comment/${this.slug}`)
-      .toPromise()
-      .then(res => res.json().data as Comment[]);
+    this.comments$ = this.commentService.getComments(this.slug)
+      .toPromise();
   }
 }

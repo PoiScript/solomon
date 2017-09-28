@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Post } from 'app/shared/post.model';
+import { Post } from 'app/shared';
 
 @Pipe({
   name: 'tag'

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Post } from 'app/shared/post.model';
+import { Post } from 'app/shared';
 import { posts } from '../../../solomon.conf';
 
 @Component({
