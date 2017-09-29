@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Post } from 'app/shared';
-import { posts } from '../../../solomon.conf';
+import { posts } from '../../../../solomon.conf';
 
 @Component({
   selector: 'solomon-tag',

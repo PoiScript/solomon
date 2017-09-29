@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AboutComponent, LinkComponent, NotFoundComponent } from 'app/core';
+import {
+  AboutComponent,
+  LinkComponent,
+  NotFoundComponent,
+  HomepageComponent,
+  TagComponent
+} from 'app/core';
 
 const routes: Routes = [
-  {path: '', loadChildren: './homepage/homepage.module#HomepageModule', pathMatch: 'full'},
+  {path: '', component: HomepageComponent, pathMatch: 'full'},
   {path: '404', component: NotFoundComponent},
-  {path: 'about', component: AboutComponent},
   {path: 'link', component: LinkComponent},
-  {path: 'tag', loadChildren: './tag/tag.module#TagModule'},
+  {path: 'about', component: AboutComponent},
+  {path: 'tag/:tag', component: TagComponent},
   {path: 'post', loadChildren: './post/post.module#PostModule'},
   {path: '**', redirectTo: '/404'}
 ];
