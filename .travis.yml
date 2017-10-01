@@ -8,7 +8,7 @@ cache:
      - ./functions/node_modules
 
 script:
-  - node scripts/check
+  - yarn prestart
   - yarn build
 
 after_success:
