@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
-import { Link } from './link.model';
-import { links } from '../../../../solomon.conf';
+import { AppConfig, APP_CONFIG } from 'app/app.config';
+import { Link } from 'app/shared';
 
 @Component({
   selector: 'solomon-link',
   templateUrl: './link.component.html'
 })
 export class LinkComponent {
-  links: Link[] = links;
+  links: Link[];
+
+  constructor (@Inject(APP_CONFIG) config: AppConfig) {
+    this.links = config.links;
+  }
 }

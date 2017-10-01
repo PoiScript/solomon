@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { AppConfig, APP_CONFIG } from 'app/app.config';
 import { Post } from 'app/shared';
-import { posts } from '../../../../solomon.conf';
 
 @Component({
   selector: 'solomon-tag',
@@ -10,9 +10,12 @@ import { posts } from '../../../../solomon.conf';
 })
 export class TagComponent implements OnInit {
   tag: string;
-  posts: Post[] = posts;
+  posts: Post[];
 
-  constructor (private route: ActivatedRoute) { }
+  constructor (@Inject(APP_CONFIG) config: AppConfig,
+               private route: ActivatedRoute) {
+    this.posts = config.posts;
+  }
 
   ngOnInit () {
     this.route.params.subscribe((params: Params) => {

@@ -8,6 +8,9 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core';
 import { SharedModule } from 'app/shared';
 
+import { APP_CONFIG } from 'app/app.config';
+import { SOLOMON_CONFIG } from '../../solomon.conf';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,5 +26,8 @@ import { SharedModule } from 'app/shared';
   bootstrap: [
     AppComponent
   ],
+  providers: [
+    {provide: APP_CONFIG, useValue: SOLOMON_CONFIG}
+  ]
 })
 export class AppModule {}

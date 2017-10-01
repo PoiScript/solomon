@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
+import { AppConfig, APP_CONFIG } from 'app/app.config';
 import { Post } from 'app/shared';
-import { posts } from '../../../../solomon.conf';
 
 @Component({
   selector: 'solomon-homepage',
   templateUrl: './homepage.component.html'
 })
 export class HomepageComponent {
-  posts: Post[] = posts;
+  posts: Post[];
+
+  constructor(@Inject(APP_CONFIG) config: AppConfig) {
+    this.posts = config.posts;
+  }
 }
