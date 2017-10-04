@@ -1,36 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdButtonModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule } from '@angular/material';
+import { MdButtonModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdSnackBarModule } from '@angular/material';
 
 import { PostListComponent } from './post-list/post-list.component';
 import { UserService } from './user.service';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SnackBarService } from './snack-bar.service';
 
 @NgModule({
   imports: [
     CommonModule, // ngFor
     RouterModule,
+    MdButtonModule,
     MdChipsModule,
     MdDialogModule,
-    MdButtonModule,
+    MdIconModule,
     MdInputModule,
-    MdIconModule
+    MdSnackBarModule
   ],
   declarations: [
-    PostListComponent,
-    UserProfileComponent
+    PostListComponent
   ],
   exports: [
     CommonModule,
     RouterModule,
     PostListComponent
   ],
-  entryComponents: [
-    UserProfileComponent
-  ],
   providers: [
-    UserService
+    UserService,
+    SnackBarService
   ]
 })
 export class SharedModule {}

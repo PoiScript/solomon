@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MdButtonModule, MdIconModule, MdInputModule, MdListModule, MdSnackBarModule } from '@angular/material';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from 'app/shared';
 import { PostComponent } from './post.component';
 import { PostRoutingModule } from './post-routing.module';
 import { CommentEditorComponent } from './comment-editor/comment-editor.component';

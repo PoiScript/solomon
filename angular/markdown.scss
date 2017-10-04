@@ -11,12 +11,12 @@ $color_solomon: #673ab7;
 $color_steel_blue_approx: #4078c0;
 
 //fonts
-$font_0: Fira Code;
-$font_1: Source Code Pro;
-$font_2: monospace;
-$font_3: Roboto;
-$font_4: Noto Sans SC;
-$font_5: sans-serif;
+$font_0: 'Fira Code';
+$font_1: 'Source Code Pro';
+$font_2: 'monospace';
+$font_3: 'Roboto';
+$font_4: 'Noto Sans SC';
+$font_5: 'sans-serif';
 
 //h1, h2, h3, h4, h5, h6
 %extend_1 {
@@ -164,7 +164,7 @@ article {
   }
   h2 {
     @extend %extend_1;
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 30px;
     font-size: 1.5em;
   }

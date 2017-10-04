@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
-import { UserInfo } from 'firebase';
+import { Subscription } from 'rxjs/Subscription';
 
-import { CommentService } from '../shared';
-import { UserService, UserProfileComponent } from 'app/shared';
+import { User, UserService  } from 'app/shared';
+import { CommentService } from 'app/post/shared';
 
 @Component({
   selector: 'solomon-comment-editor',
@@ -12,22 +12,22 @@ import { UserService, UserProfileComponent } from 'app/shared';
 })
 export class CommentEditorComponent {
   @Input() slug: string;
-  user: UserInfo;
+  sub: Subscription;
+  user: User;
 
   constructor (private dialog: MdDialog,
                private snackBar: MdSnackBar,
                private userService: UserService,
                private commentService: CommentService) {
-    userService.user$.subscribe(user => this.user = user);
+    this.sub = userService.user$.subscribe(user => this.user = user);
   }
 
-  openDialog() {
-    this.dialog.open(UserProfileComponent);
+  openDialog () {
   }
 
   submit (content: string) {
     if (this.user) {
-      this.commentService.createComment(this.slug, this.user.uid, content)
+      this.commentService.createComment(this.slug, this.user.localId, content)
         .subscribe(() => this.openSnackBar('Comment posted successfully.'));
     } else {
       this.openSnackBar('Logged In First!');

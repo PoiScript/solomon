@@ -52,17 +52,27 @@
     font-size: 30px;
     font-weight: 300;
     margin: 0;
-    padding: 0 0 60px 0;
+    padding: 0;
   }
 
-  .content {
-    background: $background-color;
-    color: $text-color;
+  a.primary-header {
+    color: #673ab7;
+    text-decoration: none;
   }
-}
 
-.container {
-  max-width: 960px;
-  margin: auto;
-  padding: 60px 16px;
+  .primary-subheader {
+    margin: 0;
+    padding: 0 0 20px 0;
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+    }
+  }
+
+  .container {
+    max-width: 960px;
+    margin: auto;
+    padding: 60px 16px;
+  }
 }

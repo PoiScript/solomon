@@ -1,5 +1,5 @@
-import 'rxjs/add/operator/toPromise';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { Comment, CommentService } from '../shared';
 
@@ -8,14 +8,13 @@ import { Comment, CommentService } from '../shared';
   templateUrl: './comment-viewer.component.html',
   styleUrls: ['./comment-viewer.component.css']
 })
-export class CommentViewerComponent implements OnInit {
+export class CommentViewerComponent implements OnChanges {
   @Input() slug: string;
-  comments$: Promise<Comment[]>;
+  comments$: Observable<Comment[]>;
 
   constructor (private commentService: CommentService) { }
 
-  ngOnInit (): void {
-    this.comments$ = this.commentService.getComments(this.slug)
-      .toPromise();
+  ngOnChanges (): void {
+    this.comments$ = this.commentService.getComments(this.slug);
   }
 }

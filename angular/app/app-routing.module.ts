@@ -11,12 +11,12 @@ import {
 
 const routes: Routes = [
   {path: '', component: HomepageComponent, pathMatch: 'full'},
-  {path: '404', component: NotFoundComponent},
   {path: 'link', component: LinkComponent},
   {path: 'about', component: AboutComponent},
   {path: 'tag/:tag', component: TagComponent},
   {path: 'post', loadChildren: './post/post.module#PostModule'},
-  {path: '**', redirectTo: '/404'}
+  {path: 'user', loadChildren: './user/user.module#UserModule'},
+  {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
