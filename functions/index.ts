@@ -78,7 +78,7 @@ app.post('/api/auth/:endpoint', (req, res) => {
     }).then(body => {
       res.status(200);
       res.json(body);
-    }).catch(error => handleError(error, res));
+    }).catch(err => handleError(err.error.error, res));
   } else {
     res.status(404);
     res.json({error: 'Not Found'});
