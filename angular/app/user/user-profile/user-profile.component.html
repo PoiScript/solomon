@@ -1,3 +1,41 @@
-<p>
-  user-profile works!
-</p>
+<div class="container" *ngIf="user$ | async as user">
+  <img class="avatar md-elevation-z2" [src]="user.photoUrl || '/img/poi.jpg'">
+  <div fxLayout="row" fxLayout.xs="column">
+    <md-list fxFlex>
+      <h3 md-subheader>Info</h3>
+      <md-list-item>
+        <md-icon md-list-icon>email</md-icon>
+        <h1 md-line>{{user.email}}</h1>
+        <p md-line>email</p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>check_box</md-icon>
+        <h4 md-line>{{user.emailVerified}}</h4>
+        <p md-line>email verified</p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>account_box</md-icon>
+        <h4 md-line>{{user.displayName || 'N/A'}}</h4>
+        <p md-line>display name</p>
+      </md-list-item>
+    </md-list>
+    <md-list fxFlex>
+      <h3 md-subheader>Meta</h3>
+      <md-list-item>
+        <md-icon md-list-icon>input</md-icon>
+        <h4 mdLine>{{user.lastLoginAt | date:'medium'}}</h4>
+        <p md-line>last logged</p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>lock</md-icon>
+        <h4 mdLine>{{user.passwordUpdatedAt | date:'medium'}}</h4>
+        <p md-line>last password updated</p>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>person_add</md-icon>
+        <h4 mdLine>{{user.createdAt | date:'medium'}}</h4>
+        <p md-line>created</p>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

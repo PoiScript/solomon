@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { MdDialog, MdSnackBar } from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
-import { User, UserService  } from 'app/shared';
+import { User, UserService } from 'app/shared';
 import { CommentService } from 'app/post/shared';
 
 @Component({
@@ -15,14 +15,14 @@ export class CommentEditorComponent {
   sub: Subscription;
   user: User;
 
-  constructor (private dialog: MdDialog,
-               private snackBar: MdSnackBar,
+  constructor (private snackBar: MdSnackBar,
                private userService: UserService,
                private commentService: CommentService) {
     this.sub = userService.user$.subscribe(user => this.user = user);
   }
 
-  openDialog () {
+  navigate () {
+    this.userService.navigate();
   }
 
   submit (content: string) {

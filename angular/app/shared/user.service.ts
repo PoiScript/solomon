@@ -2,24 +2,42 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
 
+import { User } from 'app/shared';
 import { environment } from 'environments/environment';
-import { User } from './user.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
+  user$: Observable<User>;
+
   private baseUrl = environment.origin_url + 'api/auth';
   private headers = new Headers({'Content-Type': 'application/json'});
   // BehaviorSubject can return a value immediately to new subscribers
-  private userSource = new BehaviorSubject<User>(null);
-  user$ = this.userSource.asObservable();
+  private userSource: BehaviorSubject<User>;
 
-  constructor (private http: Http) { }
+  constructor (private http: Http,
+               private router: Router) {
+    // get data from local storage as initial value
+    this.userSource = new BehaviorSubject(JSON.parse(localStorage.getItem('key:solomon:user')));
+    this.user$ = this.userSource.asObservable();
+
+    // subscribe user change, and store it into localStorage
+    this.user$.subscribe(user => {
+      if (user) {
+        localStorage.setItem('key:solomon:user', JSON.stringify(user));
+      }
+    });
+  }
 
   isAuth (): boolean {
     return !!this.userSource.getValue();
+  }
+
+  navigate () {
+    this.router.navigate(['user']);
   }
 
   signIn (email: string, password: string): Promise<void> {

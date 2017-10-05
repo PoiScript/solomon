@@ -1,5 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +21,7 @@ import { SOLOMON_CONFIG } from '../../solomon.conf';
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({appId: 'solomon'}),
     CoreModule,
+    // FlexLayoutModule,
     SharedModule,
     HttpModule
   ],

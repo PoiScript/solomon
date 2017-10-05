@@ -6,11 +6,8 @@
 
 # compiled output
 dist
-assets/amp
 assets/html
 assets/atom.xml
-assets/post.ts
-assets/post.json
 
 # logs
 npm-debug.log*

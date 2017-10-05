@@ -39,6 +39,11 @@
   $text-color: invert(mat-color($background, card, 0.6)) !default;
   $background-color: invert(mat-color($foreground, text, 0.8)) !default;
 
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
   body {
     color: $text-color;
     background-color: white;

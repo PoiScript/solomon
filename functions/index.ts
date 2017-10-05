@@ -6,7 +6,24 @@ import * as request from 'request-promise';
 
 initializeApp(config().firebase);
 const app = express();
-const ref = database().ref();
+const baseUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
+const endpoints = {
+  getUser: 'getAccountInfo',
+  deleteUser: 'deleteAccount',
+  updateUser: 'setAccountInfo',
+  sendPasswordResetEmail: 'getOobConfirmationCode',
+  verifyPasswordReset: 'resetPassword',
+  confirmPasswordReset: 'resetPassword',
+  sendVerificationEmail: 'getOobConfirmationCode',
+  confirmEmailVerification: 'setAccountInfo'
+};
+
+class User {
+  localId: string;
+  idToken: string;
+  refreshToken: string;
+  expiresIn: string;
+}
 
 app.use(json());
 
@@ -14,7 +31,7 @@ app.post('/api/comment/:slug', (req, res) => {
   const data = req.body;
   const current = (new Date()).toISOString();
   auth().getUser(data.uid).then(user =>
-    ref.child(`/comment/${req.params.slug}`).push()
+    database().ref().child(`/comment/${req.params.slug}`).push()
       .set({
         uid: user.uid,
         avatar: user.photoURL,
@@ -31,9 +48,7 @@ app.post('/api/comment/:slug', (req, res) => {
 });
 
 app.get('/api/comment/:slug', (req, res) => {
-  ref
-    .child(`/comment/${req.params.slug}`)
-    .once('value')
+  database().ref().child('/comment/' + req.params.slug).once('value')
     .then(snap => {
       const comments = [];
       snap.forEach(childSap => {
@@ -48,37 +63,45 @@ app.get('/api/comment/:slug', (req, res) => {
     .catch(error => handleError(error, res));
 });
 
-const baseUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
-const endpoints = {
-  signIn: 'verifyPassword',
-  signUp: 'signupNewUser',
-  deleteUser: 'deleteAccount',
-  updateUser: 'setAccountInfo',
-  sendPasswordResetEmail: 'getOobConfirmationCode',
-  verifyPasswordReset: 'resetPassword',
-  confirmPasswordReset: 'resetPassword',
-  sendVerificationEmail: 'getOobConfirmationCode',
-  confirmEmailVerification: 'setAccountInfo'
-};
+// chain verifyPassword & getAccountInfo requests
+app.post('/api/auth/signIn', (req, res) => {
+  let user: User;
+  apiRequest('verifyPassword', req.body)
+    .then((body: User) => {
+      user = body;
+      return apiRequest('getAccountInfo', {idToken: body.idToken});
+    })
+    .then(info => {
+      res.status(200);
+      res.json({...user, ...info.users.find(i => i.localId === user.localId)});
+    })
+    .catch(err => handleError(err.error.error, res));
+});
+
+// chain signupNewUser & getAccountInfo requests
+app.post('/api/auth/signUp', (req, res) => {
+  let user: User;
+  apiRequest('signupNewUser', req.body)
+    .then((body: User) => {
+      user = body;
+      return apiRequest('getAccountInfo', {idToken: body.idToken});
+    })
+    .then(info => {
+      res.status(200);
+      res.json({...user, ...info.users.find(i => i.localId === user.localId)});
+    })
+    .catch(err => handleError(err.error.error, res));
+});
 
 app.post('/api/auth/:endpoint', (req, res) => {
   const endpoint = endpoints[req.params.endpoint];
   if (endpoint) {
-    request({
-      uri: baseUrl + endpoint,
-      method: 'POST',
-      body: req.body,
-      json: true,
-      qs: {
-        key: config().firebase.apiKey
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(body => {
-      res.status(200);
-      res.json(body);
-    }).catch(err => handleError(err.error.error, res));
+    apiRequest(endpoint, req.body)
+      .then(body => {
+        res.status(200);
+        res.json(body);
+      })
+      .catch(err => handleError(err.error.error, res));
   } else {
     res.status(404);
     res.json({error: 'Not Found'});
@@ -89,6 +112,21 @@ app.use('*', (req, res) => {
   res.status(404);
   res.json({error: 'Not Found'});
 });
+
+function apiRequest (endpoint: string, body: any) {
+  return request({
+    uri: baseUrl + endpoint,
+    method: 'POST',
+    body: body,
+    json: true,
+    qs: {
+      key: config().firebase.apiKey
+    },
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
 
 function handleError (error, res) {
   console.error(error);

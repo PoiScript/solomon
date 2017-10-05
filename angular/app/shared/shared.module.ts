@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MdButtonModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdSnackBarModule } from '@angular/material';
 
@@ -11,6 +12,7 @@ import { SnackBarService } from './snack-bar.service';
   imports: [
     CommonModule, // ngFor
     RouterModule,
+    FlexLayoutModule,
     MdButtonModule,
     MdChipsModule,
     MdDialogModule,
@@ -24,6 +26,7 @@ import { SnackBarService } from './snack-bar.service';
   exports: [
     CommonModule,
     RouterModule,
+    FlexLayoutModule,
     PostListComponent
   ],
   providers: [

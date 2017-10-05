@@ -5,7 +5,8 @@ import { UserService } from 'app/shared';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor (public userService: UserService, public router: Router) {}
+  constructor (public userService: UserService,
+               public router: Router) {}
 
   canActivate (): boolean {
     if (this.userService.isAuth()) {

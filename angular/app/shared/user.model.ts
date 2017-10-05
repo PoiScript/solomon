@@ -1,9 +1,10 @@
 export class User {
-  localId: string;
-  email: string;
+  createdAt: string;
   displayName: string;
+  email: string;
+  emailVerified: boolean;
   idToken: string;
-  registered: boolean;
-  refreshToken: string;
-  expiresIn: string;
+  lastLoginAt: string;
+  localId: string;
+  passwordUpdatedAt: number;
 }
