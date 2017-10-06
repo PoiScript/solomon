@@ -7,4 +7,5 @@ export class User {
   lastLoginAt: string;
   localId: string;
   passwordUpdatedAt: number;
+  photoUrl: string;
 }

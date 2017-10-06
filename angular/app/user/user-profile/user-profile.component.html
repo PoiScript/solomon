@@ -1,5 +1,11 @@
-<div class="container" *ngIf="user$ | async as user">
-  <img class="avatar md-elevation-z2" [src]="user.photoUrl || '/img/poi.jpg'">
+<div class="container">
+  <button md-icon-button (click)="signOut()">
+    <md-icon aria-label="Sign out current user">keyboard_tab</md-icon>
+  </button>
+  <button md-icon-button (click)="openDialog()">
+    <md-icon aria-label="Edit current user profile">edit</md-icon>
+  </button>
+  <img class="avatar" [src]="user.photoUrl || '/img/poi.jpg'">
   <div fxLayout="row" fxLayout.xs="column">
     <md-list fxFlex>
       <h3 md-subheader>Info</h3>
@@ -22,7 +28,7 @@
     <md-list fxFlex>
       <h3 md-subheader>Meta</h3>
       <md-list-item>
-        <md-icon md-list-icon>input</md-icon>
+        <md-icon md-list-icon>exit_to_app</md-icon>
         <h4 mdLine>{{user.lastLoginAt | date:'medium'}}</h4>
         <p md-line>last logged</p>
       </md-list-item>

@@ -1,0 +1,11 @@
+<h1 md-dialog-title>Edit User Profile</h1>
+<div md-dialog-content>
+  <md-form-field>
+    <input #name mdInput placeholder="Display Name" value={{user.displayName}}>
+  </md-form-field>
+  <md-form-field>
+    <input #photo mdInput placeholder="Photo URL" value={{user.photoUrl}}>
+  </md-form-field>
+  <button md-raised-button color="primary" (click)="dialogClose(name.value, photo.value)">Save</button>
+  <button md-button md-dialog-close>Cancel</button>
+</div>

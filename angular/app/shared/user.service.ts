@@ -51,11 +51,18 @@ export class UserService {
   }
 
   singOut () {
+    // set current user to null
     this.userSource.next(null);
+    // clear all cached data
+    localStorage.clear();
   }
 
-  updateUser (displayName: string, photoUrl: string) {
-    return this.sendPostRequest('updateUser', JSON.stringify({displayName, photoUrl, idToken: this.userSource.getValue().idToken}));
+  updateUser (displayName: string, photoUrl: string): Promise<void> {
+    return this.sendPostRequest('updateUser', JSON.stringify({displayName, photoUrl, idToken: this.userSource.getValue().idToken}))
+      .then(user => {
+        // update user properties
+        this.userSource.next({...this.userSource.getValue(), ...user});
+      });
   }
 
   deleteUser () {

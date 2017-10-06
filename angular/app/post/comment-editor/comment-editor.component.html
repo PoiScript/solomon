@@ -1,12 +1,12 @@
 <div *ngIf="user; else no_loggedin">
-  <md-list-item (click)="navigate()">
-    <img mdListAvatar src={{user.photoURL}}>
-    <h4 mdLine>{{user.displayName}}</h4>
-    <p mdLine>{{user.email}}</p>
+  <md-list-item class="navigate-panel" (click)="navigate()">
+    <img mdListAvatar [src]="user.photoUrl || '/img/poi.jpg'">
+    <h4 mdLine>{{user.displayName || 'N/A'}}</h4>
+    <i mdLine>check here to view your profile</i>
   </md-list-item>
 </div>
 <ng-template #no_loggedin>
-  <md-list-item (click)="navigate()">
+  <md-list-item class="navigate-panel" (click)="navigate()">
     <md-icon md-list-icon>account_circle</md-icon>
     <h4 mdLine>No Logged</h4>
     <p mdLine>Click here to log in</p>
