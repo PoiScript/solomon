@@ -1,10 +1,10 @@
 <div class="container">
-  <button md-icon-button (click)="signOut()">
-    <md-icon aria-label="Sign out current user">keyboard_tab</md-icon>
-  </button>
-  <button md-icon-button (click)="openDialog()">
-    <md-icon aria-label="Edit current user profile">edit</md-icon>
-  </button>
+  <div>
+    <span fxFlex></span>
+    <button md-icon-button (click)="openDialog()" mdTooltip="Edit User Profile">
+      <md-icon aria-label="Edit current user profile">edit</md-icon>
+    </button>
+  </div>
   <img class="avatar" [src]="user.photoUrl || '/img/poi.jpg'">
   <div fxLayout="row" fxLayout.xs="column">
     <md-list fxFlex>
@@ -18,11 +18,18 @@
         <md-icon md-list-icon>check_box</md-icon>
         <h4 md-line>{{user.emailVerified}}</h4>
         <p md-line>email verified</p>
+        <button *ngIf="!user.emailVerified" md-icon-button (click)="sendVerificationEmail()"
+                mdTooltip="Send Verification Email">
+          <md-icon>report_problem</md-icon>
+        </button>
       </md-list-item>
       <md-list-item>
         <md-icon md-list-icon>account_box</md-icon>
         <h4 md-line>{{user.displayName || 'N/A'}}</h4>
         <p md-line>display name</p>
+        <button *ngIf="!user.displayName" md-icon-button (click)="openDialog()" mdTooltip="Edit User Profile">
+          <md-icon>report_problem</md-icon>
+        </button>
       </md-list-item>
     </md-list>
     <md-list fxFlex>
@@ -43,5 +50,22 @@
         <p md-line>created</p>
       </md-list-item>
     </md-list>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column">
+    <md-nav-list fxFlex>
+      <h3 md-subheader>Action</h3>
+      <md-list-item (click)="signOut()">
+        <md-icon md-list-icon>keyboard_tab</md-icon>
+        <h4 mdLine>Sign Out Current User</h4>
+      </md-list-item>
+      <md-list-item (click)="sendPasswordResetEmail()">
+        <md-icon md-list-icon>replay</md-icon>
+        <h4 mdLine>Send Reset Password Email</h4>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>not_interested</md-icon>
+        <h4 mdLine>Delete Current User</h4>
+      </md-list-item>
+    </md-nav-list>
   </div>
 </div>

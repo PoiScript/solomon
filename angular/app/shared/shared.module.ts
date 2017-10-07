@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { MdButtonModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdSnackBarModule } from '@angular/material';
+import {
+  MdButtonModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdSnackBarModule,
+  MdTooltipModule
+} from '@angular/material';
 
 import { PostListComponent } from './post-list/post-list.component';
 import { UserService } from './user.service';
@@ -18,7 +21,8 @@ import { SnackBarService } from './snack-bar.service';
     MdDialogModule,
     MdIconModule,
     MdInputModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdTooltipModule
   ],
   declarations: [
     PostListComponent
@@ -27,7 +31,8 @@ import { SnackBarService } from './snack-bar.service';
     CommonModule,
     RouterModule,
     FlexLayoutModule,
-    PostListComponent
+    PostListComponent,
+    MdTooltipModule
   ],
   providers: [
     UserService,

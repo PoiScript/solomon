@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
 import { User } from 'app/shared';
 import { environment } from 'environments/environment';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
   user$: Observable<User>;
 
-  private baseUrl = environment.origin_url + 'api/auth';
+  private baseUrl = environment.origin_url + 'api/auth/';
   private headers = new Headers({'Content-Type': 'application/json'});
   // BehaviorSubject can return a value immediately to new subscribers
   private userSource: BehaviorSubject<User>;
@@ -40,13 +40,13 @@ export class UserService {
     this.router.navigate(['user']);
   }
 
-  signIn (email: string, password: string): Promise<void> {
-    return this.sendPostRequest('signIn', JSON.stringify({email, password}))
+  signIn (email: string, password: string) {
+    return this.request('signIn', {email, password})
       .then(user => this.userSource.next(user));
   }
 
-  signUp (email: string, password: string): Promise<void> {
-    return this.sendPostRequest('signUp', JSON.stringify({email, password}))
+  signUp (email: string, password: string) {
+    return this.request('signUp', {email, password})
       .then(user => this.userSource.next(user));
   }
 
@@ -57,49 +57,51 @@ export class UserService {
     localStorage.clear();
   }
 
-  updateUser (displayName: string, photoUrl: string): Promise<void> {
-    return this.sendPostRequest('updateUser', JSON.stringify({displayName, photoUrl, idToken: this.userSource.getValue().idToken}))
-      .then(user => {
+  updateUser (displayName: string, photoUrl: string) {
+    const idToken = this.userSource.getValue().idToken;
+    return this.request('updateUser', {displayName, photoUrl, idToken})
+      .then(user =>
         // update user properties
-        this.userSource.next({...this.userSource.getValue(), ...user});
-      });
+        this.userSource.next({...this.userSource.getValue(), ...user})
+      );
   }
 
   deleteUser () {
-    return this.sendPostRequest('deleteUser', JSON.stringify({idToken: this.userSource.getValue().idToken}));
+    const idToken = this.userSource.getValue().idToken;
+    return this.request('deleteUser', {idToken});
   }
 
   sendPasswordResetEmail () {
-    return this.sendPostRequest('sendPasswordResetEmail', JSON.stringify({
-      requestType: 'PASSWORD_RESET',
-      email: this.userSource.getValue().email
-    }));
+    const email = this.userSource.getValue().email;
+    const requestType = 'PASSWORD_RESET';
+    return this.request('sendPasswordResetEmail', {requestType, email});
   }
 
   verifyPasswordReset (oobCode: string) {
-    return this.sendPostRequest('verifyPasswordReset', JSON.stringify({oobCode}));
+    return this.request('verifyPasswordReset', {oobCode});
   }
 
   confirmPasswordReset (oobCode: string, newPassword: string) {
-    return this.sendPostRequest('confirmPasswordReset', JSON.stringify({oobCode, newPassword}));
+    return this.request('confirmPasswordReset', {oobCode, newPassword});
   }
 
   sendVerificationEmail () {
-    return this.sendPostRequest('sendVerificationEmail', JSON.stringify({
-      requestType: 'VERIFY_EMAIL',
-      idToken: this.userSource.getValue().idToken
-    }));
+    const idToken = this.userSource.getValue().idToken;
+    const requestType = 'VERIFY_EMAIL';
+    return this.request('sendVerificationEmail', {requestType, idToken});
   }
 
   confirmEmailVerification (oobCode: string) {
-    return this.sendPostRequest('confirmEmailVerification', JSON.stringify({oobCode}));
+    return this.request('confirmEmailVerification', {oobCode});
   }
 
-  private sendPostRequest (endpoint: string, body: string): Promise<any> {
+  private request (endpoint: string, body: any): Promise<any> {
+    const json = JSON.stringify(body);
     return this.http
-      .post(`${this.baseUrl}/${endpoint}`, body, {headers: this.headers})
+      .post(this.baseUrl + endpoint, json, {headers: this.headers})
       .toPromise()
       .then(res => res.json())
-      .catch(err => err.json());
+      // rethrow parsed error
+      .catch(err => Promise.reject(err.json()));
   }
 }

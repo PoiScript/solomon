@@ -7,6 +7,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { LogInComponent } from './log-in/log-in.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import { AuthActionComponent } from './auth-action/auth-action.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
   declarations: [
     LogInComponent,
     UserProfileComponent,
-    ProfileEditorComponent
+    ProfileEditorComponent,
+    AuthActionComponent
   ],
   entryComponents: [
     ProfileEditorComponent
