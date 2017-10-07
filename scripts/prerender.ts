@@ -16,7 +16,7 @@ const index = readFileSync(join(dist, 'index.html'), 'utf8');
 
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require(join(dist, 'dist-server/main.bundle'));
 
-const urls = ['/', '/about', '/link'];
+const urls = ['/', '/about', '/link', '/user/login', '/user/action'];
 
 SOLOMON_CONFIG.posts
   .forEach(post => {

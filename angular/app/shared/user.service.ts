@@ -1,6 +1,7 @@
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Headers, Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -15,18 +16,26 @@ export class UserService {
 
   private baseUrl = environment.origin_url + 'api/auth/';
   private headers = new Headers({'Content-Type': 'application/json'});
+  // can't access browser types when prerender
+  private isBrowser: boolean;
   // BehaviorSubject can return a value immediately to new subscribers
   private userSource: BehaviorSubject<User>;
 
   constructor (private http: Http,
-               private router: Router) {
+               private router: Router,
+               @Inject(PLATFORM_ID) private platformId: Object) {
     // get data from local storage as initial value
-    this.userSource = new BehaviorSubject(JSON.parse(localStorage.getItem('key:solomon:user')));
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      this.userSource = new BehaviorSubject(JSON.parse(localStorage.getItem('key:solomon:user')));
+    } else {
+      this.userSource = new BehaviorSubject(null);
+    }
     this.user$ = this.userSource.asObservable();
 
     // subscribe user change, and store it into localStorage
     this.user$.subscribe(user => {
-      if (user) {
+      if (this.isBrowser && user) {
         localStorage.setItem('key:solomon:user', JSON.stringify(user));
       }
     });
@@ -54,7 +63,9 @@ export class UserService {
     // set current user to null
     this.userSource.next(null);
     // clear all cached data
-    localStorage.clear();
+    if (this.isBrowser) {
+      localStorage.clear();
+    }
   }
 
   updateUser (displayName: string, photoUrl: string) {
