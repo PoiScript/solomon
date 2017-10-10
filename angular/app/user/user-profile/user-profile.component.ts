@@ -21,7 +21,6 @@ export class UserProfileComponent {
   }
 
   signOut () {
-    this.userService.navigate();
     this.userService.singOut();
   }
 

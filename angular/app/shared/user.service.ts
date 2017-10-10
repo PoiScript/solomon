@@ -48,6 +48,7 @@ export class UserService {
     return !!this.userSource.getValue();
   }
 
+  // TODO: merge auth-guard service into user service?
   navigate () {
     this.router.navigate(['user']);
   }
@@ -63,12 +64,16 @@ export class UserService {
   }
 
   singOut () {
-    // set current user to null
-    this.userSource.next(null);
-    // clear all cached data
-    if (this.isBrowser) {
-      localStorage.clear();
-    }
+    // navigate back to login screen, stop element binding for user object
+    this.router.navigate(['user/login'])
+      .then(() => {
+        // then, set user to null will not causes property undefined error
+        this.userSource.next(null);
+        // clear cache
+        if (this.isBrowser) {
+          localStorage.clear();
+        }
+      });
   }
 
   updateUser (displayName: string, photoUrl: string) {
