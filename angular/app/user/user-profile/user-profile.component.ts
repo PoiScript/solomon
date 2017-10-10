@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
-import { User, UserService, SnackBarService } from 'app/shared';
+import { Error, SnackBarService, User, UserService } from 'app/shared';
 import { ProfileEditorComponent } from '../profile-editor/profile-editor.component';
 
 @Component({
@@ -27,12 +27,14 @@ export class UserProfileComponent {
 
   sendVerificationEmail () {
     this.userService.sendVerificationEmail()
-      .then(() => this.snackBarService.open('Verification email sent.'));
+      .then(() => this.snackBarService.open('Verification email sent.'))
+      .catch(err => this.handleError(err));
   }
 
   sendPasswordResetEmail () {
     this.userService.sendPasswordResetEmail()
-      .then(() => this.snackBarService.open('Password Reset Email sent.'));
+      .then(() => this.snackBarService.open('Password Reset Email sent.'))
+      .catch(err => this.handleError(err));
   }
 
   openDialog (): void {
@@ -41,7 +43,12 @@ export class UserProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe((user: { name: string, photo: string }) => {
-      this.userService.updateUser(user.name, user.photo);
+      this.userService.updateUser(user.name, user.photo)
+        .catch(err => this.handleError(err));
     });
+  }
+
+  private handleError (err: Error) {
+    this.snackBarService.open(`Error occurs, code: ${err.code} message: ${err.message}`);
   }
 }

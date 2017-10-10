@@ -14,14 +14,14 @@ export class LogInComponent {
   logIn (email: string, password: string) {
     this.userService.signIn(email, password)
       .then(() => this.userService.navigate())
-      .catch(err => this.snackBarService.open(err.error.message));
+      .catch(err => this.snackBarService.open(err.message));
   }
 
   signUp (email: string, password: string, reenter: string) {
     if (password === reenter) {
       this.userService.signUp(email, password)
         .then(() => this.userService.navigate())
-        .catch(err => this.snackBarService.open(err.error.message));
+        .catch(err => this.snackBarService.open(err.message));
     }
   }
 }

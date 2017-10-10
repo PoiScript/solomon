@@ -3,7 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import {
-  MdButtonModule, MdChipsModule, MdDialogModule, MdIconModule, MdInputModule, MdSnackBarModule,
+  MdButtonModule,
+  MdChipsModule,
+  MdDialogModule,
+  MdIconModule,
+  MdInputModule,
+  MdProgressBarModule,
+  MdSnackBarModule,
   MdTooltipModule
 } from '@angular/material';
 
@@ -21,6 +27,7 @@ import { SnackBarService } from './snack-bar.service';
     MdDialogModule,
     MdIconModule,
     MdInputModule,
+    MdProgressBarModule,
     MdSnackBarModule,
     MdTooltipModule
   ],
@@ -32,6 +39,7 @@ import { SnackBarService } from './snack-bar.service';
     RouterModule,
     FlexLayoutModule,
     PostListComponent,
+    MdProgressBarModule,
     MdTooltipModule
   ],
   providers: [

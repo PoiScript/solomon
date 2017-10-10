@@ -7,8 +7,10 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import { User } from 'app/shared';
 import { environment } from 'environments/environment';
+import { Error } from './error.model';
+import { User } from './user.model';
+import { LoadingService } from './loading.service';
 
 @Injectable()
 export class UserService {
@@ -23,6 +25,7 @@ export class UserService {
 
   constructor (private http: Http,
                private router: Router,
+               private loadingService: LoadingService,
                @Inject(PLATFORM_ID) private platformId: Object) {
     // get data from local storage as initial value
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -107,12 +110,19 @@ export class UserService {
   }
 
   private request (endpoint: string, body: any): Promise<any> {
+    this.loadingService.show();
     const json = JSON.stringify(body);
     return this.http
       .post(this.baseUrl + endpoint, json, {headers: this.headers})
       .toPromise()
-      .then(res => res.json())
-      // rethrow parsed error
-      .catch(err => Promise.reject(err.json()));
+      .then(res => {
+        this.loadingService.hide();
+        return res.json();
+      })
+      .catch(err => {
+        this.loadingService.hide();
+        // rethrow parsed error
+        return Promise.reject(err.json().error as Error);
+      });
   }
 }

@@ -1,13 +1,12 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from 'app/app.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core';
-import { SharedModule } from 'app/shared';
+import { LoadingService, SharedModule } from 'app/shared';
 
 import { APP_CONFIG } from 'app/app.config';
 import { SOLOMON_CONFIG } from '../../solomon.conf';
@@ -21,7 +20,6 @@ import { SOLOMON_CONFIG } from '../../solomon.conf';
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({appId: 'solomon'}),
     CoreModule,
-    // FlexLayoutModule,
     SharedModule,
     HttpModule
   ],
@@ -30,6 +28,7 @@ import { SOLOMON_CONFIG } from '../../solomon.conf';
   ],
   providers: [
     Title,
+    LoadingService,
     {provide: APP_CONFIG, useValue: SOLOMON_CONFIG}
   ]
 })

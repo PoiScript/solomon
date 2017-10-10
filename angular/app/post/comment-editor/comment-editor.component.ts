@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -10,15 +10,21 @@ import { CommentService } from 'app/post/shared';
   templateUrl: './comment-editor.component.html',
   styleUrls: ['./comment-editor.component.scss']
 })
-export class CommentEditorComponent {
+export class CommentEditorComponent implements OnDestroy {
+
   @Input() slug: string;
-  sub: Subscription;
   user: User;
+
+  private sub: Subscription;
 
   constructor (private snackBar: MdSnackBar,
                private userService: UserService,
                private commentService: CommentService) {
     this.sub = userService.user$.subscribe(user => this.user = user);
+  }
+
+  ngOnDestroy () {
+    this.sub.unsubscribe();
   }
 
   navigate () {
@@ -37,4 +43,5 @@ export class CommentEditorComponent {
   private openSnackBar (message: string) {
     this.snackBar.open(message, null, {duration: 2000});
   }
+
 }
