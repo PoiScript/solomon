@@ -13,9 +13,9 @@
     "prestart": "ts-node scripts/check",
     "preinstall": "cd functions && yarn",
     "build": "yarn build:functions && yarn build:client && yarn build:server && ts-node scripts/prerender",
-    "build:client": "ng build --prod --buildOptimizer -e server",
-    "build:functions": "cd functions && tsc",
-    "build:server": "ng build --prod --buildOptimizer -e server -a 1 -oh false"
+    "build:client": "ng build --prod --buildOptimizer --environment server",
+    "build:functions": "tsc --project functions/tsconfig.json",
+    "build:server": "ng build --prod --buildOptimizer --environment server --app 1 --outputHashing false"
   },
   "private": true,
   "dependencies": {
