@@ -9,6 +9,7 @@ import { Comment, CommentService } from '../shared';
   styleUrls: ['./comment-viewer.component.css']
 })
 export class CommentViewerComponent implements OnChanges {
+
   @Input() slug: string;
   comments$: Observable<Comment[]>;
 
@@ -17,4 +18,5 @@ export class CommentViewerComponent implements OnChanges {
   ngOnChanges (): void {
     this.comments$ = this.commentService.getComments(this.slug);
   }
+
 }

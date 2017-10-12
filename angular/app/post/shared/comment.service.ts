@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 
 @Injectable()
 export class CommentService {
+
   private headers = new Headers({'Content-Type': 'application/json'});
   private postsUrl = `${environment.origin_url}api/comment`;
 
@@ -25,4 +26,5 @@ export class CommentService {
       .post(url, json, {headers: this.headers})
       .map(() => null);
   }
+
 }

@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
-import { User, UserService } from 'app/shared';
+import { SnackBarService, UserService } from 'app/core';
+import { User } from 'app/shared';
 import { CommentService } from 'app/post/shared';
 
 @Component({
@@ -17,8 +17,8 @@ export class CommentEditorComponent implements OnDestroy {
 
   private sub: Subscription;
 
-  constructor (private snackBar: MdSnackBar,
-               private userService: UserService,
+  constructor (private userService: UserService,
+               private snackBarService: SnackBarService,
                private commentService: CommentService) {
     this.sub = userService.user$.subscribe(user => this.user = user);
   }
@@ -34,14 +34,10 @@ export class CommentEditorComponent implements OnDestroy {
   submit (content: string) {
     if (this.user) {
       this.commentService.createComment(this.slug, this.user.localId, content)
-        .subscribe(() => this.openSnackBar('Comment posted successfully.'));
+        .subscribe(() => this.snackBarService.open('Comment posted successfully.'));
     } else {
-      this.openSnackBar('Logged In First!');
+      this.snackBarService.open('Logged In First!');
     }
-  }
-
-  private openSnackBar (message: string) {
-    this.snackBar.open(message, null, {duration: 2000});
   }
 
 }

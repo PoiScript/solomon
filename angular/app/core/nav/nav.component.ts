@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoadingService } from 'app/shared';
+import { LoadingService } from '../loading.service';
 
 @Component({
   selector: 'solomon-nav',

@@ -6,7 +6,9 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './not-found.component.html'
 })
 export class NotFoundComponent {
+
   constructor(private titleService: Title) {
     this.titleService.setTitle('not found | solomon');
   }
+
 }

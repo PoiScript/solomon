@@ -9,6 +9,7 @@ import { PostResolve } from 'app/shared';
   templateUrl: './post.component.html'
 })
 export class PostComponent implements OnInit {
+
   resolve: PostResolve;
 
   constructor (private route: ActivatedRoute,
@@ -21,4 +22,5 @@ export class PostComponent implements OnInit {
         this.titleService.setTitle(data.resolve.current.title + ' | solomon');
       });
   }
+
 }

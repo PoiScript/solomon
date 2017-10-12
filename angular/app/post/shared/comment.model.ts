@@ -1,7 +1,3 @@
-export class CommentResponse {
-  data: Comment[];
-}
-
 export class Comment {
   avatar: string;
   content: string;

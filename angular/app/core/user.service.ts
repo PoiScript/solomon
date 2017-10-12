@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
+import { Error, User } from 'app/shared';
 import { environment } from 'environments/environment';
-import { Error } from './error.model';
-import { User } from './user.model';
+
 import { LoadingService } from './loading.service';
 
 @Injectable()
 export class UserService {
+
   user$: Observable<User>;
 
   private baseUrl = environment.origin_url + 'api/auth/';
@@ -130,4 +131,5 @@ export class UserService {
         return Promise.reject(err.json().error as Error);
       });
   }
+
 }

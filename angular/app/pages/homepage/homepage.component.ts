@@ -2,18 +2,20 @@ import { Component, Inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { AppConfig, APP_CONFIG } from 'app/app.config';
-import { Link } from 'app/shared';
+import { Post } from 'app/shared';
 
 @Component({
-  selector: 'solomon-link',
-  templateUrl: './link.component.html'
+  selector: 'solomon-homepage',
+  templateUrl: './homepage.component.html'
 })
-export class LinkComponent {
-  links: Link[];
+export class HomepageComponent {
+
+  posts: Post[];
 
   constructor (@Inject(APP_CONFIG) config: AppConfig,
                private titleService: Title) {
-    this.links = config.links;
-    this.titleService.setTitle('link | solomon');
+    this.posts = config.posts;
+    this.titleService.setTitle('solomon');
   }
+
 }

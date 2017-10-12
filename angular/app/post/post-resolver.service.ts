@@ -5,12 +5,14 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 
 import { APP_CONFIG, AppConfig } from 'app/app.config';
-import { LoadingService, Post, PostResolve } from 'app/shared';
+import { LoadingService } from 'app/core';
+import { Post, PostResolve } from 'app/shared';
 import { environment } from 'environments/environment';
 
 @Injectable()
 export class PostResolver implements Resolve<PostResolve> {
-  posts: Post[];
+
+  private posts: Post[];
 
   constructor (@Inject(APP_CONFIG) config: AppConfig,
                private loadingService: LoadingService,
@@ -35,4 +37,5 @@ export class PostResolver implements Resolve<PostResolve> {
         return {current, prior, next, html};
       });
   }
+
 }

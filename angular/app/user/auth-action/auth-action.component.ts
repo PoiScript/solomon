@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { UserService } from 'app/shared';
+import { UserService } from 'app/core';
 
 @Component({
   selector: 'solomon-auth-action',

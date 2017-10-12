@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SnackBarService, UserService } from 'app/shared';
+import { SnackBarService, UserService } from 'app/core';
 
 @Component({
   selector: 'solomon-log-in',
@@ -8,6 +8,7 @@ import { SnackBarService, UserService } from 'app/shared';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent {
+
   constructor (private userService: UserService,
                private snackBarService: SnackBarService) { }
 
@@ -24,4 +25,5 @@ export class LogInComponent {
         .catch(err => this.snackBarService.open(err.message));
     }
   }
+
 }

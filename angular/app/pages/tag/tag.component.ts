@@ -10,6 +10,7 @@ import { Post } from 'app/shared';
   templateUrl: './tag.component.html'
 })
 export class TagComponent implements OnInit {
+
   tag: string;
   posts: Post[];
 
@@ -25,4 +26,5 @@ export class TagComponent implements OnInit {
       this.titleService.setTitle(`#${this.tag} | solomon`);
     });
   }
+
 }

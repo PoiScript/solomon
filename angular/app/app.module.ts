@@ -1,15 +1,13 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from 'app/app.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core';
-import { LoadingService, SharedModule } from 'app/shared';
 
 import { APP_CONFIG } from 'app/app.config';
 import { SOLOMON_CONFIG } from '../../solomon.conf';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -17,18 +15,14 @@ import { SOLOMON_CONFIG } from '../../solomon.conf';
   ],
   imports: [
     AppRoutingModule,
-    BrowserAnimationsModule,
     BrowserModule.withServerTransition({appId: 'solomon'}),
     CoreModule,
-    SharedModule,
-    HttpModule
+    PagesModule
   ],
   bootstrap: [
     AppComponent
   ],
   providers: [
-    Title,
-    LoadingService,
     {provide: APP_CONFIG, useValue: SOLOMON_CONFIG}
   ]
 })

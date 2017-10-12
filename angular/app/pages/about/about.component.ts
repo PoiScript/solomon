@@ -10,9 +10,11 @@ const seventhYears = 5.361e+11;
   templateUrl: './about.component.html'
 })
 export class AboutComponent {
+
   days = Math.floor((Date.now() - birthday - seventhYears) / oneDay);
 
   constructor (private titleService: Title) {
     this.titleService.setTitle('about | solomon');
   }
+
 }

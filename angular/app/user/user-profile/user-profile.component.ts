@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Error, SnackBarService, User, UserService } from 'app/shared';
+import { SnackBarService, UserService } from 'app/core';
+import { Error, User } from 'app/shared';
 import { ProfileEditorComponent } from '../profile-editor/profile-editor.component';
 
 @Component({
@@ -11,8 +12,10 @@ import { ProfileEditorComponent } from '../profile-editor/profile-editor.compone
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
-  sub: Subscription;
+
   user: User;
+
+  private sub: Subscription;
 
   constructor (private dialog: MdDialog,
                private snackBarService: SnackBarService,
@@ -50,4 +53,5 @@ export class UserProfileComponent {
   private handleError (err: Error) {
     this.snackBarService.open(`Error occurs, code: ${err.code} message: ${err.message}`);
   }
+
 }

@@ -8,6 +8,8 @@ import { Post } from 'app/shared';
   styleUrls: ['./up-next.component.scss']
 })
 export class UpNextComponent {
+
   @Input() prior: Post;
   @Input() next: Post;
+
 }
