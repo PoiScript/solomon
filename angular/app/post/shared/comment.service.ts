@@ -9,18 +9,19 @@ import { environment } from 'environments/environment';
 export class CommentService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private postsUrl = `${environment.origin_url}api/comment`;
+  private baseUrl = environment.origin_url + 'api/comment/';
 
   constructor (private http: Http) { }
 
   getComments (slug: string): Observable<Comment[]> {
-    const url = `${this.postsUrl}/${slug}`;
-    return this.http.get(url)
+    const url = this.baseUrl + slug;
+    return this.http
+      .get(url, {headers: this.headers})
       .map(res => res.json().data);
   }
 
   createComment (slug: string, uid: string, content: string): Observable<void> {
-    const url = `${this.postsUrl}/${slug}`;
+    const url = this.baseUrl + slug;
     const json = JSON.stringify({uid, content});
     return this.http
       .post(url, json, {headers: this.headers})
