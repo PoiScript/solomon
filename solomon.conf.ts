@@ -7,6 +7,11 @@ export const SOLOMON_CONFIG = {
     language: 'zh-Hans',
   },
   posts: [{
+    title: 'NgModule 的作用域',
+    slug: 'ngmodule-and-its-scope',
+    tags: ['angular'],
+    date: '2017-10-16T06:10:47.147Z'
+  }, {
     title: 'Spacemacs 和 Org-mode 和 LaTeX',
     slug: 'spacemacs-plus-org-mode-plus-latex',
     tags: ['emacs', 'latex', 'org-mode'],
