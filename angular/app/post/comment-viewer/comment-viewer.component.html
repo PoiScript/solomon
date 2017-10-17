@@ -1,11 +1,11 @@
 <div *ngIf="comments$ | async as comments; else no_comment">
   <div *ngFor="let comment of comments">
-    <md-divider></md-divider>
-    <md-list-item>
-      <img mdListAvatar src={{comment.avatar}}>
-      <h4 mdLine>{{comment.name}}</h4>
-      <p mdLine>{{comment.updated | date:'longDate'}}</p>
-    </md-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <img matListAvatar src={{comment.avatar}}>
+      <h4 matLine>{{comment.name}}</h4>
+      <p matLine>{{comment.updated | date:'longDate'}}</p>
+    </mat-list-item>
     <p class="comment-content">{{comment.content}}</p>
   </div>
 </div>

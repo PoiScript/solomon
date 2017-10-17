@@ -1,24 +1,24 @@
 <div *ngIf="user; else no_loggedin">
-  <md-list-item class="navigate-panel" (click)="navigate()">
-    <img mdListAvatar [src]="user.photoUrl || '/img/poi.jpg'">
-    <h4 mdLine>{{user.displayName || 'N/A'}}</h4>
-    <i mdLine>check here to view your profile</i>
-  </md-list-item>
+  <mat-list-item class="navigate-panel" (click)="navigate()">
+    <img matListAvatar [src]="user.photoUrl || '/img/poi.jpg'">
+    <h4 matLine>{{user.displayName || 'N/A'}}</h4>
+    <i matLine>check here to view your profile</i>
+  </mat-list-item>
 </div>
 <ng-template #no_loggedin>
-  <md-list-item class="navigate-panel" (click)="navigate()">
-    <md-icon md-list-icon>account_circle</md-icon>
-    <h4 mdLine>No Logged</h4>
-    <p mdLine>Click here to log in</p>
-  </md-list-item>
+  <mat-list-item class="navigate-panel" (click)="navigate()">
+    <mat-icon mat-list-icon>account_circle</mat-icon>
+    <h4 matLine>No Logged</h4>
+    <p matLine>Click here to log in</p>
+  </mat-list-item>
 </ng-template>
 <div class="comment-editor">
-  <md-form-field class="comment-textarea">
-    <textarea mdInput #content placeholder="Join the discussion" maxlength="500" [disabled]="!user"></textarea>
-    <md-hint align="end">{{content.value.length}} / 500</md-hint>
-  </md-form-field>
+  <mat-form-field class="comment-textarea">
+    <textarea matInput #content placeholder="Join the discussion" maxlength="500" [disabled]="!user"></textarea>
+    <mat-hint align="end">{{content.value.length}} / 500</mat-hint>
+  </mat-form-field>
   <div class="comment-buttons" align="end">
-    <button md-button *ngIf="content.value" (click)="content.value=''">Clear</button>
-    <button md-raised-button color="primary" [disabled]="!user" (click)="submit(content.value)">Submit</button>
+    <button mat-button *ngIf="content.value" (click)="content.value=''">Clear</button>
+    <button mat-raised-button color="primary" [disabled]="!user" (click)="submit(content.value)">Submit</button>
   </div>
 </div>

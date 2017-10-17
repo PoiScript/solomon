@@ -7,8 +7,8 @@
   <article [innerHtml]="resolve.html"></article>
   <solomon-up-next [prior]="resolve.prior" [next]="resolve.next"></solomon-up-next>
   <h1 class="primary-header">Comment</h1>
-  <md-list>
+  <mat-list>
     <solomon-comment-editor [slug]="resolve.current.slug"></solomon-comment-editor>
     <solomon-comment-viewer [slug]="resolve.current.slug"></solomon-comment-viewer>
-  </md-list>
+  </mat-list>
 </div>

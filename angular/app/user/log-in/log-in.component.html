@@ -1,34 +1,34 @@
 <div class="container">
   <h1 class="primary-header">Log In</h1>
   <form class="wrapper">
-    <md-form-field class="form-full-width">
-      <input mdInput type="email" email #log_in_email placeholder="Email">
-    </md-form-field>
-    <md-form-field class="form-full-width">
-      <input mdInput type="password" #log_in_password placeholder="Password">
-    </md-form-field>
+    <mat-form-field class="form-full-width">
+      <input matInput type="email" email #log_in_email placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <input matInput type="password" #log_in_password placeholder="Password">
+    </mat-form-field>
     <div align="end">
-      <button md-raised-button color="primary" (click)="logIn(log_in_email.value, log_in_password.value)">
+      <button mat-raised-button color="primary" (click)="logIn(log_in_email.value, log_in_password.value)">
         Log In
       </button>
     </div>
   </form>
   <h1 class="primary-header">Sign Up</h1>
   <form class="wrapper">
-    <md-form-field class="form-full-width">
-      <input mdInput type="email" email #sign_up_email placeholder="Email">
-    </md-form-field>
-    <md-form-field class="form-full-width">
-      <input mdInput type="password" #sign_up_password placeholder="Password">
-    </md-form-field>
-    <md-form-field class="form-full-width">
-      <input mdInput type="password" #reenter_password placeholder="Reenter Password">
-      <md-hint i18n *ngIf="sign_up_password.value !== reenter_password.value">
+    <mat-form-field class="form-full-width">
+      <input matInput type="email" email #sign_up_email placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <input matInput type="password" #sign_up_password placeholder="Password">
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <input matInput type="password" #reenter_password placeholder="Reenter Password">
+      <mat-hint i18n *ngIf="sign_up_password.value !== reenter_password.value">
         Please make sure you have input the same password.
-      </md-hint>
-    </md-form-field>
+      </mat-hint>
+    </mat-form-field>
     <div align="end">
-      <button md-raised-button color="primary"
+      <button mat-raised-button color="primary"
               (click)="signUp(sign_up_email.value, sign_up_password.value, reenter_password.value)">
         Sign Up
       </button>

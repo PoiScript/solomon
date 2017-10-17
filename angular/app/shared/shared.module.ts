@@ -4,16 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import {
-  MdButtonModule,
-  MdChipsModule,
-  MdDialogModule,
-  MdIconModule,
-  MdInputModule,
-  MdListModule,
-  MdProgressBarModule,
-  MdSnackBarModule,
-  MdToolbarModule,
-  MdTooltipModule
+  MatButtonModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatSnackBarModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { PostListComponent } from './post-list/post-list.component';
@@ -21,19 +20,7 @@ import { PostListComponent } from './post-list/post-list.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    FlexLayoutModule,
-    RouterModule,
-    MdButtonModule,
-    MdChipsModule,
-    MdDialogModule,
-    MdIconModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressBarModule,
-    MdSnackBarModule,
-    MdToolbarModule,
-    MdTooltipModule
+    RouterModule
   ],
   declarations: [
     PostListComponent
@@ -44,16 +31,15 @@ import { PostListComponent } from './post-list/post-list.component';
     FlexLayoutModule,
     RouterModule,
     PostListComponent,
-    MdButtonModule,
-    MdChipsModule,
-    MdDialogModule,
-    MdIconModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressBarModule,
-    MdSnackBarModule,
-    MdToolbarModule,
-    MdTooltipModule
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule {}

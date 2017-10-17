@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SnackBarService, UserService } from 'app/core';
@@ -17,7 +17,7 @@ export class UserProfileComponent {
 
   private sub: Subscription;
 
-  constructor (private dialog: MdDialog,
+  constructor (private dialog: MatDialog,
                private snackBarService: SnackBarService,
                private userService: UserService) {
     this.sub = userService.user$.subscribe(user => this.user = user);

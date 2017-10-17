@@ -1,7 +1,7 @@
 <section>
   <div *ngIf="prior" class="nav-row">
-    <a md-icon-button [routerLink]="['/post', prior.slug]">
-      <md-icon aria-label="prior post">keyboard_arrow_left</md-icon>
+    <a mat-icon-button [routerLink]="['/post', prior.slug]">
+      <mat-icon aria-label="prior post">keyboard_arrow_left</mat-icon>
     </a>
     <div class="nav-text">
       <span i18n>Prior</span>
@@ -9,8 +9,8 @@
     </div>
   </div>
   <div *ngIf="next" class="nav-row">
-    <a md-icon-button [routerLink]="  ['/post', next.slug]">
-      <md-icon aria-label="next post">keyboard_arrow_right</md-icon>
+    <a mat-icon-button [routerLink]="  ['/post', next.slug]">
+      <mat-icon aria-label="next post">keyboard_arrow_right</mat-icon>
     </a>
     <div class="nav-text">
       <span i18n>Next</span>

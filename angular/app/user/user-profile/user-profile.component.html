@@ -1,71 +1,71 @@
 <div class="container">
   <div>
     <span fxFlex></span>
-    <button md-icon-button (click)="openDialog()" mdTooltip="Edit User Profile">
-      <md-icon aria-label="Edit current user profile">edit</md-icon>
+    <button mat-icon-button (click)="openDialog()" matTooltip="Edit User Profile">
+      <mat-icon aria-label="Edit current user profile">edit</mat-icon>
     </button>
   </div>
   <img class="avatar" [src]="user.photoUrl || '/img/poi.jpg'">
   <div fxLayout="row" fxLayout.xs="column">
-    <md-list fxFlex>
-      <h3 md-subheader>Info</h3>
-      <md-list-item>
-        <md-icon md-list-icon>email</md-icon>
-        <h1 md-line>{{user.email}}</h1>
-        <p md-line>email</p>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-icon>check_box</md-icon>
-        <h4 md-line>{{user.emailVerified}}</h4>
-        <p md-line>email verified</p>
-        <button *ngIf="!user.emailVerified" md-icon-button (click)="sendVerificationEmail()"
-                mdTooltip="Send Verification Email">
-          <md-icon>report_problem</md-icon>
+    <mat-list fxFlex>
+      <h3 mat-subheader>Info</h3>
+      <mat-list-item>
+        <mat-icon mat-list-icon>email</mat-icon>
+        <h1 mat-line>{{user.email}}</h1>
+        <p mat-line>email</p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>check_box</mat-icon>
+        <h4 mat-line>{{user.emailVerified}}</h4>
+        <p mat-line>email verified</p>
+        <button *ngIf="!user.emailVerified" mat-icon-button (click)="sendVerificationEmail()"
+                matTooltip="Send Verification Email">
+          <mat-icon>report_problem</mat-icon>
         </button>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-icon>account_box</md-icon>
-        <h4 md-line>{{user.displayName || 'N/A'}}</h4>
-        <p md-line>display name</p>
-        <button *ngIf="!user.displayName" md-icon-button (click)="openDialog()" mdTooltip="Edit User Profile">
-          <md-icon>report_problem</md-icon>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>account_box</mat-icon>
+        <h4 mat-line>{{user.displayName || 'N/A'}}</h4>
+        <p mat-line>display name</p>
+        <button *ngIf="!user.displayName" mat-icon-button (click)="openDialog()" matTooltip="Edit User Profile">
+          <mat-icon>report_problem</mat-icon>
         </button>
-      </md-list-item>
-    </md-list>
-    <md-list fxFlex>
-      <h3 md-subheader>Meta</h3>
-      <md-list-item>
-        <md-icon md-list-icon>exit_to_app</md-icon>
-        <h4 mdLine>{{user.lastLoginAt | date:'medium'}}</h4>
-        <p md-line>last logged</p>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-icon>lock</md-icon>
-        <h4 mdLine>{{user.passwordUpdatedAt | date:'medium'}}</h4>
-        <p md-line>last password updated</p>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-icon>person_add</md-icon>
-        <h4 mdLine>{{user.createdAt | date:'medium'}}</h4>
-        <p md-line>created</p>
-      </md-list-item>
-    </md-list>
+      </mat-list-item>
+    </mat-list>
+    <mat-list fxFlex>
+      <h3 mat-subheader>Meta</h3>
+      <mat-list-item>
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <h4 matLine>{{user.lastLoginAt | date:'medium'}}</h4>
+        <p mat-line>last logged</p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>lock</mat-icon>
+        <h4 matLine>{{user.passwordUpdatedAt | date:'medium'}}</h4>
+        <p mat-line>last password updated</p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>person_add</mat-icon>
+        <h4 matLine>{{user.createdAt | date:'medium'}}</h4>
+        <p mat-line>created</p>
+      </mat-list-item>
+    </mat-list>
   </div>
   <div fxLayout="row" fxLayout.xs="column">
-    <md-nav-list fxFlex>
-      <h3 md-subheader>Action</h3>
-      <md-list-item (click)="signOut()">
-        <md-icon md-list-icon>keyboard_tab</md-icon>
-        <h4 mdLine>Sign Out Current User</h4>
-      </md-list-item>
-      <md-list-item (click)="sendPasswordResetEmail()">
-        <md-icon md-list-icon>replay</md-icon>
-        <h4 mdLine>Send Reset Password Email</h4>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-icon>not_interested</md-icon>
-        <h4 mdLine>Delete Current User</h4>
-      </md-list-item>
-    </md-nav-list>
+    <mat-nav-list fxFlex>
+      <h3 mat-subheader>Action</h3>
+      <mat-list-item (click)="signOut()">
+        <mat-icon mat-list-icon>keyboard_tab</mat-icon>
+        <h4 matLine>Sign Out Current User</h4>
+      </mat-list-item>
+      <mat-list-item (click)="sendPasswordResetEmail()">
+        <mat-icon mat-list-icon>replay</mat-icon>
+        <h4 matLine>Send Reset Password Email</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>not_interested</mat-icon>
+        <h4 matLine>Delete Current User</h4>
+      </mat-list-item>
+    </mat-nav-list>
   </div>
 </div>

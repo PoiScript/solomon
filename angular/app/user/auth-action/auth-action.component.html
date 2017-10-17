@@ -2,17 +2,17 @@
   <h1 class="primary-header">{{title}}</h1>
   <p>{{content}}</p>
   <form class="form-wrapper" *ngIf="showForm">
-    <md-form-field class="form-full-width">
-      <input mdInput type="password" #password placeholder="Password">
-    </md-form-field>
-    <md-form-field class="form-full-width">
-      <input mdInput type="password" #password_ placeholder="Reenter Password">
-      <md-hint *ngIf="password.value !== password_.value">
+    <mat-form-field class="form-full-width">
+      <input matInput type="password" #password placeholder="Password">
+    </mat-form-field>
+    <mat-form-field class="form-full-width">
+      <input matInput type="password" #password_ placeholder="Reenter Password">
+      <mat-hint *ngIf="password.value !== password_.value">
         Please make sure you have input the same password.
-      </md-hint>
-    </md-form-field>
+      </mat-hint>
+    </mat-form-field>
     <div align="end">
-      <button md-raised-button color="primary" (click)="submitNewPassword(password.value)"
+      <button mat-raised-button color="primary" (click)="submitNewPassword(password.value)"
               [disabled]="password.value.length < 6 || password.value !== password_.value">Sign Up
       </button>
     </div>

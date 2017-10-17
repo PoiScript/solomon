@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MdIconModule } from '@angular/material';
 
+import { SharedModule } from 'app/shared';
 import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
@@ -10,10 +10,10 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MdIconModule ],
-      declarations: [ FooterComponent ]
+      imports: [SharedModule],
+      declarations: [FooterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

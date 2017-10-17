@@ -1,9 +1,9 @@
 <div class="container">
   <h1 i18n class="primary-header">Link</h1>
-  <md-nav-list>
-    <a md-list-item *ngFor="let link of links" href="{{link.address}}">
-      <img md-list-avatar [src]=link.avatar>
-      <h3 md-line> {{link.name}} </h3>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let link of links" href="{{link.address}}">
+      <img mat-list-avatar [src]=link.avatar>
+      <h3 mat-line> {{link.name}} </h3>
     </a>
-  </md-nav-list>
+  </mat-nav-list>
 </div>

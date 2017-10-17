@@ -1,11 +1,11 @@
-<h1 md-dialog-title>Edit User Profile</h1>
-<div md-dialog-content>
-  <md-form-field>
-    <input #name mdInput placeholder="Display Name" value={{user.displayName}}>
-  </md-form-field>
-  <md-form-field>
-    <input #photo mdInput placeholder="Photo URL" value={{user.photoUrl}}>
-  </md-form-field>
-  <button md-raised-button color="primary" (click)="dialogClose(name.value, photo.value)">Save</button>
-  <button md-button md-dialog-close>Cancel</button>
+<h1 mat-dialog-title>Edit User Profile</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input #name matInput placeholder="Display Name" value={{user.displayName}}>
+  </mat-form-field>
+  <mat-form-field>
+    <input #photo matInput placeholder="Photo URL" value={{user.photoUrl}}>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="dialogClose(name.value, photo.value)">Save</button>
+  <button mat-button mat-dialog-close>Cancel</button>
 </div>

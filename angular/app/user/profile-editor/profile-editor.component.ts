@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { User } from 'app/shared';
 
@@ -9,8 +9,8 @@ import { User } from 'app/shared';
 })
 export class ProfileEditorComponent {
 
-  constructor (private dialogRef: MdDialogRef<ProfileEditorComponent>,
-               @Inject(MD_DIALOG_DATA) public user: User) { }
+  constructor (private dialogRef: MatDialogRef<ProfileEditorComponent>,
+               @Inject(MAT_DIALOG_DATA) public user: User) { }
 
   dialogClose (name: string, photo: string) {
     this.dialogRef.close({name, photo});
