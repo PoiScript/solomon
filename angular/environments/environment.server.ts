@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  origin_url: 'https://blog.poi.cat/'
+  origin_url: 'http://localhost:8080/'
 };

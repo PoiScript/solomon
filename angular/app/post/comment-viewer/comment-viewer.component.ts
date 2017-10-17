@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, Input, OnChanges, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Comment, CommentService } from '../shared';
@@ -13,10 +14,13 @@ export class CommentViewerComponent implements OnChanges {
   @Input() slug: string;
   comments$: Observable<Comment[]>;
 
-  constructor (private commentService: CommentService) { }
+  constructor (private commentService: CommentService,
+               @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnChanges (): void {
-    this.comments$ = this.commentService.getComments(this.slug);
+    if (isPlatformBrowser(this.platformId)) {
+      this.comments$ = this.commentService.getComments(this.slug);
+    }
   }
 
 }
