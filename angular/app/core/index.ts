@@ -1,6 +1,6 @@
-export * from './core.module';
-export * from './user.service';
-export * from './loading.service';
-export * from './snack-bar.service';
-export * from './nav/nav.component';
-export * from './footer/footer.component';
+export { CoreModule } from './core.module';
+export { UserService } from './user.service';
+export { LoadingService } from './loading.service';
+export { SnackBarService } from './snack-bar.service';
+export { NavComponent } from './nav/nav.component';
+export { FooterComponent } from './footer/footer.component';
