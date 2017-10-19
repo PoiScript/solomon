@@ -9,6 +9,10 @@
         "source": "/api/**",
         "function": "api"
       }
+    ],
+    "ignore": [
+      "/markdown",
+      "/dist-server"
     ]
   }
 }
