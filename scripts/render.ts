@@ -5,6 +5,10 @@ import { join, resolve } from 'path';
 
 const assets = resolve('assets');
 
+marked.setOptions({
+  highlight: code => require('highlight.js').highlightAuto(code).value
+});
+
 export function render (post) {
   const markdown = readFileSync(join(assets, 'markdown', `${post.slug}.md`), 'utf8');
   const html = marked(markdown);

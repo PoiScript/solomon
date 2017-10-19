@@ -8,11 +8,11 @@
     <h2 id="gpg">gpg</h2>
     <p>我的 PGP 指纹：<code>EC56 5FE9 8A6F 316A B69F 6979 8EE0 5E84 4452 6ED5</code>。</p>
     <p>你可以从 Keybase 或是我的博客上导入我的公钥。当然，建议你都运行一次，以防止被更改：</p>
-    <pre><code># import my gpg key from my blog
-$ curl https://blog.poi.cat/poi.gpg | gpg --import
+    <pre><code><span class="hljs-comment"># import my gpg key from my blog</span>
+<span class="hljs-meta">$</span> curl https://blog.poi.cat/poi.gpg | gpg --import
 
-# from keybase, too
-$ curl https://keybase.io/poiscript/pgp_keys.asc | gpg --import</code></pre>
+<span class="hljs-comment"># from keybase, too</span>
+<span class="hljs-meta">$</span> curl https://keybase.io/poiscript/pgp_keys.asc | gpg --import</code></pre>
     <p>如无异样，gpg 应该会显示：<b>"Alex Lin (poi) &lt;poiscript@gmail.com&gt;" not changed</b>； </p>
     <p>如有异样，请先运行<code>gpg --delete-keys POI_KEY_ID</code> 清除已导入的可疑的 key，然后再联系我解决。 >_<</p>
     <h2 id="solomon">solomon</h2>

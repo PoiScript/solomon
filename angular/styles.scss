@@ -17,7 +17,7 @@
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -61,7 +61,7 @@
   }
 
   a.primary-header {
-    color: #673ab7;
+    color: mat-color($mat-deep-purple, 500);
     text-decoration: none;
   }
 
@@ -80,4 +80,66 @@
     margin: auto;
     padding: 60px 16px;
   }
+}
+
+// highlight.js style
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: mat-color($mat-grey, 300);
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs, .hljs-subst {
+  color: mat-color($mat-grey, 800);
+}
+
+.hljs-comment {
+  color: mat-color($mat-grey, 500);
+}
+
+.hljs-literal {
+  color: mat-color($mat-light-green, 600);
+}
+
+.hljs-meta {
+  color: mat-color($mat-blue, 800);
+}
+
+.hljs-meta-string {
+  color: mat-color($mat-cyan, 600);
+}
+
+.hljs-title, .hljs-section {
+  color: mat-color($mat-red, 900);
+  font-weight: bold;
+}
+
+.hljs-built_in, .hljs-bullet,
+.hljs-code, .hljs-addition {
+  color: mat-color($mat-green, 600);
+}
+
+.hljs-keyword, .hljs-attribute, .hljs-selector-tag,
+.hljs-meta-keyword, .hljs-doctag, .hljs-name {
+  font-weight: bold;
+}
+
+.hljs-type, .hljs-string, .hljs-number, .hljs-selector-id,
+.hljs-selector-class, .hljs-quote, .hljs-template-tag, .hljs-deletion {
+  color: mat-color($mat-red, 900);
+}
+
+.hljs-regexp, .hljs-symbol, .hljs-variable, .hljs-link,
+.hljs-template-variable, .hljs-selector-attr, .hljs-selector-pseudo {
+  color: mat-color($mat-red, A100);
 }
