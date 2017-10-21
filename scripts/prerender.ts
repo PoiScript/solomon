@@ -47,7 +47,7 @@ urls
   .filter((url, i, self) => self.indexOf(url) === i)
   .forEach(url => promises.push(renderToStatic(url, join(dist, url, 'index.html'))));
 
-promises.push(renderToStatic('/post/hello-world', join(dist, '404.html')));
+promises.push(renderToStatic('/404', join(dist, '404.html')));
 
 // stop server when all promise is resolved
 Promise.all(promises).then(() => stopServer());

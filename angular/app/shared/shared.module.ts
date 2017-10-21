@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import {
   MatButtonModule,
@@ -30,7 +29,6 @@ import { PostListComponent } from './post-list/post-list.component';
     CommonModule,
     FormsModule,
     FlexLayoutModule,
-    HttpModule,
     RouterModule,
     PostListComponent,
     MatButtonModule,
