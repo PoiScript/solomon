@@ -23,14 +23,14 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should display a link point to rss feed', () => {
+  it('should display a link icon point to rss feed', () => {
     const icon = element.querySelector('a');
-    expect(icon.textContent).toContain('rss_feed');
+    expect(icon.textContent.trim()).toBe('rss_feed');
     expect(icon.getAttribute('href')).toBe('/atom.xml');
   });
 
   it('should display a license', () => {
     const license = element.querySelector('.footer-text');
-    expect(license.textContent).toContain('Content licensed under CC-BY-SA-4.0.');
+    expect(license.textContent).toBe('Content licensed under CC-BY-SA-4.0.');
   });
 });
