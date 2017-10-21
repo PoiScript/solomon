@@ -34,14 +34,14 @@ describe('NavComponent', () => {
   });
 
   it('should display a router link to about page', () => {
-    const solomon = element.querySelector('a:nth-child(2)');
-    expect(solomon.textContent).toContain('ABOUT');
-    expect(solomon.getAttribute('routerLink')).toBe('/about');
+    const about = element.querySelector('a:nth-child(2)');
+    expect(about.textContent).toContain('ABOUT');
+    expect(about.getAttribute('routerLink')).toBe('/about');
   });
 
   it('should display a router link to link page', () => {
-    const solomon = element.querySelector('a:nth-child(3)');
-    expect(solomon.textContent).toContain('LINK');
-    expect(solomon.getAttribute('routerLink')).toBe('/link');
+    const link = element.querySelector('a:nth-child(3)');
+    expect(link.textContent).toContain('LINK');
+    expect(link .getAttribute('routerLink')).toBe('/link');
   });
 });

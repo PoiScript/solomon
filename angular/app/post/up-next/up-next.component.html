@@ -1,5 +1,5 @@
 <section>
-  <div *ngIf="prior" class="nav-row">
+  <div *ngIf="prior" id="nav-prior" class="nav-row">
     <a mat-icon-button [routerLink]="['/post', prior.slug]">
       <mat-icon aria-label="prior post">keyboard_arrow_left</mat-icon>
     </a>
@@ -8,8 +8,8 @@
       <strong>{{prior.title}}</strong>
     </div>
   </div>
-  <div *ngIf="next" class="nav-row">
-    <a mat-icon-button [routerLink]="  ['/post', next.slug]">
+  <div *ngIf="next" id="nav-next" class="nav-row">
+    <a mat-icon-button [routerLink]="['/post', next.slug]">
       <mat-icon aria-label="next post">keyboard_arrow_right</mat-icon>
     </a>
     <div class="nav-text">
