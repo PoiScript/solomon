@@ -23,7 +23,7 @@ describe('NavComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavComponent);
     component = fixture.componentInstance;
-    element = fixture.debugElement.nativeElement;
+    element = fixture.nativeElement;
     fixture.detectChanges();
   });
 

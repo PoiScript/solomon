@@ -2,24 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { PostListComponent } from './post-list.component';
+import { MOCK_POSTS } from 'app/testing';
 
-const MOCK_POSTS = [{
-  title: 'Lorem ipsum dolor sit amet',
-  slug: 'lorem-ipsum-dolor-sit-amet',
-  date: '1970-01-01T00:00:00.000Z',
-  tags: ['lorem', 'ipsum'],
-}, {
-  title: 'Consectetur adipiscing elit',
-  slug: 'consectetur-adipiscing-elit',
-  date: '2006-08-14T02:34:56.789Z',
-  tags: ['ipsum'],
-}];
+let component: PostListComponent;
+let element: Element;
+let fixture: ComponentFixture<PostListComponent>;
 
 describe('PostListComponent', () => {
-  let component: PostListComponent;
-  let element: HTMLElement;
-  let fixture: ComponentFixture<PostListComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -28,47 +17,78 @@ describe('PostListComponent', () => {
       .compileComponents();
   }));
 
+  describe('with no post provided', withNoPostProvided);
+  describe('with two posts provided', withTwoPostsProvided);
+});
+
+function withNoPostProvided () {
   beforeEach(() => {
     fixture = TestBed.createComponent(PostListComponent);
     component = fixture.componentInstance;
+    component.posts = [];
     element = fixture.nativeElement;
+    fixture.detectChanges();
   });
 
-  it('should display \'No Posts :(\' when an empty array is provided', () => {
-    component.posts = [];
-    fixture.detectChanges();
+  it('should display \'No Posts :(\'', () => {
     expect(element.textContent).toContain('No Posts :(');
   });
+}
 
-  it('should display post\'s title as a link', () => {
+function withTwoPostsProvided () {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PostListComponent);
+    component = fixture.componentInstance;
     component.posts = MOCK_POSTS;
+    element = fixture.nativeElement;
     fixture.detectChanges();
-    const titles = element.querySelectorAll('.post-list-item a.title');
-    expect(titles[0].textContent.trim()).toBe(MOCK_POSTS[0].title);
-    expect(titles[1].textContent.trim()).toBe(MOCK_POSTS[1].title);
-    expect(titles[0].getAttribute('href')).toBe('/post/' + MOCK_POSTS[0].slug);
-    expect(titles[1].getAttribute('href')).toBe('/post/' + MOCK_POSTS[1].slug);
   });
 
-  it('should display post\'s date in mediumDate format', () => {
-    component.posts = MOCK_POSTS;
-    fixture.detectChanges();
-    const subtitles = element.querySelectorAll('.post-list-item .subtitle');
-    expect(subtitles[0].textContent).toContain('Jan 1, 1970');
-    expect(subtitles[1].textContent).toContain('Aug 14, 2006');
+  describe('when rendering the first post', () => {
+    beforeEach(() => {
+      element = element.querySelectorAll('.post-list-item')[0];
+    });
+
+    it('should display the post\'s title as a link', () => {
+      const title = element.querySelector('.post-list-item a');
+      expect(title.textContent.trim()).toBe(MOCK_POSTS[0].title);
+      expect(title.getAttribute('href')).toBe('/post/' + MOCK_POSTS[0].slug);
+    });
+
+    it('should display the post\'s date in mediumDate format', () => {
+      expect(element.querySelector('.post-list-item p span').textContent).toBe('Jan 1, 1970');
+    });
+
+    it('should display post\'s tags as links', () => {
+      const tags = element.querySelectorAll('.post-list-item .subtitle .tag');
+      const [tag0, tag1] = MOCK_POSTS[0].tags;
+      expect(tags[0].textContent).toContain(tag0);
+      expect(tags[1].textContent).toContain(tag1);
+      expect(tags[0].getAttribute('href')).toBe('/tag/' + tag0);
+      expect(tags[1].getAttribute('href')).toBe('/tag/' + tag1);
+    });
   });
 
-  it('should display post\'s tags as links', () => {
-    component.posts = MOCK_POSTS;
-    fixture.detectChanges();
-    const subtitles = element.querySelectorAll('.post-list-item .subtitle');
-    expect(subtitles[0].textContent).toContain(MOCK_POSTS[0].tags[0]);
-    expect(subtitles[0].textContent).toContain(MOCK_POSTS[0].tags[1]);
-    expect(subtitles[1].textContent).toContain(MOCK_POSTS[1].tags[0]);
-    const first_post_tags = subtitles[0].querySelectorAll('a.tag');
-    const second_post_tags = subtitles[1].querySelectorAll('a.tag');
-    expect(first_post_tags[0].getAttribute('href')).toBe('/tag/' + MOCK_POSTS[0].tags[0]);
-    expect(first_post_tags[1].getAttribute('href')).toBe('/tag/' + MOCK_POSTS[0].tags[1]);
-    expect(second_post_tags[0].getAttribute('href')).toBe('/tag/' + MOCK_POSTS[1].tags[0]);
+  describe('when rendering the second post', () => {
+    beforeEach(() => {
+      element = element.querySelectorAll('.post-list-item')[1];
+    });
+
+    it('should display the post\'s title as a link', () => {
+      const title = element.querySelector('.post-list-item a');
+      expect(title.textContent.trim()).toBe(MOCK_POSTS[1].title);
+      expect(title.getAttribute('href')).toBe('/post/' + MOCK_POSTS[1].slug);
+    });
+
+    it('should display the post\'s date in mediumDate format', () => {
+      expect(element.querySelector('.post-list-item p span').textContent).toBe('Aug 14, 2006');
+    });
+
+    it('should display post\'s tags as links', () => {
+      const tag = element.querySelector('.post-list-item .subtitle .tag');
+      const [expectedTag] = MOCK_POSTS[1].tags;
+      expect(tag.textContent).toContain(expectedTag);
+      expect(tag.getAttribute('href')).toBe('/tag/' + expectedTag);
+    });
   });
-});
+}

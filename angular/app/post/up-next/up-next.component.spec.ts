@@ -2,25 +2,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { SharedModule } from 'app/shared';
+import { MOCK_POSTS } from 'app/testing';
 import { UpNextComponent } from './up-next.component';
 
-const MOCK_POSTS = [{
-  title: 'Lorem ipsum dolor sit amet',
-  slug: 'lorem-ipsum-dolor-sit-amet',
-  date: '1970-01-01T00:00:00.000Z',
-  tags: ['lorem', 'ipsum'],
-}, {
-  title: 'Consectetur adipiscing elit',
-  slug: 'consectetur-adipiscing-elit',
-  date: '1970-01-01T00:00:00.000Z',
-  tags: ['ipsum'],
-}];
+let component: UpNextComponent;
+let element: HTMLElement;
+let fixture: ComponentFixture<UpNextComponent>;
+
+const post = MOCK_POSTS[0];
 
 describe('UpNextComponent', () => {
-  let component: UpNextComponent;
-  let element: HTMLElement;
-  let fixture: ComponentFixture<UpNextComponent>;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, RouterTestingModule],
@@ -29,43 +20,74 @@ describe('UpNextComponent', () => {
       .compileComponents();
   }));
 
+  describe('with no post provided', withNoPostProvided);
+  describe('with prior post provided', withPriorPostProvided);
+  describe('with next post provided', withNextPostProvided);
+});
+
+function withNoPostProvided () {
   beforeEach(() => {
     fixture = TestBed.createComponent(UpNextComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
+    fixture.detectChanges();
   });
 
-  it('should not display the navigation when the input is empty', () => {
+  it('should not display the navigation', () => {
     fixture.detectChanges();
     expect(element.querySelector('#nav-next')).toBe(null);
     expect(element.querySelector('#nav-prior')).toBe(null);
   });
+}
 
-  it('should display icons', () => {
-    [component.prior, component.next] = MOCK_POSTS;
+function withPriorPostProvided () {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UpNextComponent);
+    component = fixture.componentInstance;
+    element = fixture.nativeElement;
+    component.prior = post;
     fixture.detectChanges();
-    const icons = element.querySelectorAll('mat-icon');
-    expect(icons[0].textContent).toBe('keyboard_arrow_left');
-    expect(icons[1].textContent).toBe('keyboard_arrow_right');
-    expect(icons[0].getAttribute('aria-label')).toBe('prior post');
-    expect(icons[1].getAttribute('aria-label')).toBe('next post');
   });
 
-  it('should display texts', () => {
-    [component.prior, component.next] = MOCK_POSTS;
-    fixture.detectChanges();
-    const texts = element.querySelectorAll('.nav-text');
-    expect(texts[0].textContent).toContain('Prior');
-    expect(texts[1].textContent).toContain('Next');
-    expect(texts[0].textContent).toContain(MOCK_POSTS[0].title);
-    expect(texts[1].textContent).toContain(MOCK_POSTS[1].title);
+  it('should display a icon', () => {
+    const icon = element.querySelector('#nav-prior mat-icon');
+    expect(icon.textContent).toBe('keyboard_arrow_left');
+    expect(icon.getAttribute('aria-label')).toBe('prior post');
   });
 
-  it('should display router buttons', () => {
-    [component.prior, component.next] = MOCK_POSTS;
-    fixture.detectChanges();
-    const buttons = element.querySelectorAll('a.mat-icon-button');
-    expect(buttons[0].getAttribute('href')).toBe('/post/' + MOCK_POSTS[0].slug);
-    expect(buttons[1].getAttribute('href')).toBe('/post/' + MOCK_POSTS[1].slug);
+  it('should display two texts', () => {
+    const text = element.querySelector('#nav-prior .nav-text');
+    expect(text.textContent).toContain('Prior');
+    expect(text.textContent).toContain(post.title);
   });
-});
+
+  it('should display a button', () => {
+    expect(element.querySelector('#nav-prior a.mat-icon-button').getAttribute('href')).toBe('/post/' + post.slug);
+  });
+}
+
+function withNextPostProvided () {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UpNextComponent);
+    component = fixture.componentInstance;
+    element = fixture.nativeElement;
+    component.next = post;
+    fixture.detectChanges();
+  });
+
+  it('should display a icon', () => {
+    const icon = element.querySelector('#nav-next mat-icon');
+    expect(icon.textContent).toBe('keyboard_arrow_right');
+    expect(icon.getAttribute('aria-label')).toBe('next post');
+  });
+
+  it('should display two texts', () => {
+    const text = element.querySelector('#nav-next .nav-text');
+    expect(text.textContent).toContain('Next');
+    expect(text.textContent).toContain(post.title);
+  });
+
+  it('should display a button', () => {
+    expect(element.querySelector('#nav-next a.mat-icon-button').getAttribute('href')).toBe('/post/' + post.slug);
+  });
+}

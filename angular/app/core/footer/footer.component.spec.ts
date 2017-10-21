@@ -19,7 +19,7 @@ describe('FooterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
-    element = fixture.debugElement.nativeElement;
+    element = fixture.nativeElement;
     fixture.detectChanges();
   });
 
