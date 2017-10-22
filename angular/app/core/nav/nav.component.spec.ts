@@ -1,20 +1,21 @@
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
-import { LoadingService } from 'app/core';
-import { SharedModule } from 'app/shared';
-
+import { RouterLinkStubDirective } from 'app/testing';
+import { LoadingService } from 'app/core/loading.service';
 import { NavComponent } from './nav.component';
 
-describe('NavComponent', () => {
-  let component: NavComponent;
-  let element: HTMLElement;
-  let fixture: ComponentFixture<NavComponent>;
+let component: NavComponent;
+let linkDes: DebugElement[];
+let links: RouterLinkStubDirective[];
+let fixture: ComponentFixture<NavComponent>;
 
+describe('NavComponent & NO_ERRORS_SCHEMA', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule],
-      declarations: [NavComponent],
+      declarations: [NavComponent, RouterLinkStubDirective],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [LoadingService]
     })
       .compileComponents();
@@ -23,25 +24,41 @@ describe('NavComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavComponent);
     component = fixture.componentInstance;
-    element = fixture.nativeElement;
     fixture.detectChanges();
+    linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+    links = linkDes.map(de => de.injector.get(RouterLinkStubDirective) as RouterLinkStubDirective);
   });
 
-  it('should display a router link to homepage', () => {
-    const solomon = element.querySelector('a:nth-child(1)');
-    expect(solomon.textContent).toContain('SOLOMON');
-    expect(solomon.getAttribute('routerLink')).toBe('/');
+  it('can get text content from template', () => {
+    const linkTexts = linkDes.map(de => de.nativeElement.textContent);
+    expect(linkTexts.length).toBe(3);
+    expect(linkTexts[0]).toContain('SOLOMON');
+    expect(linkTexts[1]).toContain('ABOUT');
+    expect(linkTexts[2]).toContain('LINK');
   });
 
-  it('should display a router link to about page', () => {
-    const about = element.querySelector('a:nth-child(2)');
-    expect(about.textContent).toContain('ABOUT');
-    expect(about.getAttribute('routerLink')).toBe('/about');
+  it('can get RouterLinks from template', () => {
+    expect(links.length).toBe(3);
+    expect(links[0].routerLink).toBe('/');
+    expect(links[1].routerLink).toBe('/about');
+    expect(links[2].routerLink).toBe('/link');
   });
 
-  it('should display a router link to link page', () => {
-    const link = element.querySelector('a:nth-child(3)');
-    expect(link.textContent).toContain('LINK');
-    expect(link .getAttribute('routerLink')).toBe('/link');
-  });
+  canClickTest(0, 'Solomon', '/');
+  canClickTest(1, 'About', '/about');
+  canClickTest(2, 'Link', '/link');
 });
+
+function canClickTest (index: number, button: string, routerLink: string) {
+  it(`can click ${button} link in template`, () => {
+    const linkDe = linkDes[index];
+    const link = links[index];
+
+    expect(link.navigatedTo).toBeNull();
+
+    linkDe.triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(link.navigatedTo).toBe(routerLink);
+  });
+}
