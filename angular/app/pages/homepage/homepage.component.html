@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="primary-header">Solomon</h1>
   <p class="primary-subheader">
-    {posts.length, plural, zero {no post} one {1 post} other {{{posts.length}} posts}}
+    {posts.length, plural, =0 {no post} one {1 post} other {{{posts.length}} posts}}
   </p>
   <solomon-post-list [posts]="posts"></solomon-post-list>
 </div>

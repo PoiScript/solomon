@@ -49,8 +49,12 @@ function withTheTagOnlyOnePostHas () {
     fixture.detectChanges();
   });
 
-  it('should display header of \'#only-one-post-has-this\'', () => {
-    expect(element.querySelector('h1.primary-header').textContent).toBe('#only-one-post-has-this');
+  it('should display a header \'#only-one-post-has-this\'', () => {
+    expect(element.querySelector('.primary-header').textContent).toBe('#only-one-post-has-this');
+  });
+
+  it('should display length \'1 post\'', () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain('1 post');
   });
 
   it('should display one item', () => {
@@ -71,6 +75,10 @@ function withTheTagTwoPostsContain () {
     expect(element.querySelector('h1.primary-header').textContent).toBe('#two-posts-share-this');
   });
 
+  it('should display length \'2 posts\'', () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain('2 posts');
+  });
+
   it('should display two items', () => {
     expect(element.querySelectorAll('.post-list-item').length).toBe(2);
   });
@@ -87,6 +95,10 @@ function withTagDoesNotExist () {
 
   it('should display header of \'#not-exists\'', () => {
     expect(element.querySelector('h1.primary-header').textContent).toBe('#not-exists');
+  });
+
+  it('should display length \'no post\'', () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain('no post');
   });
 
   it('should not display any item', () => {

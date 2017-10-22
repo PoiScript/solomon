@@ -12,7 +12,7 @@ let element: HTMLElement;
 
 describe('HomepageComponent', () => {
   describe('with no post provided', withNoPostProvided);
-  describe('with posts provided', withTwoPostsProvided);
+  describe('with two posts provided', withTwoPostsProvided);
 });
 
 function withNoPostProvided () {
@@ -39,6 +39,10 @@ function withNoPostProvided () {
 
   it('should display a header of \'Solomon\'', () => {
     expect(element.querySelector('.primary-header').textContent).toBe('Solomon');
+  });
+
+  it('should display length \'no post\'', () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain('no post');
   });
 
   it('should not display any item', () => {
@@ -76,6 +80,10 @@ function withTwoPostsProvided () {
 
   it('should display a header of \'Solomon\'', () => {
     expect(element.querySelector('.primary-header').textContent).toBe('Solomon');
+  });
+
+  it('should display length \'2 posts\'', () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain('2 posts');
   });
 
   it('should display two items', () => {
