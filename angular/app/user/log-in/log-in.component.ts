@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SnackBarService, UserService } from 'app/core';
+import { UserService } from 'app/core';
 
 @Component({
   selector: 'solomon-log-in',
@@ -9,20 +9,15 @@ import { SnackBarService, UserService } from 'app/core';
 })
 export class LogInComponent {
 
-  constructor (private userService: UserService,
-               private snackBarService: SnackBarService) { }
+  constructor (private userService: UserService) { }
 
   logIn (email: string, password: string) {
-    this.userService.signIn(email, password)
-      .then(() => this.userService.navigate())
-      .catch(err => this.snackBarService.open(err.message));
+    this.userService.signIn(email, password);
   }
 
   signUp (email: string, password: string, reenter: string) {
     if (password === reenter) {
-      this.userService.signUp(email, password)
-        .then(() => this.userService.navigate())
-        .catch(err => this.snackBarService.open(err.message));
+      this.userService.signUp(email, password);
     }
   }
 

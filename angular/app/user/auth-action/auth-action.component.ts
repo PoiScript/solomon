@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { UserService } from 'app/core';
+import { LoadingService, UserService } from 'app/core';
 
 @Component({
   selector: 'solomon-auth-action',
@@ -18,7 +18,8 @@ export class AuthActionComponent implements OnInit {
   private oobCode: string;
 
   constructor (private route: ActivatedRoute,
-               private userService: UserService) { }
+               private userService: UserService,
+               private loadingService: LoadingService) { }
 
   ngOnInit () {
     this.route.queryParams.subscribe((params: Params) => {
@@ -39,10 +40,16 @@ export class AuthActionComponent implements OnInit {
   submitNewPassword (newPassword: string) {
     this.showForm = false;
     this.content = 'Submitting your password.';
+    this.loadingService.show();
     this.userService.confirmPasswordReset(this.oobCode, newPassword)
-      .then(res => this.content = 'Password reset complete.')
-      .catch(error => 'There is something wrong with your verification');
+      .subscribe(
+        () => this.content = 'Password reset complete.',
+        () => this.content = 'There is something wrong with your verification',
+        this.hideLoading
+      );
   }
+
+  private hideLoading = () => this.loadingService.hide();
 
   private invalid () {
     this.title = 'Invalid Action';
@@ -52,20 +59,26 @@ export class AuthActionComponent implements OnInit {
   private verifyEmail () {
     this.title = 'Email Verification';
     this.content = 'Verifying your email...';
+    this.loadingService.show();
     this.userService.confirmEmailVerification(this.oobCode)
-      .then(res => this.content = 'Your email has been verified.')
-      .catch(error => this.content = 'There is something wrong with your verification');
+      .subscribe(
+        () => this.content = 'Your email has been verified.',
+        () => this.content = 'There is something wrong with your verification'
+      );
   }
 
   private resetPassword () {
     this.title = 'Password Reset';
     this.content = 'Verifying your oob code...';
+    this.loadingService.show();
     this.userService.verifyPasswordReset(this.oobCode)
-      .then(() => {
-        this.showForm = true;
-        this.content = 'Input your new password.';
-      })
-      .catch(() => this.content = 'There is something wrong with your password reset.');
+      .subscribe(() => {
+          this.showForm = true;
+          this.content = 'Input your new password.';
+        },
+        () => this.content = 'There is something wrong with your password reset.',
+        this.hideLoading
+      );
   }
 
 }

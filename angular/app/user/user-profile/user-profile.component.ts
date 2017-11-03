@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 
-import { SnackBarService, UserService } from 'app/core';
-import { Error, User } from 'app/shared';
+import { UserService } from 'app/core';
+import { User } from 'app/shared';
 import { ProfileEditorComponent } from '../profile-editor/profile-editor.component';
 
 @Component({
@@ -18,7 +18,6 @@ export class UserProfileComponent {
   private sub: Subscription;
 
   constructor (private dialog: MatDialog,
-               private snackBarService: SnackBarService,
                private userService: UserService) {
     this.sub = userService.user$.subscribe(user => this.user = user);
   }
@@ -28,15 +27,11 @@ export class UserProfileComponent {
   }
 
   sendVerificationEmail () {
-    this.userService.sendVerificationEmail()
-      .then(() => this.snackBarService.open('Verification email sent.'))
-      .catch(err => this.handleError(err));
+    this.userService.sendVerificationEmail();
   }
 
   sendPasswordResetEmail () {
-    this.userService.sendPasswordResetEmail()
-      .then(() => this.snackBarService.open('Password Reset Email sent.'))
-      .catch(err => this.handleError(err));
+    this.userService.sendPasswordResetEmail();
   }
 
   openDialog (): void {
@@ -45,13 +40,8 @@ export class UserProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe((user: { name: string, photo: string }) => {
-      this.userService.updateUser(user.name, user.photo)
-        .catch(err => this.handleError(err));
+      this.userService.updateUser(user.name, user.photo);
     });
-  }
-
-  private handleError (err: Error) {
-    this.snackBarService.open(`Error occurs, code: ${err.code} message: ${err.message}`);
   }
 
 }

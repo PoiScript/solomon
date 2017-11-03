@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from 'app/app.component';
 import { AppRoutingModule } from 'app/app-routing.module';
@@ -21,7 +21,7 @@ import { SOLOMON_CONFIG } from '../../solomon.conf';
     BrowserModule.withServerTransition({appId: 'solomon'}),
     BrowserAnimationsModule,
     CoreModule,
-    HttpModule,
+    HttpClientModule,
     SharedModule,
     PagesModule
   ],

@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/map';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +16,7 @@ export class PostResolver implements Resolve<PostResolve> {
 
   constructor (@Inject(APP_CONFIG) config: AppConfig,
                private loadingService: LoadingService,
-               private http: Http) {
+               private http: HttpClient) {
     this.posts = config.posts;
   }
 
@@ -30,8 +30,7 @@ export class PostResolver implements Resolve<PostResolve> {
     const current = this.posts[i];
 
     return this.http
-      .get(`${environment.origin_url}html/${current.slug}.html`)
-      .map(res => res.text())
+      .get(`${environment.origin_url}html/${current.slug}.html`, {responseType: 'text'})
       .map(html => {
         this.loadingService.hide();
         return {current, prior, next, html};
