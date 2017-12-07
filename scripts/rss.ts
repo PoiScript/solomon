@@ -2,32 +2,31 @@ import * as RSS from 'rss';
 import { resolve } from 'url';
 
 import { render } from './render';
-import { SOLOMON_CONFIG } from '../solomon.conf';
+import { blog as blogConfig } from '../solomon.conf';
 
 const rss_pkg = require('rss/package');
 
 export function rss (posts) {
   const feed = new RSS({
-    title: SOLOMON_CONFIG.blog.title,
-    description: SOLOMON_CONFIG.blog.description,
+    title: blogConfig.title,
+    description: blogConfig.description,
     generator: `node-rss ${rss_pkg.version}`,
-    feed_url: resolve(SOLOMON_CONFIG.blog.url, 'atom.xml'),
-    site_url: SOLOMON_CONFIG.blog.url,
-    language: SOLOMON_CONFIG.blog.language
+    feed_url: resolve(blogConfig.url, 'atom.xml'),
+    site_url: blogConfig.url,
+    language: blogConfig.language
   });
 
-  const POST_BASE = resolve(SOLOMON_CONFIG.blog.url, 'post/');
-  posts.forEach(post => {
-    feed.item({
+  const POST_BASE = resolve(blogConfig.url, 'post/');
+  posts.sort((a, b) => (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0))
+    .forEach(post => feed.item({
       title: post.title,
       description: render(post),
       url: resolve(POST_BASE, post.slug),
       guid: post.slug,
       categories: post.tags,
-      author: SOLOMON_CONFIG.blog.anchor,
+      author: blogConfig.anchor,
       date: post.date
-    });
-  });
+    }));
 
   return feed.xml();
 }

@@ -6,8 +6,7 @@
 
 # compiled output
 dist
-assets/html
-assets/atom.xml
+public
 
 # logs
 npm-debug.log*

@@ -11,7 +11,7 @@ export const posts = [{
   slug: 'https-in-2017',
   tags: ['https'],
   date: '2017-12-07T07:42:27.752Z'
-},{
+}, {
   title: 'NgModule 的作用域',
   slug: 'ngmodule-and-its-scope',
   tags: ['angular'],
@@ -113,4 +113,6 @@ export const links = [{
   name: 'Sherlock Holo'
 }];
 
-export const SOLOMON_CONFIG = {blog, posts, links};
+const SOLOMON_CONFIG = {blog, posts, links};
+
+export default SOLOMON_CONFIG;

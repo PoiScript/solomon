@@ -10,7 +10,7 @@ import { PagesModule } from 'app/pages';
 import { SharedModule } from 'app/shared';
 
 import { APP_CONFIG } from 'app/app.config';
-import { SOLOMON_CONFIG } from '../../solomon.conf';
+import SOLOMON_CONFIG from '../../solomon.conf';
 
 @NgModule({
   declarations: [

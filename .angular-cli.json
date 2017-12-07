@@ -5,7 +5,7 @@
   },
   "apps": [
     {
-      "root": "angular",
+      "root": "src",
       "outDir": "dist",
       "index": "index.html",
       "main": "main.ts",
@@ -26,6 +26,11 @@
           "output": "./"
         },
         {
+          "glob": "**/*",
+          "input": "../public/",
+          "output": "./"
+        },
+        {
           "glob": "**/?(*.eot|*ttf|*.woff|*.woff2)",
           "input": "../node_modules/material-design-icons/iconfont/",
           "output": "./fonts/"
@@ -40,7 +45,7 @@
     },
     {
       "platform": "server",
-      "root": "angular",
+      "root": "src",
       "outDir": "dist/dist-server",
       "main": "main.server.ts",
       "tsconfig": "tsconfig.server.json",
@@ -57,10 +62,10 @@
   },
   "lint": [
     {
-      "project": "./angular/tsconfig.app.json"
+      "project": "./src/tsconfig.app.json"
     },
     {
-      "project": "./angular/tsconfig.spec.json"
+      "project": "./src/tsconfig.spec.json"
     },
     {
       "project": "./e2e/tsconfig.e2e.json"

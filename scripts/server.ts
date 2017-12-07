@@ -5,10 +5,11 @@ import { parse } from 'url';
 import { join, resolve } from 'path';
 import { exists, readFileSync, statSync } from 'fs';
 
-const assets = resolve('assets');
+const publicDir = resolve('public');
+
 const server = createServer((req, res) => {
   const url = parse(req.url);
-  let path = join(assets, url.pathname);
+  let path = join(publicDir, url.pathname);
 
   exists(path, exist => {
     if (!exist) {

@@ -5,21 +5,18 @@ import { join, resolve } from 'path';
 
 import { rss } from './rss';
 import { render } from './render';
-import { SOLOMON_CONFIG } from '../solomon.conf';
+import { posts } from '../solomon.conf';
 
-const assets = resolve('assets');
+const publicDir = resolve('public');
 
-if (!existsSync(join(assets, 'atom.xml'))) {
+if (!existsSync(join(publicDir, 'atom.xml'))) {
   console.info(`INFO: atom.xml doesn't exist, creating...`);
-  outputFileSync(
-    join(assets, 'atom.xml'),
-    rss(SOLOMON_CONFIG.posts.sort((a, b) => (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0)))
-  );
+  outputFileSync(join(publicDir, 'atom.xml'), rss(posts));
 }
 
-SOLOMON_CONFIG.posts
-  .filter(post => !existsSync(join(assets, 'html', `${post.slug}.html`)))
+posts
+  .filter(post => !existsSync(join(publicDir, 'html', `${post.slug}.html`)))
   .map(post => {
     console.info(`INFO: ${post.slug}.html doesn't exist, creating...`);
-    outputFileSync(join(assets, 'html', `${post.slug}.html`), render(post));
+    outputFileSync(join(publicDir, `html/${post.slug}.html`), render(post));
   });
