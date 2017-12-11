@@ -6,25 +6,13 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/favicon.ico",
-          "/index.html"
+          "/assets/**/*",
+          "!/ngsw-worker.js"
         ],
         "versionedFiles": [
-          "/*.bundle.css",
-          "/*.bundle.js",
-          "/*.chunk.js"
-        ]
-      }
-    },
-    {
-      "name": "assets",
-      "installMode": "lazy",
-      "updateMode": "prefetch",
-      "resources": {
-        "files": [
-          "/img/**",
           "/**/*.html",
-          "/**/(*.eot|*.ttf|*.woff|*.woff2)"
+          "/**/*.js",
+          "/**/*.css"
         ]
       }
     }

@@ -8,12 +8,8 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        {
-          "glob": "**/*",
-          "input": "../assets/",
-          "output": "./",
-          "allowOutsideOutDir": false
-        },
+        "assets",
+        "favicon.ico",
         {
           "glob": "**/*",
           "input": "../public/",
@@ -34,6 +30,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "solomon",
+      "serviceWorker": true,
       "styles": [
         "styles.scss",
         "markdown.scss",

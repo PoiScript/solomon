@@ -13,7 +13,7 @@
     "prestart": "ts-node scripts/check",
     "start": "ng serve --proxy-config proxy.conf.json",
     "prebuild": "ts-node scripts/check",
-    "build": "yarn build:functions && yarn build:client && yarn build:server && ts-node scripts/prerender",
+    "build": "yarn build:functions && yarn build:client && yarn build:server && ts-node scripts/prerender && ngsw-config dist src/ngsw-config.json",
     "build:client": "ng build --prod --buildOptimizer",
     "build:functions": "tsc --project functions/tsconfig.json",
     "build:server": "ng build --prod --buildOptimizer --environment server --app 1 --outputHashing false"

@@ -36,7 +36,7 @@ function renderToStatic (url, path) {
 posts
   .forEach(post => {
     urls.push(join('/post', post.slug));
-    post.tags.map(tag => urls.push(join('/slug', tag)));
+    post.tags.map(tag => urls.push(join('/tag', tag)));
   });
 
 const promises = [];
