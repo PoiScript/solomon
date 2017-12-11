@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,6 +20,7 @@ import SOLOMON_CONFIG from '../../solomon.conf';
     AppRoutingModule,
     BrowserModule.withServerTransition({appId: 'solomon'}),
     BrowserAnimationsModule,
+    BrowserTransferStateModule,
     CoreModule,
     HttpClientModule,
     SharedModule,
