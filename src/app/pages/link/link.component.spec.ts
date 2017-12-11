@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { APP_CONFIG } from 'app/app.config';
-import { SharedModule } from 'app/shared';
+import { SharedModule, LINK_CONFIG } from 'app/shared';
 import { MOCK_LINKS } from 'app/testing';
 import { LinkComponent } from './link.component';
 
@@ -16,7 +15,7 @@ describe('LinkComponent', () => {
       declarations: [LinkComponent],
       providers: [
         {
-          provide: APP_CONFIG,
+          provide: LINK_CONFIG,
           useValue: {
             links: MOCK_LINKS
           }

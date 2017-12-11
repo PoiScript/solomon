@@ -2,7 +2,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./public/out-tsc",
-    "baseUrl": "angular",
+    "baseUrl": "src",
+    "paths": {
+      "config": ["../config/"]
+    },
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",

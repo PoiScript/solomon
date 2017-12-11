@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { APP_CONFIG } from 'app/app.config';
-import { SharedModule } from 'app/shared';
+import { SharedModule, POST_CONFIG } from 'app/shared';
 import { ActivatedRouteStub, MOCK_POSTS } from 'app/testing';
 import { TagPipe } from './tag.pipe';
 import { TagComponent } from './tag.component';
@@ -25,7 +24,7 @@ describe('TagComponent', () => {
           useValue: activatedRoute
         },
         {
-          provide: APP_CONFIG,
+          provide: POST_CONFIG,
           useValue: {
             posts: MOCK_POSTS
           }

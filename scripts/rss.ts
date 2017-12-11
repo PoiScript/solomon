@@ -2,21 +2,20 @@ import * as RSS from 'rss';
 import { resolve } from 'url';
 
 import { render } from './render';
-import { blog as blogConfig } from '../solomon.conf';
 
 const rss_pkg = require('rss/package');
 
 export function rss (posts) {
   const feed = new RSS({
-    title: blogConfig.title,
-    description: blogConfig.description,
+    title: 'solomon',
+    description: 'PoiScript\'s Blog',
     generator: `node-rss ${rss_pkg.version}`,
-    feed_url: resolve(blogConfig.url, 'atom.xml'),
-    site_url: blogConfig.url,
-    language: blogConfig.language
+    feed_url: 'https://blog.poi.cat/atom.xml',
+    site_url: 'https://blog.poi.cat',
+    language: 'zh-Hans',
   });
 
-  const POST_BASE = resolve(blogConfig.url, 'post/');
+  const POST_BASE = resolve('https://blog.poi.cat', 'post');
   posts.sort((a, b) => (a.date < b.date) ? 1 : ((a.date > b.date) ? -1 : 0))
     .forEach(post => feed.item({
       title: post.title,
@@ -24,7 +23,7 @@ export function rss (posts) {
       url: resolve(POST_BASE, post.slug),
       guid: post.slug,
       categories: post.tags,
-      author: blogConfig.anchor,
+      author: 'PoiScript',
       date: post.date
     }));
 

@@ -1,9 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { AppConfig, APP_CONFIG } from 'app/app.config';
-import { Post } from 'app/shared';
+import { Post, PostConfig, POST_CONFIG } from 'app/shared';
 
 @Component({
   selector: 'solomon-tag',
@@ -14,14 +13,14 @@ export class TagComponent implements OnInit {
   tag: string;
   posts: Post[];
 
-  constructor (@Inject(APP_CONFIG) config: AppConfig,
+  constructor (@Inject(POST_CONFIG) config: PostConfig,
                private route: ActivatedRoute,
                private titleService: Title) {
     this.posts = config.posts;
   }
 
   ngOnInit () {
-    this.route.params.subscribe((params: Params) => {
+    this.route.params.subscribe(params => {
       this.tag = params['tag'];
       this.titleService.setTitle(`#${this.tag} | solomon`);
     });

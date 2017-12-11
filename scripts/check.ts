@@ -5,7 +5,7 @@ import { join, resolve } from 'path';
 
 import { rss } from './rss';
 import { render } from './render';
-import { posts } from '../solomon.conf';
+import { posts } from '../config';
 
 const publicDir = resolve('public');
 

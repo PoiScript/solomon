@@ -10,7 +10,7 @@ import { minify } from 'html-minifier';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import { startServer, stopServer } from './server';
-import { posts } from '../solomon.conf';
+import { posts } from '../config';
 
 const dist = resolve('dist');
 const index = readFileSync(join(dist, 'index.html'), 'utf8');

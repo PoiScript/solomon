@@ -7,9 +7,8 @@ import { makeStateKey, TransferState } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { APP_CONFIG, AppConfig } from 'app/app.config';
 import { LoadingService } from 'app/core';
-import { Post, PostResolve } from 'app/shared';
+import { Post, PostResolve, PostConfig, POST_CONFIG } from 'app/shared';
 import { environment } from 'environments/environment';
 
 const RESOLVED_KEY = makeStateKey<PostResolve>('resolved');
@@ -19,7 +18,7 @@ export class PostResolver implements Resolve<PostResolve> {
 
   private posts: Post[];
 
-  constructor (@Inject(APP_CONFIG) private config: AppConfig,
+  constructor (@Inject(POST_CONFIG) private config: PostConfig,
                @Inject(PLATFORM_ID) private platformId: Object,
                private state: TransferState,
                private loadingService: LoadingService,

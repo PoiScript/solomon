@@ -7,10 +7,9 @@ import { AppComponent } from 'app/app.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core';
 import { PagesModule } from 'app/pages';
-import { SharedModule } from 'app/shared';
+import { LINK_CONFIG, POST_CONFIG, SharedModule } from 'app/shared';
 
-import { APP_CONFIG } from 'app/app.config';
-import SOLOMON_CONFIG from '../../solomon.conf';
+import { links, posts } from 'config';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,12 @@ import SOLOMON_CONFIG from '../../solomon.conf';
   ],
   providers: [
     {
-      provide: APP_CONFIG,
-      useValue: SOLOMON_CONFIG
+      provide: POST_CONFIG,
+      useValue: {posts}
+    },
+    {
+      provide: LINK_CONFIG,
+      useValue: {links}
     }
   ]
 })

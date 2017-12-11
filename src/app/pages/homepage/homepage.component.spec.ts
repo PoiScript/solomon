@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { APP_CONFIG } from 'app/app.config';
-import { SharedModule } from 'app/shared';
+import { SharedModule, POST_CONFIG } from 'app/shared';
 import { MOCK_POSTS } from 'app/testing';
 import { HomepageComponent } from './homepage.component';
 
@@ -22,7 +21,7 @@ function withNoPostProvided () {
       declarations: [HomepageComponent],
       providers: [
         {
-          provide: APP_CONFIG,
+          provide: POST_CONFIG,
           useValue: {posts: []}
         }
       ]
@@ -61,7 +60,7 @@ function withTwoPostsProvided () {
       declarations: [HomepageComponent],
       providers: [
         {
-          provide: APP_CONFIG,
+          provide: POST_CONFIG,
           useValue: {
             posts: MOCK_POSTS
           }
