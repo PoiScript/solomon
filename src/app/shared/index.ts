@@ -5,4 +5,3 @@ export { LinkConfig, LINK_CONFIG } from './link.config';
 export { User } from './user.model';
 export { Error } from './error.model';
 export { SharedModule } from './shared.module';
-export { PostListComponent } from './post-list/post-list.component';

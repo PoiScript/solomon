@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class LoadingService {
+export class SpinnerService {
 
   private statusSource = new Subject<boolean>();
 

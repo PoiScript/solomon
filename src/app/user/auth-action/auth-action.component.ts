@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { LoadingService, UserService } from 'app/core';
+import { UserService } from 'app/core';
 
 @Component({
   selector: 'solomon-auth-action',
@@ -18,8 +18,7 @@ export class AuthActionComponent implements OnInit {
   private oobCode: string;
 
   constructor (private route: ActivatedRoute,
-               private userService: UserService,
-               private loadingService: LoadingService) { }
+               private userService: UserService) { }
 
   ngOnInit () {
     this.route.queryParams.subscribe((params: Params) => {
@@ -40,16 +39,12 @@ export class AuthActionComponent implements OnInit {
   submitNewPassword (newPassword: string) {
     this.showForm = false;
     this.content = 'Submitting your password.';
-    this.loadingService.show();
     this.userService.confirmPasswordReset(this.oobCode, newPassword)
       .subscribe(
         () => this.content = 'Password reset complete.',
-        () => this.content = 'There is something wrong with your verification',
-        this.hideLoading
+        () => this.content = 'There is something wrong with your verification'
       );
   }
-
-  private hideLoading = () => this.loadingService.hide();
 
   private invalid () {
     this.title = 'Invalid Action';
@@ -59,7 +54,6 @@ export class AuthActionComponent implements OnInit {
   private verifyEmail () {
     this.title = 'Email Verification';
     this.content = 'Verifying your email...';
-    this.loadingService.show();
     this.userService.confirmEmailVerification(this.oobCode)
       .subscribe(
         () => this.content = 'Your email has been verified.',
@@ -70,14 +64,12 @@ export class AuthActionComponent implements OnInit {
   private resetPassword () {
     this.title = 'Password Reset';
     this.content = 'Verifying your oob code...';
-    this.loadingService.show();
     this.userService.verifyPasswordReset(this.oobCode)
       .subscribe(() => {
           this.showForm = true;
           this.content = 'Input your new password.';
         },
         () => this.content = 'There is something wrong with your password reset.',
-        this.hideLoading
       );
   }
 

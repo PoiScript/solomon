@@ -6,7 +6,6 @@ import { SharedModule } from 'app/shared';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { LoadingService } from './loading.service';
 import { SnackBarService } from './snack-bar.service';
 import { UserService } from './user.service';
 
@@ -25,7 +24,6 @@ import { UserService } from './user.service';
   providers: [
     Title,
     UserService,
-    LoadingService,
     SnackBarService
   ]
 })

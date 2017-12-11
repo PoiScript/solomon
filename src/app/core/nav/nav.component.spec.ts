@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { RouterLinkStubDirective } from 'app/testing';
-import { LoadingService } from 'app/core/loading.service';
 import { NavComponent } from './nav.component';
 
 let component: NavComponent;
@@ -15,8 +14,7 @@ describe('NavComponent & NO_ERRORS_SCHEMA', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NavComponent, RouterLinkStubDirective],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [LoadingService]
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

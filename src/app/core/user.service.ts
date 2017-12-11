@@ -1,16 +1,15 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import { Error as ApiError, User } from 'app/shared';
 import { environment } from 'environments/environment';
 
-import { LoadingService } from './loading.service';
 import { SnackBarService } from './snack-bar.service';
 
 @Injectable()
@@ -27,7 +26,6 @@ export class UserService {
 
   constructor (private http: HttpClient,
                private router: Router,
-               private loadingService: LoadingService,
                private snackBarService: SnackBarService,
                @Inject(PLATFORM_ID) private platformId: Object) {
     // get data from local storage as initial value
@@ -63,8 +61,7 @@ export class UserService {
           this.userSource.next(user);
           this.navigate();
         },
-        this.handleError,
-        this.hideLoading
+        this.handleError
       );
   }
 
@@ -75,8 +72,7 @@ export class UserService {
           this.userSource.next(user);
           this.navigate();
         },
-        this.handleError,
-        this.hideLoading
+        this.handleError
       );
   }
 
@@ -98,8 +94,7 @@ export class UserService {
     return this.request('updateUser', {displayName, photoUrl, idToken: oldUser.idToken})
       .subscribe(
         newUser => this.userSource.next({...oldUser, ...newUser}),
-        this.handleError,
-        this.hideLoading
+        this.handleError
       );
   }
 
@@ -113,8 +108,7 @@ export class UserService {
     this.request('sendPasswordResetEmail', {requestType: 'PASSWORD_RESET', email})
       .subscribe(
         () => this.snackBarService.open('Password Reset Email sent.'),
-        this.handleError,
-        this.hideLoading
+        this.handleError
       );
   }
 
@@ -131,16 +125,13 @@ export class UserService {
     this.request('sendVerificationEmail', {requestType: 'VERIFY_EMAIL', idToken})
       .subscribe(
         () => this.snackBarService.open('Verification email sent.'),
-        this.handleError,
-        this.hideLoading
+        this.handleError
       );
   }
 
   confirmEmailVerification (oobCode: string) {
     return this.request('confirmEmailVerification', {oobCode});
   }
-
-  private hideLoading = () => this.loadingService.hide();
 
   private handleError (err: HttpErrorResponse) {
     if (err.error instanceof Error) {
@@ -151,7 +142,6 @@ export class UserService {
   }
 
   private request (endpoint: string, body: any): Observable<any> {
-    this.loadingService.show();
     const json = JSON.stringify(body);
     return this.http.post(this.baseUrl + endpoint, json, {headers: this.headers});
   }

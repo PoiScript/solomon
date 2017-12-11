@@ -23,7 +23,7 @@
     </mat-form-field>
     <mat-form-field class="form-full-width">
       <input matInput type="password" #reenter_password placeholder="Reenter Password">
-      <mat-hint i18n *ngIf="sign_up_password.value !== reenter_password.value">
+      <mat-hint *ngIf="sign_up_password.value !== reenter_password.value">
         Please make sure you have input the same password.
       </mat-hint>
     </mat-form-field>

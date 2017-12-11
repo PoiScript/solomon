@@ -7,7 +7,6 @@ import { makeStateKey, TransferState } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { LoadingService } from 'app/core';
 import { Post, PostResolve, PostConfig, POST_CONFIG } from 'app/shared';
 import { environment } from 'environments/environment';
 
@@ -21,7 +20,6 @@ export class PostResolver implements Resolve<PostResolve> {
   constructor (@Inject(POST_CONFIG) private config: PostConfig,
                @Inject(PLATFORM_ID) private platformId: Object,
                private state: TransferState,
-               private loadingService: LoadingService,
                private http: HttpClient) {
     this.posts = config.posts;
   }
@@ -41,8 +39,6 @@ export class PostResolver implements Resolve<PostResolve> {
       const prior = this.posts[i + 1];
       const current = this.posts[i];
 
-      this.loadingService.show();
-
       return this.http
         .get(`${environment.origin_url}html/${current.slug}.html`, {responseType: 'text'})
         .map(html => {
@@ -54,8 +50,7 @@ export class PostResolver implements Resolve<PostResolve> {
           }
 
           return resolve;
-        })
-        .finally(() => this.loadingService.hide());
+        });
     }
   }
 

@@ -9,6 +9,7 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core';
 import { PagesModule } from 'app/pages';
 import { LINK_CONFIG, POST_CONFIG, SharedModule } from 'app/shared';
+import { SpinnerModule } from 'app/spinner/spinner.module';
 
 import { links, posts } from 'config';
 
@@ -26,6 +27,7 @@ import { environment } from 'environments/environment';
     CoreModule,
     HttpClientModule,
     SharedModule,
+    SpinnerModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     PagesModule
   ],
