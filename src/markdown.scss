@@ -13,68 +13,91 @@ $color_steel_blue_approx: #4078c0;
 //fonts
 $font_0: 'Fira Code';
 $font_1: 'Source Code Pro';
-$font_2: 'monospace';
-$font_3: 'Roboto';
-$font_4: 'Noto Sans SC';
-$font_5: 'sans-serif';
-
-//h1, h2, h3, h4, h5, h6
-%extend_1 {
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-weight: 400;
-  line-height: 1.25;
-}
+$font_2: 'Consolas';
+$font_3: 'Monaco';
+$font_4: 'Andale Mono';
+$font_5: 'Andale Mono';
+$font_6: 'monospace';
 
 //ul, ol
-%extend_2 {
+%extend_1 {
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 2em;
 }
 
-@font-face {
-  font-family: $font_3, $font_4, $font_5;
-}
-
 article {
+
+  section {
+    text-align: left;
+
+    h2 {
+      margin: 24px 0;
+      width: 140px;
+      font-size: 20px;
+      font-weight: 300;
+      display: table-cell;
+    }
+
+    .section-content {
+      margin: 0;
+      padding: 0;
+      display: table-cell;
+    }
+
+    @media (max-width: 850px) {
+      h2 {
+        display: block;
+      }
+
+      .section-content {
+        display: block;
+      }
+    }
+  }
+
   a {
     color: $color_solomon;
     word-wrap: break-word;
     background-color: transparent;
     text-decoration: none;
+
     &:not([href]) {
       color: inherit;
       text-decoration: none;
     }
   }
+
   strong {
     font-weight: 500;
   }
-  h1 {
-    font-weight: 400;
-    margin-top: 80px;
-    margin-bottom: 30px;
-    font-size: 2em;
-    @extend %extend_1;
-    &:hover .anchor {
-      text-decoration: none;
-    }
-  }
+
   img {
     border-style: none;
     max-width: 100%;
     box-sizing: content-box;
     background-color: $white;
   }
+
   code {
     font-size: 1em;
-    font-family: $font_0, $font_1, $font_2;
+    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5, $font_6;
     padding: 0.2em 0;
     margin: 0;
     background-color: $black_4;
     border-radius: 3px;
   }
+
+  code::before {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+
+  code::after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+
   pre {
     padding: 16px;
     overflow: auto;
@@ -83,8 +106,10 @@ article {
     border-radius: 3px;
     margin-top: 0;
     margin-bottom: 16px;
-    font: 1em $font_0, $font_1, $font_2;
+    font-size: 1em;
+    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5, $font_6;
     word-wrap: normal;
+
     > code {
       padding: 0;
       margin: 0;
@@ -94,6 +119,7 @@ article {
       background: transparent;
       border: 0;
     }
+
     code {
       display: inline;
       padding: 0;
@@ -104,33 +130,32 @@ article {
       background-color: transparent;
       border: 0;
     }
+
     code::before {
       content: normal;
     }
+
     code::after {
       content: normal;
     }
   }
-  input {
-    font: inherit;
-    margin: 0;
-    overflow: visible;
-    line-height: inherit;
-    font-feature-settings: "liga" 0;
-  }
+
   * {
     //Instead of the line below you could use @include box-sizing($bs)
     box-sizing: border-box;
   }
+
   hr::before {
     display: table;
     content: "";
   }
+
   hr::after {
     display: table;
     clear: both;
     content: "";
   }
+
   table {
     border-spacing: 0;
     border-collapse: collapse;
@@ -139,115 +164,116 @@ article {
     overflow: auto;
     margin-top: 0;
     margin-bottom: 16px;
+
     th {
       font-weight: bold;
       padding: 6px 13px;
       border: 1px solid $color_alto_approx;
     }
+
     td {
       padding: 6px 13px;
       border: 1px solid $color_alto_approx;
     }
+
     tr {
       background-color: $white;
       border-top: 1px solid $color_celeste_approx;
+
       &:nth-child(2n) {
         background-color: $color_desert_storm_approx;
       }
     }
   }
+
   td {
     padding: 0;
   }
+
   th {
     padding: 0;
   }
-  h2 {
-    @extend %extend_1;
-    margin-top: 60px;
-    margin-bottom: 30px;
-    font-size: 1.5em;
-  }
-  h3 {
-    @extend %extend_1;
-    font-size: 1.25em;
-  }
-  h4 {
-    @extend %extend_1;
-    font-size: 1em;
-  }
-  h5 {
-    @extend %extend_1;
-    font-size: 0.875em;
-  }
-  h6 {
-    @extend %extend_1;
-    font-size: 0.85em;
-  }
+
   p {
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
+
   blockquote {
     margin: 0 0 16px 0;
     padding: 0 1em;
     border-left: 0.3em solid;
+
     > {
       :first-child {
         margin-top: 0;
       }
+
       :last-child {
         margin-bottom: 0;
       }
     }
   }
+
   ul {
-    @extend %extend_2;
+    @extend %extend_1;
     margin-top: 0;
     margin-bottom: 16px;
+
     ol {
       list-style-type: lower-roman;
       margin-top: 0;
       margin-bottom: 0;
+
       ol {
         list-style-type: lower-alpha;
       }
     }
+
     ul {
       margin-top: 0;
       margin-bottom: 0;
+
       ol {
         list-style-type: lower-alpha;
       }
     }
   }
+
   ol {
-    @extend %extend_2;
+    @extend %extend_1;
     margin-top: 0;
     margin-bottom: 16px;
+
     ol {
       list-style-type: lower-roman;
       margin-top: 0;
       margin-bottom: 0;
+
       ol {
         list-style-type: lower-alpha;
       }
     }
+
     ul {
       margin-top: 0;
       margin-bottom: 0;
+
       ol {
         list-style-type: lower-alpha;
       }
     }
   }
+
   dd {
     margin-left: 0;
   }
+
   dl {
     margin-top: 0;
     margin-bottom: 16px;
     padding: 0;
+
     dt {
       padding: 0;
       margin-top: 16px;
@@ -255,26 +281,22 @@ article {
       font-style: italic;
       font-weight: bold;
     }
+
     dd {
       padding: 0 16px;
       margin-bottom: 16px;
     }
   }
+
   li {
+
     > p {
       margin-top: 16px;
     }
+
     + li {
       margin-top: 0.25em;
     }
-  }
-  code::before {
-    letter-spacing: -0.2em;
-    content: "\00a0";
-  }
-  code::after {
-    letter-spacing: -0.2em;
-    content: "\00a0";
   }
 }
 
