@@ -54,10 +54,11 @@
 
   .primary-header {
     color: $text-color;
-    font-size: 30px;
-    font-weight: 300;
-    margin: 0;
     padding: 0;
+    margin: 40px auto;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 400;
   }
 
   a.primary-header {
@@ -78,7 +79,7 @@
   .container {
     max-width: 960px;
     margin: auto;
-    padding: 60px 16px;
+    padding: 40px;
   }
 }
 

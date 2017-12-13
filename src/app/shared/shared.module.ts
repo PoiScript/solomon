@@ -16,14 +16,21 @@ import {
 } from '@angular/material';
 
 import { PostListComponent } from './post-list/post-list.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   declarations: [
-    PostListComponent
+    PostListComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   exports: [
     CommonModule,
@@ -31,6 +38,8 @@ import { PostListComponent } from './post-list/post-list.component';
     FlexLayoutModule,
     RouterModule,
     PostListComponent,
+    HeaderComponent,
+    FooterComponent,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+
+$text_color: rgba(255, 255, 255, 0.87);
+
+mat-toolbar {
+  color: $text_color;
+}
+
+.about {
+  background-color: mat-color($mat-indigo, 500);
+}
+
+.link {
+  background-color: mat-color($mat-pink, 500);
+}
+
+.post {
+  background-color: mat-color($mat-teal, 500);
+}
+
+.tag {
+  background-color: mat-color($mat-red, 500);
+}
+
+.user {
+  background-color: mat-color($mat-brown, 500);
+}
+
+.home {
+  height: 420px;
+  max-height: 50%;
+  background: no-repeat url("/assets/logo.svg") center center, no-repeat url("/assets/header.jpg") center center;
+  background-size: auto 210px, cover;
+
+  .row {
+    height: 100%;
+    padding: 32px;
+    align-items: start;
+
+    .title {
+      color: $text_color;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+}

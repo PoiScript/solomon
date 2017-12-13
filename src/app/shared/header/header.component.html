@@ -1,0 +1,10 @@
+<mat-toolbar [ngClass]="url">
+  <mat-toolbar-row *ngIf="isHome" class="row">
+    <a class="title" routerLink="/"><br/>YŪDACHI'S<br/>BLOG</a>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <a mat-button routerLink="/">SOLOMON</a>
+    <a mat-button routerLink="/about">ABOUT</a>
+    <a mat-button routerLink="/link">LINK</a>
+  </mat-toolbar-row>
+</mat-toolbar>
