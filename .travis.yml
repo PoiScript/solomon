@@ -10,11 +10,9 @@ cache:
 script:
   - yarn build
 
-after_success:
-  - yarn global add firebase-tools
-  - test $TRAVIS_BRANCH = "dev" && firebase use dev
-  - test $TRAVIS_BRANCH = "master" && firebase use default
-  - firebase deploy --non-interactive --token $FIREBASE_TOKEN
+deploy:
+  provider: firebase
+  token: $FIREBASE_TOKEN
 
 notifications:
   email:

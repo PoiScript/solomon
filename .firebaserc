@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "solomon-poi",
-    "dev": "solomon-dev"
+    "default": "solomon-poi"
   }
 }
