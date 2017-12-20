@@ -13,6 +13,7 @@ script:
 deploy:
   provider: firebase
   token: $FIREBASE_TOKEN
+  skip_cleanup: true
 
 notifications:
   email:
