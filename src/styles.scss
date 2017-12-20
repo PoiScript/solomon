@@ -1,6 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.primary-header {
+  padding: 0;
+  margin: 40px auto;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+.primary-subheader {
+  margin: 0;
+  padding: 0 0 20px 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 40px;
+}
+
+// material icons
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -30,57 +66,6 @@
   -moz-osx-font-smoothing: grayscale;
 
   font-feature-settings: 'liga';
-}
-
-@mixin global-theme($theme) {
-  $primary: map-get($theme, primary);
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-  $text-color: invert(mat-color($background, card, 0.6)) !default;
-  $background-color: invert(mat-color($foreground, text, 0.8)) !default;
-
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-
-  body {
-    color: $text-color;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .primary-header {
-    color: $text-color;
-    padding: 0;
-    margin: 40px auto;
-    text-transform: uppercase;
-    font-size: 24px;
-    font-weight: 400;
-  }
-
-  a.primary-header {
-    color: mat-color($mat-deep-purple, 500);
-    text-decoration: none;
-  }
-
-  .primary-subheader {
-    margin: 0;
-    padding: 0 0 20px 0;
-
-    a {
-      color: $text-color;
-      text-decoration: none;
-    }
-  }
-
-  .container {
-    max-width: 960px;
-    margin: auto;
-    padding: 40px;
-  }
 }
 
 // highlight.js style

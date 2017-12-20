@@ -1,9 +1,12 @@
-<div class="container">
-  <h1 class="primary-header">Link</h1>
-  <mat-nav-list>
-    <a mat-list-item *ngFor="let link of links" href="{{link.address}}">
-      <img mat-list-avatar [src]=link.avatar>
-      <h3 mat-line> {{link.name}} </h3>
-    </a>
-  </mat-nav-list>
+<div class="link-theme">
+  <solomon-header></solomon-header>
+  <div class="container">
+    <h1 class="primary-header">Link</h1>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let link of links" href="{{link.address}}">
+        <img mat-list-avatar [src]=link.avatar>
+        <h3 mat-line> {{link.name}} </h3>
+      </a>
+    </mat-nav-list>
+  </div>
 </div>

@@ -1,5 +1,8 @@
 > 这篇文章改写自 poi 的计算机网络课论文。
 
+前言
+---
+
 自 1991 年，第一个带有文档的 HTTP ── [HTTP V0.9](https://www.w3.org/Protocols/HTTP/AsImplemented.html) 问世以来，HTTP 协议得到了广泛的运用。
 
 > 据 [Cisco 统计](https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.html#_Toc484556816)，在 2016 年，全球的的网络流量达到了惊人的 **1.2 ZB** 流量，其中视频的流量就达到了 73%。而目前的视频传输协议中最常用的分别是 Apple 的 [HLS（HTTP Live Stream）](https://en.wikipedia.org/wiki/HTTP_Live_Streaming) 和 Google 的 [DASH（Dynamic Adaptive Streaming over HTTP）](https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP)，而两者都是基于 HTTP 的协议。

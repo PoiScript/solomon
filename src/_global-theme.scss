@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+
+@import 'app/shared/post-list/post-list-theme';
+
+@mixin global-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $text-color: invert(mat-color($background, card, 0.6)) !default;
+
+  body {
+    color: $text-color;
+  }
+
+  .container {
+    a {
+      color: mat-color($primary);
+    }
+  }
+
+  .primary-subheader {
+    a {
+      color: $text-color;
+    }
+  }
+
+  @include angular-material-theme($theme);
+  @include post-list-theme($theme);
+}

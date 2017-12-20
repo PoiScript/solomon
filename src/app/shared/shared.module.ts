@@ -3,21 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import {
-  MatButtonModule,
-  MatDialogModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatProgressBarModule,
-  MatSnackBarModule,
-  MatToolbarModule,
-  MatTooltipModule
-} from '@angular/material';
+import { MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
 
 import { PostListComponent } from './post-list/post-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -25,12 +16,14 @@ import { FooterComponent } from './footer/footer.component';
     RouterModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressBarModule
   ],
   declarations: [
     PostListComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ],
   exports: [
     CommonModule,
@@ -40,13 +33,10 @@ import { FooterComponent } from './footer/footer.component';
     PostListComponent,
     HeaderComponent,
     FooterComponent,
+    SpinnerComponent,
     MatButtonModule,
-    MatDialogModule,
     MatIconModule,
-    MatInputModule,
     MatListModule,
-    MatProgressBarModule,
-    MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule
   ]

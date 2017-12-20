@@ -1,0 +1,19 @@
+@mixin post-list-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .post-list-item {
+    color: mat-color($foreground, secondary-text);
+
+    .title {
+      color: mat-color($primary);
+    }
+
+    .tag {
+      color: mat-color($foreground, secondary-text);
+    }
+  }
+}

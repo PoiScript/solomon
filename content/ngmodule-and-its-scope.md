@@ -1,3 +1,6 @@
+前言
+---
+
 在开始聊这个话题之前，先提一个我遇到过问题：假设有一个 `SpinnerService`，这是一个可以在进行发送 HTTP 请求等异步操作的显示一个加载动画的 Service 。
 
 这样看来，它应该是每个 Module 和 Component 中都可能用到的一个 Service，那么我们把放到 `SharedModule` 的 `providers` 当中。然后在需要这个 `SpinnerService` 的 Module 中导入这个 `SharedModule` 即可。代码看起来大概是这样的：

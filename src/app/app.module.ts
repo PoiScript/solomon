@@ -3,33 +3,38 @@ import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-bro
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from 'app/app.component';
-import { AppRoutingModule } from 'app/app-routing.module';
 import { CoreModule } from 'app/core';
-import { PagesModule } from 'app/pages';
 import { LINK_CONFIG, POST_CONFIG, SharedModule } from 'app/shared';
-import { SpinnerModule } from 'app/spinner/spinner.module';
+import { AboutModule, HomepageModule, LinkModule, NotFoundModule, PostModule, TagModule } from 'app/pages';
 
 import { links, posts } from 'config';
 
 import { environment } from 'environments/environment';
+import { SOLOMON_ROUTES } from './routes';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule.withServerTransition({appId: 'solomon'}),
     BrowserAnimationsModule,
     BrowserTransferStateModule,
-    CoreModule,
     HttpClientModule,
-    SharedModule,
-    SpinnerModule,
+    RouterModule.forRoot(SOLOMON_ROUTES),
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
-    PagesModule
+
+    CoreModule,
+    SharedModule,
+    AboutModule,
+    HomepageModule,
+    LinkModule,
+    NotFoundModule,
+    PostModule,
+    TagModule
   ],
   bootstrap: [
     AppComponent

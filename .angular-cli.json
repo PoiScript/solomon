@@ -30,7 +30,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "solomon",
-      "serviceWorker": true,
+      "serviceWorker": false,
       "styles": [
         "styles.scss",
         "markdown.scss",

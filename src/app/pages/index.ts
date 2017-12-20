@@ -1,1 +1,13 @@
-export { PagesModule } from './pages.module';
+export { AboutComponent } from './about/about.component';
+export { AboutModule } from './about/about.module';
+export { HomepageComponent } from './homepage/homepage.component';
+export { HomepageModule } from './homepage/homepage.module';
+export { LinkComponent } from './link/link.component';
+export { LinkModule } from './link/link.module';
+export { NotFoundComponent } from './not-found/not-found.component';
+export { NotFoundModule } from './not-found/not-found.module';
+export { PostComponent } from './post/post.component';
+export { PostResolver } from './post/post-resolver/post-resolver.service';
+export { PostModule } from './post/post.module';
+export { TagComponent } from './tag/tag.component';
+export { TagModule } from './tag/tag.module';

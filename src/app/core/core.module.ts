@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 
-import { SharedModule } from 'app/shared';
-
-import { SnackBarService } from './snack-bar.service';
-import { UserService } from './user.service';
+import { SpinnerService } from './spinner.service';
+import { SpinnerInterceptor } from './spinner-interceptor.service';
 
 @NgModule({
-  imports: [
-    SharedModule
-  ],
   providers: [
     Title,
-    UserService,
-    SnackBarService
+    SpinnerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule {}

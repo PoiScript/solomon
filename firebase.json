@@ -1,17 +1,7 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "hosting": {
     "public": "dist",
-    "rewrites": [
-      {
-        "source": "/api/**",
-        "function": "api"
-      }
-    ],
     "ignore": [
-      "/markdown",
       "/dist-server"
     ]
   }

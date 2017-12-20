@@ -1,6 +1,0 @@
-# dependencies
-/node_modules
-
-# compiled output
-*.js
-*.js.map

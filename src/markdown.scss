@@ -7,7 +7,6 @@ $color_tapa_approx: #777;
 $white: #fff;
 $black_4: rgba(0, 0, 0, 0.04);
 $color_black_haze_approx: #f7f7f7;
-$color_solomon: #673ab7;
 $color_steel_blue_approx: #4078c0;
 
 //fonts
@@ -16,8 +15,7 @@ $font_1: 'Source Code Pro';
 $font_2: 'Consolas';
 $font_3: 'Monaco';
 $font_4: 'Andale Mono';
-$font_5: 'Andale Mono';
-$font_6: 'monospace';
+$font_5: 'monospace';
 
 //ul, ol
 %extend_1 {
@@ -57,7 +55,6 @@ article {
   }
 
   a {
-    color: $color_solomon;
     word-wrap: break-word;
     background-color: transparent;
     text-decoration: none;
@@ -81,7 +78,7 @@ article {
 
   code {
     font-size: 1em;
-    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5, $font_6;
+    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5;
     padding: 0.2em 0;
     margin: 0;
     background-color: $black_4;
@@ -107,7 +104,7 @@ article {
     margin-top: 0;
     margin-bottom: 16px;
     font-size: 1em;
-    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5, $font_6;
+    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5;
     word-wrap: normal;
 
     > code {

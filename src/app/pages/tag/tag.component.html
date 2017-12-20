@@ -1,7 +1,10 @@
-<div class="container">
-  <h1 class="primary-header">#{{tag}}</h1>
-  <p class="primary-subheader">
-    {(posts | tag:tag).length, plural, =0 {no post} one {1 post} other {{{(posts | tag:tag).length}} posts}}
-  </p>
-  <solomon-post-list [posts]="posts | tag:tag"></solomon-post-list>
+<div class="tag-theme">
+  <solomon-header></solomon-header>
+  <div class="container">
+    <h1 class="primary-header">#{{tag}}</h1>
+    <p class="primary-subheader">
+      {(posts | tag:tag).length, plural, =0 {no post} one {1 post} other {{{(posts | tag:tag).length}} posts}}
+    </p>
+    <solomon-post-list [posts]="posts | tag:tag"></solomon-post-list>
+  </div>
 </div>

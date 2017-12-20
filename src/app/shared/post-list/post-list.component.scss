@@ -1,24 +1,19 @@
-@import 'src/theme.scss';
-
 .post-list-item {
   padding-bottom: 20px;
 
   .title {
-    color: mat-color($primary);
     font-size: 1.5em;
     font-weight: 400;
     text-decoration: none;
   }
 
   .subtitle {
-    color: rgba(0, 0, 0, .6);
     display: block;
     margin: 0;
     padding: 0;
   }
 
   .tag {
-    color: rgba(0, 0, 0, .6);
     text-decoration: none;
   }
 }
