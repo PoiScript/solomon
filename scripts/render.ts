@@ -8,7 +8,7 @@ const renderer = new marked.Renderer();
 const headings = [];
 
 marked.setOptions({
-  highlight: code => require('highlight.js').highlightAuto(code).value
+  highlight: code => require('highlight.js').highlightAuto(code).value,
 });
 
 renderer.heading = text => {
@@ -35,7 +35,7 @@ export function render (post) {
   }
 
   const markdown = readFileSync(join(content, `${post.slug}.md`), 'utf8');
-  const html = marked(markdown, {renderer: renderer}).concat('</div></section>');
+  const html = marked(markdown, {renderer}).concat('</div></section>');
 
   return minify(toc().concat(html), {collapseWhitespace: true, removeEmptyElements: true});
 }

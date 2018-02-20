@@ -24,7 +24,7 @@ export function rss (posts) {
       guid: post.slug,
       categories: post.tags,
       author: 'PoiScript',
-      date: post.date
+      date: post.date,
     }));
 
   return feed.xml();

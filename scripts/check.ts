@@ -5,7 +5,7 @@ import { join, resolve } from 'path';
 
 import { rss } from './rss';
 import { render } from './render';
-import { posts } from '../config';
+import { posts } from '../src/config';
 
 const publicDir = resolve('public');
 

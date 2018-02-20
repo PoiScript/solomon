@@ -10,7 +10,7 @@ import { minify } from 'html-minifier';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import { startServer, stopServer } from './server';
-import { posts } from '../config';
+import { posts } from '../src/config';
 
 const dist = resolve('dist');
 const index = readFileSync(join(dist, 'index.html'), 'utf8');
@@ -19,13 +19,15 @@ const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require(join(dist, 'dist-ser
 
 function renderToStatic (url, path) {
   return renderModuleFactory(AppServerModuleNgFactory, {
-    url: url,
+    url,
     document: index,
-    extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
+    extraProviders: [
+      provideModuleMap(LAZY_MODULE_MAP),
+    ],
   }).then(html => minify(html, {
     collapseWhitespace: true,
     removeComments: true,
-    minifyCSS: true
+    minifyCSS: true,
   }))
     .then(html => {
       console.info(`Saving "${url}" as "${path}"`);
