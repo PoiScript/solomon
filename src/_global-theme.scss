@@ -26,6 +26,12 @@
     }
   }
 
-  @include angular-material-theme($theme);
+  @include mat-button-theme($theme);
+  @include mat-core-theme($theme);
+  @include mat-icon-theme($theme);
+  @include mat-list-theme($theme);
+  @include mat-progress-bar-theme($theme);
+  @include mat-toolbar-theme($theme);
+  @include mat-tooltip-theme($theme);
   @include post-list-theme($theme);
 }
