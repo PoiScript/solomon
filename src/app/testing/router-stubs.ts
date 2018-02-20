@@ -32,7 +32,7 @@ export class ActivatedRouteStub {
   get snapshot () {
     return {
       params: this.testParams,
-      data: this.testData
+      data: this.testData,
     };
   }
 
@@ -41,19 +41,19 @@ export class ActivatedRouteStub {
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'router-outlet',
-    template: ''
-  }
+    template: '',
+  },
 )
 export class RouterOutletStubComponent {}
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[routerLink]'
+  selector: '[routerLink]',
 })
 export class RouterLinkStubDirective {
 
-  @Input() routerLink: any;
-  navigatedTo: any = null;
+  @Input() routerLink: string[] | string;
+  navigatedTo: string[] | string = null;
 
   @HostListener('click') onClick () {
     this.navigatedTo = this.routerLink;

@@ -20,9 +20,9 @@ describe('PostComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: activatedRoute
-        }
-      ]
+          useValue: activatedRoute,
+        },
+      ],
     })
       .compileComponents();
   }));

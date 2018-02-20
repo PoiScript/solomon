@@ -12,7 +12,7 @@ describe('PostListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [PostListComponent]
+      declarations: [PostListComponent],
     })
       .compileComponents();
   }));

@@ -22,9 +22,9 @@ function withNoPostProvided () {
       providers: [
         {
           provide: POST_CONFIG,
-          useValue: {posts: []}
-        }
-      ]
+          useValue: {posts: []},
+        },
+      ],
     })
       .compileComponents();
   }));
@@ -62,10 +62,10 @@ function withTwoPostsProvided () {
         {
           provide: POST_CONFIG,
           useValue: {
-            posts: MOCK_POSTS
-          }
-        }
-      ]
+            posts: MOCK_POSTS,
+          },
+        },
+      ],
     })
       .compileComponents();
   }));

@@ -8,5 +8,5 @@ export const SOLOMON_ROUTES: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'tag/:tag', component: TagComponent},
   {path: 'post/:slug', component: PostComponent, resolve: {resolve: PostResolver}},
-  {path: '**', component: NotFoundComponent}
+  {path: '**', component: NotFoundComponent},
 ];

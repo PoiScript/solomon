@@ -17,7 +17,7 @@ import { SOLOMON_ROUTES } from './routes';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'solomon'}),
@@ -34,20 +34,20 @@ import { SOLOMON_ROUTES } from './routes';
     LinkModule,
     NotFoundModule,
     PostModule,
-    TagModule
+    TagModule,
   ],
   bootstrap: [
-    AppComponent
+    AppComponent,
   ],
   providers: [
     {
       provide: POST_CONFIG,
-      useValue: {posts: posts}
+      useValue: {posts},
     },
     {
       provide: LINK_CONFIG,
-      useValue: {links: links}
-    }
-  ]
+      useValue: {links},
+    },
+  ],
 })
 export class AppModule {}

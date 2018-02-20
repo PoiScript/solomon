@@ -17,10 +17,10 @@ describe('LinkComponent', () => {
         {
           provide: LINK_CONFIG,
           useValue: {
-            links: MOCK_LINKS
-          }
-        }
-      ]
+            links: MOCK_LINKS,
+          },
+        },
+      ],
     })
       .compileComponents();
   }));

@@ -6,7 +6,7 @@ import { Post, PostConfig, POST_CONFIG } from 'app/shared';
 
 @Component({
   selector: 'solomon-tag',
-  templateUrl: './tag.component.html'
+  templateUrl: './tag.component.html',
 })
 export class TagComponent implements OnInit {
 

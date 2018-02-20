@@ -5,6 +5,6 @@ import { LinkComponent } from './link.component';
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [LinkComponent]
+  declarations: [LinkComponent],
 })
 export class LinkModule {}

@@ -14,7 +14,7 @@ describe('AppComponent', () => {
       ],
       imports: [
         RouterModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
     });
     TestBed.compileComponents();

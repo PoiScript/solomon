@@ -17,7 +17,7 @@ export class PostResolver implements Resolve<PostResolve> {
   private posts: Post[];
 
   constructor (@Inject(POST_CONFIG) private config: PostConfig,
-               @Inject(PLATFORM_ID) private platformId: Object,
+               @Inject(PLATFORM_ID) private platformId: {},
                private state: TransferState,
                private http: HttpClient) {
     this.posts = config.posts;

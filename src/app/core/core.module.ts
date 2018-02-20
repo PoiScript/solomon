@@ -12,8 +12,8 @@ import { SpinnerInterceptor } from './spinner-interceptor.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class CoreModule {}

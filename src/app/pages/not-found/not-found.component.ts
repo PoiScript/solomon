@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'solomon-not-found',
-  templateUrl: './not-found.component.html'
+  templateUrl: './not-found.component.html',
 })
 export class NotFoundComponent {
 

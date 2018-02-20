@@ -1,11 +1,11 @@
-import { Component, Input, } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Post } from 'app/shared';
 
 @Component({
   selector: 'solomon-up-next',
   templateUrl: './up-next.component.html',
-  styleUrls: ['./up-next.component.scss']
+  styleUrls: ['./up-next.component.scss'],
 })
 export class UpNextComponent {
 

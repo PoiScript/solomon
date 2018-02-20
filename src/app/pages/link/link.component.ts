@@ -5,7 +5,7 @@ import { Link, LinkConfig, LINK_CONFIG } from 'app/shared';
 
 @Component({
   selector: 'solomon-link',
-  templateUrl: './link.component.html'
+  templateUrl: './link.component.html',
 })
 export class LinkComponent {
 

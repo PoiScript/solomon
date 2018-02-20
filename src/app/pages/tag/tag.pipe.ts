@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Post } from 'app/shared';
 
 @Pipe({
-  name: 'tag'
+  name: 'tag',
 })
 export class TagPipe implements PipeTransform {
 

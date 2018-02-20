@@ -5,7 +5,7 @@ import { PostResolver } from './post-resolver.service';
 describe('PostResolverService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PostResolver ]
+      providers: [PostResolver ],
     });
   });
 

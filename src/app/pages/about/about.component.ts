@@ -7,7 +7,7 @@ const seventhYears = 5.361e+11;
 
 @Component({
   selector: 'solomon-about',
-  templateUrl: './about.component.html'
+  templateUrl: './about.component.html',
 })
 export class AboutComponent {
 

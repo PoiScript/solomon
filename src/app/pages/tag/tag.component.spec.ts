@@ -21,15 +21,15 @@ describe('TagComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: activatedRoute
+          useValue: activatedRoute,
         },
         {
           provide: POST_CONFIG,
           useValue: {
-            posts: MOCK_POSTS
-          }
-        }
-      ]
+            posts: MOCK_POSTS,
+          },
+        },
+      ],
     })
       .compileComponents();
   }));

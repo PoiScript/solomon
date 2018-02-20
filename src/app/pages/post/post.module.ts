@@ -7,14 +7,14 @@ import { PostResolver } from './post-resolver/post-resolver.service';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     PostComponent,
-    UpNextComponent
+    UpNextComponent,
   ],
   providers: [
-    PostResolver
-  ]
+    PostResolver,
+  ],
 })
 export class PostModule {}

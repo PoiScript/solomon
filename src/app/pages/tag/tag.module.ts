@@ -8,7 +8,7 @@ import { TagPipe } from './tag.pipe';
   imports: [SharedModule],
   declarations: [
     TagComponent,
-    TagPipe
-  ]
+    TagPipe,
+  ],
 })
 export class TagModule {}

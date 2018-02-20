@@ -5,7 +5,7 @@ import { Post, PostConfig, POST_CONFIG } from 'app/shared';
 
 @Component({
   selector: 'solomon-homepage',
-  templateUrl: './homepage.component.html'
+  templateUrl: './homepage.component.html',
 })
 export class HomepageComponent {
 

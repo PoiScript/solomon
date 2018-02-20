@@ -17,13 +17,13 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   declarations: [
     PostListComponent,
     HeaderComponent,
     FooterComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   exports: [
     CommonModule,
@@ -38,7 +38,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class SharedModule {}

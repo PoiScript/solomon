@@ -5,7 +5,7 @@ import { SpinnerService } from 'app/core';
 @Component({
   selector: 'solomon-spinner',
   template: '<mat-progress-bar *ngIf="visible" id="spinner" mode="indeterminate"></mat-progress-bar>',
-  styleUrls: ['./spinner.component.scss']
+  styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent {
 

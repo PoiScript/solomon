@@ -8,7 +8,7 @@ import { HomepageHeaderComponent } from './homepage-header/homepage-header.compo
   imports: [SharedModule],
   declarations: [
     HomepageComponent,
-    HomepageHeaderComponent
-  ]
+    HomepageHeaderComponent,
+  ],
 })
 export class HomepageModule {}

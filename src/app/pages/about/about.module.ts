@@ -5,6 +5,6 @@ import { AboutComponent } from './about.component';
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [AboutComponent]
+  declarations: [AboutComponent],
 })
 export class AboutModule {}

@@ -11,7 +11,7 @@ describe('FooterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [FooterComponent]
+      declarations: [FooterComponent],
     })
       .compileComponents();
   }));

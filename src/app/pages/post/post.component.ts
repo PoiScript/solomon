@@ -6,7 +6,7 @@ import { PostResolve } from 'app/shared';
 
 @Component({
   selector: 'solomon-post',
-  templateUrl: './post.component.html'
+  templateUrl: './post.component.html',
 })
 export class PostComponent implements OnInit {
 

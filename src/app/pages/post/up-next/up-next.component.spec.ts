@@ -15,7 +15,7 @@ describe('UpNextComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, RouterTestingModule],
-      declarations: [UpNextComponent]
+      declarations: [UpNextComponent],
     })
       .compileComponents();
   }));
