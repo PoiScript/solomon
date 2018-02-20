@@ -5,7 +5,6 @@
 /.idea
 
 # compiled output
-config/*.js
 dist
 public
 

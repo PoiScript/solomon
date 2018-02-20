@@ -42,11 +42,11 @@ import { SOLOMON_ROUTES } from './routes';
   providers: [
     {
       provide: POST_CONFIG,
-      useValue: {posts}
+      useValue: {posts: posts}
     },
     {
       provide: LINK_CONFIG,
-      useValue: {links}
+      useValue: {links: links}
     }
   ]
 })
