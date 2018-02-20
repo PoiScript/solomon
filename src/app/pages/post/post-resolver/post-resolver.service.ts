@@ -1,13 +1,12 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/finally';
 import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
-import { Post, PostResolve, PostConfig, POST_CONFIG } from 'app/shared';
+import { Post, POST_CONFIG, PostConfig, PostResolve } from 'app/shared';
 import { environment } from 'environments/environment';
 
 const RESOLVED_KEY = makeStateKey<PostResolve>('resolved');
@@ -41,7 +40,7 @@ export class PostResolver implements Resolve<PostResolve> {
 
       return this.http
         .get(`${environment.origin_url}html/${current.slug}.html`, {responseType: 'text'})
-        .map(html => {
+        .pipe(map(html => {
           const resolve = {current, prior, next, html};
 
           // only save the state in the server platform
@@ -50,7 +49,7 @@ export class PostResolver implements Resolve<PostResolve> {
           }
 
           return resolve;
-        });
+        }));
     }
   }
 
