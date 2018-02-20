@@ -50,4 +50,9 @@ import { SOLOMON_ROUTES } from './routes';
     },
   ],
 })
-export class AppModule {}
+export class AppModule {
+
+  links = links;
+  posts = posts;
+
+}
