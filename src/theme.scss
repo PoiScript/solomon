@@ -1,52 +1,82 @@
 @import '~@angular/material/theming';
+@import 'app/shared/post-list/post-list-theme';
 
-@import 'global-theme';
+@include mat-ripple();
+@include cdk-a11y();
+@include cdk-overlay();
 
-@include mat-core();
+$text-color: invert(mat-color($mat-light-theme-background, card, 0.6)) !default;
+$typography-config: mat-typography-config();
+
+body {
+  color: $text-color;
+}
+
+.primary-subheader a {
+  color: $text-color;
+}
+
+@mixin markdown-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .container a {
+    color: mat-color($primary);
+  }
+}
+
+@include mat-button-typography($typography-config);
+@include mat-toolbar-typography($typography-config);
+@include mat-list-typography($typography-config);
 
 // default theme
 $default-primary: mat-palette($mat-deep-purple);
 $default-accent: mat-palette($mat-amber, A200, A100, A400);
 $default-theme: mat-light-theme($default-primary, $default-accent);
 
-@include global-theme($default-theme);
+@include post-list-theme($default-theme);
+@include mat-core-theme($default-theme);
+@include mat-toolbar-theme($default-theme);
 
 // about theme
-$about-primary: mat-palette($mat-indigo);
-$about-theme: mat-light-theme($about-primary, $default-accent);
-
 .about-theme {
-  @include global-theme($about-theme);
+  $about-primary: mat-palette($mat-indigo);
+  $about-theme: mat-light-theme($about-primary, $default-accent);
+
+  @include markdown-theme($about-theme);
+  @include mat-toolbar-theme($about-theme);
 }
 
 // link theme
-$link-primary: mat-palette($mat-pink);
-$link-theme: mat-light-theme($link-primary, $default-accent);
-
 .link-theme {
-  @include global-theme($link-theme);
+  $link-primary: mat-palette($mat-pink);
+  $link-theme: mat-light-theme($link-primary, $default-accent);
+
+  @include mat-toolbar-theme($link-theme);
+  @include mat-list-theme($link-theme);
 }
 
 // not-found theme
-$not-found-primary: mat-palette($mat-brown);
-$not-found-theme: mat-light-theme($not-found-primary, $default-accent);
-
 .not-found-theme {
-  @include global-theme($not-found-theme);
+  $not-found-primary: mat-palette($mat-brown);
+  $not-found-theme: mat-light-theme($not-found-primary, $default-accent);
+
+  @include mat-toolbar-theme($not-found-theme);
 }
 
 // post theme
-$post-primary: mat-palette($mat-teal);
-$post-theme: mat-light-theme($post-primary, $default-accent);
-
 .post-theme {
-  @include global-theme($post-theme);
+  $post-primary: mat-palette($mat-teal);
+  $post-theme: mat-light-theme($post-primary, $default-accent);
+
+  @include markdown-theme($post-theme);
+  @include mat-toolbar-theme($post-theme);
 }
 
 // tag theme
-$tag-primary: mat-palette($mat-red);
-$tag-theme: mat-light-theme($tag-primary, $default-accent);
-
 .tag-theme {
-  @include global-theme($tag-theme);
+  $tag-primary: mat-palette($mat-red);
+  $tag-theme: mat-light-theme($tag-primary, $default-accent);
+
+  @include mat-toolbar-theme($tag-theme);
+  @include post-list-theme($tag-theme);
 }
