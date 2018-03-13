@@ -211,6 +211,19 @@
   version "5.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@nguniversal/module-map-ngfactory-loader/-/module-map-ngfactory-loader-5.0.0-beta.5.tgz#d86497e704f702e1a18bbcab5dd6586057941fa5"
 
+"@ngx-progressbar/core@4.1.1", "@ngx-progressbar/core@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/core/-/core-4.1.1.tgz#31b7ffa9de1d94380819a94aa0a31cedb044f37c"
+  dependencies:
+    tslib "^1.7.1"
+
+"@ngx-progressbar/http@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/http/-/http-4.1.1.tgz#c0618334cbd623ecba1ded1a1b21063617b6f309"
+  dependencies:
+    "@ngx-progressbar/core" "4.1.1"
+    tslib "^1.7.1"
+
 "@schematics/angular@0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.3.1.tgz#0f5185f5e718145031532fb03d127446e22ee9b8"

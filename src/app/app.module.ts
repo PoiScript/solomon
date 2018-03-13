@@ -4,9 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterModule } from '@angular/router';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AppComponent } from 'app/app.component';
-import { CoreModule } from 'app/core';
 import { LINK_CONFIG, POST_CONFIG, SharedModule } from 'app/shared';
 import { AboutModule, HomepageModule, LinkModule, NotFoundModule, PostModule, TagModule } from 'app/pages';
 
@@ -20,14 +21,14 @@ import { SOLOMON_ROUTES } from './routes';
     AppComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'solomon'}),
+    BrowserModule.withServerTransition({ appId: 'solomon' }),
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     HttpClientModule,
+    NgProgressModule.forRoot(),
+    NgProgressHttpModule,
     RouterModule.forRoot(SOLOMON_ROUTES),
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
-
-    CoreModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     SharedModule,
     AboutModule,
     HomepageModule,
@@ -42,11 +43,11 @@ import { SOLOMON_ROUTES } from './routes';
   providers: [
     {
       provide: POST_CONFIG,
-      useValue: {posts},
+      useValue: { posts },
     },
     {
       provide: LINK_CONFIG,
-      useValue: {links},
+      useValue: { links },
     },
   ],
 })

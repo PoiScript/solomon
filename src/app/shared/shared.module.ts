@@ -17,7 +17,6 @@ import {
 import { PostListComponent } from './post-list/post-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -32,7 +31,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     PostListComponent,
     HeaderComponent,
     FooterComponent,
-    SpinnerComponent,
   ],
   exports: [
     CommonModule,
@@ -42,7 +40,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     PostListComponent,
     HeaderComponent,
     FooterComponent,
-    SpinnerComponent,
     MatButtonModule,
     MatIconModule,
     MatListModule,
