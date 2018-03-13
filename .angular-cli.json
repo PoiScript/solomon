@@ -15,12 +15,6 @@
           "input": "../public/",
           "output": "./",
           "allowOutsideOutDir": false
-        },
-        {
-          "glob": "**/?(*.eot|*.ttf|*.woff|*.woff2)",
-          "input": "../node_modules/material-design-icons/iconfont/",
-          "output": "./fonts/",
-          "allowOutsideOutDir": false
         }
       ],
       "index": "index.html",
