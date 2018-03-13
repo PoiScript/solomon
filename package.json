@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "test": "ng test",
     "prestart": "ts-node scripts/check",
-    "start": "ng serve",
+    "start": "ng serve --aot",
     "prebuild": "ts-node scripts/check",
     "build": "yarn build:client && yarn build:server && ts-node scripts/prerender",
     "build:client": "ng build --prod --buildOptimizer",
