@@ -23,7 +23,7 @@ const toc = () => `
     <div class="section-content">
       <nav>
         <ul>
-          ${headings.map(h => `<li><a href="#${h.id}">${h.text}</a></li>`).join('')}
+          ${headings.map(h => `<li>${h.text}</li>`).join('')}
         </ul>
       </nav>
 `;
