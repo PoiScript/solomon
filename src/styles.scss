@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -53,7 +54,8 @@ a {
   font-style: italic;
 }
 
-.hljs, .hljs-subst {
+.hljs,
+.hljs-subst {
   color: mat-color($mat-grey, 800);
 }
 
@@ -73,27 +75,45 @@ a {
   color: mat-color($mat-cyan, 600);
 }
 
-.hljs-title, .hljs-section {
+.hljs-title,
+.hljs-section {
   color: mat-color($mat-red, 900);
   font-weight: bold;
 }
 
-.hljs-built_in, .hljs-bullet,
-.hljs-code, .hljs-addition {
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
   color: mat-color($mat-green, 600);
 }
 
-.hljs-keyword, .hljs-attribute, .hljs-selector-tag,
-.hljs-meta-keyword, .hljs-doctag, .hljs-name {
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name {
   font-weight: bold;
 }
 
-.hljs-type, .hljs-string, .hljs-number, .hljs-selector-id,
-.hljs-selector-class, .hljs-quote, .hljs-template-tag, .hljs-deletion {
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
   color: mat-color($mat-red, 900);
 }
 
-.hljs-regexp, .hljs-symbol, .hljs-variable, .hljs-link,
-.hljs-template-variable, .hljs-selector-attr, .hljs-selector-pseudo {
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-link,
+.hljs-template-variable,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
   color: mat-color($mat-red, A100);
 }

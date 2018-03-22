@@ -9,19 +9,20 @@ let element: Element;
 let fixture: ComponentFixture<PostListComponent>;
 
 describe('PostListComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [PostListComponent],
-    })
-      .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule],
+        declarations: [PostListComponent],
+      }).compileComponents();
+    }),
+  );
 
   describe('with no post provided', withNoPostProvided);
   describe('with two posts provided', withTwoPostsProvided);
 });
 
-function withNoPostProvided () {
+function withNoPostProvided() {
   beforeEach(() => {
     fixture = TestBed.createComponent(PostListComponent);
     component = fixture.componentInstance;
@@ -30,12 +31,12 @@ function withNoPostProvided () {
     fixture.detectChanges();
   });
 
-  it('should display \'No Posts :(\'', () => {
+  it("should display 'No Posts :('", () => {
     expect(element.textContent).toContain('No Posts :(');
   });
 }
 
-function withTwoPostsProvided () {
+function withTwoPostsProvided() {
   beforeEach(() => {
     fixture = TestBed.createComponent(PostListComponent);
     component = fixture.componentInstance;
@@ -49,17 +50,19 @@ function withTwoPostsProvided () {
       element = element.querySelectorAll('.post-list-item')[0];
     });
 
-    it('should display the post\'s title as a link', () => {
+    it("should display the post's title as a link", () => {
       const title = element.querySelector('.post-list-item a');
       expect(title.textContent.trim()).toBe(MOCK_POSTS[0].title);
       expect(title.getAttribute('href')).toBe('/post/' + MOCK_POSTS[0].slug);
     });
 
-    it('should display the post\'s date in mediumDate format', () => {
-      expect(element.querySelector('.post-list-item p span').textContent).toBe('Jan 1, 1970');
+    it("should display the post's date in mediumDate format", () => {
+      expect(element.querySelector('.post-list-item p span').textContent).toBe(
+        'Jan 1, 1970',
+      );
     });
 
-    it('should display post\'s tags as links', () => {
+    it("should display post's tags as links", () => {
       const tags = element.querySelectorAll('.post-list-item .subtitle .tag');
       const [tag0, tag1] = MOCK_POSTS[0].tags;
       expect(tags[0].textContent).toContain(tag0);
@@ -74,17 +77,19 @@ function withTwoPostsProvided () {
       element = element.querySelectorAll('.post-list-item')[1];
     });
 
-    it('should display the post\'s title as a link', () => {
+    it("should display the post's title as a link", () => {
       const title = element.querySelector('.post-list-item a');
       expect(title.textContent.trim()).toBe(MOCK_POSTS[1].title);
       expect(title.getAttribute('href')).toBe('/post/' + MOCK_POSTS[1].slug);
     });
 
-    it('should display the post\'s date in mediumDate format', () => {
-      expect(element.querySelector('.post-list-item p span').textContent).toBe('Aug 14, 2006');
+    it("should display the post's date in mediumDate format", () => {
+      expect(element.querySelector('.post-list-item p span').textContent).toBe(
+        'Aug 14, 2006',
+      );
     });
 
-    it('should display post\'s tags as links', () => {
+    it("should display post's tags as links", () => {
       const tag = element.querySelector('.post-list-item .subtitle .tag');
       const [expectedTag] = MOCK_POSTS[1].tags;
       expect(tag.textContent).toContain(expectedTag);

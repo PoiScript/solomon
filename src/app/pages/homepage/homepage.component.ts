@@ -8,13 +8,13 @@ import { Post, PostConfig, POST_CONFIG } from 'app/shared';
   templateUrl: './homepage.component.html',
 })
 export class HomepageComponent {
-
   posts: Post[];
 
-  constructor (@Inject(POST_CONFIG) config: PostConfig,
-               private titleService: Title) {
+  constructor(
+    @Inject(POST_CONFIG) config: PostConfig,
+    private titleService: Title,
+  ) {
     this.posts = config.posts;
     this.titleService.setTitle('solomon');
   }
-
 }

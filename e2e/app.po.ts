@@ -1,11 +1,11 @@
-import {browser, element, by} from 'protractor';
+import { browser, element, by } from 'protractor';
 
 export class SolomonPage {
-  navigateTo () {
+  navigateTo() {
     return browser.get('/');
   }
 
-  getParagraphText () {
+  getParagraphText() {
     return element(by.css('solomon-root h1')).getText();
   }
 }

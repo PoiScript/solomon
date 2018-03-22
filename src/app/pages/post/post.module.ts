@@ -6,15 +6,8 @@ import { UpNextComponent } from './up-next/up-next.component';
 import { PostResolver } from './post-resolver/post-resolver.service';
 
 @NgModule({
-  imports: [
-    SharedModule,
-  ],
-  declarations: [
-    PostComponent,
-    UpNextComponent,
-  ],
-  providers: [
-    PostResolver,
-  ],
+  imports: [SharedModule],
+  declarations: [PostComponent, UpNextComponent],
+  providers: [PostResolver],
 })
 export class PostModule {}

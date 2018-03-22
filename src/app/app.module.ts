@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  BrowserTransferStateModule,
+} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -9,7 +12,14 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AppComponent } from 'app/app.component';
 import { LINK_CONFIG, POST_CONFIG, SharedModule } from 'app/shared';
-import { AboutModule, HomepageModule, LinkModule, NotFoundModule, PostModule, TagModule } from 'app/pages';
+import {
+  AboutModule,
+  HomepageModule,
+  LinkModule,
+  NotFoundModule,
+  PostModule,
+  TagModule,
+} from 'app/pages';
 
 import { links, posts } from 'config';
 
@@ -17,9 +27,7 @@ import { environment } from 'environments/environment';
 import { SOLOMON_ROUTES } from './routes';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'solomon' }),
     BrowserAnimationsModule,
@@ -28,7 +36,9 @@ import { SOLOMON_ROUTES } from './routes';
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     RouterModule.forRoot(SOLOMON_ROUTES),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     SharedModule,
     AboutModule,
     HomepageModule,
@@ -37,9 +47,7 @@ import { SOLOMON_ROUTES } from './routes';
     PostModule,
     TagModule,
   ],
-  bootstrap: [
-    AppComponent,
-  ],
+  bootstrap: [AppComponent],
   providers: [
     {
       provide: POST_CONFIG,
@@ -52,8 +60,6 @@ import { SOLOMON_ROUTES } from './routes';
   ],
 })
 export class AppModule {
-
   links = links;
   posts = posts;
-
 }

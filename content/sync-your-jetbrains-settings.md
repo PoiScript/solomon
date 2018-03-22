@@ -1,5 +1,4 @@
-前言
----
+## 前言
 
 我是 JetBrains 的死忠,
 一是喜欢他们各种功能强大的 IDE;
@@ -11,9 +10,9 @@ Kotlin 是一个非常不错的替代品.
 但是 JetBrains 的 IDE 有一个令人诟病的问题就是: IDE 太多了.
 所以如果你使用了太多 JetBrains 的 IDE 的话, 这会造成:
 
-1. IDE 的安装和更新等管理起来很麻烦
+1.  IDE 的安装和更新等管理起来很麻烦
 
-2. 快捷键等设置也很麻烦
+2.  快捷键等设置也很麻烦
 
 关于第一个问题, JetBrains 官方已经有了解决方法:
 [JetBrains Toolbox](https://www.jetbrains.com/toolbox/app)
@@ -29,8 +28,7 @@ _使用 JetBrains Toolbox 可以很方便的管理你的项目和工具_
 至于第二个问题,
 官方也提供了一个解决方法: **JetBrains Settings Repository**.
 
-JetBrains Settings Repository
----
+## JetBrains Settings Repository
 
 顾名思义, JetBrains Settings Repository
 就是一个用于存放你的设置的 **Git 仓库**,
@@ -72,8 +70,7 @@ _设置你的 Settings Repository_
 > 我在讲如何将博客部署到 GitHub Pages 的文章里提到过,
 > 这里就不赘述了.
 
-我的配置
----
+## 我的配置
 
 这里简述一下我的配置,
 我的配置肯定不会适合所有人,
@@ -106,11 +103,11 @@ _设置你的 Settings Repository_
 [GitHub Atom](https://atom.io/),
 所以我的快捷键的设置很大程度上是为了同一两者的体验:
 
-- 删除光标所在的行: `Ctrl` + `L`
-- 移动光标所在的行: `Ctrl` + `Shift` + `Up/Down`
-- 复制光标所在的行: `Ctrl` + `D`
-- 向上/下新增一个光标(多光标模式): `Shift` + `Alt` + `Up/Down`
-- 开启/关闭文件栏: `Ctrl` + `\\`
+* 删除光标所在的行: `Ctrl` + `L`
+* 移动光标所在的行: `Ctrl` + `Shift` + `Up/Down`
+* 复制光标所在的行: `Ctrl` + `D`
+* 向上/下新增一个光标(多光标模式): `Shift` + `Alt` + `Up/Down`
+* 开启/关闭文件栏: `Ctrl` + `\\`
 
 **Code Style**:
 

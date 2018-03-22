@@ -13,22 +13,25 @@ describe('PostComponent', () => {
   const activatedRoute = new ActivatedRouteStub();
   const current = MOCK_POSTS[0];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [PostComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: activatedRoute,
-        },
-      ],
-    })
-      .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [PostComponent],
+        schemas: [NO_ERRORS_SCHEMA],
+        providers: [
+          {
+            provide: ActivatedRoute,
+            useValue: activatedRoute,
+          },
+        ],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
-    activatedRoute.testData = {resolve: {current, html: 'Lorem ipsum dolor sit ...'}};
+    activatedRoute.testData = {
+      resolve: { current, html: 'Lorem ipsum dolor sit ...' },
+    };
     fixture = TestBed.createComponent(PostComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
@@ -47,7 +50,9 @@ describe('PostComponent', () => {
 
   it('should display tags', () => {
     const subtitle = element.querySelector('.primary-subheader');
-    current.tags.forEach(tag => expect(subtitle.textContent).toContain('#' + tag));
+    current.tags.forEach(tag =>
+      expect(subtitle.textContent).toContain('#' + tag),
+    );
   });
 
   it('should display post content html', () => {
@@ -55,4 +60,3 @@ describe('PostComponent', () => {
     expect(article.textContent).toContain('Lorem ipsum dolor sit ...');
   });
 });
-

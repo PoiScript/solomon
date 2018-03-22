@@ -9,12 +9,13 @@ describe('AboutComponent', () => {
   let element: HTMLElement;
   let fixture: ComponentFixture<AboutComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [AboutModule, RouterTestingModule],
-    })
-      .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [AboutModule, RouterTestingModule],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AboutComponent);
@@ -27,7 +28,9 @@ describe('AboutComponent', () => {
   });
 
   it('should display my gpg signature', () => {
-    expect(element.textContent).toContain('EC56 5FE9 8A6F 316A B69F 6979 8EE0 5E84 4452 6ED5');
+    expect(element.textContent).toContain(
+      'EC56 5FE9 8A6F 316A B69F 6979 8EE0 5E84 4452 6ED5',
+    );
   });
 
   it('should display original age', () => {

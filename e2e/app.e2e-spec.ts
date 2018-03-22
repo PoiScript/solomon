@@ -1,4 +1,4 @@
-import {SolomonPage} from './app.po';
+import { SolomonPage } from './app.po';
 
 describe('solomon-ng4 App', () => {
   let page: SolomonPage;

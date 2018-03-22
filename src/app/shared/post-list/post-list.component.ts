@@ -8,7 +8,5 @@ import { Post } from 'app/shared';
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent {
-
   @Input() posts: Post[];
-
 }

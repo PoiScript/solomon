@@ -8,13 +8,13 @@ import { Link, LinkConfig, LINK_CONFIG } from 'app/shared';
   templateUrl: './link.component.html',
 })
 export class LinkComponent {
-
   links: Link[];
 
-  constructor (@Inject(LINK_CONFIG) config: LinkConfig,
-               private titleService: Title) {
+  constructor(
+    @Inject(LINK_CONFIG) config: LinkConfig,
+    private titleService: Title,
+  ) {
     this.links = config.links;
     this.titleService.setTitle('link | solomon');
   }
-
 }

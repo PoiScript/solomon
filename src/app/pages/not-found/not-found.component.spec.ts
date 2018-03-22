@@ -7,12 +7,13 @@ describe('NotFoundComponent', () => {
   let element: HTMLElement;
   let fixture: ComponentFixture<NotFoundComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [NotFoundComponent],
-    })
-      .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [NotFoundComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NotFoundComponent);
@@ -21,7 +22,7 @@ describe('NotFoundComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should display \'404 Not Found\'', () => {
+  it("should display '404 Not Found'", () => {
     expect(element.textContent).toContain('404 Not Found');
   });
 });

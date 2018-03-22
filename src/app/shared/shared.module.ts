@@ -27,11 +27,7 @@ import { FooterComponent } from './footer/footer.component';
     MatToolbarModule,
     MatProgressBarModule,
   ],
-  declarations: [
-    PostListComponent,
-    HeaderComponent,
-    FooterComponent,
-  ],
+  declarations: [PostListComponent, HeaderComponent, FooterComponent],
   exports: [
     CommonModule,
     FormsModule,
@@ -48,15 +44,18 @@ import { FooterComponent } from './footer/footer.component';
   ],
 })
 export class SharedModule {
-
-  constructor (private iconRegistry: MatIconRegistry,
-               private sanitizer: DomSanitizer) {
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+  ) {
     this.registerIcon('arrow');
     this.registerIcon('rss');
   }
 
-  private registerIcon (name: string) {
-    this.iconRegistry.addSvgIcon(name, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`));
+  private registerIcon(name: string) {
+    this.iconRegistry.addSvgIcon(
+      name,
+      this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`),
+    );
   }
-
 }

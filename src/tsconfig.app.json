@@ -9,9 +9,5 @@
   "angularCompilerOptions": {
     "preserveWhitespaces": false
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts",
-    "app/testing"
-  ]
+  "exclude": ["test.ts", "**/*.spec.ts", "app/testing"]
 }

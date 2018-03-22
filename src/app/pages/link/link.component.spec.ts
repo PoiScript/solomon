@@ -9,21 +9,22 @@ let fixture: ComponentFixture<LinkComponent>;
 let element: Element;
 
 describe('LinkComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SharedModule],
-      declarations: [LinkComponent],
-      providers: [
-        {
-          provide: LINK_CONFIG,
-          useValue: {
-            links: MOCK_LINKS,
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [SharedModule],
+        declarations: [LinkComponent],
+        providers: [
+          {
+            provide: LINK_CONFIG,
+            useValue: {
+              links: MOCK_LINKS,
+            },
           },
-        },
-      ],
-    })
-      .compileComponents();
-  }));
+        ],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LinkComponent);
@@ -40,7 +41,7 @@ describe('LinkComponent', () => {
   describe('when display the second link', whenDisplayTheSecondLink);
 });
 
-function whenDisplayTheFirstLink () {
+function whenDisplayTheFirstLink() {
   const link = MOCK_LINKS[0];
 
   beforeEach(() => {
@@ -48,11 +49,15 @@ function whenDisplayTheFirstLink () {
   });
 
   it('should display avatars', () => {
-    expect(element.querySelector('img.mat-list-avatar').getAttribute('src')).toBe(link.avatar);
+    expect(
+      element.querySelector('img.mat-list-avatar').getAttribute('src'),
+    ).toBe(link.avatar);
   });
 
   it('should display link names', () => {
-    expect(element.querySelector('.mat-list-text').textContent.trim()).toBe(link.name);
+    expect(element.querySelector('.mat-list-text').textContent.trim()).toBe(
+      link.name,
+    );
   });
 
   it('should have a link point to address', () => {
@@ -60,7 +65,7 @@ function whenDisplayTheFirstLink () {
   });
 }
 
-function whenDisplayTheSecondLink () {
+function whenDisplayTheSecondLink() {
   const link = MOCK_LINKS[1];
 
   beforeEach(() => {
@@ -68,11 +73,15 @@ function whenDisplayTheSecondLink () {
   });
 
   it('should display avatars', () => {
-    expect(element.querySelector('img.mat-list-avatar').getAttribute('src')).toBe(link.avatar);
+    expect(
+      element.querySelector('img.mat-list-avatar').getAttribute('src'),
+    ).toBe(link.avatar);
   });
 
   it('should display link names', () => {
-    expect(element.querySelector('.mat-list-text').textContent.trim()).toBe(link.name);
+    expect(element.querySelector('.mat-list-text').textContent.trim()).toBe(
+      link.name,
+    );
   });
 
   it('should have a link point to address', () => {

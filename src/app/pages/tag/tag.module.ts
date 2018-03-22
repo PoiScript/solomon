@@ -6,9 +6,6 @@ import { TagPipe } from './tag.pipe';
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [
-    TagComponent,
-    TagPipe,
-  ],
+  declarations: [TagComponent, TagPipe],
 })
 export class TagModule {}

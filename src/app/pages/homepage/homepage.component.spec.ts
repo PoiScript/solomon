@@ -14,20 +14,21 @@ describe('HomepageComponent', () => {
   describe('with two posts provided', withTwoPostsProvided);
 });
 
-function withNoPostProvided () {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SharedModule],
-      declarations: [HomepageComponent],
-      providers: [
-        {
-          provide: POST_CONFIG,
-          useValue: {posts: []},
-        },
-      ],
-    })
-      .compileComponents();
-  }));
+function withNoPostProvided() {
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [SharedModule],
+        declarations: [HomepageComponent],
+        providers: [
+          {
+            provide: POST_CONFIG,
+            useValue: { posts: [] },
+          },
+        ],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);
@@ -36,39 +37,44 @@ function withNoPostProvided () {
     fixture.detectChanges();
   });
 
-  it('should display a header of \'Solomon\'', () => {
-    expect(element.querySelector('.primary-header').textContent).toBe('Solomon');
+  it("should display a header of 'Solomon'", () => {
+    expect(element.querySelector('.primary-header').textContent).toBe(
+      'Solomon',
+    );
   });
 
-  it('should display length \'no post\'', () => {
-    expect(element.querySelector('.primary-subheader').textContent).toContain('no post');
+  it("should display length 'no post'", () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain(
+      'no post',
+    );
   });
 
   it('should not display any item', () => {
     expect(element.querySelectorAll('.post-list-item').length).toBe(0);
   });
 
-  it('should display a hint of \'No Posts :(\' instead', () => {
+  it("should display a hint of 'No Posts :(' instead", () => {
     expect(element.textContent).toContain('No Posts :(');
   });
 }
 
-function withTwoPostsProvided () {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule],
-      declarations: [HomepageComponent],
-      providers: [
-        {
-          provide: POST_CONFIG,
-          useValue: {
-            posts: MOCK_POSTS,
+function withTwoPostsProvided() {
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [SharedModule, RouterTestingModule],
+        declarations: [HomepageComponent],
+        providers: [
+          {
+            provide: POST_CONFIG,
+            useValue: {
+              posts: MOCK_POSTS,
+            },
           },
-        },
-      ],
-    })
-      .compileComponents();
-  }));
+        ],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);
@@ -77,12 +83,16 @@ function withTwoPostsProvided () {
     fixture.detectChanges();
   });
 
-  it('should display a header of \'Solomon\'', () => {
-    expect(element.querySelector('.primary-header').textContent).toBe('Solomon');
+  it("should display a header of 'Solomon'", () => {
+    expect(element.querySelector('.primary-header').textContent).toBe(
+      'Solomon',
+    );
   });
 
-  it('should display length \'2 posts\'', () => {
-    expect(element.querySelector('.primary-subheader').textContent).toContain('2 posts');
+  it("should display length '2 posts'", () => {
+    expect(element.querySelector('.primary-subheader').textContent).toContain(
+      '2 posts',
+    );
   });
 
   it('should display two items', () => {

@@ -4,8 +4,7 @@
 
 目前知道和了解这个文档的人还不多，而且恰巧今天（2018-3-15）该文档也更新到了 v6 版本（虽然目前看起来和 v5 长得一模一样）。于是我萌生了写一遍简单的关于 APF 的介绍，内容基本沿袭自上述的文档和[这个视频](https://youtu.be/QfvwQEJVOig)。
 
-为什么需要 APF？
-===
+# 为什么需要 APF？
 
 最大的因为就是需要兼容各种各样的运行环境和工具。
 
@@ -15,8 +14,7 @@
 
 所以仅仅只提供一种编译格式是不可能满足上述所有的需求，所以我们就需要一个包的规范来实现上述需求，这就是 APF。
 
-APF 中规定了什么？
-===
+# APF 中规定了什么？
 
 **JavaScript 的模块规范**
 
@@ -42,8 +40,7 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 
 > 目前，Angular AoT 模式中会将所有的元数据编译成类的静态类型，所以也就不需要像以前那样通过 Metadata Reflection API 获取元数据了。
 
-APF 的具体实现
-===
+# APF 的具体实现
 
 下面我们以一个具体的遵循 APF 的包 `@angular/material` 为例子，描述具体的文件结构。
 
@@ -81,7 +78,6 @@ APF 的具体实现
     └── public-api.d.ts
 </code></pre>
 
-
 最后，在每个 `package.json` 中，无论是根层级的，还是独立的 module 中的，都含有以下几个字段：
 
 <pre><code class="nohighlight">"main": "./bundles/material.umd.js",
@@ -94,8 +90,6 @@ APF 的具体实现
 
 最后，在包的根目录里还有根整个 module 和每个独立的 module 的 `metadata.json` 和 `.d.ts` 文件。
 
-
-更多
-===
+# 更多
 
 这篇文章只是对 APF 的一个简单的介绍和一个典型的例子的分析，还有更多的细节没有提及：例如，如何提供多个 entry point 这样可与成让用户只导入需要的模块，降低编译后的体积。如果感兴趣的话可以查看[原文档](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview#)，以及 Juri Strumpflohner 在 ng-be 上的[发言视频](https://youtu.be/K4YMmwxGKjY)。

@@ -9,18 +9,14 @@ import { PostResolve } from 'app/shared';
   templateUrl: './post.component.html',
 })
 export class PostComponent implements OnInit {
-
   resolve: PostResolve;
 
-  constructor (private route: ActivatedRoute,
-               private titleService: Title) { }
+  constructor(private route: ActivatedRoute, private titleService: Title) {}
 
-  ngOnInit () {
-    this.route.data
-      .subscribe((data: { resolve: PostResolve }) => {
-        this.resolve = data.resolve;
-        this.titleService.setTitle(data.resolve.current.title + ' | solomon');
-      });
+  ngOnInit() {
+    this.route.data.subscribe((data: { resolve: PostResolve }) => {
+      this.resolve = data.resolve;
+      this.titleService.setTitle(data.resolve.current.title + ' | solomon');
+    });
   }
-
 }

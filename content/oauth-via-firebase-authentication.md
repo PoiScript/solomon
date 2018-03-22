@@ -1,25 +1,21 @@
-前言
----
+## 前言
 
-在上上篇文章  里我介绍了我的新博客系统 **Solomon**,
+在上上篇文章 里我介绍了我的新博客系统 **Solomon**,
 其中就讲的到了我用了 GitHub Issue 做为评论系统.
 这么做有两个麻烦的地方:
-1. 需要为每一篇文章创建一个 issue;
-2. 评论者需要有 GitHub 帐号,
-然后在登录的状态下到 issue 的页面进行评论.
+
+1.  需要为每一篇文章创建一个 issue;
+2.  评论者需要有 GitHub 帐号,
+    然后在登录的状态下到 issue 的页面进行评论.
 
 作为一个处女座,
 我觉得需要到别的页面才能评论或点赞的用户体验太糟糕了.
 所以, 我考虑让评论者通过 OAuth 授权的方式获得 Token,
 然后就可以直接在文章页面进行评论了.
 
-OAuth
----
+## OAuth
 
-> OAuth（开放授权）是一个开放标准，
-> 允许用户让第三方应用访问该用户在某一网站上存储的私密的资源
-> （如照片，视频，联系人列表），
-> 而无需将用户名和密码提供给第三方应用。
+> OAuth（开放授权）是一个开放标准，允许用户让第三方应用访问该用户在某一网站上存储的私密的资源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用。
 >
 > via 维基百科
 
@@ -33,7 +29,7 @@ OAuth 的具体实现就是通过提供给第三方一个 **Token**,
 或者进入 GitHub 的设置页面,
 在侧边栏里选择 **OAuth applicatioins**.
 
-然后选择  **Register a new application**
+然后选择 **Register a new application**
 注册一个新的应用:
 
 ![Register a new OAuth application](https://c1.staticflickr.com/3/2544/32836484732_010a3af524_b.jpg)
@@ -75,8 +71,7 @@ GitHub 就会返回一个有时限的 **access_token**,
 [Firebasee Authentication](https://firebase.google.com/docs/auth/),
 让我们可以通过 Firebasee 的服务器完成整个授权过程.
 
-Firebase Authentication
----
+## Firebase Authentication
 
 关于 Firebase 的介绍在上上一篇我简要的介绍过了.
 Firebase Authentication 则是 Firebase 提供的一个身份验证服务.
@@ -121,17 +116,16 @@ Firebase Authentication 不仅可以使用 **传统的邮箱密码验证**,
 >
 > ![OAuth redirect domains](https://c1.staticflickr.com/1/733/32836485712_979b27f90d_o.png)
 
-Angularfire 2
----
+## Angularfire 2
 
 GitHub 和 Firebase 都设置好之后,
 就可以正式的使用了.
 
 Firebase Authentication 提供了两种使用方法:
 
- 1. [FirebaseUI](https://github.com/firebase/FirebaseUI-Web)
+1.  [FirebaseUI](https://github.com/firebase/FirebaseUI-Web)
 
- 2. [Firebase Authentication SDK](https://firebase.google.com/docs/auth/web/github-auth)
+2.  [Firebase Authentication SDK](https://firebase.google.com/docs/auth/web/github-auth)
 
 FirebaseUI 尚处于测试阶段,
 所以我这里选择用 Firebase Authentication SDK.
@@ -201,15 +195,15 @@ this.af.auth.login({
 
 这里需要注意两点:
 
-1. 为了安全, GitHub 只会在登录的时候返回 `accessToken`.
-所以我们需要在发起登录请求的之后调用 `.then()`,
-获取我们需要的 `accessToken`,
-存在我们的 **TokenService** 里或者其他地方.
+1.  为了安全, GitHub 只会在登录的时候返回 `accessToken`.
+    所以我们需要在发起登录请求的之后调用 `.then()`,
+    获取我们需要的 `accessToken`,
+    存在我们的 **TokenService** 里或者其他地方.
 
-2. 我们获取 `accessToken` 的目地是用它来调用 **GitHub API**,
-实现评论的功能的.
-所以我们在登录的时候需要多申请一个 `public_repo` 的权限.
-否则就会出现 `Issue not viewable by xxx` 等错误.
+2.  我们获取 `accessToken` 的目地是用它来调用 **GitHub API**,
+    实现评论的功能的.
+    所以我们在登录的时候需要多申请一个 `public_repo` 的权限.
+    否则就会出现 `Issue not viewable by xxx` 等错误.
 
 > 我一开始没发现, 还去 stackoverflow 提问:
 > [How to Post Comment using GitHub OAuth Token in Angular 2](https://stackoverflow.com/questions/42323439/how-to-post-comment-using-github-oauth-token-in-angular-2)
@@ -226,8 +220,7 @@ this.af.auth.login({
 实现增加 GitHub API 的调用上限:
 https://developer.github.com/v3/#rate-limiting
 
-存在的问题
----
+## 存在的问题
 
 如果仔细看我上面的代码就会发现我是把 `accessToken` 放在了 `TokenService`,
 而没有使用持久化存储, 例如数据库等.
@@ -245,8 +238,7 @@ Firebase 还提供了 **实时数据库**,
 但是我还是不希望让整个认证的过程变得不那么透明,
 所以目前还是 **保留这个问题**.
 
-后语
----
+## 后语
 
 就像我上一章里介绍了 Firebase Hosting 之后说的那样.
 Hosting 和 Authentication 只是 Firebase 众多功能中的两个而已:

@@ -1,12 +1,7 @@
 {
-  "rulesDirectory": [
-    "node_modules/codelyzer"
-  ],
+  "rulesDirectory": ["node_modules/codelyzer"],
   "rules": {
-    "array-type": [
-      true,
-      "array-simple"
-    ],
+    "array-type": [true, "array-simple"],
     "ban": [
       true,
       {
@@ -24,27 +19,12 @@
     ],
     "ban-types": [
       true,
-      [
-        "Object",
-        "Use {} instead."
-      ],
-      [
-        "String",
-        "Use 'string' instead."
-      ],
-      [
-        "Number",
-        "Use 'number' instead."
-      ],
-      [
-        "Boolean",
-        "Use 'boolean' instead."
-      ]
+      ["Object", "Use {} instead."],
+      ["String", "Use 'string' instead."],
+      ["Number", "Use 'number' instead."],
+      ["Boolean", "Use 'boolean' instead."]
     ],
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
+    "interface-name": [true, "never-prefix"],
     "jsdoc-format": true,
     "new-parens": true,
     "no-angle-bracket-type-assertion": true,
@@ -52,10 +32,7 @@
     "no-conditional-assignment": true,
     "no-default-export": true,
     "no-duplicate-variable": true,
-    "no-namespace": [
-      true,
-      "allow-declarations"
-    ],
+    "no-namespace": [true, "allow-declarations"],
     "no-reference": true,
     "object-literal-shorthand": true,
     "only-arrow-functions": [
@@ -68,32 +45,13 @@
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "curly": true,
     "deprecation": {
       "severity": "warn"
     },
-    "eofline": true,
     "forin": true,
-    "import-blacklist": [
-      true,
-      "rxjs",
-      "rxjs/Rx"
-    ],
-    "import-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
+    "import-blacklist": [true, "rxjs", "rxjs/Rx"],
     "interface-over-type-literal": true,
     "label-position": true,
-    "max-line-length": [
-      true,
-      140
-    ],
     "member-access": false,
     "member-ordering": [
       true,
@@ -108,53 +66,27 @@
     ],
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": [true, "ignore-params"],
     "no-misused-new": true,
     "no-non-null-assertion": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
     "prefer-const": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
     "trailing-comma": [
       true,
       {
@@ -162,20 +94,7 @@
         "singleline": "never"
       }
     ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
-    ],
+    "triple-equals": [true, "allow-null-check"],
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
@@ -186,18 +105,8 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [
-      true,
-      "attribute",
-      "solomon",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "solomon",
-      "kebab-case"
-    ],
+    "directive-selector": [true, "attribute", "solomon", "camelCase"],
+    "component-selector": [true, "element", "solomon", "kebab-case"],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,

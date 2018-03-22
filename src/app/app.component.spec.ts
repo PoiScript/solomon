@@ -6,43 +6,37 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-
   describe('with real components', () => {
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [AppModule],
-        providers: [
-          { provide: APP_BASE_HREF, useValue: '/' },
-        ],
-      })
-        .compileComponents();
-    }));
+    beforeEach(
+      async(() => {
+        TestBed.configureTestingModule({
+          imports: [AppModule],
+          providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+        }).compileComponents();
+      }),
+    );
 
     it('should create the app', () => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
       expect(app).toBeTruthy();
     });
-
   });
 
   describe('with CUSTOM_ELEMENTS_SCHEMA', () => {
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [AppComponent],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      })
-        .compileComponents();
-    }));
+    beforeEach(
+      async(() => {
+        TestBed.configureTestingModule({
+          declarations: [AppComponent],
+          schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        }).compileComponents();
+      }),
+    );
 
     it('should create the app', () => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
       expect(app).toBeTruthy();
     });
-
   });
-
 });

@@ -1,19 +1,26 @@
-import { Component, Directive, HostListener, Injectable, Input } from '@angular/core';
+import {
+  Component,
+  Directive,
+  HostListener,
+  Injectable,
+  Input,
+} from '@angular/core';
 import { Data, Params } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ActivatedRouteStub {
-
   private paramsSubject = new BehaviorSubject(this.testParams);
   // tslint:disable-next-line:member-ordering
   params = this.paramsSubject.asObservable();
 
   private _testParams: Params;
 
-  get testParams () { return this._testParams; }
+  get testParams() {
+    return this._testParams;
+  }
 
-  set testParams (params: {}) {
+  set testParams(params: {}) {
     this.paramsSubject.next(params);
   }
 
@@ -23,27 +30,27 @@ export class ActivatedRouteStub {
 
   private _testData: Data;
 
-  get testData () { return this._testData; }
+  get testData() {
+    return this._testData;
+  }
 
-  set testData (data: {}) {
+  set testData(data: {}) {
     this.dataSubject.next(data);
   }
 
-  get snapshot () {
+  get snapshot() {
     return {
       params: this.testParams,
       data: this.testData,
     };
   }
-
 }
 
 @Component({
-    // tslint:disable-next-line:component-selector
-    selector: 'router-outlet',
-    template: '',
-  },
-)
+  // tslint:disable-next-line:component-selector
+  selector: 'router-outlet',
+  template: '',
+})
 export class RouterOutletStubComponent {}
 
 @Directive({
@@ -51,12 +58,11 @@ export class RouterOutletStubComponent {}
   selector: '[routerLink]',
 })
 export class RouterLinkStubDirective {
-
   @Input() routerLink: string[] | string;
   navigatedTo: string[] | string = null;
 
-  @HostListener('click') onClick () {
+  @HostListener('click')
+  onClick() {
     this.navigatedTo = this.routerLink;
   }
-
 }

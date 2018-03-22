@@ -1,5 +1,4 @@
-前言
----
+## 前言
 
 在开始聊这个话题之前，先提一个我遇到过问题：假设有一个 `SpinnerService`，这是一个可以在进行发送 HTTP 请求等异步操作的显示一个加载动画的 Service 。
 
@@ -32,8 +31,7 @@ export class SomeModule {}
 
 有的读者的可能已经猜到了：虽然两个 Module 中会提供一个 `SpinnerService` ，但是他们不是同一个实例。
 
-Dependency Injection
----
+## Dependency Injection
 
 在继续解释为什么不是同一个实例的之前，我想先粗略地说一下为什么应该会是同一个实例。这就涉及到一个概念： Dependency Injection ，动态注入。
 
@@ -44,7 +42,9 @@ Dependency Injection
 ```typescript
 export class Car {
   public engine: Engine;
-  constructor() { this.engine = new Engine(); }
+  constructor() {
+    this.engine = new Engine();
+  }
 }
 ```
 
@@ -52,22 +52,21 @@ export class Car {
 
 ```typescript
 export class Car {
-  constructor(public engine: Engine) { }
+  constructor(public engine: Engine) {}
 }
 ```
 
 两者看起来区别不大，而且当需要调用 `engine` 的时候，用法也是相同的。但是后者的好处却有不少：
 
-1. `Engine` 和 `Car` 的结构是完全独立的：传入 `Car` 中的是 `Engine` 的一个实例而不是在 `Car` 的新建这个实例。所以如果 `Engine` 的构造函数发生变化的时候也不需要修改 `Car` 中的构造函数。
+1.  `Engine` 和 `Car` 的结构是完全独立的：传入 `Car` 中的是 `Engine` 的一个实例而不是在 `Car` 的新建这个实例。所以如果 `Engine` 的构造函数发生变化的时候也不需要修改 `Car` 中的构造函数。
 
-2. 因为传入 `Car` 中的是一个实例，所以可以复用这个实例，减少内存占用。
+2.  因为传入 `Car` 中的是一个实例，所以可以复用这个实例，减少内存占用。
 
-3. 因为传入的只是一个实例，所以甚至可以传入一个虚假用于单元测试的 `Engine` 。
+3.  因为传入的只是一个实例，所以甚至可以传入一个虚假用于单元测试的 `Engine` 。
 
 Angular 通过 Hierarchical Dependency Injectors 实现了上述的 Dependency Injection 。 Hierarchical Dependency Injectors 具体的实现，例如 Service 的复用， Component 的 Injectors 等都是很值得一说的，不过和本文相关性不大，这里按下不表。
 
-Providers & Declarations
----
+## Providers & Declarations
 
 我们知道一个 Module 中可以有 Components ， Directives ， 和 Pipes ，还有 Services 。前三者都是与 HTML 模板相关的，需要放在在 Module 的 `declarations` 中；后者一般用来处理数据，放在 `providers` 中。
 
@@ -89,8 +88,7 @@ Providers & Declarations
 
 另一方面，如果一个 Module 既有 Components 也有 Services 时则需要分别对待了：在 `AppModule` 中导入这个 Module 的时候需要调用 `forRoot()` ，它返回的是一个 `ModuleWithProviders`；而在其他的 Module 则是直接导入这个 Module 或者调用 `forChild()`。例如 `RouterModule` 就既有 Component `<router-outlet>` 和 Directive `routerLink` ，也有 Service `ActivatedRoute`。
 
-Best Practice
----
+## Best Practice
 
 至此，要解决文章开头的问题可以很简单：将 `SpinnerService` 放到 `AppModule` 的 `providers` 里即可。
 
@@ -100,11 +98,10 @@ Best Practice
 
 > 当然，因为只在 `AppModule` 中导入，所以如果有一些只需要在 `AppComponent` 中使用的 Component ，如 `NavComponent` 和 `FooterComponent` 等也可以考虑放到其中。
 
-References
----
+## References
 
-1. 文章中提到了可以使用一个虚假的 Service 用于 Component 的单元测试， [这里](https://angular.io/guide/testing#test-a-component-with-a-dependency) 介绍了具体应该怎么做。
+1.  文章中提到了可以使用一个虚假的 Service 用于 Component 的单元测试， [这里](https://angular.io/guide/testing#test-a-component-with-a-dependency) 介绍了具体应该怎么做。
 
-2. Angular 的 Hierarchical Dependency Injectors 系统，这是一个很有趣的系统，每一个 Component 都有一个与之对应的可编辑的 Injector 。具体可以查看的 Angular 的官方文档： [Hierarchical Dependency Injectors](https://angular.io/guide/hierarchical-dependency-injection)  。
+2.  Angular 的 Hierarchical Dependency Injectors 系统，这是一个很有趣的系统，每一个 Component 都有一个与之对应的可编辑的 Injector 。具体可以查看的 Angular 的官方文档： [Hierarchical Dependency Injectors](https://angular.io/guide/hierarchical-dependency-injection) 。
 
-3. 写 Angular 应用的一个原则都是保持每一个 Module 的功能和结构的简单和统一，这一点和 Unix 的哲学不谋而合：**Write programs that do one thing and do it well.** 那么我们怎么应该这么设计一个好的 Module 呢？Angular 官方的 NgModule FAQs 中其实给出了 [答案](https://angular.io/guide/ngmodule-faq#feature-modules) 。从中我们可以看出，`CoreModule` 这种只提供 Service 和 `SharedModule` 这种只提供 Components ，Directives 和 Pipes 的 Module 是目前来说官方认为最好的设计。
+3.  写 Angular 应用的一个原则都是保持每一个 Module 的功能和结构的简单和统一，这一点和 Unix 的哲学不谋而合：**Write programs that do one thing and do it well.** 那么我们怎么应该这么设计一个好的 Module 呢？Angular 官方的 NgModule FAQs 中其实给出了 [答案](https://angular.io/guide/ngmodule-faq#feature-modules) 。从中我们可以看出，`CoreModule` 这种只提供 Service 和 `SharedModule` 这种只提供 Components ，Directives 和 Pipes 的 Module 是目前来说官方认为最好的设计。

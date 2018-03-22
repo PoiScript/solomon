@@ -2,7 +2,11 @@ import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
@@ -13,17 +17,21 @@ const RESOLVED_KEY = makeStateKey<PostResolve>('resolved');
 
 @Injectable()
 export class PostResolver implements Resolve<PostResolve> {
-
   private posts: Post[];
 
-  constructor (@Inject(POST_CONFIG) private config: PostConfig,
-               @Inject(PLATFORM_ID) private platformId: {},
-               private state: TransferState,
-               private http: HttpClient) {
+  constructor(
+    @Inject(POST_CONFIG) private config: PostConfig,
+    @Inject(PLATFORM_ID) private platformId: {},
+    private state: TransferState,
+    private http: HttpClient,
+  ) {
     this.posts = config.posts;
   }
 
-  resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PostResolve> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): Observable<PostResolve> {
     const slug = route.paramMap.get('slug');
     const resolved = this.state.get(RESOLVED_KEY, null);
 
@@ -39,18 +47,21 @@ export class PostResolver implements Resolve<PostResolve> {
       const current = this.posts[i];
 
       return this.http
-        .get(`${environment.origin_url}html/${current.slug}.html`, {responseType: 'text'})
-        .pipe(map(html => {
-          const resolve = {current, prior, next, html};
+        .get(`${environment.origin_url}html/${current.slug}.html`, {
+          responseType: 'text',
+        })
+        .pipe(
+          map(html => {
+            const resolve = { current, prior, next, html };
 
-          // only save the state in the server platform
-          if (isPlatformServer(this.platformId)) {
-            this.state.set(RESOLVED_KEY, resolve);
-          }
+            // only save the state in the server platform
+            if (isPlatformServer(this.platformId)) {
+              this.state.set(RESOLVED_KEY, resolve);
+            }
 
-          return resolve;
-        }));
+            return resolve;
+          }),
+        );
     }
   }
-
 }

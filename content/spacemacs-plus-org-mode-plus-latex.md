@@ -1,5 +1,4 @@
-前言
----
+## 前言
 
 我曾经试图将我的所有课笔记转换成 Markdown 文档以永久保存.
 我的笔记包含了大量的数学公式, 所以需要在 Markdown 里内嵌 LaTeX.
@@ -24,8 +23,7 @@ _Markdown 中内嵌的 LaTeX 大多是通过 MathJax 实现的, 所以另外一�
 
 当然, 一个编辑器想要达到最佳的输入效果, 一番配置是少不了的. 下面就是我的整个 Emacs + Org-mode + LaTeX 环境的配置过程, 大家可以选择性观看.
 
-Spacemacs
----
+## Spacemacs
 
 Emacs (**E**ditor **MAC**ro**S**) 是一个文本编辑器, 著名的编辑器之战的两大主角之一 (另一个是 vi 即其派生版本).
 
@@ -39,7 +37,7 @@ $ zypper in emacs
 
 而 Spacemacs 是一个由社区驱动的 Emacs 的分支, 它的口号是:
 
-> The best editor is neither Emacs nor Vim, it's Emacs *and* Vim!
+> The best editor is neither Emacs nor Vim, it's Emacs _and_ Vim!
 
 正如他们的口号所言, Spacemacs 的最大的特点就是 Vim 风格中通过 [Evil](https://www.emacswiki.org/emacs/Evil) 实现了 Vim 的键位绑定.
 在 Emacs 中也能使用 Vim 中独特的 `insert mode` 和 `visual mode` 了.
@@ -56,7 +54,7 @@ $ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 在 Windows 下的话, 不仅要将 Spacemacs 的 `.emacs` 放在 `C:\Users\{username}\` 同时也要在 `C:\Users\{username}\AppData\Roaming` 里.
 此外, 还有可能出现 `packages unavailable` 的情况, 此时可以参考一下官方的 [FAQ](https://github.com/syl20bnr/spacemacs/blob/master/doc/FAQ.org#why-are-all-packages-unavailable).
 
-无论是什么Editor/IDE, 装好的第一步应该都是修改字体吧.
+无论是什么 Editor/IDE, 装好的第一步应该都是修改字体吧.
 Spacemacs 的默认等宽字体是 Abode 的 **Source Code Pro**, 这曾经是我也是我的首选, 不过我现在喜欢用带连字 (ligatures) 的 **Fira Code**.
 
 Spacemacs 的配置文件在 `~/.spacemacs`, 打开后找到 `dotspacemacs-default-font` 修改成:
@@ -83,9 +81,7 @@ dotspacemacs-default-font '("Fira Code"
 
 > 如果不配置中文字体的话, 在打开带有中文字符的文件时, Emacs 会出现严重的卡顿 :(
 
-
-Org-mode & LaTeX
----
+## Org-mode & LaTeX
 
 Org-mode 是 Emacs 中的一种编辑模式, 支持编写 To-do list, 日志, 笔记等功能. 其中(对于我来说)最重要的就是支持 [内嵌 LaTeX](http://orgmode.org/manual/Embedded-LaTeX.html) 了.
 Org-mode 从 Emacs 22 开始就已经成为默认安装的部分了, 所以不需要额外的安装操作, 只需要打开带有 `.org` 的文件, 就会自动进入 Org-mode 了.
@@ -111,8 +107,7 @@ Org-mode 内嵌 LaTeX 有几种方式, display 我喜欢用 `\[E=mc^2\]`, inline
 (plist-put org-format-latex-options :scale 2.5)
 ```
 
-CDLaTeX
----
+## CDLaTeX
 
 到这里看来 Emacs + Org-mode 的组合相比 Markdown 似乎没有给输入太大的便利吧.
 所以接下来要介绍的就是 Emacs 的另外一个 mode 了, 这个 mode 可以大大提高在 Org-mode 中输入 LaTeX 的效率 -- `CDLaTeX`.
@@ -140,13 +135,13 @@ dotspacemacs-additional-packages '(cdlatex auctex)
 
 再次打开 Org-mode, 用 `M - x org-cdlatex-mode` 打开 `CDLaTeX`. 然后你就可以体验的 `CDLaTeX` 带来的快速输入 LaTeX 的功能了:
 
-1. 用 <TAB> 自动补全一些 LaTeX 模板, 例如: `fr` => `\frac{}{}`, `lr(` => `\left(\right)`. 此外, <TAB> 也可以用于在各个 `{}` 之间跳跃.
+1.  用 <TAB> 自动补全一些 LaTeX 模板, 例如: `fr` => `\frac{}{}`, `lr(` => `\left(\right)`. 此外, <TAB> 也可以用于在各个 `{}` 之间跳跃.
 
-2. `_` 和 `^` 会自动补全 `{}`, 不过如果 `{}` 里只有一个元素的话, 也会自动去掉.
+2.  `_` 和 `^` 会自动补全 `{}`, 不过如果 `{}` 里只有一个元素的话, 也会自动去掉.
 
-3. 在 `` ` `` 后加一个字母可以快速输入一些 LaTeX 的符号, 例如 `` `a `` => `\alpha`, `` `b `` => `\beta`
+3.  在 `` ` `` 后加一个字母可以快速输入一些 LaTeX 的符号, 例如 `` `a `` => `\alpha`, `` `b `` => `\beta`
 
-4. 在一些字母之后加上 `'` 则是可以修改该字母的字体或者加修饰, 例如 `a'.` => `\dot{a}`, `a'1` => `{\displaystyle a}`
+4.  在一些字母之后加上 `'` 则是可以修改该字母的字体或者加修饰, 例如 `a'.` => `\dot{a}`, `a'1` => `{\displaystyle a}`
 
 ![tab completions](https://c1.staticflickr.com/5/4068/35625649445_ed1143f084_o.png)
 
@@ -156,8 +151,7 @@ _`<TAB>` 的补全_
 
 _`` ` ``的补全_
 
-后语
----
+## 后语
 
 经过上述配置和折腾之后, 整理笔记终于成了一件不那么麻烦的事了. :)
 

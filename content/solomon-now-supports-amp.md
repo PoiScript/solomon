@@ -1,8 +1,7 @@
 > Solomon 现已支持 AMP.
 > 你可以访问[本篇文章的 AMP 版本](https://blog.poi.cat/amp/solomon-now-supports-amp.html)体验 :)
 
-AMP 是什么?
----
+## AMP 是什么?
 
 **AMP (Accelerated Mobile Pages)**
 是 Google 推出的一门能加快移动端页面呈现速度的技术.
@@ -16,8 +15,7 @@ AMP 是什么?
 
 > 里面小哥的演技好逼真 :)
 
-AMP 结构简述
----
+## AMP 结构简述
 
 AMP 主要由 **AMP HTML**,
 **AMP Runtime** 和 **AMP Component** 组成:
@@ -26,21 +24,21 @@ AMP 主要由 **AMP HTML**,
 
 一个规范的 AMP HTML 有以下的几个 **必要条件**:
 
-1. 以 `<!doctype html>` 开头
+1.  以 `<!doctype html>` 开头
 
-2. 顶层标签为 `<html ⚡>` 或 `<html amp>`
+2.  顶层标签为 `<html ⚡>` 或 `<html amp>`
 
-3. 必须包括 `<head>` 和 `<body>` 标签, 他们在 HTML 中是可选的
+3.  必须包括 `<head>` 和 `<body>` 标签, 他们在 HTML 中是可选的
 
-4. `<meta charset="utf-8">` 放在 `<head>` 的开头
+4.  `<meta charset="utf-8">` 放在 `<head>` 的开头
 
-5. `<script async src="https://cdn.ampproject.org/v0.js"></script>` 做为第二个元素
+5.  `<script async src="https://cdn.ampproject.org/v0.js"></script>` 做为第二个元素
 
-6. `<link rel="canonical" href="$SOME_URL" />` 这个 metadata 指向和这个页面相同内容的非 AMP 版本的页面
+6.  `<link rel="canonical" href="$SOME_URL" />` 这个 metadata 指向和这个页面相同内容的非 AMP 版本的页面
 
-7. `<head>` 中必须包含 `<meta name="viewport" content="width=device-width,minimum-scale=1">`
+7.  `<head>` 中必须包含 `<meta name="viewport" content="width=device-width,minimum-scale=1">`
 
-8. `<head>` 中必须包含 `<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>`
+8.  `<head>` 中必须包含 `<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>`
 
 除了以上的要求之外, AMP HTML 还有其他的限制:
 
@@ -93,8 +91,7 @@ AMP Project 还提供了其他的 Components, 例如:
 > 和 PyPy 里的 rPython 通过限制 Python 动态语言的能力,
 > 使得 rPython 可以进行静态的推导的能力, 颇有异曲同工之妙.
 
-Why Pelican?
----
+## Why Pelican?
 
 上面提到了, AMP 不允许使用除了
 AMP Runtime 和 AMP Components 的 JS 库,
@@ -123,17 +120,17 @@ Jekyll 是用 **Ruby** 写的,
 而我经常听见有人抱怨 Hexo 的 API 经常改,
 写的插件很容易不兼容, 所以我也就放弃了.
 
-自定义 Reader 插件
----
+## 自定义 Reader 插件
 
 决定了使用 **Pelican** 之后,
 第一步当然是添加一个新的 **Reader 插件**:
-1. 新建一个名为 `AMPMarkdownReader` 的类,
 
-2. 然后添加 Markdown 的后缀名:
-`['md', 'markdown', 'mkd', 'mdown']`,
+1.  新建一个名为 `AMPMarkdownReader` 的类,
 
-3. 最后注册该 Reader 即可.
+2.  然后添加 Markdown 的后缀名:
+    `['md', 'markdown', 'mkd', 'mdown']`,
+
+3.  最后注册该 Reader 即可.
 
 Pelican 里的 Reader 是 **一个黑箱**,
 输入的是 **文件路径**,
@@ -167,8 +164,7 @@ AMP 的页面是专注于移动端加速的,
 只不过写完之后记得用
 [The AMP Validator](https://validator.ampproject.org)
 或者在 URL 后面加 `#development=1`
-(前提是你引入了 AMP Runtime) 的方法
-来确认你的 AMP HTML 是否合法.
+(前提是你引入了 AMP Runtime) 的方法来确认你的 AMP HTML 是否合法.
 
 不过我这里要特别提到的就是页面中的
 `<script type="application/ld+json">`
@@ -179,8 +175,7 @@ Structured Data 是相当重要的,
 因为它可以提供给搜索引擎更多的信息,
 使我们的页面在搜索引擎上可以显示 **更多的信息**.
 
-Structured Data
----
+## Structured Data
 
 Structured Data 有两个形式:
 基于 JSON 的 **JSON-LD**
@@ -210,8 +205,7 @@ Structured Data 有两个形式:
 [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool)
 来查看我们的 json-ld 是否合法.
 
-后语
----
+## 后语
 
 最后, Solomon AMP 实现以 MIT 协议开源在
 [PoiScript/Solomon-AMP](https://github.com/PoiScript/Solomon-AMP)

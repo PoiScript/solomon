@@ -12,20 +12,21 @@ let fixture: ComponentFixture<UpNextComponent>;
 const post = MOCK_POSTS[0];
 
 describe('UpNextComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule],
-      declarations: [UpNextComponent],
-    })
-      .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [SharedModule, RouterTestingModule],
+        declarations: [UpNextComponent],
+      }).compileComponents();
+    }),
+  );
 
   describe('with no post provided', withNoPostProvided);
   describe('with prior post provided', withPriorPostProvided);
   describe('with next post provided', withNextPostProvided);
 });
 
-function withNoPostProvided () {
+function withNoPostProvided() {
   beforeEach(() => {
     fixture = TestBed.createComponent(UpNextComponent);
     component = fixture.componentInstance;
@@ -40,7 +41,7 @@ function withNoPostProvided () {
   });
 }
 
-function withPriorPostProvided () {
+function withPriorPostProvided() {
   beforeEach(() => {
     fixture = TestBed.createComponent(UpNextComponent);
     component = fixture.componentInstance;
@@ -62,11 +63,15 @@ function withPriorPostProvided () {
   });
 
   it('should display a button', () => {
-    expect(element.querySelector('#nav-prior a.mat-icon-button').getAttribute('href')).toBe('/post/' + post.slug);
+    expect(
+      element
+        .querySelector('#nav-prior a.mat-icon-button')
+        .getAttribute('href'),
+    ).toBe('/post/' + post.slug);
   });
 }
 
-function withNextPostProvided () {
+function withNextPostProvided() {
   beforeEach(() => {
     fixture = TestBed.createComponent(UpNextComponent);
     component = fixture.componentInstance;
@@ -88,6 +93,8 @@ function withNextPostProvided () {
   });
 
   it('should display a button', () => {
-    expect(element.querySelector('#nav-next a.mat-icon-button').getAttribute('href')).toBe('/post/' + post.slug);
+    expect(
+      element.querySelector('#nav-next a.mat-icon-button').getAttribute('href'),
+    ).toBe('/post/' + post.slug);
   });
 }

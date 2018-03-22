@@ -23,13 +23,13 @@ const server = createServer((req, res) => {
   }
 });
 
-export function startServer (port: number) {
+export function startServer(port: number) {
   server.listen(port);
 
   console.log('Server listening on http://localhost:' + port);
 }
 
-export function stopServer () {
+export function stopServer() {
   server.close();
 
   console.log('Server stopped.');

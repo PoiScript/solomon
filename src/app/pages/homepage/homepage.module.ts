@@ -6,9 +6,6 @@ import { HomepageHeaderComponent } from './homepage-header/homepage-header.compo
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [
-    HomepageComponent,
-    HomepageHeaderComponent,
-  ],
+  declarations: [HomepageComponent, HomepageHeaderComponent],
 })
 export class HomepageModule {}

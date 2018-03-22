@@ -1,5 +1,4 @@
-前言
----
+## 前言
 
 嗯, 没错, 又是一篇 "如何打造一个 XXX 的博客" 的文章.
 
@@ -11,8 +10,7 @@
 
 嗯, 这就说来话长了.
 
-Angular 还未达到 SEO-friendly 的程度
----
+## Angular 还未达到 SEO-friendly 的程度
 
 单页应用一直有一个令人诟病的问题就是就是其对搜索引擎不友好.
 
@@ -37,8 +35,7 @@ Angular 的 Server-side Rendering API 叫 Angular Univeral API, 并且 [也已�
 
 所以我叛教了 :)
 
-react-snapshot & react-helmet
----
+## react-snapshot & react-helmet
 
 想调用 React 的 Server-side Rendering 的 API 的话,
 最简单的方法是使用 react-snapshot.
@@ -75,8 +72,7 @@ react-snapshot 目前还有一个问题 (对我来说), 它会将路径 `/path/t
 而 `head` 中的 `meta` 标签更是 SEO 的关键之一,
 通过它我们可以主动给爬虫提供重要的信息, 例如文章的作者, 发布时间等.
 
-更进一步
----
+## 更进一步
 
 嗯, 经过 react-snapshot 和 react-helmet 处理之后, 已经能够完全满足 SEO 的需求了.
 
@@ -111,16 +107,15 @@ react-snapshot 目前还有一个问题 (对我来说), 它会将路径 `/path/t
 >
 > 因为如果随意替换的话, 可以会丢掉带有额外属性 (例如: `data-reactid`) 的标签. 其中 `data-reactid` 是 React 给每一个 Component 的一个唯一的标识符, 如果缺少了其中的某一个的话, 会导致 React 停止工作.
 
-后语
----
+## 后语
 
 在经过上述的步骤之后, 我们的博客将拥有一下特性:
 
-1. 基于 React 模型
+1.  基于 React 模型
 
-2. 博客中的每一个链接都是可以直接打开, 而不需要将路由重写至 `index.html`. 而且每一个页面都有 Server-side rendering, 可以被搜索引擎爬到, 哪怕是不支持 JavaScript 的纯文本浏览器 (例如 w3m) 也可以直接访问, 而不会显示那个臭名昭著的 "Loading". :)
+2.  博客中的每一个链接都是可以直接打开, 而不需要将路由重写至 `index.html`. 而且每一个页面都有 Server-side rendering, 可以被搜索引擎爬到, 哪怕是不支持 JavaScript 的纯文本浏览器 (例如 w3m) 也可以直接访问, 而不会显示那个臭名昭著的 "Loading". :)
 
-3. 在打开一个页面之后, 除非是查看一篇新的文章, 否则, 不需要再加载任何的资源. 而查看一篇新的文章时, 也只需要加载文章本身的 HTML, 其他组件, CSS 都不需要重新加载.
+3.  在打开一个页面之后, 除非是查看一篇新的文章, 否则, 不需要再加载任何的资源. 而查看一篇新的文章时, 也只需要加载文章本身的 HTML, 其他组件, CSS 都不需要重新加载.
 
 这是我想到的目前来说, 最完美的单页应用的 SEO 的解决方案.
 

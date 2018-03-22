@@ -9,21 +9,21 @@ import { Post, PostConfig, POST_CONFIG } from 'app/shared';
   templateUrl: './tag.component.html',
 })
 export class TagComponent implements OnInit {
-
   tag: string;
   posts: Post[];
 
-  constructor (@Inject(POST_CONFIG) config: PostConfig,
-               private route: ActivatedRoute,
-               private titleService: Title) {
+  constructor(
+    @Inject(POST_CONFIG) config: PostConfig,
+    private route: ActivatedRoute,
+    private titleService: Title,
+  ) {
     this.posts = config.posts;
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.route.params.subscribe(params => {
       this.tag = params['tag'];
       this.titleService.setTitle(`#${this.tag} | solomon`);
     });
   }
-
 }

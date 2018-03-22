@@ -25,11 +25,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "solomon",
       "serviceWorker": false,
-      "styles": [
-        "styles.scss",
-        "markdown.scss",
-        "theme.scss"
-      ],
+      "styles": ["styles.scss", "markdown.scss", "theme.scss"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
