@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SharedModule, LINK_CONFIG } from 'app/shared';
+import { SharedModule } from 'app/shared';
 import { MOCK_LINKS } from 'app/testing';
 import { LinkComponent } from './link.component';
 
@@ -14,14 +14,6 @@ describe('LinkComponent', () => {
       TestBed.configureTestingModule({
         imports: [SharedModule],
         declarations: [LinkComponent],
-        providers: [
-          {
-            provide: LINK_CONFIG,
-            useValue: {
-              links: MOCK_LINKS,
-            },
-          },
-        ],
       }).compileComponents();
     }),
   );
@@ -29,6 +21,7 @@ describe('LinkComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LinkComponent);
     component = fixture.componentInstance;
+    component.links = MOCK_LINKS;
     element = fixture.nativeElement;
     fixture.detectChanges();
   });

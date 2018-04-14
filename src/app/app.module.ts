@@ -11,7 +11,7 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AppComponent } from 'app/app.component';
-import { LINK_CONFIG, POST_CONFIG, SharedModule } from 'app/shared';
+import { POST_CONFIG, SharedModule } from 'app/shared';
 import {
   AboutModule,
   HomepageModule,
@@ -21,7 +21,7 @@ import {
   TagModule,
 } from 'app/pages';
 
-import { links, posts } from 'config';
+import { posts } from 'config';
 
 import { environment } from 'environments/environment';
 import { SOLOMON_ROUTES } from './routes';
@@ -53,13 +53,8 @@ import { SOLOMON_ROUTES } from './routes';
       provide: POST_CONFIG,
       useValue: { posts },
     },
-    {
-      provide: LINK_CONFIG,
-      useValue: { links },
-    },
   ],
 })
 export class AppModule {
-  links = links;
   posts = posts;
 }
