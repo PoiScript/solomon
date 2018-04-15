@@ -6,7 +6,7 @@
     "module": "commonjs",
     "types": []
   },
-  "exclude": ["test.ts", "**/*.spec.ts", "app/testing"],
+  "exclude": ["test.ts", "**/*.spec.ts", "testing"],
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"
   }

@@ -55,7 +55,7 @@ export class SharedModule {
   private registerIcon(name: string) {
     this.iconRegistry.addSvgIcon(
       name,
-      this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${name}.svg`),
+      this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`),
     );
   }
 }

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { PostListComponent } from './post-list.component';
-import { MOCK_POSTS } from 'app/testing';
+import { MOCK_POSTS } from 'testing';
 
 let component: PostListComponent;
 let element: Element;

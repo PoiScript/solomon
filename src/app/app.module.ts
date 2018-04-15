@@ -6,25 +6,20 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { RouterModule } from '@angular/router';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
-import { AppComponent } from 'app/app.component';
-import { POST_CONFIG, SharedModule } from 'app/shared';
-import {
-  AboutModule,
-  HomepageModule,
-  LinkModule,
-  NotFoundModule,
-  PostModule,
-  TagModule,
-} from 'app/pages';
-
 import { posts } from 'config';
-
 import { environment } from 'environments/environment';
-import { SOLOMON_ROUTES } from './routes';
+import { AppComponent } from './app.component';
+import { POST_CONFIG, SharedModule } from './shared';
+import { AboutModule } from './about/about.module';
+import { HomepageModule } from './homepage/homepage.module';
+import { LinkModule } from './link/link.module';
+import { NotFoundModule } from './not-found/not-found.module';
+import { PostModule } from './post/post.module';
+import { TagModule } from './tag/tag.module';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,10 +30,10 @@ import { SOLOMON_ROUTES } from './routes';
     HttpClientModule,
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
-    RouterModule.forRoot(SOLOMON_ROUTES),
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production,
     }),
+    AppRoutingModule,
     SharedModule,
     AboutModule,
     HomepageModule,

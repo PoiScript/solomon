@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { SharedModule } from 'app/shared';
-import { MOCK_POSTS } from 'app/testing';
+import { MOCK_POSTS } from 'testing';
 import { UpNextComponent } from './up-next.component';
 
 let component: UpNextComponent;

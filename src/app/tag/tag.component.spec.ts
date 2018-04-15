@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { SharedModule, POST_CONFIG } from 'app/shared';
-import { ActivatedRouteStub, MOCK_POSTS } from 'app/testing';
+import { ActivatedRouteStub, MOCK_POSTS } from 'testing';
 import { TagPipe } from './tag.pipe';
 import { TagComponent } from './tag.component';
 

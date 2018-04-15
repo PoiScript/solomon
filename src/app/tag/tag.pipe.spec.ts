@@ -1,5 +1,6 @@
+import { MOCK_POSTS } from 'testing';
+
 import { TagPipe } from './tag.pipe';
-import { MOCK_POSTS } from 'app/testing';
 
 describe('TagPipe', () => {
   const pipe = new TagPipe();

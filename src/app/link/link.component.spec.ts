@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SharedModule } from 'app/shared';
-import { MOCK_LINKS } from 'app/testing';
+import { MOCK_LINKS } from 'testing';
 import { LinkComponent } from './link.component';
 
 let component: LinkComponent;

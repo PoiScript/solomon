@@ -4,7 +4,7 @@ $text_color: rgba(255, 255, 255, 0.87);
   height: 420px;
   max-height: 50%;
   color: $text_color;
-  background: no-repeat url('/assets/logo.svg') center center,
+  background: no-repeat url('/assets/svg/logo.svg') center center,
     no-repeat url('/assets/header.jpg') center center;
   background-size: auto 210px, cover;
 }
