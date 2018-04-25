@@ -6,6 +6,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
@@ -33,6 +34,7 @@ import { AppRoutingModule } from './app.routing.module';
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production,
     }),
+    TransferHttpCacheModule,
     AppRoutingModule,
     SharedModule,
     AboutModule,

@@ -7,25 +7,20 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { outputFileSync, readFileSync } from 'fs-extra';
 import { join, resolve } from 'path';
 import { minify } from 'html-minifier';
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import { startServer, stopServer } from './server';
 import { posts } from '../src/config';
 
 const dist = resolve('dist');
 const index = readFileSync(join(dist, 'index.html'), 'utf8');
-const urls = ['/', '/about', '/link', '/user/login', '/user/action'];
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(join(
+const urls = ['/', '/about', '/link'];
+const { AppServerModuleNgFactory } = require(join(
   dist,
   'dist-server/main.bundle',
 ));
 
 function renderToStatic(url, path) {
-  return renderModuleFactory(AppServerModuleNgFactory, {
-    url,
-    document: index,
-    extraProviders: [provideModuleMap(LAZY_MODULE_MAP)],
-  })
+  return renderModuleFactory(AppServerModuleNgFactory, { url, document: index })
     .then(html =>
       minify(html, {
         collapseWhitespace: true,
