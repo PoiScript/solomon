@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 import {
   ServerModule,
   ServerTransferStateModule,
 } from '@angular/platform-server';
 
-import { AppModule } from 'app/app.module';
-import { AppComponent } from 'app/app.component';
+import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
+import { AssetInterceptor } from './asset-interceptor';
 
 @NgModule({
   imports: [
@@ -16,5 +18,12 @@ import { AppComponent } from 'app/app.component';
     ServerTransferStateModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AssetInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class AppServerModule {}
