@@ -29,8 +29,7 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts",
-        "server": "environments/environment.server.ts"
+        "prod": "environments/environment.prod.ts"
       }
     },
     {
@@ -41,7 +40,8 @@
       "tsconfig": "tsconfig.server.json",
       "environmentSource": "environments/environment.ts",
       "environments": {
-        "server": "environments/environment.server.ts"
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
       }
     }
   ],

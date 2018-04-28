@@ -14,7 +14,7 @@
     "prebuild": "ts-node scripts/check",
     "build": "yarn build:client && yarn build:server && ts-node scripts/prerender",
     "build:client": "ng build --prod --buildOptimizer",
-    "build:server": "ng build --prod --buildOptimizer --environment server --app 1 --outputHashing false"
+    "build:server": "ng build --prod --buildOptimizer --app 1 --outputHashing false"
   },
   "private": true,
   "dependencies": {
