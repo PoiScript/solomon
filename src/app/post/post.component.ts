@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { SafeHtml, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-import { PostResolve } from 'app/shared';
+import { Post, PostResolve } from 'app/models';
 
 @Component({
-  selector: 'solomon-post',
   templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss'],
 })
-export class PostComponent implements OnInit {
-  resolve: PostResolve;
+export class PostComponent {
+  html: SafeHtml;
+  post: Post;
 
-  constructor(private route: ActivatedRoute, private titleService: Title) {}
-
-  ngOnInit() {
-    this.route.data.subscribe((data: { resolve: PostResolve }) => {
-      this.resolve = data.resolve;
-      this.titleService.setTitle(data.resolve.current.title + ' | solomon');
+  constructor(private route: ActivatedRoute, private titleService: Title) {
+    this.route.data.subscribe(({ resolve }: { resolve: PostResolve }) => {
+      this.post = resolve.post;
+      this.html = resolve.html;
+      this.titleService.setTitle(this.post.title + ' | solomon');
     });
   }
 }

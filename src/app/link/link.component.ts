@@ -3,12 +3,9 @@ import { Title } from '@angular/platform-browser';
 
 import { Link } from './link.model';
 
-@Component({
-  selector: 'solomon-link',
-  templateUrl: './link.component.html',
-})
+@Component({ templateUrl: './link.component.html' })
 export class LinkComponent {
-  links: Link[] = [
+  readonly links: Link[] = [
     {
       address: 'https://typeblog.net/',
       avatar: 'https://github.com/PeterCxy.png?size=400',

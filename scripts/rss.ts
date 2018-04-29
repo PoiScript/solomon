@@ -16,12 +16,12 @@ export function rss(posts) {
   });
 
   const POST_BASE = resolve('https://blog.poi.cat', 'post');
-  posts
+  Object.values(posts)
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
     .forEach(post =>
       feed.item({
         title: post.title,
-        description: render(post),
+        description: render(post.slug),
         url: resolve(POST_BASE, post.slug),
         guid: post.slug,
         categories: post.tags,

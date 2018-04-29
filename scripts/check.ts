@@ -14,9 +14,12 @@ if (!existsSync(join(publicDir, 'atom.xml'))) {
   outputFileSync(join(publicDir, 'atom.xml'), rss(posts));
 }
 
-posts
-  .filter(post => !existsSync(join(publicDir, 'html', `${post.slug}.html`)))
-  .map(post => {
-    console.info(`INFO: ${post.slug}.html doesn't exist, creating...`);
-    outputFileSync(join(publicDir, `html/${post.slug}.html`), render(post));
-  });
+for (const slug in posts) {
+  if (posts.hasOwnProperty(slug)) {
+    const path = join(publicDir, 'html', `${slug}.html`);
+    if (!existsSync(path)) {
+      console.info(`INFO: ${slug}.html doesn't exist, creating...`);
+      outputFileSync(path, render(slug));
+    }
+  }
+}

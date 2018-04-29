@@ -10,10 +10,9 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
-import { posts } from 'config';
 import { environment } from 'environments/environment';
 import { AppComponent } from './app.component';
-import { POST_CONFIG, SharedModule } from './shared';
+import { SharedModule } from './shared';
 import { AboutModule } from './about/about.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { LinkModule } from './link/link.module';
@@ -21,6 +20,7 @@ import { NotFoundModule } from './not-found/not-found.module';
 import { PostModule } from './post/post.module';
 import { TagModule } from './tag/tag.module';
 import { AppRoutingModule } from './app.routing.module';
+import { PostProvider } from './post.config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,13 +45,6 @@ import { AppRoutingModule } from './app.routing.module';
     TagModule,
   ],
   bootstrap: [AppComponent],
-  providers: [
-    {
-      provide: POST_CONFIG,
-      useValue: { posts },
-    },
-  ],
+  providers: [PostProvider],
 })
-export class AppModule {
-  posts = posts;
-}
+export class AppModule {}

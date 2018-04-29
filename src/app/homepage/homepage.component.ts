@@ -1,20 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { Post, PostConfig, POST_CONFIG } from 'app/shared';
+import { POST_CONFIG } from 'app/post.config';
+import { PostDict, Post } from 'app/models';
 
-@Component({
-  selector: 'solomon-homepage',
-  templateUrl: './homepage.component.html',
-})
+@Component({ templateUrl: './homepage.component.html' })
 export class HomepageComponent {
-  posts: Post[];
+  readonly posts: Post[] = Object.values(this.postDict);
 
   constructor(
-    @Inject(POST_CONFIG) config: PostConfig,
+    @Inject(POST_CONFIG) private postDict: PostDict,
     private titleService: Title,
   ) {
-    this.posts = config.posts;
     this.titleService.setTitle('solomon');
   }
 }

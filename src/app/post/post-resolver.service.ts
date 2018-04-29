@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import {
@@ -8,15 +9,17 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
-import { Post, POST_CONFIG, PostConfig, PostResolve } from 'app/shared';
+import { PostDict, PostResolve } from 'app/models';
+import { POST_CONFIG } from 'app/post.config';
 
 @Injectable()
 export class PostResolver implements Resolve<PostResolve> {
-  readonly posts: Post[] = this.config.posts;
+  readonly posts: PostDict = this.postConfig;
 
   constructor(
-    @Inject(POST_CONFIG) private config: PostConfig,
+    @Inject(POST_CONFIG) private postConfig: PostDict,
     private http: HttpClient,
+    private sanitizer: DomSanitizer,
   ) {}
 
   resolve(
@@ -24,17 +27,13 @@ export class PostResolver implements Resolve<PostResolve> {
     state: RouterStateSnapshot,
   ): Observable<PostResolve> {
     const slug = route.paramMap.get('slug');
-    const i = this.posts.findIndex(post => post.slug === slug);
+    const post = this.posts[slug];
 
     return this.http
       .get(`/html/${slug}.html`, { responseType: 'text' })
       .pipe(
-        map(html => ({
-          html,
-          next: this.posts[i - 1],
-          prior: this.posts[i + 1],
-          current: this.posts[i],
-        })),
+        map(html => this.sanitizer.bypassSecurityTrustHtml(html)),
+        map(html => ({ html, post })),
       );
   }
 }

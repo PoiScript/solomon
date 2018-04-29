@@ -28,13 +28,13 @@ const toc = () => `
       </nav>
 `;
 
-export function render(post) {
+export function render(slug) {
   // clear headings array
   while (headings.length) {
     headings.pop();
   }
 
-  const markdown = readFileSync(join(content, `${post.slug}.md`), 'utf8');
+  const markdown = readFileSync(join(content, `${slug}.md`), 'utf8');
   const html = marked(markdown, { renderer }).concat('</div></section>');
 
   return minify(toc().concat(html), {

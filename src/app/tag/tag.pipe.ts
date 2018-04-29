@@ -1,10 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Post } from 'app/shared';
+import { PostDict, Post } from 'app/models';
 
 @Pipe({ name: 'tag' })
 export class TagPipe implements PipeTransform {
-  transform(posts: Post[], tag: string): Post[] {
-    return posts.filter(post => post.tags.includes(tag));
+  transform(postDict: PostDict, tag: string): Post[] {
+    const result = [];
+    for (const slug in postDict) {
+      if (postDict[slug].tags.includes(tag)) {
+        result.push(postDict[slug]);
+      }
+    }
+    return result;
   }
 }

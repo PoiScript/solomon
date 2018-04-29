@@ -28,13 +28,15 @@ pushPage('/about');
 pushPage('/link');
 pushPage('/404', '/404.html');
 
-for (const post of posts) {
-  // add post page
-  pushPage(`/post/${post.slug}`);
+for (const slug in posts) {
+  if (posts.hasOwnProperty(slug)) {
+    // add post page
+    pushPage(`/post/${slug}`);
 
-  for (const tag of post.tags) {
-    // add tag page
-    pushPage(`/tag/${tag}`);
+    for (const tag of posts[slug].tags) {
+      // add tag page
+      pushPage(`/tag/${tag}`);
+    }
   }
 }
 
