@@ -2,6 +2,7 @@
 
 import 'zone.js/dist/zone-node';
 
+import { enableProdMode } from '@angular/core';
 import { renderModuleFactory } from '@angular/platform-server';
 import { outputFileSync, readFileSync } from 'fs-extra';
 import { join, resolve } from 'path';
@@ -11,10 +12,9 @@ import { posts } from '../src/config';
 
 const dist = resolve('dist');
 const document = readFileSync(join(dist, 'index.html'), 'utf8');
-const { AppServerModuleNgFactory } = require(join(
-  dist,
-  'dist-server/main.bundle',
-));
+const { AppServerModuleNgFactory } = require(join(dist, 'dist-server/main'));
+
+enableProdMode();
 
 const pages: { [key: string]: string } = {};
 

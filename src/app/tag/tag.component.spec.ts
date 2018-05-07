@@ -14,26 +14,24 @@ let fixture: ComponentFixture<TagComponent>;
 const activatedRoute = new ActivatedRouteStub();
 
 describe('TagComponent', () => {
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SharedModule, RouterTestingModule],
-        declarations: [TagComponent, TagPipe],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: activatedRoute,
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule, RouterTestingModule],
+      declarations: [TagComponent, TagPipe],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: activatedRoute,
+        },
+        {
+          provide: POST_CONFIG,
+          useValue: {
+            posts: MOCK_POSTS,
           },
-          {
-            provide: POST_CONFIG,
-            useValue: {
-              posts: MOCK_POSTS,
-            },
-          },
-        ],
-      }).compileComponents();
-    }),
-  );
+        },
+      ],
+    }).compileComponents();
+  }));
 
   describe('with tag tag only one post has', withTheTagOnlyOnePostHas);
   describe('with the tag two posts contain', withTheTagTwoPostsContain);

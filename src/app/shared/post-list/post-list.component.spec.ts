@@ -9,14 +9,12 @@ let element: Element;
 let fixture: ComponentFixture<PostListComponent>;
 
 describe('PostListComponent', () => {
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule],
-        declarations: [PostListComponent],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [PostListComponent],
+    }).compileComponents();
+  }));
 
   describe('with no post provided', withNoPostProvided);
   describe('with two posts provided', withTwoPostsProvided);

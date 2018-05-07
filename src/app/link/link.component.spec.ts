@@ -9,14 +9,12 @@ let fixture: ComponentFixture<LinkComponent>;
 let element: Element;
 
 describe('LinkComponent', () => {
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SharedModule],
-        declarations: [LinkComponent],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule],
+      declarations: [LinkComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LinkComponent);

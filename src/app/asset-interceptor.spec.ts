@@ -5,11 +5,14 @@ import { AssetInterceptorService } from './asset-interceptor';
 describe('AssetInterceptorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AssetInterceptorService]
+      providers: [AssetInterceptorService],
     });
   });
 
-  it('should be created', inject([AssetInterceptorService], (service: AssetInterceptorService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([AssetInterceptorService], (service: AssetInterceptorService) => {
+      expect(service).toBeTruthy();
+    }),
+  );
 });

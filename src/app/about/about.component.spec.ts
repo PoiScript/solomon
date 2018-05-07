@@ -9,13 +9,11 @@ describe('AboutComponent', () => {
   let element: HTMLElement;
   let fixture: ComponentFixture<AboutComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [AboutModule, RouterTestingModule],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [AboutModule, RouterTestingModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AboutComponent);

@@ -7,13 +7,11 @@ describe('NotFoundComponent', () => {
   let element: HTMLElement;
   let fixture: ComponentFixture<NotFoundComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [NotFoundComponent],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [NotFoundComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NotFoundComponent);

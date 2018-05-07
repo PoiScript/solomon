@@ -13,20 +13,18 @@ describe('PostComponent', () => {
   const activatedRoute = new ActivatedRouteStub();
   const current = MOCK_POSTS[0];
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [PostComponent],
-        schemas: [NO_ERRORS_SCHEMA],
-        providers: [
-          {
-            provide: ActivatedRoute,
-            useValue: activatedRoute,
-          },
-        ],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [PostComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: activatedRoute,
+        },
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     activatedRoute.testData = {

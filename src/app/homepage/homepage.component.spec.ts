@@ -15,20 +15,18 @@ describe('HomepageComponent', () => {
 });
 
 function withNoPostProvided() {
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SharedModule],
-        declarations: [HomepageComponent],
-        providers: [
-          {
-            provide: POST_CONFIG,
-            useValue: { posts: [] },
-          },
-        ],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule],
+      declarations: [HomepageComponent],
+      providers: [
+        {
+          provide: POST_CONFIG,
+          useValue: { posts: [] },
+        },
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);
@@ -59,22 +57,20 @@ function withNoPostProvided() {
 }
 
 function withTwoPostsProvided() {
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SharedModule, RouterTestingModule],
-        declarations: [HomepageComponent],
-        providers: [
-          {
-            provide: POST_CONFIG,
-            useValue: {
-              posts: MOCK_POSTS,
-            },
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule, RouterTestingModule],
+      declarations: [HomepageComponent],
+      providers: [
+        {
+          provide: POST_CONFIG,
+          useValue: {
+            posts: MOCK_POSTS,
           },
-        ],
-      }).compileComponents();
-    }),
-  );
+        },
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);

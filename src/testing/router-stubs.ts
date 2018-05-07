@@ -6,7 +6,7 @@ import {
   Input,
 } from '@angular/core';
 import { Data, Params } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ActivatedRouteStub {
