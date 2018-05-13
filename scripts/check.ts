@@ -3,9 +3,10 @@
 import { existsSync, outputFileSync } from 'fs-extra';
 import { join, resolve } from 'path';
 
+import { posts } from '@solomon/blog/src/config'
+
 import { rss } from './rss';
 import { render } from './render';
-import { posts } from '../src/config';
 
 const publicDir = resolve('public');
 

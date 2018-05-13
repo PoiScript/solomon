@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
-    "ignore": ["/dist-server"]
+    "public": "dist/blog",
+    "ignore": ["/blog-server"]
   }
 }

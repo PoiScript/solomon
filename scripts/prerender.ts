@@ -8,11 +8,11 @@ import { outputFileSync, readFileSync } from 'fs-extra';
 import { join, resolve } from 'path';
 import { minify } from 'html-minifier';
 
-import { posts } from '../src/config';
+import { posts } from '@solomon/blog/src/config';
 
 const dist = resolve('dist');
-const document = readFileSync(join(dist, 'index.html'), 'utf8');
-const { AppServerModuleNgFactory } = require(join(dist, 'dist-server/main'));
+const document = readFileSync(join(dist, 'blog', 'index.html'), 'utf8');
+const { AppServerModuleNgFactory } = require(join(dist, 'blog-server/main'));
 
 enableProdMode();
 
@@ -52,6 +52,6 @@ for (const [url, path] of Object.entries(pages)) {
     )
     .then(html => {
       console.info(`Saving "${url}" as "${path}"`);
-      outputFileSync(join(dist, path), html);
+      outputFileSync(join(dist, 'blog', path), html);
     });
 }

@@ -3,39 +3,39 @@
     "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
   "projects": {
-    "app": {
-      "root": "",
+    "blog": {
+      "root": "apps/blog/src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/blog",
+            "index": "apps/blog/src/index.html",
+            "main": "apps/blog/src/main.ts",
+            "polyfills": "apps/blog/src/polyfills.ts",
+            "tsConfig": "apps/blog/src/tsconfig.app.json",
             "assets": [
-              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "assets",
+                "output": "assets"
+              },
               {
                 "glob": "**/*",
                 "input": "public",
                 "output": ""
               }
             ],
-            "styles": [
-              "src/styles.scss",
-              "src/markdown.scss",
-              "src/theme.scss"
-            ],
+            "styles": ["apps/blog/src/styles.scss", "apps/blog/src/theme.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "src": "src/environments/environment.ts",
-                  "replaceWith": "src/environments/environment.prod.ts"
+                  "src": "libs/environment/index.ts",
+                  "replaceWith": "libs/environment/prod.ts"
                 }
               ],
               "optimization": true,
@@ -53,79 +53,64 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "blog:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app:build:production"
+              "browserTarget": "blog:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app:build"
+            "browserTarget": "blog:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              {
-                "input": "styles.css"
-              }
-            ],
-            "scripts": [],
-            "assets": [
-              {
-                "glob": "favicon.ico",
-                "input": "src/",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              }
-            ]
+            "main": "apps/blog/src/test.ts",
+            "polyfills": "apps/blog/src/polyfills.ts",
+            "tsConfig": "apps/blog/src/tsconfig.spec.json",
+            "karmaConfig": "apps/blog/src/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "tsConfig": [
+              "apps/blog/src/tsconfig.app.json",
+              "apps/blog/src/tsconfig.spec.json"
+            ],
             "exclude": ["**/node_modules/**"]
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/dist-server",
-            "main": "src/main.server.ts",
-            "tsConfig": "src/tsconfig.server.json"
+            "outputPath": "dist/blog-server",
+            "main": "apps/blog/src/main.server.ts",
+            "tsConfig": "apps/blog/src/tsconfig.server.json"
           }
         }
       }
     },
-    "app-e2e": {
-      "root": "e2e/",
+    "blog-e2e": {
+      "root": "apps/blog/e2e",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "app:serve"
+            "protractorConfig": "apps/blog/e2e/protractor.conf.js",
+            "devServerTarget": "blog:serve"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": "apps/blog/e2e/tsconfig.e2e.json",
             "exclude": ["**/node_modules/**"]
           }
         }

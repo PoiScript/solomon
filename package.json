@@ -9,12 +9,8 @@
     "e2e": "ng e2e",
     "lint": "ng lint",
     "test": "ng test",
-    "prestart": "ts-node scripts/check",
-    "start": "ng serve",
-    "prebuild": "ts-node scripts/check",
-    "build": "yarn build:client && yarn build:server && ts-node scripts/prerender",
-    "build:client": "ng build --prod --buildOptimizer",
-    "build:server": "ng run app:server"
+    "prestart": "ts-node -r tsconfig-paths/register scripts/check",
+    "start": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +27,7 @@
     "@angular/platform-browser-dynamic": "6.0.1",
     "@angular/router": "6.0.1",
     "@angular/service-worker": "6.0.1",
+    "@solomon/scss": "file:libs/scss",
     "@ngx-progressbar/core": "^4.1.1",
     "@ngx-progressbar/http": "^4.1.1",
     "core-js": "^2.5.3",
@@ -64,6 +61,7 @@
     "protractor": "~5.3.0",
     "rss": "^1.2.2",
     "ts-node": "~4.1.0",
+    "tsconfig-paths": "^3.3.2",
     "tslint": "~5.9.1",
     "typescript": "2.7.2"
   }

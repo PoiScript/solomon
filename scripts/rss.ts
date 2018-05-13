@@ -1,11 +1,12 @@
 import * as RSS from 'rss';
+const rss_pkg = require('rss/package');
 import { resolve } from 'url';
+
+import { PostDict } from '@solomon/models';
 
 import { render } from './render';
 
-const rss_pkg = require('rss/package');
-
-export function rss(posts) {
+export function rss(posts: PostDict) {
   const feed = new RSS({
     title: 'solomon',
     description: "PoiScript's Blog",
