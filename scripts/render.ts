@@ -3,7 +3,7 @@ import { minify } from 'html-minifier';
 import * as marked from 'marked';
 import { join, resolve } from 'path';
 
-const content = resolve('content');
+const content = resolve('apps/blog/content');
 const renderer = new marked.Renderer();
 const headings = [];
 
