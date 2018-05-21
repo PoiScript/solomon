@@ -230,17 +230,17 @@
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-6.0.0.tgz#50e4b80d08618064e3404306b24b97877db9007d"
 
-"@ngx-progressbar/core@^4.1.1":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@ngx-progressbar/core/-/core-4.3.0.tgz#cd4e71916a273d5ecdf55b8f7ebae3d9fa81eab5"
+"@ngx-progressbar/core@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/core/-/core-5.0.1.tgz#a8566384638512b7e53945a3995ccbd79ce21c31"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
-"@ngx-progressbar/http@^4.1.1":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@ngx-progressbar/http/-/http-4.3.0.tgz#75c7cc212aa9b5f466a29ec7feab1e8526584deb"
+"@ngx-progressbar/http@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-progressbar/http/-/http-5.0.1.tgz#f8072fe56c3d36619de04ab650bf191e00f275f9"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
 "@schematics/angular@0.6.1":
   version "0.6.1"

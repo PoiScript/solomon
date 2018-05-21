@@ -28,8 +28,8 @@
     "@angular/router": "6.0.1",
     "@angular/service-worker": "6.0.1",
     "@solomon/scss": "file:libs/scss",
-    "@ngx-progressbar/core": "^4.1.1",
-    "@ngx-progressbar/http": "^4.1.1",
+    "@ngx-progressbar/core": "5.0.1",
+    "@ngx-progressbar/http": "5.0.1",
     "core-js": "^2.5.3",
     "rxjs": "6.1.0",
     "zone.js": "^0.8.26"
