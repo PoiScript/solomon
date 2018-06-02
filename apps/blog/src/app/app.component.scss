@@ -1,3 +1,11 @@
 .main-content {
   min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  box-sizing: border-box;
 }

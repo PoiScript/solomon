@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 import {
   ServerModule,
   ServerTransferStateModule,
@@ -13,7 +12,6 @@ import { AssetInterceptor } from './asset-interceptor';
 @NgModule({
   imports: [
     AppModule,
-    FlexLayoutServerModule,
     ServerModule,
     ServerTransferStateModule,
   ],

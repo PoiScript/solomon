@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
@@ -31,7 +30,6 @@ import { FooterComponent } from './footer/footer.component';
   exports: [
     CommonModule,
     FormsModule,
-    FlexLayoutModule,
     RouterModule,
     PostListComponent,
     HeaderComponent,
