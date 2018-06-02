@@ -69,14 +69,15 @@ dotspacemacs-default-font '("Fira Code"
 
 其中字体大小, 宽度等参数见个人喜好, 你可以在[这里](https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#font) 看到各个参数的含义.
 
-英文的等宽字体配置完后, 还可以选择性地配置其他的语言, 例如中文:
+英文的等宽字体配置完后, 还可以选择性地配置其他的语言, 例如中文(这里需要先判断一下是不是 GUI):
 
 ```elisp
 ;; Set Chinese Font
 ;; Put this inside `dotspacemacs/user-config()`
-(dolist (charset '(kana han cjk-misc bopomofo))
-        (set-fontset-font (frame-parameter nil 'font) charset
-                          (font-spec :family "Noto Sans SC" :size 20)))
+(if window-system
+        (dolist (charset '(kana han cjk-misc bopomofo))
+                (set-fontset-font (frame-parameter nil 'font)
+                        charset (font-spec :family "Noto Sans SC" :size 20))))
 ```
 
 > 如果不配置中文字体的话, 在打开带有中文字符的文件时, Emacs 会出现严重的卡顿 :(
