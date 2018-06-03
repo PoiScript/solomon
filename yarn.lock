@@ -84,11 +84,27 @@
     rxjs "^6.0.0"
     source-map "^0.5.6"
 
+"@angular-devkit/core@0.7.0-beta.1":
+  version "0.7.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-0.7.0-beta.1.tgz#e53f5e27ab5657523c491e289e0ff9c7f1c98c36"
+  dependencies:
+    ajv "~6.4.0"
+    chokidar "^2.0.3"
+    rxjs "^6.0.0"
+    source-map "^0.5.6"
+
 "@angular-devkit/schematics@0.6.7":
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-0.6.7.tgz#7bd3c1d707cb04162bc199feacfbb1fb2ec6a5ab"
   dependencies:
     "@angular-devkit/core" "0.6.7"
+    rxjs "^6.0.0"
+
+"@angular-devkit/schematics@0.7.0-beta.1":
+  version "0.7.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-0.7.0-beta.1.tgz#6d92542004c8397871ac490bb4ea96aa58c1fba5"
+  dependencies:
+    "@angular-devkit/core" "0.7.0-beta.1"
     rxjs "^6.0.0"
 
 "@angular/animations@6.0.3":
@@ -185,6 +201,15 @@
     tslib "^1.9.0"
     xhr2 "^0.1.4"
 
+"@angular/pwa@^0.7.0-beta.1":
+  version "0.7.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.7.0-beta.1.tgz#b194d3373ef6d7e832036a9601c6c951545afff7"
+  dependencies:
+    "@angular-devkit/core" "0.7.0-beta.1"
+    "@angular-devkit/schematics" "0.7.0-beta.1"
+    "@schematics/angular" "0.7.0-beta.1"
+    typescript "~2.6.2"
+
 "@angular/router@6.0.3":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-6.0.3.tgz#c2b63401c30788b78c90e4209cd06a653eae6428"
@@ -227,6 +252,14 @@
   dependencies:
     "@angular-devkit/core" "0.6.7"
     "@angular-devkit/schematics" "0.6.7"
+    typescript ">=2.6.2 <2.8"
+
+"@schematics/angular@0.7.0-beta.1":
+  version "0.7.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.7.0-beta.1.tgz#8e8d9eda6700bdbadb3aea650e3a7e30bef7ffa5"
+  dependencies:
+    "@angular-devkit/core" "0.7.0-beta.1"
+    "@angular-devkit/schematics" "0.7.0-beta.1"
     typescript ">=2.6.2 <2.8"
 
 "@schematics/update@0.6.7":
@@ -6500,6 +6533,10 @@ typedarray@^0.0.6:
 typescript@2.7.2, "typescript@>=2.6.2 <2.8", typescript@~2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
+
+typescript@~2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 
 uglify-es@^3.3.4:
   version "3.3.9"

@@ -18,7 +18,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "assets",
+                "input": "apps/blog/src/../assets",
                 "output": "assets"
               },
               {
@@ -46,7 +46,8 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true
             }
           }
         },

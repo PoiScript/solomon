@@ -1,17 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AssetInterceptorService } from './asset-interceptor';
+import { AssetInterceptor } from './asset-interceptor';
 
-describe('AssetInterceptorService', () => {
+describe('AssetInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AssetInterceptorService],
+      providers: [AssetInterceptor],
     });
   });
 
   it(
     'should be created',
-    inject([AssetInterceptorService], (service: AssetInterceptorService) => {
+    inject([AssetInterceptor], (service: AssetInterceptor) => {
       expect(service).toBeTruthy();
     }),
   );
