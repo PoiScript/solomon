@@ -66,6 +66,11 @@ export class LinkComponent {
       avatar: 'https://github.com/Sherlock-Holo.png?size=400',
       name: 'Sherlock Holo',
     },
+    {
+      address: 'https://blog.sukitsuki.com/',
+      avatar: 'https://github.com/tsuki.png?size=400',
+      name: 'Tsuka Tsuki',
+    },
   ];
 
   constructor(private titleService: Title) {
