@@ -131,7 +131,7 @@
             "polyfills": "apps/libreria/src/polyfills.ts",
             "tsConfig": "apps/libreria/src/tsconfig.app.json",
             "assets": [],
-            "styles": ["apps/libreria/src/styles.css"],
+            "styles": ["apps/libreria/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
