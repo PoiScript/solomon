@@ -1,26 +1,36 @@
 /* tslint:disable:no-console */
 
-import { existsSync, outputFileSync } from 'fs-extra';
+import { existsSync, outputFile } from 'fs-extra';
 import { join, resolve } from 'path';
 
-import { posts } from '@solomon/blog/src/config'
+import { posts } from '@solomon/blog/src/config';
 
 import { rss } from './rss';
 import { render } from './render';
 
 const publicDir = resolve('public');
 
-if (!existsSync(join(publicDir, 'atom.xml'))) {
-  console.info(`INFO: atom.xml doesn't exist, creating...`);
-  outputFileSync(join(publicDir, 'atom.xml'), rss(posts));
-}
+(async () => {
+  const rssPath = join(publicDir, 'atom.xml');
+  const promise = [];
 
-for (const slug in posts) {
-  if (posts.hasOwnProperty(slug)) {
-    const path = join(publicDir, 'html', `${slug}.html`);
-    if (!existsSync(path)) {
-      console.info(`INFO: ${slug}.html doesn't exist, creating...`);
-      outputFileSync(path, render(slug));
+  if (!existsSync(rssPath)) {
+    promise.push(rss(posts).then(xml => outputFile(rssPath, xml)));
+  }
+
+  for (const slug in posts) {
+    if (posts.hasOwnProperty(slug)) {
+      const path = join(publicDir, 'html', `${slug}.html`);
+      if (!existsSync(path)) {
+        promise.push(render(slug).then(html => outputFile(path, html)));
+      }
     }
   }
-}
+
+  try {
+    const res = await Promise.all(promise);
+    console.log(`Generated ${res.length} files.`);
+  } catch (e) {
+    console.log(e);
+  }
+})();

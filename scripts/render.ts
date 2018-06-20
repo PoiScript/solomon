@@ -1,44 +1,21 @@
-import { readFileSync } from 'fs-extra';
+import { readFile } from 'fs-extra';
 import { minify } from 'html-minifier';
-import * as marked from 'marked';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
+import * as hljs from 'highlight.js';
+import * as MarkdownIt from 'markdown-it';
 
-const content = resolve('apps/blog/content');
-const renderer = new marked.Renderer();
-const headings = [];
-
-marked.setOptions({
-  highlight: code => require('highlight.js').highlightAuto(code).value,
+const renderer = new MarkdownIt({
+  html: true,
+  highlight: (code, lang) =>
+    lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code).value : '',
 });
 
-renderer.heading = text => {
-  const id = encodeURI(text);
-  headings.push({ id, text });
-  return `</div></section><section id="${id}"><h2>${text}</h2><div class="section-content">`;
-};
-
-const toc = () => `
-  <section class="toc">
-    <h2>${headings.length ? 'Contents' : ''}</h2>
-    <div class="section-content">
-      <nav>
-        <ul>
-          ${headings.map(h => `<li>${h.text}</li>`).join('')}
-        </ul>
-      </nav>
-`;
-
-export function render(slug) {
-  // clear headings array
-  while (headings.length) {
-    headings.pop();
-  }
-
-  const markdown = readFileSync(join(content, `${slug}.md`), 'utf8');
-  const html = marked(markdown, { renderer }).concat('</div></section>');
-
-  return minify(toc().concat(html), {
-    collapseWhitespace: true,
-    removeEmptyElements: true,
-  });
-}
+export const render = slug =>
+  readFile(resolve('apps/blog/content', `${slug}.md`), 'utf8')
+    .then(markdown => renderer.render(markdown))
+    .then(html =>
+      minify(html, {
+        collapseWhitespace: true,
+        removeEmptyElements: true,
+      }),
+    );

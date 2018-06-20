@@ -17,19 +17,25 @@ export function rss(posts: PostDict) {
   });
 
   const POST_BASE = resolve('https://blog.poi.cat', 'post');
+  const promise = [];
+
   Object.values(posts)
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
     .forEach(post =>
-      feed.item({
-        title: post.title,
-        description: render(post.slug),
-        url: resolve(POST_BASE, post.slug),
-        guid: post.slug,
-        categories: post.tags,
-        author: 'PoiScript',
-        date: post.date,
-      }),
+      promise.push(
+        render(post.slug).then(html => {
+          feed.item({
+            title: post.title,
+            description: html,
+            url: resolve(POST_BASE, post.slug),
+            guid: post.slug,
+            categories: post.tags,
+            author: 'PoiScript',
+            date: post.date,
+          });
+        }),
+      ),
     );
 
-  return feed.xml();
+  return Promise.all(promise).then(() => feed.xml());
 }
