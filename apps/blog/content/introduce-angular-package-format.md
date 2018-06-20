@@ -46,27 +46,30 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 
 首先是整体的文件结构, 主要分成了 `esm2015/`，`esm5/`，`bundles/` 和其他各自的独立的 module 的文件夹。其中 `esm2015/`，`esm5/` 和 `bundles/` 就分别表示了 esm+es2015，esm+es5 和 umd+es5 的编译结果。
 
-<pre><code class="nohighlight">.
+```
+.
 ├── esm2015
 ├── esm5
 ├── bundles
 ├── autocomplete
 └── ...others
-</code></pre>
+```
 
 而在 `esm2015`，`esm5` 和 `bundles` 中则包括了该库中所有编译结果：每个独立的 module 的编译结果和整个库的 module 的都在其中。而每一个独立的 module 而编译结果都是一个 Flat Module。
 
-<pre><code class="nohighlight">.
+```
+.
 ├── material-tooltip.umd.js
 ├── material-tooltip.umd.min.js
 ├── ...others
 ├── material.umd.js
 └── material.umd.min.js
-</code></pre>
+```
 
 而在每个独立的 module 中都包含的各自该 module 的 `package.json`，`metadata.json` 和 `.d.ts` 文件：
 
-<pre><code class="nohighlight">.
+```
+.
 ├── index.d.ts
 ├── index.metadata.json
 ├── package.json
@@ -76,15 +79,16 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
     ├── index.d.ts
     ├── index.metadata.json
     └── public-api.d.ts
-</code></pre>
+```
 
 最后，在每个 `package.json` 中，无论是根层级的，还是独立的 module 中的，都含有以下几个字段：
 
-<pre><code class="nohighlight">"main": "./bundles/material.umd.js",
+```
+"main": "./bundles/material.umd.js",
 "module": "./esm5/material.es5.js",
 "es2015": "./esm2015/material.js",
 "typings": "./material.d.ts",
-</code></pre>
+```
 
 `main` 字段指向 UMD+ES5 的编译结果，主要用于 Nodejs 的环境；`module` 字段指向 ESM+ES5 的编译结果，主要用于 Webpack 等；`es2015` 字段指向 ESM+ES2015 的编译结果，主要用于配置过的 Webpack 和 Google Closure 等；最后 `typings` 指向 `.d.ts` 文件，用于 TypeScript。
 
