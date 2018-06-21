@@ -1,7 +1,7 @@
 // Shamefully copied from https://github.com/waylonflinn/markdown-it-katex ,
 // with some modifications.
 
-import { renderToString } from 'katex';
+import { parser } from './tex';
 
 // Test if potential opening or closing delimieter
 // Assumes that there is a "$" at state.src[pos]
@@ -175,8 +175,9 @@ function math_block(state, start, end, silent) {
 
 export function markdown_it_katex(md) {
   const katexInline = latex => {
+    latex = latex.trim();
     try {
-      return renderToString(latex, { displayMode: false });
+      return `<img src="/ltximg/${parser(latex, true)}.svg" alt="${latex}">`;
     } catch (error) {
       console.log(error);
       return latex;
@@ -186,8 +187,9 @@ export function markdown_it_katex(md) {
   const inlineRenderer = (tokens, idx) => katexInline(tokens[idx].content);
 
   const katexBlock = latex => {
+    latex = latex.trim();
     try {
-      return `<p>${renderToString(latex, { displayMode: true })}</p>`;
+      return `<img src="/ltximg/${parser(latex, false)}.svg" alt="${latex}">`;
     } catch (error) {
       console.log(error);
       return latex;

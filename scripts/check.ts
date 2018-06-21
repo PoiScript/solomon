@@ -29,7 +29,9 @@ const publicDir = resolve('public');
 
   try {
     const res = await Promise.all(promise);
-    console.log(`Generated ${res.length} files.`);
+    if (res.length > 0) {
+      console.log(`Generated ${res.length} files.`);
+    }
   } catch (e) {
     console.log(e);
   }
