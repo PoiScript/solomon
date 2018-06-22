@@ -1,3 +1,13 @@
+```yaml
+title: 通过 Firebase Authentication 进行 OAuth 授权
+slug: oauth-via-firebase-authentication
+date: 2017-02-19T15:36:31.925Z
+tags:
+  - firebase
+  - github
+  - oauth
+```
+
 ## 前言
 
 在上上篇文章 里我介绍了我的新博客系统 **Solomon**,

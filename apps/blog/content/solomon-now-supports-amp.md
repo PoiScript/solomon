@@ -1,3 +1,12 @@
+```yaml
+title: Solomon 现已支持 AMP
+slug: solomon-now-supports-amp
+tags:
+  - amp
+  - blog
+date: 2017-03-26T11:54:06.296Z
+```
+
 > Solomon 现已支持 AMP.
 > 你可以访问[本篇文章的 AMP 版本](https://blog.poi.cat/amp/solomon-now-supports-amp.html)体验 :)
 

@@ -1,3 +1,11 @@
+```yaml
+title: NgModule 的作用域
+slug: ngmodule-and-its-scope
+tags:
+  - angular
+date: 2017-10-16T06:10:47.147Z
+```
+
 ## 前言
 
 在开始聊这个话题之前，先提一个我遇到过问题：假设有一个 `SpinnerService`，这是一个可以在进行发送 HTTP 请求等异步操作的显示一个加载动画的 Service 。

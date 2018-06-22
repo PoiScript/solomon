@@ -1,3 +1,11 @@
+```yaml
+title: Angular Package Format 简介
+slug: introduce-angular-package-format
+tags:
+  - angular
+date: 2018-03-15T15:21:28.264Z
+```
+
 [Angular Package Format（APF）](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview#) 指的是 Angular 框架中的包的结构和规范。该规范的作者是 [IgorMinar](https://github.com/IgorMinar) 和 [Jason Aden](https://github.com/jasonaden)，两者都是 Angular 的 Contributor。
 
 它详细地介绍了 Angular 的核心库，例如 `@angular/core` 和 `@angular/common` 的 npm 包的结构和原因，同时还涉及到了在开发自己的库的时候如何优化编译结果，适配各种的优化工具等等。了解这方面的内容不仅有助于我们在写自己的 Angular 库，同时也可以我们了解 Angular 的编译器是如何工作的。

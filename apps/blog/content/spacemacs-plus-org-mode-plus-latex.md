@@ -1,3 +1,13 @@
+```yaml
+title: Spacemacs 和 Org-mode 和 LaTeX
+slug: spacemacs-plus-org-mode-plus-latex
+date: 2017-06-27T07:32:10.831Z
+tags:
+  - emacs
+  - latex
+  - org-mode
+```
+
 ## 前言
 
 我曾经试图将我的所有课笔记转换成 Markdown 文档以永久保存.

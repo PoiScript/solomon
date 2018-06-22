@@ -1,3 +1,13 @@
+```yaml
+title: 基于 React 的 SEO 友好的博客
+slug: make-a-react-based-blog-seo-friendly
+date: 2017-06-15T13:35:03.930Z
+tags:
+  - blog
+  - react
+  - seo
+```
+
 ## 前言
 
 嗯, 没错, 又是一篇 "如何打造一个 XXX 的博客" 的文章.

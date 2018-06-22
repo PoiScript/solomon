@@ -1,3 +1,13 @@
+```yaml
+title: 部署博客到 GitHub Pages & Firebase
+slug: deploy-blog-via-gh-pages-and-firebase
+date: 2017-02-05T13:57:17.024Z
+tags:
+  - angular
+  - firebase
+  - github
+```
+
 > 2017-02-09 更新: 新增了 Firebase 自定义域名部分
 
 ## 前言

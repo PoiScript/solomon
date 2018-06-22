@@ -1,3 +1,12 @@
+```yaml
+title: 新的博客系统 Solomon
+slug: introducing-solomon
+tags:
+  - angular
+  - blog
+date: 2017-01-15T16:04:11.888Z
+```
+
 > 2017-02-13 更新：添加了配置文件部分
 
 ## 前言

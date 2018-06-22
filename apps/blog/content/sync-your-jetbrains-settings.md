@@ -1,3 +1,12 @@
+```yaml
+title: 同步你的 JetBrains 设置
+slug: sync-your-jetbrains-settings
+date: 2017-03-18T05:36:11.165Z
+tags:
+  - github
+  - jetbrains
+```
+    
 ## 前言
 
 我是 JetBrains 的死忠,

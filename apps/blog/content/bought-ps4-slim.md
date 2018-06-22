@@ -1,3 +1,14 @@
+```yaml
+title: 入手 PS4 Slim
+slug: bought-ps4-slim
+date: 2017-03-01T05:57:14.898Z
+tags:
+  - game
+  - ps4
+  - sony
+```
+
+
 > 2017-03-14 更新: 新增了 刺客信条: 大革命 和 杀戮地带: 暗影坠落的游戏体验部分.
 
 ## Why PlayStation?
