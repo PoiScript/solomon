@@ -1,26 +1,27 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
-import { PostDict } from '@solomon/models';
-
-import { POST_CONFIG } from '../post.config';
+import { PostService } from '../core';
 
 @Component({ templateUrl: './tag.component.html' })
 export class TagComponent {
-  posts = this.postConfig;
+  tag$ = this.route.paramMap.pipe(map(paramMap => paramMap.get('tag')));
 
-  get tag() {
-    return this.route.snapshot.params['tag'];
-  }
+  posts$ = this.tag$.pipe(
+    tap(tag => this.titleService.setTitle(`#${tag} | solomon`)),
+    mergeMap(tag =>
+      this.postService.posts$.pipe(
+        map(dict => Object.values(dict.posts)),
+        map(posts => posts.filter(p => p.tags.includes(tag))),
+      ),
+    ),
+  );
 
   constructor(
-    @Inject(POST_CONFIG) private postConfig: PostDict,
+    private postService: PostService,
     private route: ActivatedRoute,
     private titleService: Title,
-  ) {
-    this.route.params.subscribe(params => {
-      this.titleService.setTitle(`#${params['tag']} | solomon`);
-    });
-  }
+  ) {}
 }

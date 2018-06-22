@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
-import { SafeHtml, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
-import { Post, PostResolve } from '@solomon/models';
+import { PostService } from '../core';
 
 @Component({
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent {
-  html: SafeHtml;
-  post: Post;
+  slug$ = this.route.paramMap.pipe(map(paramMap => paramMap.get('slug')));
 
-  constructor(private route: ActivatedRoute, private titleService: Title) {
-    this.route.data.subscribe(({ resolve }: { resolve: PostResolve }) => {
-      this.post = resolve.post;
-      this.html = resolve.html;
-      this.titleService.setTitle(this.post.title + ' | solomon');
-    });
-  }
+  post$ = this.slug$.pipe(
+    mergeMap(slug =>
+      this.postService.posts$.pipe(map(posts => posts.posts[slug])),
+    ),
+    tap(post => {
+      if (post) {
+        this.titleService.setTitle(post.title + ' | solomon');
+      }
+    }),
+  );
+
+  html$ = this.slug$.pipe(mergeMap(slug => this.postService.fetchPost(slug)));
+
+  constructor(
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private postService: PostService,
+  ) {}
 }

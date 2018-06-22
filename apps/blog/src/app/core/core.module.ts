@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared';
-import { TagComponent } from './tag.component';
+import { PostService } from './post.service';
 
 @NgModule({
   imports: [SharedModule],
-  declarations: [TagComponent],
+  providers: [PostService],
 })
-export class TagModule {}
+export class CoreModule {}

@@ -1,13 +1,15 @@
 <div class="post-theme">
   <solomon-header></solomon-header>
   <div class="container">
-    <h1 class="primary-header">{{post.title}}</h1>
-    <p class="primary-subheader">
-      <span>{{post.date | date:'mediumDate'}}</span>
-      <a *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> · #{{tag}}</a>
-    </p>
-    <article [innerHtml]="html"></article>
-    <section>
+    <ng-container *ngIf="post$ | async as post">
+      <h1 class="primary-header">{{post.title}}</h1>
+      <p class="primary-subheader">
+        <span>{{post.date | date:'mediumDate'}}</span>
+        <a *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> · #{{tag}}</a>
+      </p>
+    </ng-container>
+    <article [innerHtml]="html$ | async"></article>
+    <section *ngIf="post$ | async as post">
       <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
         <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
           <mat-icon svgIcon="arrow"></mat-icon>

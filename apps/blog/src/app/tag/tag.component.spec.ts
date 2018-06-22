@@ -4,7 +4,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { SharedModule, POST_CONFIG } from 'app/shared/index';
 import { ActivatedRouteStub, MOCK_POSTS } from 'testing/index';
-import { TagPipe } from './tag.pipe';
 import { TagComponent } from './tag.component';
 
 let component: TagComponent;
@@ -17,7 +16,7 @@ describe('TagComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, RouterTestingModule],
-      declarations: [TagComponent, TagPipe],
+      declarations: [TagComponent],
       providers: [
         {
           provide: ActivatedRoute,

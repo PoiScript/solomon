@@ -1,8 +1,8 @@
 <solomon-homepage-header></solomon-homepage-header>
 <div class="container">
   <h1 class="primary-header">Solomon</h1>
-  <p class="primary-subheader">
-    {posts.length, plural, =0 {no post} one {1 post} other {{{posts.length}} posts}}
-  </p>
-  <solomon-post-list [posts]="posts"></solomon-post-list>
+  <ng-container *ngIf="postDict | async as posts">
+    <p class="primary-subheader">{{posts.length}} 篇文章</p>
+    <solomon-post-list [posts]="posts"></solomon-post-list>
+  </ng-container>
 </div>

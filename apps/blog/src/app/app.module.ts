@@ -13,6 +13,7 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { environment } from '@solomon/environment';
 
 import { AppComponent } from './app.component';
+import { CoreModule } from './core';
 import { SharedModule } from './shared/index';
 import { AboutModule } from './about/about.module';
 import { HomepageModule } from './homepage/homepage.module';
@@ -21,7 +22,6 @@ import { NotFoundModule } from './not-found/not-found.module';
 import { PostModule } from './post/post.module';
 import { TagModule } from './tag/tag.module';
 import { AppRoutingModule } from './app.routing.module';
-import { PostProvider } from './post.config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +37,7 @@ import { PostProvider } from './post.config';
     }),
     TransferHttpCacheModule,
     AppRoutingModule,
+    CoreModule,
     SharedModule,
     AboutModule,
     HomepageModule,
@@ -46,6 +47,5 @@ import { PostProvider } from './post.config';
     TagModule,
   ],
   bootstrap: [AppComponent],
-  providers: [PostProvider],
 })
 export class AppModule {}
