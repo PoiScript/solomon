@@ -1,14 +1,19 @@
 /* tslint:disable:no-console */
 
-import { existsSync, outputFile } from 'fs-extra';
+import { existsSync, outputFile, readJsonSync, writeJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 
 import { posts } from '@solomon/blog/src/config';
 
 import { rss } from './rss';
 import { render } from './render';
+import { optimize } from './optimize';
 
 const publicDir = resolve('public');
+export let ltximgs = {};
+try {
+  ltximgs = readJsonSync('public/ltximg/ltximg.json');
+} catch (e) {}
 
 (async () => {
   const rssPath = join(publicDir, 'atom.xml');
@@ -32,6 +37,7 @@ const publicDir = resolve('public');
     if (res.length > 0) {
       console.log(`Generated ${res.length} files.`);
     }
+    await optimize(ltximgs);
   } catch (e) {
     console.log(e);
   }

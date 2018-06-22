@@ -4,13 +4,13 @@ import { resolve } from 'path';
 import * as hljs from 'highlight.js';
 import * as MarkdownIt from 'markdown-it';
 
-import { markdown_it_katex } from './markdown-it-katex';
+import { markdown_it_latex } from './markdown-it-latex';
 
 const renderer = new MarkdownIt({
   html: true,
   highlight: (code, lang) =>
     lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code).value : '',
-}).use(markdown_it_katex);
+}).use(markdown_it_latex);
 
 export const render = slug =>
   readFile(resolve('apps/blog/content', `${slug}.md`), 'utf8')

@@ -9,7 +9,7 @@
     "e2e": "ng e2e",
     "lint": "ng lint",
     "test": "ng test",
-    "prestart": "ts-node -r tsconfig-paths/register scripts/check && svgo -q -f public/ltximg",
+    "prestart": "ts-node -r tsconfig-paths/register scripts/check",
     "start": "ng serve"
   },
   "private": true,
