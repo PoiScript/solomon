@@ -1,9 +1,9 @@
 /* tslint:disable:no-console */
 
-import { existsSync, outputFile, readJsonSync, writeJsonSync } from 'fs-extra';
+import { existsSync, outputFile, readJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 
-import { posts } from '@solomon/blog/src/config';
+const posts = readJsonSync('public/posts.json');
 
 import { rss } from './rss';
 import { render } from './render';
@@ -20,11 +20,11 @@ try {
   const promise = [];
 
   if (!existsSync(rssPath)) {
-    promise.push(rss(posts).then(xml => outputFile(rssPath, xml)));
+    promise.push(rss(posts.posts).then(xml => outputFile(rssPath, xml)));
   }
 
-  for (const slug in posts) {
-    if (posts.hasOwnProperty(slug)) {
+  for (const slug in posts.posts) {
+    if (posts.posts.hasOwnProperty(slug)) {
       const path = join(publicDir, 'html', `${slug}.html`);
       if (!existsSync(path)) {
         promise.push(render(slug).then(html => outputFile(path, html)));

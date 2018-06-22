@@ -60,7 +60,7 @@ export const optimize = ltximgs => {
   return Promise.all(promise).then(res => {
     if (res.length > 0) {
       console.log(`Optimized ${res.length} files.`);
+      return outputJson('public/ltximg/ltximg.json', ltximgs);
     }
-    return outputJson('public/ltximg/ltximg.json', ltximgs);
   });
 };

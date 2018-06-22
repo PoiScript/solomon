@@ -2,11 +2,12 @@ import * as RSS from 'rss';
 const rss_pkg = require('rss/package');
 import { resolve } from 'url';
 
-import { PostDict } from '@solomon/models';
+import { PostDict } from '@solomon/blog/src/app/models';
 
 import { render } from './render';
+import { sortByDate } from './util';
 
-export function rss(posts: PostDict) {
+export const rss = (posts: PostDict) => {
   const feed = new RSS({
     title: 'solomon',
     description: "PoiScript's Blog",
@@ -20,7 +21,7 @@ export function rss(posts: PostDict) {
   const promise = [];
 
   Object.values(posts)
-    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
+    .sort(sortByDate)
     .forEach(post =>
       promise.push(
         render(post.slug).then(html => {
@@ -38,4 +39,4 @@ export function rss(posts: PostDict) {
     );
 
   return Promise.all(promise).then(() => feed.xml());
-}
+};

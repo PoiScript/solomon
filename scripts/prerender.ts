@@ -4,11 +4,11 @@ import 'zone.js/dist/zone-node';
 
 import { enableProdMode } from '@angular/core';
 import { renderModuleFactory } from '@angular/platform-server';
-import { outputFileSync, readFileSync } from 'fs-extra';
+import { outputFileSync, readFileSync, readJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 import { minify } from 'html-minifier';
 
-import { posts } from '@solomon/blog/src/config';
+const posts = readJsonSync('public/posts.json');
 
 const dist = resolve('dist');
 const document = readFileSync(join(dist, 'blog', 'index.html'), 'utf8');

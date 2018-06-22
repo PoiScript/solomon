@@ -5,6 +5,7 @@ import * as hljs from 'highlight.js';
 import * as MarkdownIt from 'markdown-it';
 
 import { markdown_it_latex } from './markdown-it-latex';
+import { MetaRegex } from './util';
 
 const renderer = new MarkdownIt({
   html: true,
@@ -14,6 +15,7 @@ const renderer = new MarkdownIt({
 
 export const render = slug =>
   readFile(resolve('apps/blog/content', `${slug}.md`), 'utf8')
+    .then(markdown => markdown.replace(MetaRegex, ''))
     .then(markdown => renderer.render(markdown))
     .then(html =>
       minify(html, {
