@@ -1,13 +1,14 @@
 import * as RSS from 'rss';
-const rss_pkg = require('rss/package');
-import { resolve } from 'url';
+import { resolve as url_resolve } from 'url';
+import { resolve as path_resolve } from 'path';
+import { outputFileSync, readFileSync } from 'fs-extra';
 
-import { PostDict } from '@solomon/blog/src/app/models';
-
-import { render } from './render';
+import { Post } from '@solomon/blog/src/app/models';
 import { sortByDate } from './util';
 
-export const rss = (posts: PostDict) => {
+const rss_pkg = require('rss/package');
+
+export const rss = (posts: { [slug: string]: Post }, outputPath) => {
   const feed = new RSS({
     title: 'solomon',
     description: "PoiScript's Blog",
@@ -17,26 +18,26 @@ export const rss = (posts: PostDict) => {
     language: 'zh-Hans',
   });
 
-  const POST_BASE = resolve('https://blog.poi.cat', 'post');
-  const promise = [];
+  const POST_BASE = url_resolve('https://blog.poi.cat', 'post');
 
-  Object.values(posts)
-    .sort(sortByDate)
-    .forEach(post =>
-      promise.push(
-        render(post.slug).then(html => {
-          feed.item({
-            title: post.title,
-            description: html,
-            url: resolve(POST_BASE, post.slug),
-            guid: post.slug,
-            categories: post.tags,
-            author: 'PoiScript',
-            date: post.date,
-          });
-        }),
-      ),
+  for (const post of Object.values(posts).sort(sortByDate)) {
+    // This operation must be sync to must sure feed item is keeping the same order
+    const html = readFileSync(
+      path_resolve(outputPath, 'html', `${post.slug}.html`),
+      'utf-8',
     );
 
-  return Promise.all(promise).then(() => feed.xml());
+    feed.item({
+      title: post.title,
+      description: html,
+      url: url_resolve(POST_BASE, post.slug),
+      guid: post.slug,
+      categories: post.tags,
+      author: 'PoiScript',
+      date: post.date,
+    });
+  }
+
+  outputFileSync(path_resolve(outputPath, 'atom.xml'), feed.xml());
+  console.log(`Generated atom.xml in ${outputPath}.`);
 };

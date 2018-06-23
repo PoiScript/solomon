@@ -36,10 +36,9 @@ const meta = async path => {
   return parseYaml(match[0].slice(7 /* ```yaml */, -3 /* ``` */));
 };
 
-(async () => {
+export const generatePostMeta = async () => {
   const promises = [];
-  const postMeta = { _length: 0, posts: {} };
-  const entryMeta = { _length: 0, entries: {} };
+  const postMeta = {};
 
   for (const path of walk('apps/blog/content')) {
     promises.push(meta(path));
@@ -60,12 +59,9 @@ const meta = async path => {
         slug: posts[i + 1].slug,
       };
     }
-    postMeta.posts[post.slug] = post;
+    postMeta[post.slug] = post;
   }
-  postMeta._length = posts.length;
 
-  await Promise.all([
-    outputJson('public/posts.json', postMeta),
-    outputJson('public/entries.json', entryMeta),
-  ]);
-})().catch(e => console.error(e));
+  await outputJson('public/blog/posts.json', postMeta);
+  return postMeta;
+};

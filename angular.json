@@ -23,7 +23,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "public",
+                "input": "public/blog",
                 "output": ""
               }
             ],

@@ -1,11 +1,8 @@
 // Shamefully copied from https://github.com/waylonflinn/markdown-it-latex ,
 // with some modifications.
 
-import { outputFileSync, unlinkSync } from 'fs-extra';
 import { createHash } from 'crypto';
-import { execSync } from 'child_process';
-
-import { ltximgs } from './check';
+import { addLatex } from './latex';
 
 // Test if potential opening or closing delimieter
 // Assumes that there is a "$" at state.src[pos]
@@ -177,37 +174,12 @@ function math_block(state, start, end, silent) {
   return true;
 }
 
-const inlineTemp = latex => `\\documentclass[preview]{standalone}
-\\begin{document}
-$${latex}$
-\\end{document}`;
-
-const displayTemp = latex => `\\documentclass[preview]{standalone}
-\\begin{document}
-$$${latex}$$
-\\end{document}`;
-
-const parser = latex => {
-  const md5 = createHash('md5')
+const md5sum = latex =>
+  createHash('md5')
     .update(latex)
     .digest('hex');
 
-  if (typeof ltximgs[md5] === 'undefined') {
-    const tex = `public/ltximg/${md5}.tex`;
-    const svg = `public/ltximg/${md5}.svg`;
-    const dvi = `public/ltximg/${md5}.dvi`;
-    outputFileSync(tex, latex);
-    execSync(`latexmk ${tex} -quiet -output-directory=public/ltximg`);
-    execSync(`dvisvgm ${dvi} -v 0 --no-fonts -o ${svg}`);
-    execSync(`latexmk ${tex} -quiet -C -output-directory=public/ltximg`);
-    unlinkSync(tex);
-    ltximgs[md5] = false;
-  }
-
-  return md5;
-};
-
-export const markdown_it_latex = md => {
+export const markdown_it_latex = (md, options) => {
   md.inline.ruler.after('escape', 'math_inline', math_inline);
   md.block.ruler.after('blockquote', 'math_block', math_block, {
     alt: ['paragraph', 'reference', 'blockquote', 'list'],
@@ -215,9 +187,11 @@ export const markdown_it_latex = md => {
 
   md.renderer.rules.math_inline = (tokens, idx) => {
     const latex = tokens[idx].content.trim();
+    const hash = md5sum(latex);
+    addLatex(hash, options.path, latex, true);
     try {
       return `<span class="latex-inline">
-  <img src="/ltximg/${parser(inlineTemp(latex))}.svg" alt="${latex}">
+  <img src="/ltximg/${hash}.svg" alt="${latex}">
 </span>`;
     } catch (error) {
       console.log(error);
@@ -227,9 +201,11 @@ export const markdown_it_latex = md => {
 
   md.renderer.rules.math_block = (tokens, idx) => {
     const latex = tokens[idx].content.trim();
+    const hash = md5sum(latex);
+    addLatex(hash, options.path, latex, false);
     try {
       return `<div class="latex-display">
-  <img src="/ltximg/${parser(displayTemp(latex))}.svg" alt="${latex}">
+  <img src="/ltximg/${hash}.svg" alt="${latex}">
 </div>`;
     } catch (error) {
       console.log(error);

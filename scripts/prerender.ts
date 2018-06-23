@@ -4,11 +4,11 @@ import 'zone.js/dist/zone-node';
 
 import { enableProdMode } from '@angular/core';
 import { renderModuleFactory } from '@angular/platform-server';
-import { outputFileSync, readFileSync, readJsonSync } from 'fs-extra';
+import { outputFile, readFileSync, readJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 import { minify } from 'html-minifier';
 
-const posts = readJsonSync('public/posts.json');
+const posts = readJsonSync('public/blog/posts.json');
 
 const dist = resolve('dist');
 const document = readFileSync(join(dist, 'blog', 'index.html'), 'utf8');
@@ -40,18 +40,23 @@ for (const slug in posts) {
   }
 }
 
+const promises = [];
+
 // render
 for (const [url, path] of Object.entries(pages)) {
-  renderModuleFactory(AppServerModuleNgFactory, { url, document })
-    .then(html =>
-      minify(html, {
-        collapseWhitespace: true,
-        removeComments: true,
-        minifyCSS: true,
-      }),
-    )
-    .then(html => {
-      console.info(`Saving "${url}" as "${path}"`);
-      outputFileSync(join(dist, 'blog', path), html);
-    });
+  promises.push(
+    renderModuleFactory(AppServerModuleNgFactory, { url, document })
+      .then(html =>
+        minify(html, {
+          collapseWhitespace: true,
+          removeComments: true,
+          minifyCSS: true,
+        }),
+      )
+      .then(html => outputFile(join(dist, 'blog', path), html)),
+  );
 }
+
+Promise.all(promises).then(res =>
+  console.log(`Pre-rendered ${res.length} files`),
+);
