@@ -12,7 +12,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-const { readFileSync, existsSync } = require('fs');
+const { readFileSync, existsSync, readJsonSync } = require('fs-extra');
 const { resolve } = require('path');
 
 @Injectable()
@@ -21,12 +21,14 @@ export class AssetInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    for (const dir of ['apps/blog', 'public']) {
+    for (const dir of ['apps/blog', 'public/blog']) {
       const path = resolve(dir, req.url.slice(1));
       if (existsSync(path)) {
         return of(
           new HttpResponse<any>({
-            body: readFileSync(path).toString(),
+            body: path.endsWith('.json')
+              ? readJsonSync(path)
+              : readFileSync(path).toString(),
             status: 200,
             statusText: 'OK',
             url: req.url,
