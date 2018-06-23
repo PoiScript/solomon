@@ -9,7 +9,7 @@ import { PostDict } from '../models';
 @Injectable({ providedIn: 'root' })
 export class PostService {
   public isLoading$ = new BehaviorSubject<boolean>(false);
-  public posts$ = new BehaviorSubject<PostDict>({ _length: 0, posts: {} });
+  public posts$ = new BehaviorSubject<PostDict>({});
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 

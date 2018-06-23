@@ -14,8 +14,5 @@ export class Post {
 }
 
 export interface PostDict {
-  _length: number;
-  posts: {
-    [slug: string]: Post;
-  };
+  [slug: string]: Post;
 }

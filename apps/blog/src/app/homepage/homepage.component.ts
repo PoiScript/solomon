@@ -6,9 +6,7 @@ import { PostService } from '../core';
 
 @Component({ templateUrl: './homepage.component.html' })
 export class HomepageComponent {
-  postDict = this.postService.posts$.pipe(
-    map(dict => Object.values(dict.posts)),
-  );
+  postDict = this.postService.posts$.pipe(map(dict => Object.values(dict)));
 
   constructor(private titleService: Title, private postService: PostService) {
     this.titleService.setTitle('solomon');
