@@ -130,7 +130,13 @@
             "main": "apps/libreria/src/main.ts",
             "polyfills": "apps/libreria/src/polyfills.ts",
             "tsConfig": "apps/libreria/src/tsconfig.app.json",
-            "assets": [],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public/libreria",
+                "output": ""
+              }
+            ],
             "styles": ["apps/libreria/src/styles.scss"],
             "scripts": []
           },

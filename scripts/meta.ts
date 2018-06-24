@@ -65,3 +65,32 @@ export const generatePostMeta = async () => {
   await outputJson('public/blog/posts.json', postMeta);
   return postMeta;
 };
+
+export const generateEntryMeta = async () => {
+  const promises = [];
+  const entryMeta = {};
+
+  for (const path of walk('apps/libreria/content')) {
+    promises.push(meta(path));
+  }
+
+  const entries = await Promise.all(promises);
+  for (let i = 0; i < entries.length; i++) {
+    const entry = entries[i];
+    entryMeta[`${slugify(entry.category)}/${slugify(entry.entry)}`] = entry;
+  }
+
+  await outputJson('public/libreria/entries.json', entryMeta);
+  return entryMeta;
+};
+
+// see https://gist.github.com/mathewbyrne/1280286
+const slugify = text =>
+  text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
