@@ -16,14 +16,39 @@ import { svgo } from './svgo';
 const execAsync = promisify(exec);
 
 const inlineTemp = latex => `\\documentclass[preview]{standalone}
+${findPackages(latex)
+  .map(p => `\\usepackage{${p}}`)
+  .join('\n')}
 \\begin{document}
 $${latex}$
 \\end{document}`;
 
 const displayTemp = latex => `\\documentclass[preview]{standalone}
+${findPackages(latex)
+  .map(p => `\\usepackage{${p}}`)
+  .join('\n')}
 \\begin{document}
 $$${latex}$$
 \\end{document}`;
+
+const packages = {
+  amssymb: /\\varnothing/,
+  amsmath: [/\\begin{cases}/, /\\text/],
+};
+
+const findPackages = latex => {
+  const res = [];
+  for (const p in packages) {
+    if (Array.isArray(packages[p])) {
+      if (packages[p].some(regex => regex.test(latex))) {
+        res.push(p);
+      }
+    } else if (packages[p].test(latex)) {
+      res.push(p);
+    }
+  }
+  return res;
+};
 
 type LatexImages = {
   [path: string]: {
