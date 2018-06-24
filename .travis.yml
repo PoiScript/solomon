@@ -2,6 +2,12 @@ language: node_js
 node_js:
   - 10
 
+addons:
+  apt:
+    packages:
+    - latexmk
+    - texlive
+
 cache:
   yarn: true
   directories:
