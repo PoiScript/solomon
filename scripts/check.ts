@@ -4,7 +4,7 @@ import { existsSync, readJsonSync } from 'fs-extra';
 import { resolve } from 'path';
 
 import { render } from './render';
-import { optimizeSvg, parseLatex, saveJson } from './latex';
+import { parseLatex } from './latex';
 import { generateEntryMeta, generatePostMeta } from './meta';
 import { rss } from './rss';
 
@@ -40,8 +40,6 @@ const libreriaContentDir = resolve('apps/libreria/content');
     await render(slugs, blogPublicDir, blogContentDir);
     await render(entriesSlug, libreriaPublicDir, libreriaContentDir);
     await parseLatex();
-    await optimizeSvg();
-    await saveJson();
     if (!existsSync(resolve(blogPublicDir, 'atom.xml'))) {
       rss(posts, blogPublicDir);
     }

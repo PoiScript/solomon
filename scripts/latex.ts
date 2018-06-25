@@ -12,23 +12,29 @@ import { resolve } from 'path';
 import { promisify } from 'util';
 
 import { svgo } from './svgo';
+import { walk } from './util';
 
 const execAsync = promisify(exec);
 
-const inlineTemp = latex => `\\documentclass[preview]{standalone}
+const latexTemplate = (latex, inline) => `\\documentclass{article}
 ${findPackages(latex)
   .map(p => `\\usepackage{${p}}`)
   .join('\n')}
+\\pagestyle{empty}
+\\setlength{\\textwidth}{\\paperwidth}
+\\addtolength{\\textwidth}{-3cm}
+\\setlength{\\oddsidemargin}{1.5cm}
+\\addtolength{\\oddsidemargin}{-2.54cm}
+\\setlength{\\evensidemargin}{\\oddsidemargin}
+\\setlength{\\textheight}{\\paperheight}
+\\addtolength{\\textheight}{-\\headheight}
+\\addtolength{\\textheight}{-\\headsep}
+\\addtolength{\\textheight}{-\\footskip}
+\\addtolength{\\textheight}{-3cm}
+\\setlength{\\topmargin}{1.5cm}
+\\addtolength{\\topmargin}{-2.54cm}
 \\begin{document}
-$${latex}$
-\\end{document}`;
-
-const displayTemp = latex => `\\documentclass[preview]{standalone}
-${findPackages(latex)
-  .map(p => `\\usepackage{${p}}`)
-  .join('\n')}
-\\begin{document}
-$$${latex}$$
+${inline ? '$' : '$$'}${latex}${inline ? '$' : '$$'}
 \\end{document}`;
 
 const packages = {
@@ -71,19 +77,16 @@ export const addLatex = (hash, path, latex, inline) => {
   }
 };
 
-export const generateSvg = async (hash, latex, path, inline) => {
-  const tex = resolve(path, 'ltximg', `${hash}.tex`);
-  const svg = resolve(path, 'ltximg', `${hash}.svg`);
-  const dvi = resolve(path, 'ltximg', `${hash}.dvi`);
-  await outputFile(tex, (inline ? inlineTemp : displayTemp)(latex));
+const generateSvg = async (hash, latex, path, inline) => {
+  const output = resolve(path, 'ltximg');
+  const tex = resolve(output, `${hash}.tex`);
+  const svg = resolve(output, `${hash}.svg`);
+  const dvi = resolve(output, `${hash}.dvi`);
+  await outputFile(tex, latexTemplate(latex, inline));
   await execAsync(
-    `latexmk ${tex} -quiet -output-directory=${resolve(path, 'ltximg')}`,
+    `latex -interaction nonstopmode -output-directory ${output} ${tex}`,
   );
-  await execAsync(`dvisvgm ${dvi} -v 0 --no-fonts -o ${svg}`);
-  await execAsync(
-    `latexmk ${tex} -quiet -C -output-directory=${resolve(path, 'ltximg')}`,
-  );
-  await unlink(tex);
+  await execAsync(`dvisvgm ${dvi} -n -b min -o ${svg}`);
 };
 
 export const parseLatex = () => {
@@ -97,14 +100,25 @@ export const parseLatex = () => {
     }
   }
 
-  return Promise.all(promise).then(res => {
-    if (res.length > 0) {
-      console.log(`Parsed ${res.length} latex images.`);
-    }
-  });
+  return Promise.all(promise)
+    .then(res => {
+      if (res.length > 0) {
+        console.log(`Parsed ${res.length} latex images.`);
+      }
+    })
+    .then(() => Promise.all([postClean(), optimizeSvg()]))
+    .then(() => outputJson('public/ltximg.json', ltximgs));
 };
 
-export const optimizeSvg = () => {
+const postClean = () => {
+  const promises = [];
+  for (const path of walk('public', /\.(aux|dvi|log|tex)$/)) {
+    promises.push(unlink(path));
+  }
+  return Promise.all(promises);
+};
+
+const optimizeSvg = () => {
   const promise = [];
 
   for (const [path, imgs] of Object.entries(ltximgs)) {
@@ -128,8 +142,4 @@ export const optimizeSvg = () => {
       console.log(`Optimized ${res.length} svg files.`);
     }
   });
-};
-
-export const saveJson = () => {
-  return outputJson('public/ltximg.json', ltximgs);
 };

@@ -1,8 +1,7 @@
-import { outputJson, readdirSync, readFile, statSync } from 'fs-extra';
-import { resolve } from 'path';
+import { outputJson, readFile } from 'fs-extra';
 import { safeLoad } from 'js-yaml';
 
-import { sortByDate, MetaRegex } from './util';
+import { MetaRegex, sortByDate, walk } from './util';
 
 const parseYaml = yaml =>
   new Promise((resolve, reject) => {
@@ -13,19 +12,6 @@ const parseYaml = yaml =>
       reject(e);
     }
   });
-
-const walk = (dir, list = []) => {
-  const files = readdirSync(dir);
-  for (const file of files) {
-    const path = resolve(dir, file);
-    if (statSync(path).isDirectory()) {
-      walk(path, list);
-    } else if (file.match(/\.md$/)) {
-      list.push(path);
-    }
-  }
-  return list;
-};
 
 const meta = async path => {
   const markdown = await readFile(path, 'utf-8');
@@ -40,7 +26,7 @@ export const generatePostMeta = async () => {
   const promises = [];
   const postMeta = {};
 
-  for (const path of walk('apps/blog/content')) {
+  for (const path of walk('apps/blog/content', /\.md$/)) {
     promises.push(meta(path));
   }
 
@@ -70,7 +56,7 @@ export const generateEntryMeta = async () => {
   const promises = [];
   const entryMeta = {};
 
-  for (const path of walk('apps/libreria/content')) {
+  for (const path of walk('apps/libreria/content', /\.md$/)) {
     promises.push(meta(path));
   }
 
