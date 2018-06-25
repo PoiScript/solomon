@@ -1,20 +1,19 @@
 language: node_js
 node_js:
-  - 10
+- 10
 
 addons:
   apt:
     packages:
-    - latexmk
     - texlive
 
 cache:
   yarn: true
   directories:
-     - ./node_modules
+  - ./node_modules
 
 script:
-  - bash scripts/build.sh
+- bash scripts/build.sh
 
 deploy:
   provider: firebase
