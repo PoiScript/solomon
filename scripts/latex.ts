@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { exec } from 'child_process';
 import {
   existsSync,
@@ -39,7 +40,7 @@ ${inline ? '$' : '$$'}${latex}${inline ? '$' : '$$'}
 
 const packages = {
   amssymb: /\\varnothing/,
-  amsmath: [/\\begin{cases}/, /\\text/],
+  amsmath: [/\\begin{cases}/, /\\begin{aligned}/, /\\text/, /\\i?int/],
 };
 
 const findPackages = latex => {
@@ -83,10 +84,15 @@ const generateSvg = async (hash, latex, path, inline) => {
   const svg = resolve(output, `${hash}.svg`);
   const dvi = resolve(output, `${hash}.dvi`);
   await outputFile(tex, latexTemplate(latex, inline));
-  await execAsync(
-    `latex -interaction nonstopmode -output-directory ${output} ${tex}`,
-  );
-  await execAsync(`dvisvgm ${dvi} -n -b min -o ${svg}`);
+  try {
+    await execAsync(
+      `latex -interaction nonstopmode -output-directory ${output} ${tex}`,
+    );
+    await execAsync(`dvisvgm ${dvi} -n -b preview -e -c 1.7 1.5 -o ${svg}`);
+  } catch (e) {
+    console.log(`Error Occurred when parsing: ${chalk.red(latex)}.`);
+    console.log(e.stdout);
+  }
 };
 
 export const parseLatex = () => {
