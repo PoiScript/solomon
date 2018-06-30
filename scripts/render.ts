@@ -1,19 +1,33 @@
+import chalk from 'chalk';
 import { readFile, outputFile } from 'fs-extra';
 import { minify } from 'html-minifier';
 import { resolve } from 'path';
-import * as hljs from 'highlight.js';
+import * as Prism from 'prismjs/prism';
+import * as loadLanguages from 'prismjs/components/index';
 import * as MarkdownIt from 'markdown-it';
 
 import { markdown_it_latex } from './markdown-it-latex';
 import { MetaRegex } from './util';
+
+loadLanguages(['typescript', 'bash', 'lisp', 'yaml', 'http']);
 
 export const render = (slugs, outputPath, contentPath) => {
   const promises = [];
 
   const renderer = new MarkdownIt({
     html: true,
-    highlight: (code, lang) =>
-      lang && hljs.getLanguage(lang) ? hljs.highlight(lang, code).value : '',
+    highlight: (code, lang) => {
+      if (!lang) return '';
+
+      lang = lang.toLowerCase();
+
+      if (!(lang in Prism.languages)) {
+        console.error(`Not language definitions for ${chalk.red(lang)}`);
+        return '';
+      } else {
+        return Prism.highlight(code, Prism.languages[lang]);
+      }
+    },
   }).use(markdown_it_latex, { path: outputPath });
 
   for (const slug of slugs) {
@@ -34,8 +48,9 @@ export const render = (slugs, outputPath, contentPath) => {
   }
 
   return Promise.all(promises).then(res => {
-    if (res.length > 0) {
-      console.log(`Generated ${res.length} html file(s) in ${outputPath}/html.`);
+    const len = res.length;
+    if (len > 0) {
+      console.log(`Generated ${len} html file(s) in ${outputPath}/html.`);
     }
   });
 };

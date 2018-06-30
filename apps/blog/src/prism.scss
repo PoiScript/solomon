@@ -1,0 +1,77 @@
+// prism.js theme
+
+@import '~@angular/material/theming';
+
+code .token {
+  &.comment,
+  &.prolog,
+  &.doctype,
+  &.cdata {
+    color: mat-color($mat-grey, 400);
+  }
+
+  &.punctuation {
+    color: mat-color($mat-grey, 500);
+  }
+
+  .namespace {
+    opacity: 0.7;
+  }
+
+  &.property,
+  &.tag,
+  &.boolean,
+  &.number,
+  &.constant,
+  &.symbol,
+  &.deleted {
+    color: mat-color($mat-pink, 900);
+  }
+
+  &.selector,
+  &.attr-name,
+  &.string,
+  &.char,
+  &.builtin,
+  &.inserted {
+    color: mat-color($mat-green, 500);
+  }
+
+  &.operator,
+  &.entity,
+  &.url,
+  .language-css &.string,
+  .style &.string {
+    color: mat-color($mat-amber, 900);
+  }
+
+  &.atrule,
+  &.attr-value,
+  &.keyword {
+    color: mat-color($mat-blue, 800);
+  }
+
+  &.function,
+  &.class-name {
+    color: mat-color($mat-red, 900);
+  }
+
+  &.regex,
+  &.important,
+  &.variable {
+    color: mat-color($mat-yellow, 900);
+  }
+
+  &.important,
+  &.bold {
+    font-weight: bold;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.entity {
+    cursor: help;
+  }
+}

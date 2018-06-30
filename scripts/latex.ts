@@ -40,7 +40,8 @@ ${inline ? '$' : '$$'}${latex}${inline ? '$' : '$$'}
 
 const packages = {
   amssymb: /\\varnothing/,
-  amsmath: [/\\begin{cases}/, /\\begin{aligned}/, /\\text/, /\\i?int/],
+  amsmath: [/\\begin{cases}/, /\\begin{aligned}/, /\\text/, /\\i{1,3}nt/],
+  esint: /\\oiint/,
 };
 
 const findPackages = latex => {

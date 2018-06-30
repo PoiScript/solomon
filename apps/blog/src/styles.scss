@@ -1,5 +1,6 @@
 @import '~@solomon/scss/markdown';
-@import '~@solomon/scss/highlight';
+
+@import './prism';
 
 html,
 body {
