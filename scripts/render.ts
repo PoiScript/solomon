@@ -11,6 +11,11 @@ import { MetaRegex } from './util';
 
 loadLanguages(['typescript', 'bash', 'lisp', 'yaml', 'http']);
 
+const number_rows = number =>
+  `<span class="numbers-rows">${Array.from(Array(number).keys())
+    .map(i => `<span>${i + 1}</span>`)
+    .join('')}</span>`;
+
 export const render = (slugs, outputPath, contentPath) => {
   const promises = [];
 
@@ -25,7 +30,10 @@ export const render = (slugs, outputPath, contentPath) => {
         console.error(`Not language definitions for ${chalk.red(lang)}`);
         return '';
       } else {
-        return Prism.highlight(code, Prism.languages[lang]);
+        // count the number of lines of code
+        const lines = code.trim().split(/\r\n|\r|\n/).length;
+        const html = Prism.highlight(code, Prism.languages[lang]);
+        return html + number_rows(lines);
       }
     },
   }).use(markdown_it_latex, { path: outputPath });
