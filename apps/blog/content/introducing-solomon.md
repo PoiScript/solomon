@@ -41,21 +41,21 @@ Angular 的框架如图：
 
 为了实现配置文件的功能，我写了一个接口 `SolomonConfig` ：
 
-```TypeScript
+```typescript
 export interface SolomonConfig {
-  BLOG_NAME: string,
-  RECENT_POST_LIMIT: number,
-  RECENT_ANIME_LIMIT: number,
-  RECENT_PROJECT_LIMIT: number,
-  GITHUB_USERNAME: string,
-  GITHUB_POST_REPO: string,
-  KITSU_ID: number
+  BLOG_NAME: string;
+  RECENT_POST_LIMIT: number;
+  RECENT_ANIME_LIMIT: number;
+  RECENT_PROJECT_LIMIT: number;
+  GITHUB_USERNAME: string;
+  GITHUB_POST_REPO: string;
+  KITSU_ID: number;
 }
 ```
 
 使用之前需要先继承这个接口：
 
-```TypeScript
+```typescript
 export const CONFIG: SolomonConfig = {
   BLOG_NAME: 'Solomon',
   RECENT_POST_LIMIT: 6,
@@ -63,10 +63,10 @@ export const CONFIG: SolomonConfig = {
   RECENT_PROJECT_LIMIT: 6,
   GITHUB_USERNAME: 'PoiScript',
   GITHUB_POST_REPO: 'Solomon-Post',
-  KITSU_ID: 140033
-}
+  KITSU_ID: 140033,
+};
 
-export const CONFIG_TOKEN = new OpaqueToken('config')
+export const CONFIG_TOKEN = new OpaqueToken('config');
 ```
 
 然后就可以通过 `@Inject(CONFIG_TOKEN) config: SolomonConfig`
@@ -107,20 +107,20 @@ export const CONFIG_TOKEN = new OpaqueToken('config')
 
 此外，在 Angular 中调用 GitHub Issue API 的时候还有一个问题，就是获取 Reaction 的时候需要加一个 **Header** :
 
-```
-Accept : application/vnd.github.squirrel-girl-preview
+```http
+accept: application/vnd.github.squirrel-girl-preview
 ```
 
 在 Angular 中，就需要这么写:
 
-```TypeScript
-getIssueComments(): Promise<Comment[]> {
-  let headers = new Headers()
-  headers.append('Accept', 'application/vnd.github.squirrel-girl-preview')
-  return this.http.get(url, {
-    headers: headers
-  }).toPromise()
-    .then(res => res.json() as Comment[])
+```typescript
+function getIssueComments(): Promise<Comment[]> {
+  let headers = new Headers();
+  headers.append('accept', 'application/vnd.github.squirrel-girl-preview');
+  return this.http
+    .get(url, { headers: headers })
+    .toPromise()
+    .then(res => res.json() as Comment[]);
 }
 ```
 
@@ -134,8 +134,8 @@ getIssueComments(): Promise<Comment[]> {
 
 此外 **GitHub Code Search API** 还可以返回匹配的文本的上下文，借此可以实现 **搜索结果的预览** 。不过和上面的 Reaction 相同，开启这个特性需要 **添加一个 Header** ：
 
-```
-Accept : application/vnd.github.v3.text-match+json
+```http
+accept: application/vnd.github.v3.text-match+json
 ```
 
 ## 后语

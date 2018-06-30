@@ -50,13 +50,13 @@ Firebase 适用于 Android、iOS 和 Web 平台，它的功能包括 [Firebase A
 
 然后你需要将你新建的 GitHub Pages 取回本地：
 
-```shell
+```bash
 $ git clone https://github.com/username/username.github.io
 ```
 
 将你的 HTML 等静态文件放进 `username.github.io`，接着运行
 
-```
+```bash
 $ git add .
 $ git commit -m "Initial commit"
 $ git push -u origin master
@@ -64,7 +64,7 @@ $ git push -u origin master
 
 > 还没有静态文件？运行
 >
-> ```
+> ```bash
 > $ echo '<p>Hello World!</p>' > index.html
 > ```
 >
@@ -81,7 +81,7 @@ $ git push -u origin master
 
 新建好 Project 之后，让我们转到命令行，运行如下的命令，分别安装 firebase 工具，登录到 firebasee 和初始化：
 
-```shell
+```bash
 $ npm install -g firebase-tools
 $ firebase login
 $ firebase init
@@ -98,7 +98,7 @@ Hosting(托管) > 你的项目的名字 > 默认 >
 
 完成设置之后，部署很简单了，只需要运行
 
-```
+```bash
 $ firebase deploy
 ```
 
@@ -122,7 +122,7 @@ $ firebase deploy
 
 然后，在我们的 Repo 中加入 `.travis.yml` 文件，用来描述编译的步骤。我的 `.travis.yml` 目前长这样：
 
-```
+```yaml
 language: node_js
 node_js:
   - "6.1"
@@ -184,7 +184,7 @@ GitHub 的 Token 是在 [Personal access tokens](https://github.com/settings/tok
 
 获得 Firebase 的 Token 则是需要在命令行里运行：
 
-```shell
+```bash
 $ firebase login:ci
 ```
 
@@ -202,13 +202,13 @@ $ firebase login:ci
 
 通过 Token 部署 Firebase 也是一样简单，只需要在 `after_success` 里添加：
 
-```
+```yaml
 - firebase deploy --token $FIREBASE_TOKEN
 ```
 
 部署到 GitHub 则是这么写:
 
-```
+```yaml
 - cd dist
 - git init
 - git config user.name "GIT_NAME"
