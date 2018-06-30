@@ -89,7 +89,7 @@ const generateSvg = async (hash, latex, path, inline) => {
     await execAsync(
       `latex -interaction nonstopmode -output-directory ${output} ${tex}`,
     );
-    await execAsync(`dvisvgm ${dvi} -n -b preview -e -c 1.7 1.5 -o ${svg}`);
+    await execAsync(`dvisvgm ${dvi} -n -e -o ${svg}`);
   } catch (e) {
     console.log(`Error Occurred when parsing: ${chalk.red(latex)}.`);
     console.log(e.stderr);
