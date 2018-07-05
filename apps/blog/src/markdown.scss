@@ -97,7 +97,7 @@ article {
   }
 
   pre {
-    padding: 0.8em 0.8em 0.8em 3.8em;
+    padding: 16px;
     overflow: auto;
     line-height: 1.45;
     background-color: $color_black_haze_approx;
@@ -129,24 +129,9 @@ article {
       background-color: transparent;
       border: 0;
 
-      > .numbers-rows {
-        position: absolute;
-        pointer-events: none;
-        top: 0;
-        bottom: 0;
-        font-size: 100%;
-        left: -3.8em;
-        width: 3em;
+      > .line-number {
         user-select: none;
-        line-height: 1.45;
-
-        > span {
-          color: mat-color($mat-grey, 400);
-          display: block;
-          padding-right: 0.8em;
-          text-align: right;
-          margin: 0;
-        }
+        color: mat-color($mat-grey, 400);
       }
     }
 

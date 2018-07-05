@@ -11,30 +11,39 @@ import { MetaRegex } from './util';
 
 loadLanguages(['typescript', 'bash', 'lisp', 'yaml', 'http']);
 
-const number_rows = number =>
-  `<span class="numbers-rows">${Array.from(Array(number).keys())
-    .map(i => `<span>${i + 1}</span>`)
-    .join('')}</span>`;
-
 export const render = (slugs, outputPath, contentPath) => {
   const promises = [];
 
   const renderer = new MarkdownIt({
     html: true,
     highlight: (code, lang) => {
-      if (!lang) return '';
+      if (lang) {
+        lang = lang.toLowerCase();
 
-      lang = lang.toLowerCase();
-
-      if (!(lang in Prism.languages)) {
-        console.error(`Not language definitions for ${chalk.red(lang)}`);
-        return '';
-      } else {
-        // count the number of lines of code
-        const lines = code.trim().split(/\r\n|\r|\n/).length;
-        const html = Prism.highlight(code, Prism.languages[lang]);
-        return html + number_rows(lines);
+        // highlighting the code
+        if (lang in Prism.languages) {
+          code = Prism.highlight(code, Prism.languages[lang]);
+        } else {
+          console.error(`Not language definitions for ${chalk.red(lang)}`);
+        }
       }
+
+      // split into lines
+      const lines = code.trim().split(/\r\n|\r|\n/);
+
+      // line number is not necessary for code shorted than 4 lines
+      if (lines.length < 4) return code;
+
+      const padding = lines.length < 10 ? 1 : lines.length < 100 ? 2 : 3;
+
+      // insert line number at the beginning
+      return lines.reduce(
+        (res, acc, index) =>
+          `${res}<span class="line-number">${(index + 1)
+            .toString()
+            .padStart(padding)}  </span>${acc}\n`,
+        '',
+      );
     },
   }).use(markdown_it_latex, { path: outputPath });
 

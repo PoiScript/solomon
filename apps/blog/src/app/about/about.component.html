@@ -16,11 +16,11 @@
         <div class="section-content">
           <p>我的 PGP 指纹：<code>EC56 5FE9 8A6F 316A B69F 6979 8EE0 5E84 4452 6ED5</code>。</p>
           <p>你可以从 Keybase 或是我的博客上导入我的公钥。当然，建议你都运行一次，以防止被更改：</p>
-          <pre><code><span class="hljs-comment"># import my gpg key from my blog</span>
-<span class="hljs-meta">$</span> curl https://blog.poi.cat/poi.gpg | gpg --import
-
-<span class="hljs-comment"># from keybase, too</span>
-<span class="hljs-meta">$</span> curl https://keybase.io/poiscript/pgp_keys.asc | gpg --import</code></pre>
+          <pre><code class="language-bash"><span class="line-number">1  </span><span class="token comment"># import poi's gpg key from blog</span>
+<span class="line-number">2  </span>$ <span class="token function">curl</span> https://blog.poi.cat/poi.gpg <span class="token operator">|</span> <span class="token function">gpg</span> --import
+<span class="line-number">3  </span>
+<span class="line-number">4  </span><span class="token comment"># from keybase, too</span>
+<span class="line-number">5  </span>$ <span class="token function">curl</span> https://keybase.io/poiscript/pgp_keys.asc <span class="token operator">|</span> <span class="token function">gpg</span> --import</code></pre>
           <p>如无异样，gpg 应该会显示：<b>"Alex Lin (poi) &lt;poiscript@gmail.com&gt;" not changed</b>； </p>
           <p>如有异样，请先运行
             <code>gpg --delete-keys POI_KEY_ID</code>
