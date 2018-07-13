@@ -1,7 +1,7 @@
 ```yaml
 title: Spacemacs 和 Org-mode 和 LaTeX
 slug: spacemacs-plus-org-mode-plus-latex
-date: 2017-06-27T07:32:10.831Z
+date: 2017-06-27
 tags:
   - emacs
   - latex

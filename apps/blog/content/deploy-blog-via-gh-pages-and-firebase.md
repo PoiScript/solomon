@@ -1,7 +1,7 @@
 ```yaml
 title: 部署博客到 GitHub Pages & Firebase
 slug: deploy-blog-via-gh-pages-and-firebase
-date: 2017-02-05T13:57:17.024Z
+date: 2017-02-05
 tags:
   - angular
   - firebase

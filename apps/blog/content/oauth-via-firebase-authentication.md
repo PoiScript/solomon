@@ -1,7 +1,7 @@
 ```yaml
 title: 通过 Firebase Authentication 进行 OAuth 授权
 slug: oauth-via-firebase-authentication
-date: 2017-02-19T15:36:31.925Z
+date: 2017-02-19
 tags:
   - firebase
   - github

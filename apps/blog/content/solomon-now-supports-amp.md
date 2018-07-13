@@ -4,7 +4,7 @@ slug: solomon-now-supports-amp
 tags:
   - amp
   - blog
-date: 2017-03-26T11:54:06.296Z
+date: 2017-03-26
 ```
 
 > Solomon 现已支持 AMP.

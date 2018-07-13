@@ -1,7 +1,7 @@
 ```yaml
 title: 入手 PS4 Slim
 slug: bought-ps4-slim
-date: 2017-03-01T05:57:14.898Z
+date: 2017-03-01
 tags:
   - game
   - ps4

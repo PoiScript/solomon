@@ -4,7 +4,7 @@ slug: introducing-solomon
 tags:
   - angular
   - blog
-date: 2017-01-15T16:04:11.888Z
+date: 2017-01-15
 ```
 
 > 2017-02-13 更新：添加了配置文件部分

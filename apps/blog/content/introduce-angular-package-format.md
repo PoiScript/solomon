@@ -3,7 +3,7 @@ title: Angular Package Format 简介
 slug: introduce-angular-package-format
 tags:
   - angular
-date: 2018-03-15T15:21:28.264Z
+date: 2018-03-15
 ```
 
 [Angular Package Format（APF）](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview#) 指的是 Angular 框架中的包的结构和规范。该规范的作者是 [IgorMinar](https://github.com/IgorMinar) 和 [Jason Aden](https://github.com/jasonaden)，两者都是 Angular 的 Contributor。

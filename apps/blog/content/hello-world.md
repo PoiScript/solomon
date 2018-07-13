@@ -1,7 +1,7 @@
 ```yaml
 title: Hello World!
 slug: hello-world
-date: 2017-01-05T08:30:55.961Z
+date: 2017-01-05
 tags:
   - thought
 ```

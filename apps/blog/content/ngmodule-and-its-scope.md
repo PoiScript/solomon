@@ -3,7 +3,7 @@ title: NgModule 的作用域
 slug: ngmodule-and-its-scope
 tags:
   - angular
-date: 2017-10-16T06:10:47.147Z
+date: 2017-10-16
 ```
 
 ## 前言

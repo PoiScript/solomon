@@ -1,7 +1,7 @@
 ```yaml
 title: 基于 React 的 SEO 友好的博客
 slug: make-a-react-based-blog-seo-friendly
-date: 2017-06-15T13:35:03.930Z
+date: 2017-06-15
 tags:
   - blog
   - react
