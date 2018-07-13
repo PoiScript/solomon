@@ -12,7 +12,7 @@
       color: mat-color($primary);
     }
 
-    .tag {
+    .tag > a {
       color: mat-color($foreground, secondary-text);
     }
   }
