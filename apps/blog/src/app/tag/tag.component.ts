@@ -13,7 +13,6 @@ export class TagComponent {
     tap(tag => this.titleService.setTitle(`#${tag} | solomon`)),
     mergeMap(tag =>
       this.postService.posts$.pipe(
-        map(dict => Object.values(dict)),
         map(posts => posts.filter(p => p.tags.includes(tag))),
       ),
     ),

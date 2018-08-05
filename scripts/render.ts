@@ -1,73 +1,130 @@
 import chalk from 'chalk';
-import { readFile, outputFile } from 'fs-extra';
-import { minify } from 'html-minifier';
+import { readFile } from 'fs-extra';
+import { parse } from 'orga';
 import { resolve } from 'path';
 import * as Prism from 'prismjs/prism';
 import * as loadLanguages from 'prismjs/components/index';
-import * as MarkdownIt from 'markdown-it';
-
-import { markdown_it_latex } from './markdown-it-latex';
-import { MetaRegex } from './util';
 
 loadLanguages(['typescript', 'bash', 'lisp', 'yaml', 'http']);
 
-export const render = (slugs, outputPath, contentPath) => {
-  const promises = [];
+const escapeHtml = html =>
+  html
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 
-  const renderer = new MarkdownIt({
-    html: true,
-    highlight: (code, lang) => {
-      if (lang) {
-        lang = lang.toLowerCase();
-
-        // highlighting the code
-        if (lang in Prism.languages) {
-          code = Prism.highlight(code, Prism.languages[lang]);
-        } else {
-          console.error(`Not language definitions for ${chalk.red(lang)}`);
-        }
-      }
-
-      // split into lines
-      const lines = code.trim().split(/\r\n|\r|\n/);
-
-      // line number is not necessary for code shorted than 4 lines
-      if (lines.length < 4) return code;
-
-      const padding = lines.length < 10 ? 1 : lines.length < 100 ? 2 : 3;
-
-      // insert line number at the beginning
-      return lines.reduce(
-        (res, acc, index) =>
-          `${res}<span class="line-number">${(index + 1)
-            .toString()
-            .padStart(padding)}  </span>${acc}\n`,
-        '',
-      );
-    },
-  }).use(markdown_it_latex, { path: outputPath });
-
-  for (const slug of slugs) {
-    promises.push(
-      readFile(resolve(contentPath, `${slug}.md`), 'utf8')
-        .then(markdown => markdown.replace(MetaRegex, ''))
-        .then(markdown => renderer.render(markdown))
-        .then(html =>
-          minify(html, {
-            collapseWhitespace: true,
-            removeEmptyElements: true,
-          }),
-        )
-        .then(html =>
-          outputFile(resolve(outputPath, 'html', `${slug}.html`), html),
-        ),
-    );
+const handleCodeBlock = (code, params) => {
+  const lang = params.length > 0 ? params[0].toLowerCase() : null;
+  if (lang) {
+    // highlighting the code
+    if (lang in Prism.languages) {
+      code = Prism.highlight(code, Prism.languages[lang]);
+    } else {
+      console.error(`Not language definitions for ${chalk.red(lang)}`);
+    }
   }
 
-  return Promise.all(promises).then(res => {
-    const len = res.length;
-    if (len > 0) {
-      console.log(`Generated ${len} html file(s) in ${outputPath}/html.`);
+  // split into lines
+  const lines = code.trim().split(/\r\n|\r|\n/);
+
+  // line number is not necessary for code shorted than 4 lines
+  if (lines.length < 4) return code;
+
+  const padding = lines.length < 10 ? 1 : lines.length < 100 ? 2 : 3;
+
+  // insert line number at the beginning
+  return lines.reduce((res, acc, index) => {
+    const number = (index + 1).toString().padStart(padding);
+    return `${res}<span class="line-number">${number}  </span>${acc}\n`;
+  }, '');
+};
+
+export const renderHtml = node => {
+  if (Array.isArray(node)) {
+    return node.map(child => renderHtml(child)).join('');
+  } else {
+    let { type, children, name, value, uri, desc, ordered, params } = node;
+
+    switch (type) {
+      case 'root':
+        return renderHtml(children);
+      // inline
+      case 'text':
+        return escapeHtml(value);
+      case 'bold':
+        return `<b>${renderHtml(children)}</b>`;
+      case 'underline':
+        return `<u>${renderHtml(children)}</u>`;
+      case 'strikeThrough':
+        return `<s>${renderHtml(children)}</s>`;
+      case 'code':
+      case 'verbatim':
+        return `<code>${renderHtml(children)}</code>`;
+      case 'italic':
+        return `<i>${renderHtml(children)}</i>`;
+      case 'link': {
+        switch (uri.protocol) {
+          // image link
+          case 'file':
+            return `<img src="${uri.location}" alt="${desc ? desc : ''}">`;
+          case 'http':
+          case 'https':
+            return `<a href="${uri.raw}">${desc ? desc : uri.raw}</a>`;
+          default:
+            console.error(`Unhandled protocol: ${chalk.red(uri.protocol)}`);
+            return;
+        }
+      }
+      // list
+      case 'list': {
+        const tag = ordered ? 'ol' : 'ul';
+        return `<${tag}>${renderHtml(children)}</${tag}>`;
+      }
+      case 'list.item':
+        return `<li>${renderHtml(children)}</li>`;
+      // block
+      case 'paragraph':
+        return `<p>${renderHtml(children)}</p>`;
+      case 'section':
+        return `<section>${renderHtml(children)}</section>`;
+      // TODO: different levels
+      case 'headline':
+        return `<h1>${renderHtml(children)}</h1>`;
+      case 'horizontalRule':
+        return `<hr/>`;
+      case 'block': {
+        switch (name) {
+          case 'QUOTE': {
+            children = parse(value).children;
+            return `<blockquote>${renderHtml(children)}</blockquote>`;
+          }
+          case 'SRC':
+            return `<pre><code>${handleCodeBlock(value, params)}</code></pre>`;
+          default:
+            console.error(`Unhandled block, name: ${chalk.red(name)}`);
+            return;
+        }
+      }
+      default:
+        console.error(`Unhandled node, type: ${chalk.red(type)}`);
     }
+  }
+};
+
+export const render = (path, file) => {
+  path = resolve(path, file + '.org');
+
+  return readFile(path, 'utf-8').then(content => {
+    let ast = parse(content);
+
+    if (ast.meta.slug !== file) {
+      console.error(`Unmatched slug: ${chalk.red(path)}`);
+    }
+
+    ast.meta.tags = ast.meta.tags.split(' ');
+
+    return { html: renderHtml(ast), ...ast.meta };
   });
 };

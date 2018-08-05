@@ -3,6 +3,7 @@ export class Post {
   slug: string;
   date: string;
   tags: string[];
+  html: string;
   next?: {
     title: string;
     slug: string;
@@ -11,8 +12,4 @@ export class Post {
     title: string;
     slug: string;
   };
-}
-
-export interface PostDict {
-  [slug: string]: Post;
 }

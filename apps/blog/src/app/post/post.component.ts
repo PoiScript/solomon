@@ -13,7 +13,11 @@ export class PostComponent {
   slug$ = this.route.paramMap.pipe(map(paramMap => paramMap.get('slug')));
 
   post$ = this.slug$.pipe(
-    mergeMap(slug => this.postService.posts$.pipe(map(posts => posts[slug]))),
+    mergeMap(slug =>
+      this.postService.posts$.pipe(
+        map(posts => posts.find(p => p.slug === slug)),
+      ),
+    ),
     tap(post => {
       if (post) {
         this.titleService.setTitle(post.title + ' | solomon');

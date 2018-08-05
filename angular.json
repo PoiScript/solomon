@@ -23,6 +23,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "apps/blog/src/../content/images",
+                "output": "images"
+              },
+              {
+                "glob": "**/*",
                 "input": "public/blog",
                 "output": ""
               }

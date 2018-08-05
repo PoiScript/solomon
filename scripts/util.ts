@@ -1,20 +1,26 @@
-import { readdirSync, statSync } from 'fs-extra';
-import { resolve } from 'path';
+import { readdirSync } from 'fs-extra';
 
 export const sortByDate = (a, b) =>
   a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
 
-export const MetaRegex = /```yaml[a-z]*\n[\s\S]*?\n```/;
+export const generateList = posts => {
+  for (let i = 0; i < posts.length; i++) {
+    delete posts[i].html;
 
-export const walk = (dir, regexp, list = []) => {
-  const files = readdirSync(dir);
-  for (const file of files) {
-    const path = resolve(dir, file);
-    if (statSync(path).isDirectory()) {
-      walk(path, regexp, list);
-    } else if (file.match(regexp)) {
-      list.push(path);
+    if (i !== 0) {
+      const { title, slug } = posts[i - 1];
+      posts[i].next = { title, slug };
+    }
+
+    if (i !== posts.length - 1) {
+      const { title, slug } = posts[i + 1];
+      posts[i].prior = { title, slug };
     }
   }
-  return list;
+  return posts;
 };
+
+export const listOrgFiles = contentDir =>
+  readdirSync(contentDir)
+    .filter(f => /\.org$/.exec(f))
+    .map(file => file.slice(0, -4));
