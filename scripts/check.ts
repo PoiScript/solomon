@@ -1,6 +1,6 @@
 /* tslint:disable:no-console */
 
-import { writeJson, writeFile } from 'fs-extra';
+import { outputFile, outputJson } from 'fs-extra';
 import { resolve } from 'path';
 
 import { render } from './render';
@@ -21,10 +21,10 @@ const check = async (contentDir, outputDir) => {
 
   return [
     ...posts.map(post =>
-      writeJson(resolve(outputDir, post.slug + '.json'), post),
+      outputJson(resolve(outputDir, post.slug + '.json'), post),
     ),
-    writeFile(resolve(outputDir, 'atom.xml'), rss(posts)),
-    writeJson(resolve(outputDir, 'posts.json'), generateList(posts)),
+    outputFile(resolve(outputDir, 'atom.xml'), rss(posts)),
+    outputJson(resolve(outputDir, 'posts.json'), generateList(posts)),
   ];
 };
 
