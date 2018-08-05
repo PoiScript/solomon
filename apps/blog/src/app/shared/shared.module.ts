@@ -47,6 +47,7 @@ export class SharedModule {
     private sanitizer: DomSanitizer,
   ) {
     this.registerIcon('arrow');
+    this.registerIcon('github');
     this.registerIcon('rss');
   }
 

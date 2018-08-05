@@ -1,11 +1,11 @@
-.main-content {
+:host {
   min-height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-.content {
+.main-content {
   flex: 1;
   box-sizing: border-box;
 }

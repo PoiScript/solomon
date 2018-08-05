@@ -33,51 +33,9 @@ $default-primary: mat-palette($mat-deep-purple);
 $default-accent: mat-palette($mat-amber, A200, A100, A400);
 $default-theme: mat-light-theme($default-primary, $default-accent);
 
-@include post-list-theme($default-theme);
-@include mat-core-theme($default-theme);
-@include mat-toolbar-theme($default-theme);
+@include markdown-theme($default-theme);
 @include mat-button-theme($default-theme);
-
-// about theme
-.about-theme {
-  $about-primary: mat-palette($mat-indigo);
-  $about-theme: mat-light-theme($about-primary, $default-accent);
-
-  @include markdown-theme($about-theme);
-  @include mat-toolbar-theme($about-theme);
-}
-
-// link theme
-.link-theme {
-  $link-primary: mat-palette($mat-pink);
-  $link-theme: mat-light-theme($link-primary, $default-accent);
-
-  @include mat-toolbar-theme($link-theme);
-  @include mat-list-theme($link-theme);
-}
-
-// not-found theme
-.not-found-theme {
-  $not-found-primary: mat-palette($mat-brown);
-  $not-found-theme: mat-light-theme($not-found-primary, $default-accent);
-
-  @include mat-toolbar-theme($not-found-theme);
-}
-
-// post theme
-.post-theme {
-  $post-primary: mat-palette($mat-teal);
-  $post-theme: mat-light-theme($post-primary, $default-accent);
-
-  @include markdown-theme($post-theme);
-  @include mat-toolbar-theme($post-theme);
-}
-
-// tag theme
-.tag-theme {
-  $tag-primary: mat-palette($mat-red);
-  $tag-theme: mat-light-theme($tag-primary, $default-accent);
-
-  @include mat-toolbar-theme($tag-theme);
-  @include post-list-theme($tag-theme);
-}
+@include mat-core-theme($default-theme);
+@include mat-list-theme($default-theme);
+@include mat-toolbar-theme($default-theme);
+@include post-list-theme($default-theme);

@@ -1,33 +1,30 @@
-<div class="post-theme">
-  <solomon-header></solomon-header>
-  <div class="container">
-    <ng-container *ngIf="post$ | async as post">
-      <h1 class="primary-header">{{post.title}}</h1>
-      <p class="primary-subheader">
-        <span>{{post.date | date:'mediumDate'}}</span>
-        <a *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> · #{{tag}}</a>
-      </p>
-    </ng-container>
-    <article [innerHtml]="html$ | async"></article>
-    <section *ngIf="post$ | async as post">
-      <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
-        <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
-          <mat-icon svgIcon="arrow"></mat-icon>
-        </a>
-        <div class="nav-text">
-          <span>Prior</span>
-          <strong>{{post.prior.title}}</strong>
-        </div>
+<div class="container">
+  <ng-container *ngIf="post$ | async as post">
+    <h1 class="primary-header">{{post.title}}</h1>
+    <p class="primary-subheader">
+      <span>{{post.date | date:'mediumDate'}}</span>
+      <a *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> · #{{tag}}</a>
+    </p>
+  </ng-container>
+  <article [innerHtml]="html$ | async"></article>
+  <section *ngIf="post$ | async as post">
+    <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
+      <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
+        <mat-icon svgIcon="arrow"></mat-icon>
+      </a>
+      <div class="nav-text">
+        <span>Prior</span>
+        <strong>{{post.prior.title}}</strong>
       </div>
-      <div *ngIf="post.next" id="nav-next" class="nav-row">
-        <a mat-icon-button [routerLink]="['/post', post.next.slug]">
-          <mat-icon svgIcon="arrow"></mat-icon>
-        </a>
-        <div class="nav-text">
-          <span>Next</span>
-          <strong>{{post.next.title}}</strong>
-        </div>
+    </div>
+    <div *ngIf="post.next" id="nav-next" class="nav-row">
+      <a mat-icon-button [routerLink]="['/post', post.next.slug]">
+        <mat-icon svgIcon="arrow"></mat-icon>
+      </a>
+      <div class="nav-text">
+        <span>Next</span>
+        <strong>{{post.next.title}}</strong>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </div>
