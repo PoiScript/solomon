@@ -1,8 +1,35 @@
-.footer-spacer {
-  flex: 1 1 auto;
-}
-
-.footer-text {
+.solomon-footer {
+  background: whitesmoke;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 13px;
   font-weight: 400;
+
+  @media all and (max-width: 600px) {
+    flex-direction: column;
+
+    .links {
+      padding-bottom: 10px;
+    }
+  }
+
+  .links > a {
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .license {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .separator {
+    padding: 0 1em;
+    color: rgba(0, 0, 0, 0.4);
+    user-select: none;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
 }
