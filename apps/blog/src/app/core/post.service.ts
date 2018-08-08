@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { finalize, map, tap } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
-import { Post } from '../models';
+import { Post, PostResponse } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -13,19 +13,20 @@ export class PostService {
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
-  fetchPost(slug: string): Observable<SafeHtml> {
-    return this.http
-      .get<Post>(`/${slug}.json`)
-      .pipe(map(res => this.sanitizer.bypassSecurityTrustHtml(res.html)));
+  fetchPost(slug: string): Observable<Post> {
+    this.isLoading$.next(true);
+    return this.http.get<PostResponse>(`/${slug}.json`).pipe(
+      map(res => {
+        this.sanitizer.bypassSecurityTrustHtml(res.html);
+        return res;
+      }),
+      finalize(() => this.isLoading$.next(false)),
+    );
   }
 
   fetchPostDict() {
     this.http
       .get<Post[]>('/posts.json')
-      .pipe(
-        tap(() => this.isLoading$.next(true)),
-        finalize(() => this.isLoading$.next(false)),
-      )
       .subscribe(posts => this.posts$.next(posts));
   }
 }

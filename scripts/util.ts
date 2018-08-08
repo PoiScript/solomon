@@ -3,10 +3,8 @@ import { readdirSync } from 'fs-extra';
 export const sortByDate = (a, b) =>
   a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
 
-export const generateList = posts => {
+export const addNextAndPriorPost = posts => {
   for (let i = 0; i < posts.length; i++) {
-    delete posts[i].html;
-
     if (i !== 0) {
       const { title, slug } = posts[i - 1];
       posts[i].next = { title, slug };

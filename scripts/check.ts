@@ -5,7 +5,7 @@ import { resolve } from 'path';
 
 import { render } from './render';
 import { rss } from './rss';
-import { generateList, listOrgFiles, sortByDate } from './util';
+import { addNextAndPriorPost, listOrgFiles, sortByDate } from './util';
 
 const blogPublicDir = resolve('public/blog');
 const blogContentDir = resolve('apps/blog/content');
@@ -17,14 +17,17 @@ const check = async (contentDir, outputDir) => {
     listOrgFiles(contentDir).map(file => render(contentDir, file)),
   );
 
-  posts = posts.sort(sortByDate);
+  posts = addNextAndPriorPost(posts.sort(sortByDate));
 
   return [
     ...posts.map(post =>
       outputJson(resolve(outputDir, post.slug + '.json'), post),
     ),
     outputFile(resolve(outputDir, 'atom.xml'), rss(posts)),
-    outputJson(resolve(outputDir, 'posts.json'), generateList(posts)),
+    outputJson(
+      resolve(outputDir, 'posts.json'),
+      posts.map(({ title, slug, date, tags }) => ({ title, slug, date, tags })),
+    ),
   ];
 };
 

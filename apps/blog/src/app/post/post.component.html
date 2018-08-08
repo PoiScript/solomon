@@ -6,8 +6,8 @@
       <a *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> · #{{tag}}</a>
     </p>
   </ng-container>
-  <article [innerHtml]="html$ | async"></article>
-  <section *ngIf="post$ | async as post">
+  <ng-container *ngIf="html$ | async as post">
+    <article [innerHtml]="post.html"></article>
     <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
       <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
         <mat-icon svgIcon="arrow"></mat-icon>
@@ -26,5 +26,5 @@
         <strong>{{post.next.title}}</strong>
       </div>
     </div>
-  </section>
+  </ng-container>
 </div>
