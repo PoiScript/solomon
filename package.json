@@ -27,8 +27,6 @@
     "@angular/pwa": "0.7.2",
     "@angular/router": "6.1.1",
     "@angular/service-worker": "6.1.1",
-    "@ngx-progressbar/core": "5.0.1",
-    "@ngx-progressbar/http": "5.0.1",
     "@solomon/scss": "file:libs/scss",
     "core-js": "^2.5.3",
     "rxjs": "6.2.2",

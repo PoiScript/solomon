@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-import { NgProgressModule } from '@ngx-progressbar/core';
-import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { environment } from '@solomon/environment';
 
@@ -30,8 +28,6 @@ import { AppRoutingModule } from './app.routing.module';
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     HttpClientModule,
-    NgProgressModule.forRoot(),
-    NgProgressHttpModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production,
     }),
