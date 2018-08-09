@@ -1,5 +1,6 @@
 @import './markdown';
 @import './prism';
+@import './theme';
 
 html,
 body {
@@ -14,25 +15,30 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.primary-header {
-  padding: 0;
-  margin: 40px auto;
-  text-transform: uppercase;
-  font-size: 24px;
-  font-weight: 400;
-}
+.title-section {
+  margin: 24px 0;
 
-a {
-  text-decoration: none;
-}
+  .title {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.84);
+  }
 
-.primary-subheader {
-  margin: 0;
-  padding: 0 0 20px 0;
-}
+  .subtitle {
+    color: rgba(0, 0, 0, 0.54);
+    margin: 0;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 400;
+  }
 
-.container {
-  max-width: 960px;
-  margin: auto;
-  padding: 40px;
+  .tag a {
+    color: mat-color($primary);
+    text-decoration: none;
+  }
+
+  .tag::before {
+    content: ' · ';
+  }
 }

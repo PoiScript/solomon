@@ -1,7 +1,4 @@
-<div class="container">
-  <h1 class="primary-header">#{{tag$ | async}}</h1>
-  <p class="primary-subheader">
-    <!--{(posts | tag:tag).length, plural, =0 {no post} one {1 post} other {{{(posts | tag:tag).length}} posts}}-->
-  </p>
-  <solomon-post-list [posts]="posts$ | async"></solomon-post-list>
+<div class="title-section">
+  <h1 class="title">#{{tag$ | async}}</h1>
 </div>
+<solomon-post-list [posts]="posts$ | async"></solomon-post-list>

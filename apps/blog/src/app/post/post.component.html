@@ -1,30 +1,30 @@
-<div class="container">
-  <ng-container *ngIf="post$ | async as post">
-    <h1 class="primary-header">{{post.title}}</h1>
-    <p class="primary-subheader">
-      <span>{{post.date | date:'mediumDate'}}</span>
-      <a *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> · #{{tag}}</a>
-    </p>
-  </ng-container>
-  <ng-container *ngIf="html$ | async as post">
-    <article [innerHtml]="post.html"></article>
-    <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
-      <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
-        <mat-icon svgIcon="arrow"></mat-icon>
-      </a>
-      <div class="nav-text">
-        <span>Prior</span>
-        <strong>{{post.prior.title}}</strong>
-      </div>
-    </div>
-    <div *ngIf="post.next" id="nav-next" class="nav-row">
-      <a mat-icon-button [routerLink]="['/post', post.next.slug]">
-        <mat-icon svgIcon="arrow"></mat-icon>
-      </a>
-      <div class="nav-text">
-        <span>Next</span>
-        <strong>{{post.next.title}}</strong>
-      </div>
-    </div>
-  </ng-container>
+<div class="title-section" *ngIf="post$ | async as post">
+  <h1 class="title">{{post.title}}</h1>
+  <h2 class="subtitle">
+    {{post.date | date:'mediumDate'}}
+    <span class="tag" *ngFor="let tag of post.tags">
+        <a [routerLink]="['/tag', tag]">#{{tag}}</a>
+      </span>
+  </h2>
 </div>
+<ng-container *ngIf="html$ | async as post">
+  <article [innerHtml]="post.html"></article>
+  <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
+    <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
+      <mat-icon svgIcon="arrow"></mat-icon>
+    </a>
+    <div class="nav-text">
+      <span>Prior</span>
+      <strong>{{post.prior.title}}</strong>
+    </div>
+  </div>
+  <div *ngIf="post.next" id="nav-next" class="nav-row">
+    <a mat-icon-button [routerLink]="['/post', post.next.slug]">
+      <mat-icon svgIcon="arrow"></mat-icon>
+    </a>
+    <div class="nav-text">
+      <span>Next</span>
+      <strong>{{post.next.title}}</strong>
+    </div>
+  </div>
+</ng-container>

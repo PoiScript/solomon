@@ -5,7 +5,13 @@
   flex-direction: column;
 }
 
-.main-content {
+.main {
   flex: 1;
   box-sizing: border-box;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 40px;
 }
