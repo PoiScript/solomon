@@ -16,6 +16,3 @@ export class Post {
   };
 }
 
-export class PostResponse extends Post {
-  html: string;
-}

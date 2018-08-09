@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
-import { Post, PostResponse } from '../models';
+import { Post } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
   public isLoading$ = new BehaviorSubject<boolean>(false);
   public posts$ = new BehaviorSubject<Post[]>([]);
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
+  constructor(private http: HttpClient) {}
 
   fetchPost(slug: string): Observable<Post> {
     this.isLoading$.next(true);
-    return this.http.get<PostResponse>(`/${slug}.json`).pipe(
-      map(res => {
-        this.sanitizer.bypassSecurityTrustHtml(res.html);
-        return res;
-      }),
-      finalize(() => this.isLoading$.next(false)),
-    );
+    return this.http
+      .get<Post>(`/${slug}.json`)
+      .pipe(finalize(() => this.isLoading$.next(false)));
   }
 
   fetchPostDict() {
