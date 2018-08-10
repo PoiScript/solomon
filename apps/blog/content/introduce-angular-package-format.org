@@ -53,7 +53,7 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 
 下面我们以一个具体的遵循 APF 的包 =@angular/material= 为例子，描述具体的文件结构。
 
-首先是整体的文件结构, 主要分成了 =esm2015/=，`esm5/`，`bundles/` 和其他各自的独立的 module 的文件夹。其中 =esm2015/=，`esm5/` 和 =bundles/= 就分别表示了 esm+es2015，esm+es5 和 umd+es5 的编译结果。
+首先是整体的文件结构, 主要分成了 =esm2015/= ， =esm5/= ， =bundles/= 和其他各自的独立的 module 的文件夹。其中 =esm2015/= ， =esm5/= 和 =bundles/= 就分别表示了 esm+es2015，esm+es5 和 umd+es5 的编译结果。
 
 #+BEGIN_SRC
 .
@@ -64,7 +64,7 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 └── ...others
 #+END_SRC
 
-而在 =esm2015=，`esm5` 和 =bundles= 中则包括了该库中所有编译结果：每个独立的 module 的编译结果和整个库的 module 的都在其中。而每一个独立的 module 而编译结果都是一个 Flat Module。
+而在 =esm2015= ， =esm5= 和 =bundles= 中则包括了该库中所有编译结果：每个独立的 module 的编译结果和整个库的 module 的都在其中。而每一个独立的 module 而编译结果都是一个 Flat Module。
 
 #+BEGIN_SRC
 .
@@ -75,7 +75,7 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 └── material.umd.min.js
 #+END_SRC
 
-而在每个独立的 module 中都包含的各自该 module 的 =package.json=，`metadata.json` 和 =.d.ts= 文件：
+而在每个独立的 module 中都包含的各自该 module 的 =package.json= ， =metadata.json= 和 =.d.ts= 文件：
 
 #+BEGIN_SRC
 .

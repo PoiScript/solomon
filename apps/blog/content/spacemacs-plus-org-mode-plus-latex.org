@@ -135,7 +135,7 @@ Org-mode 是 Major Mode(主要模块); =CDLaTeX= 是 Minor Mode(辅助模块). �
 
 相比直接在 Org-mode 里使用 =CDLaTeX=, Org-mode 推荐使用 Org-mode 自带的轻量版的 =org-cdlatex-mode=.
 
-=org-cdlatex-mode= 依赖 =cdlatex.el= 和 =texmathp.el=(这个来自 =AUTeX=, 作用是判定目前光标所在位置是否在内嵌的 LaTeX 中).
+=org-cdlatex-mode= 依赖 =cdlatex.el= 和 =texmathp.el= (这个来自 =AUTeX=, 作用是判定目前光标所在位置是否在内嵌的 LaTeX 中).
 所以我们需要在 =.spacemacs= 加入我们需要安装的 =CDLaTeX= 和 =AUTeX=:
 
 #+BEGIN_SRC elisp
@@ -154,7 +154,7 @@ dotspacemacs-additional-packages '(cdlatex auctex)
 
 3. 在 =`= 后加一个字母可以快速输入一些 LaTeX 的符号, 例如 =`a => \alpha=, =`b => \beta=
 
-4. 在一些字母之后加上 ='= 则是可以修改该字母的字体或者加修饰, 例如 =a'. => \dot{a}=, =a'1 => {\displaystyle a}=
+4. 在一些字母之后加上 ~\'~ 则是可以修改该字母的字体或者加修饰, 例如 =a'. => \dot{a}=, =a'1 => {\displaystyle a}=
 
 [[file:images/cdlatex-apostrophe-completions.png][' 的补全]]
 

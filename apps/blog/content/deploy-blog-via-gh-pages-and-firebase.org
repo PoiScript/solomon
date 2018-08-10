@@ -177,7 +177,7 @@ notifications:
 
 自动编译好了之后，接下来就需要 *自动部署* 了，为了安全起见我们当然不能直接把我的 GitHub 和 Google 密码交出去，所以我们需要 *Token* (令牌)。
 
-GitHub 的 Token 是在 [[https://github.com/settings/tokens]] 页面。点击 *Generate New Token* 之后输入这个 Token 描述(例如：[[Trvias-CI][Personal access tokens]]，然后选择该 Token 的权限， 我们只选择一个 *public_repo* 。
+GitHub 的 Token 是在 [[https://github.com/settings/tokens][Personal access tokens]] 页面。点击 *Generate New Token* 之后输入这个 Token 描述(例如：Travis-CI，然后选择该 Token 的权限， 我们只选择一个 *public_repo* 。
 
 [[file:images/github-gernate-token.png][生成 GitHub Token]]
 
