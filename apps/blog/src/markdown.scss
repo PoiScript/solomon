@@ -1,111 +1,56 @@
 @import '~@angular/material/theming';
 
-//colors
-$color_desert_storm_approx: #f8f8f8;
-$color_alto_approx: #ddd;
-$color_celeste_approx: #ccc;
-$color_gallery_approx: #eee;
-$color_tapa_approx: #777;
-$white: #fff;
-$black_4: rgba(0, 0, 0, 0.04);
-$color_black_haze_approx: #f7f7f7;
-$color_steel_blue_approx: #4078c0;
-
-//fonts
-$font_0: 'Fira Code';
-$font_1: 'Source Code Pro';
-$font_2: 'Consolas';
-$font_3: 'Monaco';
-$font_4: 'Andale Mono';
-$font_5: 'monospace';
-
-//ul, ol
-%extend_1 {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 2em;
-}
+@import './theme';
 
 article {
-  section {
-    text-align: left;
-
-    h2 {
-      margin: 24px 0;
-      width: 140px;
-      font-size: 20px;
-      font-weight: 300;
-      display: table-cell;
-    }
-
-    .section-content {
-      margin: 0;
-      padding: 0;
-      display: table-cell;
-    }
-
-    @media (max-width: 850px) {
-      h2 {
-        display: block;
-      }
-
-      .section-content {
-        display: block;
-      }
-    }
+  p {
+    padding: 0;
   }
 
   a {
-    word-wrap: break-word;
-    background-color: transparent;
+    color: mat-color($primary);
     text-decoration: none;
-
-    &:not([href]) {
-      color: inherit;
-      text-decoration: none;
-    }
+    margin: 0;
+    padding: 0;
   }
 
-  strong {
+  b {
     font-weight: 500;
   }
 
-  img {
-    border-style: none;
-    max-width: 100%;
-    box-sizing: content-box;
-    background-color: $white;
+  li {
+    margin-left: 2rem;
+  }
+
+  ol {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 12px;
+    padding: 0;
+  }
+
+  %extend_code {
+    font-size: 1em;
+    font-family: 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco',
+      'Andale Mono', 'monospace';
+    border-radius: 3px;
   }
 
   code {
-    font-size: 1em;
-    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5;
-    padding: 0.2em 0;
+    @extend %extend_code;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 0.2em;
     margin: 0;
-    background-color: $black_4;
-    border-radius: 3px;
-  }
-
-  code::before {
-    letter-spacing: -0.2em;
-    content: '\00a0';
-  }
-
-  code::after {
-    letter-spacing: -0.2em;
-    content: '\00a0';
   }
 
   pre {
+    @extend %extend_code;
     padding: 16px;
     overflow: auto;
     line-height: 1.45;
-    background-color: $color_black_haze_approx;
-    border-radius: 3px;
+    background-color: #f7f7f7;
     margin-top: 0;
     margin-bottom: 16px;
-    font-size: 1em;
-    font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5;
     word-wrap: normal;
 
     > code {
@@ -118,198 +63,41 @@ article {
       border: 0;
       position: relative;
     }
-
-    code {
-      display: inline;
-      padding: 0;
-      margin: 0;
-      overflow: visible;
-      line-height: inherit;
-      word-wrap: normal;
-      background-color: transparent;
-      border: 0;
-
-      > .line-number {
-        user-select: none;
-        color: mat-color($mat-grey, 400);
-      }
-    }
-
-    code::before {
-      content: normal;
-    }
-
-    code::after {
-      content: normal;
-    }
   }
 
-  * {
-    //Instead of the line below you could use @include box-sizing($bs)
-    box-sizing: border-box;
-  }
-
-  hr::before {
-    display: table;
-    content: '';
-  }
-
-  hr::after {
-    display: table;
-    clear: both;
-    content: '';
-  }
-
-  table {
-    border-spacing: 0;
-    border-collapse: collapse;
-    display: block;
-    width: 100%;
-    overflow: auto;
-    margin-top: 0;
-    margin-bottom: 16px;
-
-    th {
-      font-weight: bold;
-      padding: 6px 13px;
-      border: 1px solid $color_alto_approx;
-    }
-
-    td {
-      padding: 6px 13px;
-      border: 1px solid $color_alto_approx;
-    }
-
-    tr {
-      background-color: $white;
-      border-top: 1px solid $color_celeste_approx;
-
-      &:nth-child(2n) {
-        background-color: $color_desert_storm_approx;
-      }
-    }
-  }
-
-  td {
-    padding: 0;
-  }
-
-  th {
-    padding: 0;
-  }
-
-  p {
-    margin-top: 10px;
-    margin-bottom: 15px;
+  .line-number {
+    user-select: none;
+    color: mat-color($mat-grey, 400);
   }
 
   blockquote {
     margin: 0 0 16px 0;
     padding: 0 1em;
-    border-left: 0.3em solid;
-
-    > {
-      :first-child {
-        margin-top: 0;
-      }
-
-      :last-child {
-        margin-bottom: 0;
-      }
-    }
+    border-left: 0.3em solid mat-color($mat-grey, 300);
   }
 
-  ul {
-    @extend %extend_1;
-    margin-top: 0;
-    margin-bottom: 16px;
-
-    ol {
-      list-style-type: lower-roman;
-      margin-top: 0;
-      margin-bottom: 0;
-
-      ol {
-        list-style-type: lower-alpha;
-      }
-    }
-
-    ul {
-      margin-top: 0;
-      margin-bottom: 0;
-
-      ol {
-        list-style-type: lower-alpha;
-      }
-    }
+  .image-placeholder {
+    border-style: none;
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: white;
   }
 
-  ol {
-    @extend %extend_1;
-    margin-top: 0;
-    margin-bottom: 16px;
-
-    ol {
-      list-style-type: lower-roman;
-      margin-top: 0;
-      margin-bottom: 0;
-
-      ol {
-        list-style-type: lower-alpha;
-      }
-    }
-
-    ul {
-      margin-top: 0;
-      margin-bottom: 0;
-
-      ol {
-        list-style-type: lower-alpha;
-      }
-    }
+  .image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
   }
 
-  dd {
-    margin-left: 0;
+  hr {
+    border: 0;
+    margin: 12px 0;
+    height: 1px;
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0)
+    );
   }
-
-  dl {
-    margin-top: 0;
-    margin-bottom: 16px;
-    padding: 0;
-
-    dt {
-      padding: 0;
-      margin-top: 16px;
-      font-size: 1em;
-      font-style: italic;
-      font-weight: bold;
-    }
-
-    dd {
-      padding: 0 16px;
-      margin-bottom: 16px;
-    }
-  }
-
-  li {
-    > p {
-      margin-top: 16px;
-    }
-
-    + li {
-      margin-top: 0.25em;
-    }
-  }
-}
-
-article::before {
-  display: table;
-  content: '';
-}
-
-article::after {
-  display: table;
-  clear: both;
-  content: '';
 }

@@ -6,7 +6,14 @@
 @include cdk-overlay();
 
 $text-color: invert(mat-color($mat-light-theme-background, card, 0.6)) !default;
-$typography-config: mat-typography-config();
+$typography-config: mat-typography-config(
+  $font-family:
+    '-apple-system, Roboto, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L",
+  Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC",
+  "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei",
+  "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif',
+  $body-1: mat-typography-level(15px, 24px, 400)
+);
 
 body {
   color: $text-color;
@@ -16,26 +23,17 @@ body {
   color: $text-color;
 }
 
-@mixin markdown-theme($theme) {
-  $primary: map-get($theme, primary);
-
-  .container a {
-    color: mat-color($primary);
-  }
-}
-
+@include mat-base-typography($typography-config, 'article');
 @include mat-button-typography($typography-config);
-@include mat-toolbar-typography($typography-config);
 @include mat-list-typography($typography-config);
 
 // default theme
-$default-primary: mat-palette($mat-deep-purple);
-$default-accent: mat-palette($mat-amber, A200, A100, A400);
-$default-theme: mat-light-theme($default-primary, $default-accent);
+$primary: mat-palette($mat-deep-purple);
+$accent: mat-palette($mat-amber, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
 
-@include markdown-theme($default-theme);
-@include mat-button-theme($default-theme);
-@include mat-core-theme($default-theme);
-@include mat-list-theme($default-theme);
-@include mat-toolbar-theme($default-theme);
-@include post-list-theme($default-theme);
+@include mat-button-theme($theme);
+@include mat-core-theme($theme);
+@include mat-list-theme($theme);
+@include mat-toolbar-theme($theme);
+@include post-list-theme($theme);
