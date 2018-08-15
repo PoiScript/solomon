@@ -27,7 +27,6 @@
     "@angular/pwa": "0.7.2",
     "@angular/router": "6.1.1",
     "@angular/service-worker": "6.1.1",
-    "@solomon/scss": "file:libs/scss",
     "core-js": "^2.5.3",
     "rxjs": "6.2.2",
     "zone.js": "^0.8.26"

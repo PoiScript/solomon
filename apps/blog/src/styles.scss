@@ -1,9 +1,5 @@
 @import '~@angular/material/theming';
 
-@import './markdown';
-@import './prism';
-@import './theme';
-
 html,
 body {
   height: 100%;
@@ -36,7 +32,7 @@ body {
   }
 
   .tag a {
-    color: mat-color($primary);
+    color: mat-color($mat-deep-purple, 500);
     text-decoration: none;
   }
 

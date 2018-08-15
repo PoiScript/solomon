@@ -1,6 +1,5 @@
 {
-  "$schema":
-    "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
+  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
   "projects": {
     "blog": {
@@ -32,7 +31,11 @@
                 "output": ""
               }
             ],
-            "styles": ["apps/blog/src/styles.scss", "apps/blog/src/theme.scss"],
+            "styles": [
+              "apps/blog/src/styles.scss",
+              "apps/blog/src/theme.scss",
+              "libs/scss/org-mode.scss"
+            ],
             "scripts": []
           },
           "configurations": {

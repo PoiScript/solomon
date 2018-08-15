@@ -1,14 +1,12 @@
 @import '~@angular/material/theming';
 
-@import './theme';
-
 article {
   p {
     padding: 0;
   }
 
   a {
-    color: mat-color($primary);
+    color: mat-color($mat-deep-purple, 500);
     text-decoration: none;
     margin: 0;
     padding: 0;
@@ -41,6 +39,80 @@ article {
     background-color: rgba(0, 0, 0, 0.04);
     padding: 0.2em;
     margin: 0;
+  }
+
+  code .token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: mat-color($mat-grey, 400);
+    }
+
+    &.punctuation {
+      color: mat-color($mat-grey, 500);
+    }
+
+    .namespace {
+      opacity: 0.7;
+    }
+
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.constant,
+    &.symbol,
+    &.deleted {
+      color: mat-color($mat-pink, 900);
+    }
+
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted {
+      color: mat-color($mat-green, 500);
+    }
+
+    &.operator,
+    &.entity,
+    &.url,
+    .language-css &.string,
+    .style &.string {
+      color: mat-color($mat-amber, 900);
+    }
+
+    &.atrule,
+    &.attr-value,
+    &.keyword {
+      color: mat-color($mat-blue, 800);
+    }
+
+    &.function,
+    &.class-name {
+      color: mat-color($mat-red, 900);
+    }
+
+    &.regex,
+    &.important,
+    &.variable {
+      color: mat-color($mat-yellow, 900);
+    }
+
+    &.important,
+    &.bold {
+      font-weight: bold;
+    }
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.entity {
+      cursor: help;
+    }
   }
 
   pre {
@@ -77,10 +149,9 @@ article {
   }
 
   .image-placeholder {
-    border-style: none;
-    max-width: 100%;
-    box-sizing: content-box;
-    background-color: white;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
   }
 
   .image {
