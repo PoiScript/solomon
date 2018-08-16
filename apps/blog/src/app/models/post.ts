@@ -15,4 +15,3 @@ export class Post {
     slug: string;
   };
 }
-

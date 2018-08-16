@@ -16,6 +16,7 @@ import {
 import { PostListComponent } from './post-list/post-list.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 @NgModule({
   imports: [
@@ -26,7 +27,12 @@ import { FooterComponent } from './footer/footer.component';
     MatToolbarModule,
     MatProgressBarModule,
   ],
-  declarations: [PostListComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    PostListComponent,
+    HeaderComponent,
+    FooterComponent,
+    SafeHtmlPipe,
+  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -34,6 +40,7 @@ import { FooterComponent } from './footer/footer.component';
     PostListComponent,
     HeaderComponent,
     FooterComponent,
+    SafeHtmlPipe,
     MatButtonModule,
     MatIconModule,
     MatListModule,

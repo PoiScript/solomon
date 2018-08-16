@@ -12,7 +12,7 @@ import { environment } from '@solomon/environment';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
-import { SharedModule } from './shared/index';
+import { SharedModule } from './shared';
 import { AboutModule } from './about/about.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { LinkModule } from './link/link.module';
