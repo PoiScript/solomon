@@ -48,6 +48,7 @@
     "codelyzer": "^4.3.0",
     "fs-extra": "^5.0.0",
     "html-minifier": "^3.5.9",
+    "image-size": "^0.6.3",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",

@@ -2,18 +2,13 @@ import chalk from 'chalk';
 import { readFile } from 'fs-extra';
 import { parse } from 'orga';
 import { resolve } from 'path';
+import * as sizeOf from 'image-size';
 import * as Prism from 'prismjs/prism';
 import * as loadLanguages from 'prismjs/components/index';
 
-loadLanguages(['typescript', 'bash', 'lisp', 'yaml', 'http']);
+import { escapeHtml } from './util';
 
-const escapeHtml = html =>
-  html
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+loadLanguages(['typescript', 'bash', 'lisp', 'yaml', 'http', 'rust']);
 
 const handleCodeBlock = (code, params) => {
   const lang = params.length > 0 ? params[0].toLowerCase() : null;
@@ -39,6 +34,19 @@ const handleCodeBlock = (code, params) => {
     const number = (index + 1).toString().padStart(padding);
     return `${res}<span class="line-number">${number}  </span>${acc}\n`;
   }, '');
+};
+
+const handleImageLink = (uri, desc) => {
+  const { width, height } = sizeOf(
+    resolve('apps/blog/content', uri.location.replace(/^\/+/g, '')),
+  );
+  const ratios = (height / width) * 100;
+  const style =
+    'background-image: url(' + uri.location + '); padding-top: ' + ratios + '%';
+
+  return `<div class="image-container">
+  <div class="image" style="${style}"></div>
+</div>`;
 };
 
 export const renderHtml = node => {
@@ -68,7 +76,7 @@ export const renderHtml = node => {
         switch (uri.protocol) {
           // image link
           case 'file':
-            return `<img src="${uri.location}" alt="${desc ? desc : ''}">`;
+            return handleImageLink(uri, desc);
           case 'http':
           case 'https':
             return `<a href="${uri.raw}">${desc ? desc : uri.raw}</a>`;

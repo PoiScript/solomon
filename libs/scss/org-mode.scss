@@ -148,13 +148,13 @@ article {
     border-left: 0.3em solid mat-color($mat-grey, 300);
   }
 
-  .image-placeholder {
+  .image {
     margin: 0;
     background-size: cover;
     background-position: center;
   }
 
-  .image {
+  .image-container {
     width: 100%;
     height: 100%;
     background-size: cover;
