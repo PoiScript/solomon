@@ -7,10 +7,8 @@ import { render } from './render';
 import { rss } from './rss';
 import { addNextAndPriorPost, listOrgFiles, sortByDate } from './util';
 
-const blogPublicDir = resolve('public/blog');
-const blogContentDir = resolve('apps/blog/content');
-const libreriaPublicDir = resolve('public/libreria');
-const libreriaContentDir = resolve('apps/libreria/content');
+const publicDir = resolve('public');
+const postDir = resolve('content/post');
 
 const check = async (contentDir, outputDir) => {
   let posts = await Promise.all(
@@ -21,7 +19,7 @@ const check = async (contentDir, outputDir) => {
 
   return [
     ...posts.map(post =>
-      outputJson(resolve(outputDir, post.slug + '.json'), post),
+      outputJson(resolve(outputDir, 'json', post.slug + '.json'), post),
     ),
     outputFile(resolve(outputDir, 'atom.xml'), rss(posts)),
     outputJson(
@@ -31,4 +29,4 @@ const check = async (contentDir, outputDir) => {
   ];
 };
 
-check(blogContentDir, blogPublicDir).catch(e => console.log(e));
+check(postDir, publicDir).catch(e => console.log(e));

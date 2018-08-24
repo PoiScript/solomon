@@ -15,7 +15,7 @@ export class PostService {
   fetchPost(slug: string): Observable<Post> {
     this.isLoading$.next(true);
     return this.http
-      .get<Post>(`/${slug}.json`)
+      .get<Post>(`/json/${slug}.json`)
       .pipe(finalize(() => this.isLoading$.next(false)));
   }
 

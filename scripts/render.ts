@@ -38,7 +38,7 @@ const handleCodeBlock = (code, params) => {
 
 const handleImageLink = (uri, desc) => {
   const { width, height } = sizeOf(
-    resolve('apps/blog/content', uri.location.replace(/^\/+/g, '')),
+    resolve('content/post', uri.location.replace(/^\/+/g, '')),
   );
   const ratios = (height / width) * 100;
   const style =

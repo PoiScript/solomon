@@ -17,17 +17,17 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "apps/blog/src/../assets",
+                "input": "apps/blog/src/../../../assets",
                 "output": "assets"
               },
               {
                 "glob": "**/*",
-                "input": "apps/blog/src/../content/images",
+                "input": "apps/blog/src/../../../content/post/images",
                 "output": "images"
               },
               {
                 "glob": "**/*",
-                "input": "public/blog",
+                "input": "public",
                 "output": ""
               }
             ],

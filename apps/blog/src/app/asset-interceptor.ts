@@ -21,7 +21,7 @@ export class AssetInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    for (const dir of ['apps/blog', 'public/blog']) {
+    for (const dir of ['', 'public']) {
       const path = resolve(dir, req.url.slice(1));
       if (existsSync(path)) {
         return of(

@@ -8,7 +8,7 @@ import { outputFile, readFileSync, readJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 import { minify } from 'html-minifier';
 
-const posts = readJsonSync('public/blog/posts.json');
+const posts = readJsonSync('public/posts.json');
 
 const dist = resolve('dist');
 const document = readFileSync(join(dist, 'blog', 'index.html'), 'utf8');
