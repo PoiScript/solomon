@@ -76,6 +76,11 @@ export class LinkComponent {
       avatar: 'https://github.com/Equim-chan.png?size=400',
       name: 'Equim',
     },
+    {
+      address: 'https://blog.nanpuyue.com',
+      avatar: 'https://github.com/nanpuyue.png?size=400',
+      name: '南浦月',
+    },
   ];
 
   constructor(private titleService: Title) {
