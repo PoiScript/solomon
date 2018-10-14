@@ -61,7 +61,7 @@ export const CONFIG: SolomonConfig = {
 export const CONFIG_TOKEN = new OpaqueToken('config');
 #+END_SRC
 
-然后就可以通过 =@Inject(CONFIG_TOKEN) config: SolomonConfig= 来获得我们设置的 =config=，进而获得我们的配置。
+然后就可以通过 =@Inject(CONFIG_TOKEN) config: SolomonConfig= 来获得我们设置的 =config= ，进而获得我们的配置。
 
 * 文章
 

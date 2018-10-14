@@ -5,7 +5,7 @@
 
 * 前言
 
-在开始聊这个话题之前，先提一个我遇到过问题：假设有一个 =SpinnerService=，这是一个可以在进行发送 HTTP 请求等异步操作的显示一个加载动画的 Service 。
+在开始聊这个话题之前，先提一个我遇到过问题：假设有一个 =SpinnerService= ，这是一个可以在进行发送 HTTP 请求等异步操作的显示一个加载动画的 Service 。
 
 这样看来，它应该是每个 Module 和 Component 中都可能用到的一个 Service，那么我们把放到 =SharedModule= 的 =providers= 当中。然后在需要这个 =SpinnerService= 的 Module 中导入这个 =SharedModule= 即可。代码看起来大概是这样的：
 
@@ -89,7 +89,7 @@ Services 为什么会是全局的呢？其实很好理解，因为 Services 经�
 
 对应到上面的问题，你会发现确实也只有在 =SharedModule= 的 =providers= 中出现了 =SpinnerService= 呀，但是问题还是存在啊。
 
-其实不止 =SharedModule= ，导入了 =SharedModule= 的 =SomeModule= 相当于也提供了 =SpinnerService= 。所以在两个 Module 中就会有两个由不同的 Module 提供的，两个不同的 =SpinnerService=。
+其实不止 =SharedModule= ，导入了 =SharedModule= 的 =SomeModule= 相当于也提供了 =SpinnerService= 。所以在两个 Module 中就会有两个由不同的 Module 提供的，两个不同的 =SpinnerService= 。
 
 导入拥有提供了 Services 的 Module ，相当与自己提供了相同的 Services 。这样的例子这样的情况你可能早就接触过了：当你在 =AppModule= 中导入了 =HttpModule= 之后，你就可以使用 =Http= 这个全局 Service 来发送 HTTP 请求了。
 
@@ -97,7 +97,7 @@ Services 为什么会是全局的呢？其实很好理解，因为 Services 经�
 这里的 =AppModule= 指 Root Module ，下同。
 #+END_QUOTE
 
-另一方面，如果一个 Module 既有 Components 也有 Services 时则需要分别对待了：在 =AppModule= 中导入这个 Module 的时候需要调用 =forRoot()= ，它返回的是一个 =ModuleWithProviders=；而在其他的 Module 则是直接导入这个 Module 或者调用 =forChild()=。例如 =RouterModule= 就既有 Component =<router-outlet>= 和 Directive =routerLink= ，也有 Service =ActivatedRoute=。
+另一方面，如果一个 Module 既有 Components 也有 Services 时则需要分别对待了：在 =AppModule= 中导入这个 Module 的时候需要调用 =forRoot()= ，它返回的是一个 =ModuleWithProviders= ；而在其他的 Module 则是直接导入这个 Module 或者调用 =forChild()= 。例如 =RouterModule= 就既有 Component =<router-outlet>= 和 Directive =routerLink= ，也有 Service =ActivatedRoute= 。
 
 * Best Practice
 

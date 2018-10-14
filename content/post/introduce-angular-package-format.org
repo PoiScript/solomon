@@ -43,7 +43,7 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 
 *其他*
 
-最后，因为 Angular 官方支持的第一开发语言为 TypeScript，所以提供 TypeScript 需要的 =.d.ts= (Type Declaration File) 也是有必要的。同时，因为 =.d.ts= 提供的信息不足以给 Angular 的编译器使用，还需要一个提供额外的包含每个 decorator 中 元数据的 =metadata.json=。
+最后，因为 Angular 官方支持的第一开发语言为 TypeScript，所以提供 TypeScript 需要的 =.d.ts= (Type Declaration File) 也是有必要的。同时，因为 =.d.ts= 提供的信息不足以给 Angular 的编译器使用，还需要一个提供额外的包含每个 decorator 中 元数据的 =metadata.json= 。
 
 #+BEGIN_QUOTE
 目前，Angular AoT 模式中会将所有的元数据编译成类的静态类型，所以也就不需要像以前那样通过 Metadata Reflection API 获取元数据了。
@@ -99,7 +99,7 @@ APF 使用的是更加通用的 UMD 的模块规范，该规范可以同时满�
 "typings": "./material.d.ts",
 #+END_SRC
 
-=main= 字段指向 UMD+ES5 的编译结果，主要用于 Nodejs 的环境；=module= 字段指向 ESM+ES5 的编译结果，主要用于 Webpack 等；=es2015= 字段指向 ESM+ES2015 的编译结果，主要用于配置过的 Webpack 和 Google Closure 等；最后 =typings= 指向 =.d.ts= 文件，用于 TypeScript。
+=main= 字段指向 UMD+ES5 的编译结果，主要用于 Nodejs 的环境； =module= 字段指向 ESM+ES5 的编译结果，主要用于 Webpack 等； =es2015= 字段指向 ESM+ES2015 的编译结果，主要用于配置过的 Webpack 和 Google Closure 等；最后 =typings= 指向 =.d.ts= 文件，用于 TypeScript。
 
 最后，在包的根目录里还有根整个 module 和每个独立的 module 的 =metadata.json= 和 =.d.ts= 文件。
 
