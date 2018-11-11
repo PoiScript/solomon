@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-ts-node -r tsconfig-paths/register scripts/check
+ts-node scripts/check
 ng build blog --prod
 ng run blog:server
-ts-node -r tsconfig-paths/register scripts/prerender
+ts-node scripts/prerender
 
 # Don't forget to regenerate ngsw.json!
 # File hash had changed after pre-rendering.
