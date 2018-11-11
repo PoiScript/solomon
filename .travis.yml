@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 10
+- 11
 
 addons:
   apt:
@@ -13,7 +13,10 @@ cache:
   - ./node_modules
 
 script:
-- yarn build
+- yarn prestart
+- yarn build:prod
+- yarn build:server
+- yarn build:ngsw
 
 deploy:
   provider: firebase
