@@ -13,7 +13,7 @@ cache:
   - ./node_modules
 
 script:
-- bash scripts/build.sh
+- yarn build
 
 deploy:
   provider: firebase

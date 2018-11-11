@@ -9,8 +9,12 @@
     "e2e": "ng e2e",
     "lint": "ng lint",
     "test": "ng test",
-    "prestart": "ts-node scripts/check",
-    "start": "ng serve"
+    "prestart": "ts-node gen/check",
+    "start": "ng serve",
+    "build": "yarn build:prod && yarn build:server && yarn build:ngsw",
+    "build:prod": "ng build blog --prod",
+    "build:server": "ng run blog:server && ts-node gen/prerender",
+    "build:ngsw": "ngsw-config dist/blog web/src/ngsw-config.json /"
   },
   "private": true,
   "dependencies": {

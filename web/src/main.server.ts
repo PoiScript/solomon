@@ -1,6 +1,6 @@
 import { enableProdMode } from '@angular/core';
 
-import { environment } from '@solomon/environment';
+import { environment } from './environment';
 
 if (environment.production) {
   enableProdMode();

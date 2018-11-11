@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
-import { environment } from '@solomon/environment';
+import { environment } from '../environment';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';

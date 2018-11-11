@@ -3,26 +3,26 @@
   "version": 1,
   "projects": {
     "blog": {
-      "root": "apps/blog/src",
+      "root": "web/src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/blog",
-            "index": "apps/blog/src/index.html",
-            "main": "apps/blog/src/main.ts",
-            "polyfills": "apps/blog/src/polyfills.ts",
-            "tsConfig": "apps/blog/src/tsconfig.app.json",
+            "index": "web/src/index.html",
+            "main": "web/src/main.ts",
+            "polyfills": "web/src/polyfills.ts",
+            "tsConfig": "web/src/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "apps/blog/src/../../../assets",
+                "input": "web/src/assets",
                 "output": "assets"
               },
               {
                 "glob": "**/*",
-                "input": "apps/blog/src/../../../content/post/images",
+                "input": "web/src/../../content/post/images",
                 "output": "images"
               },
               {
@@ -32,9 +32,9 @@
               }
             ],
             "styles": [
-              "apps/blog/src/styles.scss",
-              "apps/blog/src/theme.scss",
-              "libs/scss/org-mode.scss"
+              "web/src/styles.scss",
+              "web/src/theme.scss",
+              "web/src/org-mode.scss"
             ],
             "scripts": []
           },
@@ -42,8 +42,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "src": "libs/environment/index.ts",
-                  "replaceWith": "libs/environment/prod.ts"
+                  "src": "web/src/environment/index.ts",
+                  "replaceWith": "web/src/environment/prod.ts"
                 }
               ],
               "optimization": true,
@@ -79,18 +79,18 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/blog/src/test.ts",
-            "polyfills": "apps/blog/src/polyfills.ts",
-            "tsConfig": "apps/blog/src/tsconfig.spec.json",
-            "karmaConfig": "apps/blog/src/karma.conf.js"
+            "main": "web/src/test.ts",
+            "polyfills": "web/src/polyfills.ts",
+            "tsConfig": "web/src/tsconfig.spec.json",
+            "karmaConfig": "web/src/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/blog/src/tsconfig.app.json",
-              "apps/blog/src/tsconfig.spec.json"
+              "web/src/tsconfig.app.json",
+              "web/src/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -99,27 +99,27 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/blog-server",
-            "main": "apps/blog/src/main.server.ts",
-            "tsConfig": "apps/blog/src/tsconfig.server.json"
+            "main": "web/src/main.server.ts",
+            "tsConfig": "web/src/tsconfig.server.json"
           }
         }
       }
     },
     "blog-e2e": {
-      "root": "apps/blog/e2e",
+      "root": "web/e2e",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "apps/blog/e2e/protractor.conf.js",
+            "protractorConfig": "web/e2e/protractor.conf.js",
             "devServerTarget": "blog:serve"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/blog/e2e/tsconfig.e2e.json",
+            "tsConfig": "web/e2e/tsconfig.e2e.json",
             "exclude": ["**/node_modules/**"]
           }
         }
