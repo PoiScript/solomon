@@ -1,0 +1,9 @@
+export { AboutComponent } from './about/about.component';
+export { FooterComponent } from './footer/footer.component';
+export { HeaderComponent } from './header/header.component';
+export { HomepageComponent } from './homepage/homepage.component';
+export { LinkComponent } from './link/link.component';
+export { NotFoundComponent } from './not-found/not-found.component';
+export { PostContainerComponent } from './post-container/post-container.component';
+export { PostListComponent } from './post-list/post-list.component';
+export { TagComponent } from './tag/tag.component';

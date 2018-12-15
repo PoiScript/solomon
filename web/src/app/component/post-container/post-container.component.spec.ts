@@ -3,19 +3,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { ActivatedRouteStub, MOCK_POSTS } from 'testing/index';
-import { PostComponent } from './post.component';
+import { PostContainerComponent } from './post-container.component';
 
-describe('PostComponent', () => {
-  let component: PostComponent;
+describe('PostContainerComponent', () => {
+  let component: PostContainerComponent;
   let element: HTMLElement;
-  let fixture: ComponentFixture<PostComponent>;
+  let fixture: ComponentFixture<PostContainerComponent>;
 
   const activatedRoute = new ActivatedRouteStub();
   const current = MOCK_POSTS[0];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PostComponent],
+      declarations: [PostContainerComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {
@@ -30,7 +30,7 @@ describe('PostComponent', () => {
     activatedRoute.testData = {
       resolve: { current, html: 'Lorem ipsum dolor sit ...' },
     };
-    fixture = TestBed.createComponent(PostComponent);
+    fixture = TestBed.createComponent(PostContainerComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
     fixture.detectChanges();

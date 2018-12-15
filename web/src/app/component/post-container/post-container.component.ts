@@ -3,13 +3,13 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, mergeMap, tap } from 'rxjs/operators';
 
-import { PostService } from '../core';
+import { PostService } from '../../service/post.service';
 
 @Component({
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+  templateUrl: './post-container.component.html',
+  styleUrls: ['./post-container.component.scss'],
 })
-export class PostComponent {
+export class PostContainerComponent {
   slug$ = this.route.paramMap.pipe(map(paramMap => paramMap.get('slug')));
 
   post$ = this.slug$.pipe(

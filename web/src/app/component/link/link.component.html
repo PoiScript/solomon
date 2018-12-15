@@ -1,0 +1,9 @@
+<div class="title-section">
+  <h1 class="title">Link</h1>
+</div>
+<mat-nav-list>
+  <a mat-list-item *ngFor="let link of links" [attr.href]="link.address" target="_blank">
+    <img mat-list-avatar [src]="link.avatar" alt="avatar for {{link.name}}">
+    <h3 mat-line> {{link.name}} </h3>
+  </a>
+</mat-nav-list>

@@ -9,10 +9,10 @@ describe('AssetInterceptor', () => {
     });
   });
 
-  it(
-    'should be created',
-    inject([AssetInterceptor], (service: AssetInterceptor) => {
+  it('should be created', inject(
+    [AssetInterceptor],
+    (service: AssetInterceptor) => {
       expect(service).toBeTruthy();
-    }),
-  );
+    },
+  ));
 });

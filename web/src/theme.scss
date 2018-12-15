@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import 'app/shared/post-list/post-list-theme';
+@import 'app/component/post-list/post-list-theme';
 
 @include mat-ripple();
 @include cdk-a11y();

@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, mergeMap, tap } from 'rxjs/operators';
 
-import { PostService } from '../core';
+import { PostService } from '../../service/post.service';
 
 @Component({ templateUrl: './tag.component.html' })
 export class TagComponent {

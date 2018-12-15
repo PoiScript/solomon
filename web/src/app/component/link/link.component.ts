@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { Link } from './link.model';
+import { Link } from '../../model';
 
 @Component({ templateUrl: './link.component.html' })
 export class LinkComponent {

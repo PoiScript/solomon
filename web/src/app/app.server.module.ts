@@ -7,14 +7,10 @@ import {
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { AssetInterceptor } from './asset-interceptor';
+import { AssetInterceptor } from './http-interceptor/asset-interceptor';
 
 @NgModule({
-  imports: [
-    AppModule,
-    ServerModule,
-    ServerTransferStateModule,
-  ],
+  imports: [AppModule, ServerModule, ServerTransferStateModule],
   bootstrap: [AppComponent],
   providers: [
     {

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Post } from '../../models';
+import { Post } from '../../model';
 
 @Component({
   selector: 'solomon-post-list',

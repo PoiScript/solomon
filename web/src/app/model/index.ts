@@ -15,3 +15,9 @@ export class Post {
     slug: string;
   };
 }
+
+export interface Link {
+  address: string;
+  avatar: string;
+  name: string;
+}

@@ -1,47 +1,89 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   BrowserModule,
   BrowserTransferStateModule,
+  DomSanitizer,
 } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatIconRegistry,
+  MatListModule,
+  MatProgressBarModule,
+  MatToolbarModule,
+  MatTooltipModule,
+} from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { environment } from '../environment';
 
 import { AppComponent } from './app.component';
-import { CoreModule } from './core';
-import { SharedModule } from './shared';
-import { AboutModule } from './about/about.module';
-import { HomepageModule } from './homepage/homepage.module';
-import { LinkModule } from './link/link.module';
-import { NotFoundModule } from './not-found/not-found.module';
-import { PostModule } from './post/post.module';
-import { TagModule } from './tag/tag.module';
+import {
+  AboutComponent,
+  FooterComponent,
+  HeaderComponent,
+  HomepageComponent,
+  LinkComponent,
+  NotFoundComponent,
+  PostContainerComponent,
+  PostListComponent,
+  TagComponent,
+} from './component';
 import { AppRoutingModule } from './app.routing.module';
+import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AboutComponent,
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    HomepageComponent,
+    LinkComponent,
+    NotFoundComponent,
+    PostContainerComponent,
+    PostListComponent,
+    TagComponent,
+    SafeHtmlPipe,
+  ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'solomon' }),
+    AppRoutingModule,
     BrowserAnimationsModule,
+    BrowserModule.withServerTransition({ appId: 'solomon' }),
     BrowserTransferStateModule,
-    HttpClientModule,
+    FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production,
     }),
+    HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatToolbarModule,
+    MatTooltipModule,
     TransferHttpCacheModule,
-    AppRoutingModule,
-    CoreModule,
-    SharedModule,
-    AboutModule,
-    HomepageModule,
-    LinkModule,
-    NotFoundModule,
-    PostModule,
-    TagModule,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+  ) {
+    this.registerIcon('arrow');
+    this.registerIcon('github');
+    this.registerIcon('rss');
+  }
+
+  private registerIcon(name: string) {
+    this.iconRegistry.addSvgIcon(
+      name,
+      this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`),
+    );
+  }
+}
