@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   BrowserModule,
   BrowserTransferStateModule,
-  DomSanitizer,
 } from '@angular/platform-browser';
 import {
   MatButtonModule,
@@ -35,6 +34,7 @@ import {
 } from './component';
 import { AppRoutingModule } from './app.routing.module';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
+import { IconRegistry, PostService } from './service';
 
 @NgModule({
   declarations: [
@@ -68,22 +68,10 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
     MatTooltipModule,
     TransferHttpCacheModule,
   ],
+  providers: [
+    PostService,
+    { provide: MatIconRegistry, useClass: IconRegistry },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(
-    private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,
-  ) {
-    this.registerIcon('arrow');
-    this.registerIcon('github');
-    this.registerIcon('rss');
-  }
-
-  private registerIcon(name: string) {
-    this.iconRegistry.addSvgIcon(
-      name,
-      this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/svg/${name}.svg`),
-    );
-  }
-}
+export class AppModule {}
