@@ -1,15 +1,15 @@
-.nav-row {
+.solomon-nav-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 20px 0;
 
   // rotate icon for prior post navigation
-  &.nav-prior mat-icon {
+  &.-prior mat-icon {
     transform: rotate(180deg);
   }
 
-  .nav-text {
+  .text {
     flex-grow: 1;
     display: flex;
     flex-direction: column;

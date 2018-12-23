@@ -10,6 +10,6 @@ export class AboutComponent {
   days = Math.floor((Date.now() - birthday - seventhYears) / oneDay);
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle('about | solomon');
+    this.titleService.setTitle('About☆Solomon');
   }
 }

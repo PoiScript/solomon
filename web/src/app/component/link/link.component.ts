@@ -84,6 +84,6 @@ export class LinkComponent {
   ];
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle('link | solomon');
+    this.titleService.setTitle('Link☆Solomon');
   }
 }

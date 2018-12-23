@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, mergeMap, tap } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { PostService } from '../../service/post.service';
 @Component({
   templateUrl: './post-container.component.html',
   styleUrls: ['./post-container.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostContainerComponent {
   slug$ = this.route.paramMap.pipe(map(paramMap => paramMap.get('slug')));
@@ -20,7 +21,7 @@ export class PostContainerComponent {
     ),
     tap(post => {
       if (post) {
-        this.titleService.setTitle(post.title + ' | solomon');
+        this.titleService.setTitle(post.title + '☆Solomon');
       }
     }),
   );

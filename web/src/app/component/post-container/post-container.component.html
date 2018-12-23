@@ -9,20 +9,20 @@
 </div>
 <ng-container *ngIf="html$ | async as post">
   <article [innerHtml]="post.html | safeHtml"></article>
-  <div *ngIf="post.prior" id="nav-prior" class="nav-row nav-prior">
+  <div *ngIf="post.prior" class="solomon-nav-row -prior">
     <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
       <mat-icon svgIcon="arrow"></mat-icon>
     </a>
-    <div class="nav-text">
+    <div class="text">
       <span>Prior</span>
       <strong>{{post.prior.title}}</strong>
     </div>
   </div>
-  <div *ngIf="post.next" id="nav-next" class="nav-row">
+  <div *ngIf="post.next" class="solomon-nav-row">
     <a mat-icon-button [routerLink]="['/post', post.next.slug]">
       <mat-icon svgIcon="arrow"></mat-icon>
     </a>
-    <div class="nav-text">
+    <div class="text">
       <span>Next</span>
       <strong>{{post.next.title}}</strong>
     </div>

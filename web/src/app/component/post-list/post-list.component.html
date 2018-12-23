@@ -1,7 +1,7 @@
 <div *ngIf="posts.length; then has_post else no_post"></div>
 
 <ng-template #has_post>
-  <div class="post-list-item" *ngFor="let post of posts">
+  <div class="solomon-post-item" *ngFor="let post of posts">
     <a class="title" [routerLink]="['/post', post.slug]">
       {{post.title}}
     </a>

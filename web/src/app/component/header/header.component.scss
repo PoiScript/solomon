@@ -1,4 +1,12 @@
-.logo {
-  height: 24px;
-  margin: 0 4px 3px 0;
+.solomon-header {
+  .logo {
+    height: 24px;
+    margin: 0 4px 3px 0;
+  }
+
+  .container {
+    margin: auto;
+    width: 100%;
+    max-width: 1020px;
+  }
 }

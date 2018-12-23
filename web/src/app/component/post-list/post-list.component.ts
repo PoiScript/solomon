@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 import { Post } from '../../model';
 
@@ -6,7 +6,9 @@ import { Post } from '../../model';
   selector: 'solomon-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostListComponent {
-  @Input() posts: Post[];
+  @Input()
+  posts: Post[];
 }

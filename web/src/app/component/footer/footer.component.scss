@@ -1,14 +1,25 @@
 .solomon-footer {
   background: whitesmoke;
-  padding: 20px 16px;
   display: flex;
   flex-direction: row;
-  align-items: center;
   font-size: 13px;
   font-weight: 400;
+  height: 64px;
+  padding: 0 16px;
+
+  .container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1020px;
+    margin: auto;
+  }
 
   @media all and (max-width: 600px) {
-    flex-direction: column;
+    .container {
+      flex-direction: column;
+    }
 
     .links {
       padding-bottom: 10px;

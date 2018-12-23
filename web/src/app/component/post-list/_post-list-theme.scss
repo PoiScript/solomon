@@ -5,7 +5,7 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  .post-list-item {
+  .solomon-post-item {
     color: mat-color($foreground, secondary-text);
 
     .title {

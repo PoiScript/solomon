@@ -40,3 +40,7 @@ body {
     content: ' · ';
   }
 }
+
+::selection {
+  background-color: #ddd;
+}
