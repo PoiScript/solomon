@@ -24,7 +24,7 @@ const check = async (contentDir, outputDir) => {
     outputFile(resolve(outputDir, 'atom.xml'), rss(posts)),
     outputJson(
       resolve(outputDir, 'posts.json'),
-      posts.map(({ title, slug, date, tags }) => ({ title, slug, date, tags })),
+      posts.map(({ title, slug, date, tags }) => ({ title, slug, date: date.slice(1, -5), tags })),
     ),
   ];
 };

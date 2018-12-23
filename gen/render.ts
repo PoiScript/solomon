@@ -53,7 +53,17 @@ export const renderHtml = node => {
   if (Array.isArray(node)) {
     return node.map(child => renderHtml(child)).join('');
   } else {
-    let { type, children, name, value, uri, desc, ordered, params } = node;
+    let {
+      type,
+      children,
+      name,
+      value,
+      uri,
+      desc,
+      ordered,
+      params,
+      level,
+    } = node;
 
     switch (type) {
       case 'root':
@@ -97,9 +107,8 @@ export const renderHtml = node => {
         return `<p>${renderHtml(children)}</p>`;
       case 'section':
         return `<section>${renderHtml(children)}</section>`;
-      // TODO: different levels
       case 'headline':
-        return `<h1>${renderHtml(children)}</h1>`;
+        return `<h${level}>${renderHtml(children)}</h${level}>`;
       case 'horizontalRule':
         return `<hr/>`;
       case 'block': {
