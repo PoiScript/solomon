@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ApplicationRef, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -10,8 +10,11 @@ export class PostService {
   public isLoading$ = new BehaviorSubject<boolean>(false);
   public posts$ = new BehaviorSubject<Post[]>([]);
 
-  constructor(private http: HttpClient) {
-    this.fetchPostDict();
+  constructor(private http: HttpClient, private appRef: ApplicationRef) {
+    this.fetchPosts().subscribe(posts => {
+      this.posts$.next(posts);
+      this.appRef.tick();
+    });
   }
 
   fetchPost(slug: string): Observable<Post> {
@@ -21,9 +24,7 @@ export class PostService {
       .pipe(finalize(() => this.isLoading$.next(false)));
   }
 
-  fetchPostDict() {
-    this.http
-      .get<Post[]>('/posts.json')
-      .subscribe(posts => this.posts$.next(posts));
+  fetchPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>('/posts.json');
   }
 }

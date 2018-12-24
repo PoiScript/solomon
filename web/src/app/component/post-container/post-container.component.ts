@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, mergeMap, tap } from 'rxjs/operators';
 
-import { PostService } from '../../service/post.service';
+import { PostService } from '../../service';
+import { Post } from '../../model';
 
 @Component({
   templateUrl: './post-container.component.html',
@@ -11,9 +12,10 @@ import { PostService } from '../../service/post.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class PostContainerComponent {
-  slug$ = this.route.paramMap.pipe(map(paramMap => paramMap.get('slug')));
+  post: Post;
 
-  post$ = this.slug$.pipe(
+  post$ = this.route.paramMap.pipe(
+    map(paramMap => paramMap.get('slug')),
     mergeMap(slug =>
       this.postService.posts$.pipe(
         map(posts => posts.find(p => p.slug === slug)),
@@ -26,11 +28,20 @@ export class PostContainerComponent {
     }),
   );
 
-  html$ = this.slug$.pipe(mergeMap(slug => this.postService.fetchPost(slug)));
-
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
     private postService: PostService,
-  ) {}
+    private cdRef: ChangeDetectorRef,
+  ) {
+    this.route.paramMap
+      .pipe(
+        map(paramMap => paramMap.get('slug')),
+        mergeMap(slug => this.postService.fetchPost(slug)),
+      )
+      .subscribe(post => {
+        this.post = post;
+        this.cdRef.detectChanges();
+      });
+  }
 }

@@ -8,8 +8,30 @@ if (environment.production) {
   enableProdMode();
 }
 
+window['Zone'] = {
+  get current() {
+    return this;
+  },
+  assertZonePatched() {},
+  fork() {
+    return this;
+  },
+  get() {
+    return true;
+  },
+  run(fn: Function) {
+    return fn();
+  },
+  runGuarded(fn: Function) {
+    return fn();
+  },
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   platformBrowserDynamic()
-    .bootstrapModule(AppModule, { preserveWhitespaces: false })
+    .bootstrapModule(AppModule, {
+      preserveWhitespaces: false,
+      ngZone: 'noop',
+    })
     .catch(err => console.error(err));
 });

@@ -7,7 +7,7 @@
       </span>
   </h2>
 </div>
-<ng-container *ngIf="html$ | async as post">
+<ng-container *ngIf="post">
   <article [innerHtml]="post.html | safeHtml"></article>
   <div *ngIf="post.prior" class="solomon-nav-row -prior">
     <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
