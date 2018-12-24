@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { map, mergeMap, tap } from 'rxjs/operators';
 
 import { PostService } from '../../service';
 import { Post } from '../../model';
@@ -14,34 +13,21 @@ import { Post } from '../../model';
 export class PostContainerComponent {
   post: Post;
 
-  post$ = this.route.paramMap.pipe(
-    map(paramMap => paramMap.get('slug')),
-    mergeMap(slug =>
-      this.postService.posts$.pipe(
-        map(posts => posts.find(p => p.slug === slug)),
-      ),
-    ),
-    tap(post => {
-      if (post) {
-        this.titleService.setTitle(post.title + '☆Solomon');
-      }
-    }),
-  );
-
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
     private postService: PostService,
     private cdRef: ChangeDetectorRef,
   ) {
-    this.route.paramMap
-      .pipe(
-        map(paramMap => paramMap.get('slug')),
-        mergeMap(slug => this.postService.fetchPost(slug)),
-      )
-      .subscribe(post => {
-        this.post = post;
+    this.route.data.subscribe(({ post }) => {
+      this.post = post;
+      this.titleService.setTitle(post.title + '☆Solomon');
+      this.postService.fetchPost(post.slug).subscribe(post => {
+        this.post.html = post.html;
+        this.post.next = post.next;
+        this.post.prior = post.prior;
         this.cdRef.detectChanges();
       });
+    });
   }
 }
