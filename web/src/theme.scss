@@ -15,14 +15,6 @@ $typography-config: mat-typography-config(
   $body-1: mat-typography-level(15px, 24px, 400)
 );
 
-body {
-  color: $text-color;
-}
-
-.primary-subheader a {
-  color: $text-color;
-}
-
 @include mat-base-typography($typography-config, 'article');
 @include mat-button-typography($typography-config);
 @include mat-list-typography($typography-config);
@@ -36,4 +28,4 @@ $theme: mat-light-theme($primary, $accent);
 @include mat-core-theme($theme);
 @include mat-list-theme($theme);
 @include mat-toolbar-theme($theme);
-@include post-list-theme($theme);
+@include post-list-theme($text-color);

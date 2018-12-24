@@ -130,6 +130,51 @@ export const renderHtml = node => {
   }
 };
 
+export const renderSummary = node => {
+  if (Array.isArray(node)) {
+    return node.map(child => renderSummary(child)).join('');
+  } else {
+    let { type, children, name, value, uri, desc } = node;
+
+    switch (type) {
+      case 'text':
+        return value;
+      case 'link': {
+        if (uri.protocol === 'http' || uri.protocol === 'https')
+          return desc ? desc : uri.raw;
+        else return;
+      }
+      case 'root':
+      case 'list':
+      case 'list.item':
+      case 'paragraph':
+      case 'section':
+      case 'headline':
+      case 'bold':
+      case 'underline':
+      case 'strikeThrough':
+      case 'code':
+      case 'verbatim':
+      case 'italic':
+        return renderSummary(children);
+      case 'block': {
+        switch (name) {
+          case 'QUOTE': {
+            children = parse(value).children;
+            return renderSummary(children);
+          }
+          case 'SRC':
+            return value;
+          default:
+            return;
+        }
+      }
+      default:
+        return;
+    }
+  }
+};
+
 export const render = (path, file) => {
   path = resolve(path, file + '.org');
 
@@ -142,6 +187,10 @@ export const render = (path, file) => {
 
     ast.meta.tags = ast.meta.tags.split(' ');
 
-    return { html: renderHtml(ast), ...ast.meta };
+    return {
+      html: renderHtml(ast),
+      summary: renderSummary(ast).slice(0, 210),
+      ...ast.meta,
+    };
   });
 };

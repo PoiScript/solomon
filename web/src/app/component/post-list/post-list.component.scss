@@ -1,25 +1,38 @@
 .solomon-post-item {
-  padding-bottom: 20px;
+  padding-bottom: 100px;
 
   .title {
-    font-size: 1.5em;
+    font-size: 34px;
     font-weight: 400;
     text-decoration: none;
+    margin: 20px 0 15px;
   }
 
   .subtitle {
     display: block;
-    margin: 0;
     padding: 0;
+    margin-top: 15px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .summary {
+    line-height: 32px;
+    margin: 20px 0 15px;
+  }
+
+  .more {
+    text-decoration: none;
+    border: none;
+    border-bottom: 2px solid #666;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #555;
+    line-height: 2;
   }
 
   .tag {
-    a {
-      text-decoration: none;
-    }
-
-    &:before {
-      content: ' · ';
-    }
+    text-decoration: none;
   }
 }

@@ -1,19 +1,11 @@
-@mixin post-list-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
+@mixin post-list-theme($text-color) {
   .solomon-post-item {
-    color: mat-color($foreground, secondary-text);
-
     .title {
-      color: mat-color($primary);
+      color: $text-color;
     }
 
-    .tag > a {
-      color: mat-color($foreground, secondary-text);
+    .tag {
+      color: $text-color;
     }
   }
 }

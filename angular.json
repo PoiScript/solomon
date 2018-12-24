@@ -33,7 +33,6 @@
             ],
             "styles": [
               "web/src/styles.scss",
-              "web/src/theme.scss",
               "web/src/org-mode.scss"
             ],
             "scripts": []

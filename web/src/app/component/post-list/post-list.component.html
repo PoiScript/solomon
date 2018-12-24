@@ -6,11 +6,13 @@
       {{post.title}}
     </a>
     <p class="subtitle">
-      <span>{{post.date | date:'mediumDate'}}</span>
-      <span class="tag" *ngFor="let tag of post.tags">
-        <a [routerLink]="['/tag', tag]">#{{tag}}</a>
-      </span>
+      {{post.date | date:'mediumDate'}} |
+      <ng-container *ngFor="let tag of post.tags">
+        <a class="tag" [routerLink]="['/tag', tag]">#{{tag}}</a>&nbsp;
+      </ng-container>
     </p>
+    <div class="summary">{{post.summary}}...</div>
+    <a class="more" [routerLink]="['/post', post.slug]">Read More</a>
   </div>
 </ng-template>
 
