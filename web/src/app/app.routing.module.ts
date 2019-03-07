@@ -25,7 +25,7 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES)],
+  imports: [RouterModule.forRoot(ROUTES, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule],
   providers: [PostResolver],
 })
