@@ -14,6 +14,15 @@ const icons = [
       '<path fill="none" d="M0-.3h24v24H0z"/>' +
       '</svg>',
   },
+  {
+    name: 'solomon',
+    source:
+      '<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24">' +
+      '<g fill="none" stroke="#fff" stroke-width="1.4">' +
+      '<path d="M11.6 17.2H4L14.4 1.6l-10 6 7.2 9.6z"/>' +
+      '<path d="M12.4 6.8H20L9.6 22.4l10-6-7.2-9.6z"/>' +
+      '</g></svg>',
+  },
 ];
 
 @Injectable({ providedIn: 'root' })
