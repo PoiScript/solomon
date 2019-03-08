@@ -9,9 +9,6 @@ import {
   MatIconModule,
   MatIconRegistry,
   MatListModule,
-  MatProgressBarModule,
-  MatToolbarModule,
-  MatTooltipModule,
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -63,9 +60,6 @@ import { IconRegistry, PostService } from './service';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatProgressBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
     TransferHttpCacheModule,
   ],
   providers: [

@@ -1,0 +1,7 @@
+@import 'theme';
+
+$primary: map-get($theme, primary);
+
+.header {
+  background-color: mat-color($primary);
+}

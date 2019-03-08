@@ -2,29 +2,30 @@
   <div class="title-section">
     <h1 class="title">{{post.title}}</h1>
     <h2 class="subtitle">
-      {{post.date | date:'mediumDate'}}
-      <span class="tag" *ngFor="let tag of post.tags">
-        <a [routerLink]="['/tag', tag]">#{{tag}}</a>
-      </span>
+      {{post.date | date:'mediumDate'}} ·
+      <a class="tag" *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]">#{{tag}}</a>
     </h2>
   </div>
   <article *ngIf="post.html; else loading" [innerHtml]="post.html | safeHtml"></article>
-  <div *ngIf="post.prior" class="solomon-nav-row -prior">
-    <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
-      <mat-icon svgIcon="arrow"></mat-icon>
-    </a>
-    <div class="text">
-      <span>Prior</span>
-      <strong>{{post.prior.title}}</strong>
+  <div class="up-next">
+    <div *ngIf="post.prior" class="nav">
+      <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
+        <mat-icon class="rotated" svgIcon="arrow"></mat-icon>
+      </a>
+      <div>
+        <div>Prior</div>
+        <strong>{{post.prior.title}}</strong>
+      </div>
     </div>
-  </div>
-  <div *ngIf="post.next" class="solomon-nav-row">
-    <a mat-icon-button [routerLink]="['/post', post.next.slug]">
-      <mat-icon svgIcon="arrow"></mat-icon>
-    </a>
-    <div class="text">
-      <span>Next</span>
-      <strong>{{post.next.title}}</strong>
+    <span class="spacer"></span>
+    <div *ngIf="post.next" class="nav next">
+      <div class="right">
+        <div>Next</div>
+        <strong>{{post.next.title}}</strong>
+      </div>
+      <a mat-icon-button [routerLink]="['/post', post.next.slug]">
+        <mat-icon svgIcon="arrow"></mat-icon>
+      </a>
     </div>
   </div>
 </ng-container>

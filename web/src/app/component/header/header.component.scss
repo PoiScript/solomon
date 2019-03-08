@@ -1,11 +1,15 @@
-.solomon-header {
+.header {
+  color: white;
+
   .logo {
-    margin-bottom: 3px;
+    vertical-align: middle;
   }
 
-  .container {
-    margin: auto;
-    width: 100%;
-    max-width: 1020px;
+  .link {
+    color: white;
+  }
+
+  .separator {
+    color: rgba(255, 255, 255, 0.8);
   }
 }

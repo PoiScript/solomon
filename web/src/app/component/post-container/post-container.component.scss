@@ -1,22 +1,36 @@
-.solomon-nav-row {
+.up-next {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin: 20px 0;
+  margin-top: 40px;
 
-  // rotate icon for prior post navigation
-  &.-prior mat-icon {
-    transform: rotate(180deg);
+  @media all and (max-width: 600px) {
+    flex-direction: column;
   }
 
-  .text {
-    flex-grow: 1;
+  .nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+  }
 
-    strong {
-      font-weight: 500;
-    }
+  .rotated {
+    transform: rotateY(180deg);
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .next {
+    align-self: flex-end;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  strong {
+    font-weight: 500;
   }
 }
 

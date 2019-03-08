@@ -1,11 +1,11 @@
-@mixin post-list-theme($text-color) {
-  .solomon-post-item {
-    .title {
-      color: $text-color;
-    }
+@import 'theme';
 
-    .tag {
-      color: $text-color;
-    }
+.solomon-post-item {
+  .title {
+    color: $text-color;
+  }
+
+  .tag {
+    color: $text-color;
   }
 }
