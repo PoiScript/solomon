@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
+import {
+  OnInit,
+  ChangeDetectorRef,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,7 +15,7 @@ import { Post } from '../../model';
   styleUrls: ['./post-container.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PostContainerComponent {
+export class PostContainerComponent implements OnInit {
   post: Post;
 
   constructor(
@@ -18,7 +23,9 @@ export class PostContainerComponent {
     private titleService: Title,
     private postService: PostService,
     private cdRef: ChangeDetectorRef,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.route.data.subscribe(({ post }) => {
       this.post = post;
       this.titleService.setTitle(post.title + '☆Solomon');
