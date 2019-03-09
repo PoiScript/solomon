@@ -1,18 +1,19 @@
+use std::fs::File;
+use std::io::Result;
+
 use chrono::NaiveDate;
 use serde::Serialize;
 use serde_json::to_writer;
-use std::fs::File;
-use std::io::Result;
 
 use crate::Entry;
 
 pub fn write_summary(entries: &mut Vec<Entry<'_>>) -> Result<()> {
     #[derive(Serialize)]
     struct Post<'a> {
-        title: &'a str,
         date: NaiveDate,
         slug: &'a str,
-        tags: &'a str,
+        tags: Vec<&'a str>,
+        title: &'a str,
     }
 
     to_writer(
@@ -20,10 +21,10 @@ pub fn write_summary(entries: &mut Vec<Entry<'_>>) -> Result<()> {
         &entries
             .iter()
             .map(|entry| Post {
-                title: entry.title,
                 date: entry.date,
                 slug: entry.slug,
-                tags: entry.tags,
+                tags: entry.tags.split_whitespace().collect(),
+                title: entry.title,
             })
             .collect::<Vec<_>>(),
     )?;
@@ -35,16 +36,51 @@ pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
     #[derive(Serialize)]
     struct Post<'a> {
         html: &'a str,
+        prior_title: Option<&'a str>,
+        prior_slug: Option<&'a str>,
+        next_title: Option<&'a str>,
+        next_slug: Option<&'a str>,
     }
 
-    for post in entries {
-        to_writer(
-            File::create(format!("assets/post/{}.json", post.slug))?,
-            &Post {
-                html: &post.content,
-            },
-        )?;
+    to_writer(
+        File::create(format!("assets/json/{}.json", entries[0].slug))?,
+        &Post {
+            html: &entries[0].content,
+            prior_title: None,
+            prior_slug: None,
+            next_title: Some(&entries[1].title),
+            next_slug: Some(&entries[1].slug),
+        },
+    )?;
+
+    if entries.len() > 2 {
+        for posts in entries.windows(3) {
+            to_writer(
+                File::create(format!("assets/json/{}.json", posts[1].slug))?,
+                &Post {
+                    html: &posts[1].content,
+                    prior_title: Some(&posts[0].title),
+                    prior_slug: Some(&posts[0].slug),
+                    next_title: Some(&posts[2].title),
+                    next_slug: Some(&posts[2].slug),
+                },
+            )?;
+        }
     }
+
+    to_writer(
+        File::create(format!(
+            "assets/json/{}.json",
+            entries[entries.len() - 1].slug
+        ))?,
+        &Post {
+            html: &entries[entries.len() - 1].content,
+            prior_title: Some(&entries[entries.len() - 2].title),
+            prior_slug: Some(&entries[entries.len() - 2].slug),
+            next_title: None,
+            next_slug: None,
+        },
+    )?;
 
     Ok(())
 }
