@@ -7,7 +7,7 @@ publish = false
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
-imagesize = "0.6"
+imagesize = "0.7"
 orgize = { git = "https://github.com/PoiScript/orgize" }
 rss = "1.0"
 serde= { version = "1.0", features = ["derive"] }
