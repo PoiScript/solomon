@@ -1,15 +1,9 @@
 .footer {
   background: whitesmoke;
 
-  @media all and (max-width: 600px) {
-    padding: 10px;
-
-    .container {
-      flex-direction: column;
-    }
-
-    .links {
-      padding-bottom: 5px;
+  @media all and (max-width: 400px) {
+    .head {
+      display: none;
     }
   }
 
@@ -18,6 +12,7 @@
   }
 
   .license {
+    padding: 10px;
     color: rgba(0, 0, 0, 0.4);
   }
 

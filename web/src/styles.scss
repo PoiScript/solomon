@@ -1,8 +1,8 @@
 @import '~@angular/material/theming';
 @import 'theme.scss';
 
-@import 'app/component/post-list/post-list-theme';
 @import 'app/component/header/header-theme';
+@import 'app/component/post-list/post-list-theme';
 
 html,
 body {
@@ -44,7 +44,7 @@ solomon-root {
     font-weight: 400;
   }
 
-  .tag  {
+  .tag {
     color: $text-color;
     text-decoration: none;
     outline: none;
@@ -56,32 +56,25 @@ solomon-root {
 }
 
 .toolbar {
-  display: flex;
-  flex-direction: row;
   font-size: 13px;
   font-weight: 400;
-  height: 64px;
-  padding: 0 16px;
 
   .link {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     outline: none;
+    padding: 10px;
   }
 
   .container {
-    flex: 1 1 auto;
+    height: 64px;
     display: flex;
     flex-direction: row;
     align-items: center;
     max-width: 1020px;
     margin: auto;
     user-select: none;
-  }
-
-  .separator {
-    padding: 0 1em;
   }
 
   .spacer {

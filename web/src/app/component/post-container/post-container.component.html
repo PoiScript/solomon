@@ -8,24 +8,20 @@
   </div>
   <article *ngIf="post.html; else loading" [innerHtml]="post.html | safeHtml"></article>
   <div class="up-next">
-    <div *ngIf="post.prior" class="nav">
-      <a mat-icon-button [routerLink]="['/post', post.prior.slug]">
-        <mat-icon class="rotated" svgIcon="arrow"></mat-icon>
-      </a>
+    <div *ngIf="post.prior" matRipple class="nav" [routerLink]="['/post', post.prior.slug]">
+      <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
       <div>
-        <div>Prior</div>
-        <strong>{{post.prior.title}}</strong>
+        <div class="label">Prior</div>
+        <div class="title">{{post.prior.title}}</div>
       </div>
     </div>
     <span class="spacer"></span>
-    <div *ngIf="post.next" class="nav next">
+    <div *ngIf="post.next" matRipple class="nav next" [routerLink]="['/post', post.next.slug]">
       <div class="right">
-        <div>Next</div>
-        <strong>{{post.next.title}}</strong>
+        <div class="label">Next</div>
+        <div class="title">{{post.next.title}}</div>
       </div>
-      <a mat-icon-button [routerLink]="['/post', post.next.slug]">
-        <mat-icon svgIcon="arrow"></mat-icon>
-      </a>
+      <mat-icon class="icon" svgIcon="arrow"></mat-icon>
     </div>
   </div>
 </ng-container>

@@ -5,10 +5,10 @@ import {
   BrowserTransferStateModule,
 } from '@angular/platform-browser';
 import {
-  MatButtonModule,
   MatIconModule,
   MatIconRegistry,
   MatListModule,
+  MatRippleModule,
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -57,9 +57,9 @@ import { IconRegistry, PostService } from './service';
       enabled: environment.production,
     }),
     HttpClientModule,
-    MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatRippleModule,
     TransferHttpCacheModule,
   ],
   providers: [

@@ -22,6 +22,5 @@ $primary: mat-palette($mat-deep-purple);
 $accent: mat-palette($mat-amber, A200, A100, A400);
 $theme: mat-light-theme($primary, $accent);
 
-@include mat-button-theme($theme);
 @include mat-core-theme($theme);
 @include mat-list-theme($theme);

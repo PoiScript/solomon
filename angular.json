@@ -12,7 +12,6 @@
             "outputPath": "dist/blog",
             "index": "web/src/index.html",
             "main": "web/src/main.ts",
-            "polyfills": "web/src/polyfills.ts",
             "tsConfig": "web/src/tsconfig.app.json",
             "assets": [
               {
@@ -79,7 +78,6 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "web/src/test.ts",
-            "polyfills": "web/src/polyfills.ts",
             "tsConfig": "web/src/tsconfig.spec.json",
             "karmaConfig": "web/src/karma.conf.js"
           }

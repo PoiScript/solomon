@@ -11,10 +11,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-  }
-
-  .rotated {
-    transform: rotateY(180deg);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 10px;
   }
 
   .spacer {
@@ -29,8 +29,21 @@
     text-align: right;
   }
 
-  strong {
+  .title {
     font-weight: 500;
+  }
+
+  .label {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+  }
+
+  .icon {
+    padding-left: 10px;
+  }
+
+  .rotated {
+    transform: rotateY(180deg);
   }
 }
 
