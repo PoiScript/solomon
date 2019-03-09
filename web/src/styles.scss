@@ -45,13 +45,9 @@ solomon-root {
   }
 
   .tag  {
-    color: mat-color($mat-deep-purple, 500);
+    color: $text-color;
     text-decoration: none;
     outline: none;
-  }
-
-  .tag::before {
-    content: ' ';
   }
 }
 
@@ -71,7 +67,6 @@ solomon-root {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    user-select: none;
     outline: none;
   }
 
@@ -82,11 +77,11 @@ solomon-root {
     align-items: center;
     max-width: 1020px;
     margin: auto;
+    user-select: none;
   }
 
   .separator {
     padding: 0 1em;
-    user-select: none;
   }
 
   .spacer {

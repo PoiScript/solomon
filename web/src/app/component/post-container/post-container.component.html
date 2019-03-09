@@ -3,7 +3,7 @@
     <h1 class="title">{{post.title}}</h1>
     <h2 class="subtitle">
       {{post.date | date:'mediumDate'}} ·
-      <a class="tag" *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]">#{{tag}}</a>
+      <a class="tag" *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> #{{tag}}</a>
     </h2>
   </div>
   <article *ngIf="post.html; else loading" [innerHtml]="post.html | safeHtml"></article>

@@ -12,4 +12,10 @@
   .separator {
     color: rgba(255, 255, 255, 0.8);
   }
+
+  @media all and (max-width: 400px) {
+    .tail {
+      display: none;
+    }
+  }
 }

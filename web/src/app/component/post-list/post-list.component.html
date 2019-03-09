@@ -1,20 +1,15 @@
-<div *ngIf="posts.length; then has_post else no_post"></div>
-
-<ng-template #has_post>
-  <div class="solomon-post-item" *ngFor="let post of posts">
+<ng-container *ngIf="posts.length; else no_post">
+  <div class="post-item" *ngFor="let post of posts">
     <a class="title" [routerLink]="['/post', post.slug]">
       {{post.title}}
     </a>
-    <p class="subtitle">
-      {{post.date | date:'mediumDate'}} |
-      <ng-container *ngFor="let tag of post.tags">
-        <a class="tag" [routerLink]="['/tag', tag]">#{{tag}}</a>&nbsp;
-      </ng-container>
-    </p>
-    <div class="summary">{{post.summary}}...</div>
-    <a class="more" [routerLink]="['/post', post.slug]">Read More</a>
+    <div class="summary" [routerLink]="['/post', post.slug]">{{post.summary}}...</div>
+    <h2 class="subtitle">
+      {{post.date | date:'mediumDate'}} ·
+      <a class="tag" *ngFor="let tag of post.tags" [routerLink]="['/tag', tag]"> #{{tag}}</a>
+    </h2>
   </div>
-</ng-template>
+</ng-container>
 
 <ng-template #no_post>
   <i>No Posts :(</i>
