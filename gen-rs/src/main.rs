@@ -1,4 +1,4 @@
-use std::fs::{File, read_dir};
+use std::fs::{read_dir, File};
 use std::io::{Cursor, Read};
 use std::path::PathBuf;
 
@@ -8,10 +8,10 @@ use orgize::tools::metadata;
 
 use error::{Error, Result};
 
+mod error;
 mod html;
 mod json;
 mod rss;
-mod error;
 
 pub struct Entry<'a> {
     title: &'a str,
@@ -55,7 +55,10 @@ fn main() -> Result<()> {
                 Key::Title => title = Some(value),
                 Key::Date => {
                     let value = value.trim();
-                    date = Some(NaiveDate::parse_from_str(&value[1..value.len() - 1], "%Y-%m-%d %a")?);
+                    date = Some(NaiveDate::parse_from_str(
+                        &value[1..value.len() - 1],
+                        "%Y-%m-%d %a",
+                    )?);
                 }
                 Key::Custom(key) if key == "TAGS" => tags = Some(value),
                 Key::Custom(key) if key == "SLUG" => slug = Some(value),
@@ -65,7 +68,7 @@ fn main() -> Result<()> {
 
         entries.push(Entry {
             content: String::from_utf8(
-                html::render(&content, Cursor::new(Vec::new()))?.into_inner()
+                html::render(&content, Cursor::new(Vec::new()))?.into_inner(),
             )?,
             date: date.ok_or_else(|| Error::MissingDate(path.clone()))?,
             title: title.ok_or_else(|| Error::MissingTitle(path.clone()))?,
