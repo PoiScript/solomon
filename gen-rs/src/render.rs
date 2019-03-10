@@ -4,8 +4,10 @@ use std::path::PathBuf;
 use imagesize::ImageSize;
 use lazy_static::lazy_static;
 use orgize::export::*;
-use syntect::html::{tokens_to_classed_spans, ClassStyle};
-use syntect::parsing::{ParseState, SyntaxSet};
+use syntect::easy::HighlightLines;
+use syntect::highlighting::ThemeSet;
+use syntect::html::{styled_line_to_highlighted_html, IncludeBackground};
+use syntect::parsing::SyntaxSet;
 use url::Url;
 
 use crate::error;
@@ -24,6 +26,7 @@ lazy_static! {
         builder.add_from_folder("gen-rs/syntax", true).unwrap();
         builder.build()
     };
+    static ref THEME_SET: ThemeSet = ThemeSet::load_defaults();
 }
 
 struct SolomonHtmlHandler {
@@ -43,7 +46,8 @@ impl<W: Write> HtmlHandler<W> for SolomonHtmlHandler {
         let syntax = args
             .map(|a| a.trim().split_ascii_whitespace().next().unwrap_or(a))
             .map(|lang| remap_lang(lang))
-            .and_then(|lang| SYNTAX_SET.find_syntax_by_token(lang));
+            .and_then(|lang| SYNTAX_SET.find_syntax_by_token(lang))
+            .unwrap_or_else(|| SYNTAX_SET.find_syntax_plain_text());
         let lines = cont.as_bytes().iter().filter(|&&c| c == b'\n').count();
         let pad = if lines < 10 {
             1
@@ -53,44 +57,37 @@ impl<W: Write> HtmlHandler<W> for SolomonHtmlHandler {
             3
         };
 
-        if let Some(syntax) = syntax {
-            let mut state = ParseState::new(&syntax);
-            let mut spans = 0;
+        write!(w, "<pre><code>")?;
 
-            write!(w, "<pre><code>")?;
+        let mut highlighter = HighlightLines::new(syntax, &THEME_SET.themes["InspiredGitHub"]);
 
-            for (i, line) in cont.lines().enumerate() {
-                let (line, delta) = tokens_to_classed_spans(
-                    line,
-                    &state.parse_line(line, &SYNTAX_SET),
-                    ClassStyle::Spaced,
-                );
-                spans += delta;
-
-                if lines > 4 {
-                    write!(w, r#"<span class="line-number">{:1$} </span>"#, i + 1, pad)?;
-                }
-                writeln!(w, "{}", line)?;
-            }
-
-            write!(w, "{:1$}</pre></code>", "</span>", spans as usize)
-        } else {
+        for (i, line) in cont.lines().enumerate() {
             if lines > 4 {
-                write!(w, "<pre><code>")?;
-                for (index, line) in cont.lines().enumerate() {
-                    writeln!(
-                        w,
-                        r#"<span class="line-number">{:1$} </span>{2}"#,
-                        index + 1,
-                        pad,
-                        line
-                    )?;
-                }
-                write!(w, "</code></pre>")
-            } else {
-                write!(w, "<pre><code>{}</code></pre>", cont)
+                write!(w, r#"<span class="line-number">{:1$} </span>"#, i + 1, pad)?;
             }
+            let regions = highlighter.highlight(line, &SYNTAX_SET);
+            let html = styled_line_to_highlighted_html(&regions[..], IncludeBackground::No);
+            writeln!(w, "{}", html)?;
         }
+
+        write!(w, "</pre></code>")
+    }
+
+    fn handle_inline_src(
+        &mut self,
+        w: &mut W,
+        lang: &str,
+        _: Option<&str>,
+        body: &str,
+    ) -> Result<()> {
+        let syntax = SYNTAX_SET
+            .find_syntax_by_token(remap_lang(lang))
+            .unwrap_or_else(|| SYNTAX_SET.find_syntax_plain_text());
+        let mut highlighter = HighlightLines::new(syntax, &THEME_SET.themes["InspiredGitHub"]);
+        let regions = highlighter.highlight(body, &SYNTAX_SET);
+        let html = styled_line_to_highlighted_html(&regions[..], IncludeBackground::No);
+
+        write!(w, "<code>{}</code>", html)
     }
 
     fn handle_link(&mut self, w: &mut W, path: &str, desc: Option<&str>) -> Result<()> {
@@ -104,13 +101,13 @@ impl<W: Write> HtmlHandler<W> for SolomonHtmlHandler {
             if self.amp {
                 write!(
                     w,
-                    r#"<amp-img src="{}" alt="" height="{}" width="{}"></amp-img>"#,
+                    r#"<amp-img lightbox src="/{}" alt="" height="{}" width="{}" layout="responsive"></amp-img>"#,
                     path, height, width
                 )
             } else {
                 write!(
                     w,
-                    r#"<div class="image-container"><div class="image" style="background-image: url({});padding-top: {:.7}%"></div></div>"#,
+                    r#"<div class="image-container"><div class="image" style="background-image: url(/{});padding-top: {:.7}%"></div></div>"#,
                     path,
                     (height as f32 / width as f32) * 100.
                 )

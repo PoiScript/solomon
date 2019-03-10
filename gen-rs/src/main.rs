@@ -22,6 +22,7 @@ pub struct Entry<'a> {
     tags: &'a str,
     amp: String,
     html: String,
+    summary: &'a str,
 }
 
 fn walk_dirs(dir: &PathBuf, files: &mut Vec<(PathBuf, String)>) -> Result<()> {
@@ -51,7 +52,7 @@ fn main() -> Result<()> {
     for (path, content) in &files {
         let (_toc, keywords, _) = metadata(&content);
 
-        let (mut title, mut date, mut slug, mut tags) = (None, None, None, None);
+        let (mut title, mut date, mut slug, mut tags, mut summary) = (None, None, None, None, None);
 
         for (key, value) in keywords {
             match key {
@@ -65,6 +66,7 @@ fn main() -> Result<()> {
                 }
                 Key::Custom(key) if key == "TAGS" => tags = Some(value),
                 Key::Custom(key) if key == "SLUG" => slug = Some(value),
+                Key::Custom(key) if key == "SUMMARY" => summary = Some(value),
                 _ => (),
             }
         }
@@ -76,6 +78,7 @@ fn main() -> Result<()> {
             title: title.ok_or_else(|| Error::MissingTitle(path.clone()))?,
             slug: slug.ok_or_else(|| Error::MissingSlug(path.clone()))?,
             tags: tags.ok_or_else(|| Error::MissingTags(path.clone()))?,
+            summary: summary.ok_or_else(|| Error::MissingSummary(path.clone()))?,
         });
     }
 

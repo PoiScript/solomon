@@ -14,6 +14,7 @@ pub fn write_summary(entries: &[Entry<'_>]) -> Result<()> {
                 "date" => entry.date.format("%F").to_string(),
                 "slug" => entry.slug,
                 "title" => entry.title,
+                "summary" => entry.summary,
                 "tags" => entry.tags.split_whitespace().map(|t| t.into()).collect::<Vec<JsonValue>>(),
             })
             .collect::<Vec<_>>(),

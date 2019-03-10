@@ -14,6 +14,7 @@ pub enum Error {
     MissingDate(PathBuf),
     MissingTags(PathBuf),
     MissingSlug(PathBuf),
+    MissingSummary(PathBuf),
 }
 
 impl From<IOError> for Error {
