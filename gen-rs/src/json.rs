@@ -1,12 +1,12 @@
 use std::fs::File;
-use std::io::Cursor;
+use std::io::Result;
 
 use json::{object, JsonValue};
 
-use crate::error::Result;
-use crate::{render, Entry};
+use crate::Entry;
 
-pub fn write_summary(entries: &mut Vec<Entry<'_>>) -> Result<()> {
+pub fn write_summary(entries: &[Entry<'_>]) -> Result<()> {
+    let file = &mut File::create("assets/posts.json")?;
     JsonValue::Array(
         entries
             .iter()
@@ -18,12 +18,10 @@ pub fn write_summary(entries: &mut Vec<Entry<'_>>) -> Result<()> {
             })
             .collect::<Vec<_>>(),
     )
-    .write(&mut File::create("assets/posts.json")?)?;
-
-    Ok(())
+    .write(file)
 }
 
-pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
+pub fn write_detail(entries: &[Entry<'_>]) -> Result<()> {
     use std::iter::once;
 
     let len = entries.len();
@@ -36,19 +34,15 @@ pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
         .chain(once((Some(&entries[len - 2]), &entries[len - 1], None)));
 
     for (prior, curr, next) in iter {
-        let mut cursor = Cursor::new(Vec::new());
-        render::html(curr, &mut cursor)?;
+        let file = &mut File::create(format!("assets/post/{}.json", curr.slug))?;
         let obj = object! {
-            "html" => String::from_utf8(cursor.into_inner())?,
+            "html" => curr.html.as_str(),
             "prior_title" => prior.map(|p| p.title),
             "prior_slug" => prior.map(|p| p.slug),
             "next_title" => next.map(|p| p.title),
             "next_slug" => next.map(|p| p.slug),
         };
-        obj.write(&mut File::create(format!(
-            "assets/json/{}.json",
-            curr.slug
-        ))?)?;
+        obj.write(file)?;
     }
 
     Ok(())

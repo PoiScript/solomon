@@ -1,6 +1,7 @@
-use std::io::{Result as IOResult, Write};
+use std::io::{Cursor, Result, Write};
 use std::path::PathBuf;
 
+use crate::error;
 use imagesize::ImageSize;
 use lazy_static::lazy_static;
 use orgize::export::*;
@@ -8,100 +9,10 @@ use syntect::html::{tokens_to_classed_spans, ClassStyle};
 use syntect::parsing::{ParseState, SyntaxSet};
 use url::Url;
 
-use crate::error::Result;
-use crate::Entry;
-
-pub fn html<W: Write>(e: &Entry, w: &mut W) -> Result<()> {
-    HtmlRender::new(
-        SolomonHtmlHandler {
-            amp: false,
-            highlight: true,
-        },
-        w,
-        &e.content,
-    )
-    .render()?;
-
-    Ok(())
-}
-
-pub fn rss<W: Write>(e: &Entry, w: &mut W) -> Result<()> {
-    write!(w, "<item>")?;
-    write!(w, "<title><![CDATA[{}]]></title>", e.title)?;
-    write!(w, "<link>https://blog.poi.cat/post/{}</link>", e.slug)?;
-    write!(w, r#"<guid isPermaLink="false">{}</guid>"#, e.slug)?;
-    for t in e.tags.split_whitespace() {
-        write!(w, "<category><![CDATA[{}]]></category>", t)?;
-    }
-    write!(w, "<author>PoiScript</author>")?;
-    write!(
-        w,
-        "<pubDate>{} 00:00:00 +0000</pubDate>",
-        e.date.format("%a, %e %b %Y")
-    )?;
-    write!(w, "<description><![CDATA[")?;
-
-    HtmlRender::new(
-        SolomonHtmlHandler {
-            amp: false,
-            highlight: false,
-        },
-        w,
-        &e.content,
-    )
-    .render()?;
-
-    write!(w, "]]></description></item>")?;
-
-    Ok(())
-}
-
-pub fn amp<W: Write>(e: &Entry, w: &mut W) -> Result<()> {
-    write!(w, "<!doctype html>")?;
-    write!(w, "<html ⚡>")?;
-    write!(w, "<head>")?;
-    write!(w, r#"<meta charset="utf-8">"#)?;
-    write!(w, r#"<link rel="canonical" href="{}.html">"#, e.slug)?;
-    write!(
-        w,
-        r#"<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">"#
-    )?;
-    write!(
-        w,
-        "{}",
-        "<style amp-boilerplate>\
-         body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;\
-         -moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;\
-         -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;\
-         animation:-amp-start 8s steps(1,end) 0s 1 normal both}\
-         @-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}\
-         @-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}\
-         @-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}\
-         @-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}\
-         @keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}\
-         </style><noscript><style amp-boilerplate>\
-         body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}\
-         </style></noscript>"
-    )?;
-    write!(
-        w,
-        r#"<script async src="https://cdn.ampproject.org/v0.js"></script>"#
-    )?;
-    write!(w, "</head><body>")?;
-
-    HtmlRender::new(
-        SolomonHtmlHandler {
-            amp: true,
-            highlight: true,
-        },
-        w,
-        &e.content,
-    )
-    .render()?;
-
-    write!(w, "</body></html>")?;
-
-    Ok(())
+pub fn render(content: &str, amp: bool) -> error::Result<String> {
+    let mut cursor = Cursor::new(Vec::with_capacity(content.len()));
+    HtmlRender::new(SolomonHtmlHandler { amp }, &mut cursor, content).render()?;
+    Ok(String::from_utf8(cursor.into_inner())?)
 }
 
 lazy_static! {
@@ -110,13 +21,11 @@ lazy_static! {
 
 struct SolomonHtmlHandler {
     amp: bool,
-    highlight: bool,
 }
 
 impl<W: Write> HtmlHandler<W> for SolomonHtmlHandler {
-    fn handle_src_block(&mut self, w: &mut W, cont: &str, args: Option<&str>) -> IOResult<()> {
+    fn handle_src_block(&mut self, w: &mut W, cont: &str, args: Option<&str>) -> Result<()> {
         let syntax = args
-            .filter(|_| self.highlight)
             .map(|a| a.trim().split_ascii_whitespace().next().unwrap_or(a))
             .and_then(|l| SYNTAX_SET.find_syntax_by_token(l));
 
@@ -144,7 +53,7 @@ impl<W: Write> HtmlHandler<W> for SolomonHtmlHandler {
         }
     }
 
-    fn handle_link(&mut self, w: &mut W, path: &str, desc: Option<&str>) -> IOResult<()> {
+    fn handle_link(&mut self, w: &mut W, path: &str, desc: Option<&str>) -> Result<()> {
         let url = Url::parse(path).unwrap();
         if url.scheme() == "file" {
             let path = &url.path()[1..];

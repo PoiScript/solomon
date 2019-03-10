@@ -1,3 +1,4 @@
+mod amp;
 mod error;
 mod json;
 mod render;
@@ -12,13 +13,15 @@ use orgize::elements::Key;
 use orgize::tools::metadata;
 
 use error::{Error, Result};
+use render::render;
 
 pub struct Entry<'a> {
     title: &'a str,
     date: NaiveDate,
     slug: &'a str,
     tags: &'a str,
-    content: String,
+    amp: String,
+    html: String,
 }
 
 fn walk_dirs(dir: &PathBuf, files: &mut Vec<(PathBuf, String)>) -> Result<()> {
@@ -67,7 +70,8 @@ fn main() -> Result<()> {
         }
 
         entries.push(Entry {
-            content: content.to_string(),
+            amp: render(&content, true)?,
+            html: render(&content, false)?,
             date: date.ok_or_else(|| Error::MissingDate(path.clone()))?,
             title: title.ok_or_else(|| Error::MissingTitle(path.clone()))?,
             slug: slug.ok_or_else(|| Error::MissingSlug(path.clone()))?,
@@ -75,17 +79,17 @@ fn main() -> Result<()> {
         });
     }
 
+    let entries = entries.as_mut_slice();
+
     entries.sort_by(|a, b| b.date.cmp(&a.date));
 
-    json::write_summary(&mut entries)?;
+    json::write_summary(entries)?;
 
-    json::write_detail(&mut entries)?;
+    json::write_detail(entries)?;
 
-    for e in &entries {
-        render::amp(e, &mut File::create(format!("assets/amp/{}.html", e.slug))?)?;
-    }
+    amp::write(entries)?;
 
-    rss::write(&mut File::create("assets/atom.xml")?, &entries)?;
+    rss::write(entries)?;
 
     Ok(())
 }

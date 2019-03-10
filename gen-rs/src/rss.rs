@@ -1,11 +1,13 @@
-use std::io::Write;
+use std::fs::File;
+use std::io::{Result, Write};
 
 use chrono::Utc;
 
-use crate::error::Result;
-use crate::{render, Entry};
+use crate::Entry;
 
-pub fn write<W: Write>(w: &mut W, entries: &Vec<Entry<'_>>) -> Result<()> {
+pub fn write(entries: &[Entry<'_>]) -> Result<()> {
+    let w = &mut File::create("assets/atom.xml")?;
+
     write!(
         w,
         "<rss xmlns:dc=\"http://purl.org/dc/elements/1.1/\" \
@@ -34,10 +36,22 @@ pub fn write<W: Write>(w: &mut W, entries: &Vec<Entry<'_>>) -> Result<()> {
     )?;
 
     for e in entries {
-        render::rss(e, w)?;
+        write!(w, "<item>")?;
+        write!(w, "<title><![CDATA[{}]]></title>", e.title)?;
+        write!(w, "<link>https://blog.poi.cat/post/{}</link>", e.slug)?;
+        write!(w, r#"<guid isPermaLink="false">{}</guid>"#, e.slug)?;
+        for t in e.tags.split_whitespace() {
+            write!(w, "<category><![CDATA[{}]]></category>", t)?;
+        }
+        write!(w, "<author>PoiScript</author>")?;
+        write!(
+            w,
+            "<pubDate>{} 00:00:00 +0000</pubDate>",
+            e.date.format("%a, %e %b %Y")
+        )?;
+        write!(w, "<description><![CDATA[{}]]></description>", e.html)?;
+        write!(w, "</item>")?;
     }
 
-    write!(w, "</channel></rss>")?;
-
-    Ok(())
+    write!(w, "</channel></rss>")
 }
