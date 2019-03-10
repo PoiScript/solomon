@@ -1,11 +1,12 @@
 use std::fs::File;
-use std::io::Result;
+use std::io::Cursor;
 
 use chrono::NaiveDate;
 use serde::Serialize;
 use serde_json::to_writer;
 
-use crate::Entry;
+use crate::error::Result;
+use crate::{render, Entry};
 
 pub fn write_summary(entries: &mut Vec<Entry<'_>>) -> Result<()> {
     #[derive(Serialize)]
@@ -32,6 +33,12 @@ pub fn write_summary(entries: &mut Vec<Entry<'_>>) -> Result<()> {
     Ok(())
 }
 
+fn render_to_string(entry: &Entry) -> Result<String> {
+    let mut cursor = Cursor::new(Vec::new());
+    render::html(entry, &mut cursor)?;
+    Ok(String::from_utf8(cursor.into_inner())?)
+}
+
 pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
     #[derive(Serialize)]
     struct Post<'a> {
@@ -45,7 +52,7 @@ pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
     to_writer(
         File::create(format!("assets/json/{}.json", entries[0].slug))?,
         &Post {
-            html: &entries[0].content,
+            html: render_to_string(&entries[0])?,
             prior_title: None,
             prior_slug: None,
             next_title: Some(&entries[1].title),
@@ -58,7 +65,7 @@ pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
             to_writer(
                 File::create(format!("assets/json/{}.json", posts[1].slug))?,
                 &Post {
-                    html: &posts[1].content,
+                    html: render_to_string(&posts[0])?,
                     prior_title: Some(&posts[0].title),
                     prior_slug: Some(&posts[0].slug),
                     next_title: Some(&posts[2].title),
@@ -74,7 +81,7 @@ pub fn write_detail(entries: &mut Vec<Entry<'_>>) -> Result<()> {
             entries[entries.len() - 1].slug
         ))?,
         &Post {
-            html: &entries[entries.len() - 1].content,
+            html: render_to_string(&entries[entries.len() - 1])?,
             prior_title: Some(&entries[entries.len() - 2].title),
             prior_slug: Some(&entries[entries.len() - 2].slug),
             next_title: None,

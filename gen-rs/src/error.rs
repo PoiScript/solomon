@@ -8,12 +8,14 @@ use std::str::Utf8Error;
 use std::string::FromUtf8Error;
 
 use chrono::ParseError;
+use serde_json::Error as JsonError;
 
 #[derive(Debug)]
 pub enum Error {
     IO(IOError),
     Utf8(Utf8Error),
     Date(ParseError),
+    Json(JsonError),
     MissingTitle(PathBuf),
     MissingDate(PathBuf),
     MissingTags(PathBuf),
@@ -26,6 +28,7 @@ impl fmt::Display for Error {
             Error::IO(err) => write!(f, "{}", err),
             Error::Utf8(err) => write!(f, "{}", err),
             Error::Date(err) => write!(f, "{}", err),
+            Error::Json(err) => write!(f, "{}", err),
             Error::MissingTitle(path) => write!(f, "title not found for {:?}", path),
             Error::MissingDate(path) => write!(f, "date not found for {:?}", path),
             Error::MissingTags(path) => write!(f, "tags not found for {:?}", path),
@@ -40,6 +43,7 @@ impl error::Error for Error {
             Error::IO(err) => Some(err),
             Error::Utf8(err) => Some(err as &error::Error),
             Error::Date(err) => Some(err as &error::Error),
+            Error::Json(err) => Some(err as &error::Error),
             Error::MissingTitle(_) => None,
             Error::MissingDate(_) => None,
             Error::MissingTags(_) => None,
@@ -69,6 +73,12 @@ impl From<FromUtf8Error> for Error {
 impl From<ParseError> for Error {
     fn from(err: ParseError) -> Self {
         Error::Date(err)
+    }
+}
+
+impl From<JsonError> for Error {
+    fn from(err: JsonError) -> Self {
+        Error::Json(err)
     }
 }
 

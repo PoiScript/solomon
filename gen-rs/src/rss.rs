@@ -2,8 +2,8 @@ use std::io::Write;
 
 use chrono::Utc;
 
-use crate::{Entry, render};
 use crate::error::Result;
+use crate::{render, Entry};
 
 pub fn write<W: Write>(w: &mut W, entries: &Vec<Entry<'_>>) -> Result<()> {
     write!(

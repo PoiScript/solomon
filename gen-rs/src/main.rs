@@ -1,5 +1,10 @@
+mod error;
+mod json;
+mod render;
+mod rss;
+
 use std::fs::{read_dir, File};
-use std::io::{Cursor, Read};
+use std::io::Read;
 use std::path::PathBuf;
 
 use chrono::NaiveDate;
@@ -7,11 +12,6 @@ use orgize::elements::Key;
 use orgize::tools::metadata;
 
 use error::{Error, Result};
-
-mod error;
-mod html;
-mod json;
-mod rss;
 
 pub struct Entry<'a> {
     title: &'a str,
@@ -67,9 +67,7 @@ fn main() -> Result<()> {
         }
 
         entries.push(Entry {
-            content: String::from_utf8(
-                html::render(&content, Cursor::new(Vec::new()))?.into_inner(),
-            )?,
+            content: content.to_string(),
             date: date.ok_or_else(|| Error::MissingDate(path.clone()))?,
             title: title.ok_or_else(|| Error::MissingTitle(path.clone()))?,
             slug: slug.ok_or_else(|| Error::MissingSlug(path.clone()))?,
@@ -83,9 +81,11 @@ fn main() -> Result<()> {
 
     json::write_detail(&mut entries)?;
 
-    rss::write(&mut File::create("assets/atom.xml")?, entries)?;
+    for e in &entries {
+        render::amp(e, &mut File::create(format!("assets/amp/{}.html", e.slug))?)?;
+    }
 
-    // TODO: amp
+    rss::write(&mut File::create("assets/atom.xml")?, &entries)?;
 
     Ok(())
 }
