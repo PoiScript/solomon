@@ -3,13 +3,16 @@ use std::path::PathBuf;
 use std::str::Utf8Error;
 use std::string::FromUtf8Error;
 
-use chrono::ParseError;
+use askama::Error as TemplateError;
+use chrono::ParseError as DateError;
 
 #[derive(Debug)]
 pub enum Error {
     IO(IOError),
     Utf8(Utf8Error),
-    Date(ParseError),
+    Date(DateError),
+    Template(TemplateError),
+    Minifier(&'static str),
     MissingTitle(PathBuf),
     MissingDate(PathBuf),
     MissingTags(PathBuf),
@@ -35,9 +38,15 @@ impl From<FromUtf8Error> for Error {
     }
 }
 
-impl From<ParseError> for Error {
-    fn from(err: ParseError) -> Self {
+impl From<DateError> for Error {
+    fn from(err: DateError) -> Self {
         Error::Date(err)
+    }
+}
+
+impl From<TemplateError> for Error {
+    fn from(err: TemplateError) -> Self {
+        Error::Template(err)
     }
 }
 

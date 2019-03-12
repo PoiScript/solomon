@@ -19,10 +19,12 @@ pub struct Entry<'a> {
     title: &'a str,
     date: NaiveDate,
     slug: &'a str,
-    tags: &'a str,
+    tags: Vec<&'a str>,
     amp: String,
     html: String,
     summary: &'a str,
+    prior: Option<(&'a str, &'a str)>,
+    next: Option<(&'a str, &'a str)>,
 }
 
 fn walk_dirs(dir: &PathBuf, files: &mut Vec<(PathBuf, String)>) -> Result<()> {
@@ -64,7 +66,9 @@ fn main() -> Result<()> {
                         "%Y-%m-%d %a",
                     )?);
                 }
-                Key::Custom(key) if key == "TAGS" => tags = Some(value),
+                Key::Custom(key) if key == "TAGS" => {
+                    tags = Some(value.split_ascii_whitespace().collect::<Vec<_>>())
+                }
                 Key::Custom(key) if key == "SLUG" => slug = Some(value),
                 Key::Custom(key) if key == "SUMMARY" => summary = Some(value),
                 _ => (),
@@ -79,12 +83,22 @@ fn main() -> Result<()> {
             slug: slug.ok_or_else(|| Error::MissingSlug(path.clone()))?,
             tags: tags.ok_or_else(|| Error::MissingTags(path.clone()))?,
             summary: summary.ok_or_else(|| Error::MissingSummary(path.clone()))?,
+            prior: None,
+            next: None,
         });
     }
 
     let entries = entries.as_mut_slice();
 
     entries.sort_by(|a, b| b.date.cmp(&a.date));
+
+    let len = entries.len();
+
+    entries[0].next = entries.get(1).map(|e| (e.title, e.slug));
+    for i in 1..len {
+        entries[i].prior = entries.get(i - 1).map(|e| (e.title, e.slug));
+        entries[i].next = entries.get(i + 1).map(|e| (e.title, e.slug));
+    }
 
     json::write_summary(entries)?;
 

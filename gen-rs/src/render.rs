@@ -1,6 +1,8 @@
-use std::io::{Cursor, Result, Write};
+use std::io::{Cursor, Write};
 use std::path::PathBuf;
 
+use crate::error;
+use html_minifier::minify;
 use imagesize::ImageSize;
 use lazy_static::lazy_static;
 use orgize::export::*;
@@ -10,12 +12,11 @@ use syntect::html::{styled_line_to_highlighted_html, IncludeBackground};
 use syntect::parsing::SyntaxSet;
 use url::Url;
 
-use crate::error;
-
 pub fn render(content: &str, amp: bool) -> error::Result<String> {
     let mut cursor = Cursor::new(Vec::with_capacity(content.len()));
     HtmlRender::new(SolomonHtmlHandler { amp }, &mut cursor, content).render()?;
-    Ok(String::from_utf8(cursor.into_inner())?)
+    let html = String::from_utf8(cursor.into_inner())?;
+    minify(html).map_err(error::Error::Minifier)
 }
 
 lazy_static! {
@@ -40,6 +41,8 @@ fn remap_lang(lang: &str) -> &str {
         _ => lang,
     }
 }
+
+use std::io::Result;
 
 impl<W: Write> HtmlHandler<W> for SolomonHtmlHandler {
     fn handle_src_block(&mut self, w: &mut W, cont: &str, args: Option<&str>) -> Result<()> {
