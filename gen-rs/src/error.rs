@@ -5,6 +5,7 @@ use std::string::FromUtf8Error;
 
 use askama::Error as TemplateError;
 use chrono::ParseError as DateError;
+use imagesize::ImageError;
 
 #[derive(Debug)]
 pub enum Error {
@@ -13,6 +14,7 @@ pub enum Error {
     Date(DateError),
     Template(TemplateError),
     Minifier(&'static str),
+    Image(ImageError),
     MissingTitle(PathBuf),
     MissingDate(PathBuf),
     MissingTags(PathBuf),
@@ -47,6 +49,12 @@ impl From<DateError> for Error {
 impl From<TemplateError> for Error {
     fn from(err: TemplateError) -> Self {
         Error::Template(err)
+    }
+}
+
+impl From<ImageError> for Error {
+    fn from(err: ImageError) -> Self {
+        Error::Image(err)
     }
 }
 
