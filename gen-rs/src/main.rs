@@ -1,19 +1,20 @@
+#![feature(proc_macro_hygiene)]
+
 mod amp;
 mod error;
 mod json;
 mod render;
 mod rss;
 
-use std::fs::{read_dir, File};
-use std::io::Read;
-use std::path::PathBuf;
-
 use chrono::NaiveDate;
-use orgize::elements::Key;
-use orgize::tools::metadata;
-
-use error::{Error, Result};
+use error::Result;
+use orgize::{elements::Key, tools::metadata};
 use render::render;
+use std::{
+    fs::{read_dir, File},
+    io::Read,
+    path::PathBuf,
+};
 
 pub struct Entry<'a> {
     title: &'a str,
@@ -28,18 +29,13 @@ pub struct Entry<'a> {
 }
 
 fn walk_dirs(dir: &PathBuf, files: &mut Vec<(PathBuf, String)>) -> Result<()> {
-    for entry in read_dir(dir)? {
-        let path = entry?.path();
+    for path in read_dir(dir)?.filter_map(|e| e.map(|e| e.path()).ok()) {
         if path.is_dir() {
             walk_dirs(&path, files)?;
-        }
-
-        if let Some(ext) = path.extension() {
-            if ext == "org" {
-                let mut content = String::new();
-                File::open(&path)?.read_to_string(&mut content)?;
-                files.push((path, content));
-            }
+        } else if path.extension().filter(|&ext| ext == "org").is_some() {
+            let mut content = String::new();
+            File::open(&path)?.read_to_string(&mut content)?;
+            files.push((path, content));
         }
     }
 
@@ -60,9 +56,10 @@ fn main() -> Result<()> {
             match key {
                 Key::Title => title = Some(value),
                 Key::Date => {
-                    let value = value.trim();
                     date = Some(NaiveDate::parse_from_str(
-                        &value[1..value.len() - 1],
+                        value.trim_matches(|c: char| {
+                            c.is_ascii_whitespace() || c == '[' || c == ']'
+                        }),
                         "%Y-%m-%d %a",
                     )?);
                 }
@@ -78,11 +75,11 @@ fn main() -> Result<()> {
         entries.push(Entry {
             amp: render(&content, true)?,
             html: render(&content, false)?,
-            date: date.ok_or_else(|| Error::MissingDate(path.clone()))?,
-            title: title.ok_or_else(|| Error::MissingTitle(path.clone()))?,
-            slug: slug.ok_or_else(|| Error::MissingSlug(path.clone()))?,
-            tags: tags.ok_or_else(|| Error::MissingTags(path.clone()))?,
-            summary: summary.ok_or_else(|| Error::MissingSummary(path.clone()))?,
+            date: date.ok_or_else(|| ("DATE", path.clone()))?,
+            title: title.ok_or_else(|| ("TITLE", path.clone()))?,
+            slug: slug.ok_or_else(|| ("SLUG", path.clone()))?,
+            tags: tags.ok_or_else(|| ("TAGS", path.clone()))?,
+            summary: summary.ok_or_else(|| ("SUMMARY", path.clone()))?,
             prior: None,
             next: None,
         });
@@ -92,10 +89,8 @@ fn main() -> Result<()> {
 
     entries.sort_by(|a, b| b.date.cmp(&a.date));
 
-    let len = entries.len();
-
     entries[0].next = entries.get(1).map(|e| (e.title, e.slug));
-    for i in 1..len {
+    for i in 1..entries.len() {
         entries[i].prior = entries.get(i - 1).map(|e| (e.title, e.slug));
         entries[i].next = entries.get(i + 1).map(|e| (e.title, e.slug));
     }

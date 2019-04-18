@@ -1,9 +1,6 @@
-use std::fs::File;
-use std::io::Result;
-
-use json::{object, JsonValue};
-
 use crate::Entry;
+use json::{object, JsonValue};
+use std::{fs::File, io::Result};
 
 pub fn write_summary(entries: &[Entry<'_>]) -> Result<()> {
     let file = &mut File::create("assets/posts.json")?;
@@ -34,16 +31,16 @@ pub fn write_detail(entries: &[Entry<'_>]) -> Result<()> {
         let obj = object! {
             "html" => entry.html.as_str(),
             "prior" => entry.prior.map(|e| {
-              object! {
-                "title" => e.0,
-                "slug" => e.1,
-              }
+                object! {
+                    "title" => e.0,
+                    "slug" => e.1,
+                }
             }),
             "next" => entry.next.map(|e| {
-              object! {
-                "title" => e.0,
-                "slug" => e.1,
-              }
+                object! {
+                    "title" => e.0,
+                    "slug" => e.1,
+                }
             }),
         };
         obj.write(file)?;

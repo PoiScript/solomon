@@ -2,21 +2,21 @@ use std::io::{Cursor, Write};
 use std::path::PathBuf;
 
 use crate::error::{Error, Result};
-use html_minifier::minify;
 use imagesize::{size, ImageSize};
 use lazy_static::lazy_static;
 use orgize::export::*;
-use syntect::easy::HighlightLines;
-use syntect::highlighting::ThemeSet;
-use syntect::html::{styled_line_to_highlighted_html, IncludeBackground};
-use syntect::parsing::SyntaxSet;
+use syntect::{
+    easy::HighlightLines,
+    highlighting::ThemeSet,
+    html::{styled_line_to_highlighted_html, IncludeBackground},
+    parsing::SyntaxSet,
+};
 use url::Url;
 
 pub fn render(content: &str, amp: bool) -> Result<String> {
     let mut cursor = Cursor::new(Vec::with_capacity(content.len()));
     HtmlRender::new(SolomonHtmlHandler { amp }, &mut cursor, content).render()?;
-    let html = String::from_utf8(cursor.into_inner())?;
-    minify(html).map_err(Error::Minifier)
+    Ok(String::from_utf8(cursor.into_inner())?)
 }
 
 lazy_static! {
@@ -42,9 +42,8 @@ impl SolomonHtmlHandler {
                 "elisp" | "emacs-lisp" => "lisp",
                 _ => lang,
             };
-            let syntax = SYNTAX_SET.find_syntax_by_token(lang);
 
-            if let Some(syntax) = syntax {
+            if let Some(syntax) = SYNTAX_SET.find_syntax_by_token(lang) {
                 return HighlightLines::new(syntax, &THEME_SET.themes["InspiredGitHub"]);
             }
 
@@ -59,9 +58,9 @@ impl SolomonHtmlHandler {
 }
 
 impl<W: Write> HtmlHandler<W, Error> for SolomonHtmlHandler {
-    fn handle_src_block(&mut self, w: &mut W, cont: &str, args: Option<&str>) -> Result<()> {
+    fn src_block(&mut self, w: &mut W, cont: &str, args: Option<&str>) -> Result<()> {
         let lang = args.map(|a| a.trim().split_ascii_whitespace().next().unwrap_or(a));
-        let lines = cont.as_bytes().iter().filter(|&&c| c == b'\n').count();
+        let lines = cont.as_bytes().iter().filter(|&&c| c == b'\n').count() + 1;
         let pad = if lines < 10 {
             1
         } else if lines < 100 {
@@ -83,25 +82,19 @@ impl<W: Write> HtmlHandler<W, Error> for SolomonHtmlHandler {
             writeln!(w, "{}", html)?;
         }
 
-        write!(w, "</pre></code>").map_err(Error::IO)
+        Ok(write!(w, "</pre></code>")?)
     }
 
-    fn handle_inline_src(
-        &mut self,
-        w: &mut W,
-        lang: &str,
-        _: Option<&str>,
-        body: &str,
-    ) -> Result<()> {
+    fn inline_src(&mut self, w: &mut W, lang: &str, _: Option<&str>, body: &str) -> Result<()> {
         let mut highlighter = self.get_highlighter(Some(lang));
         let regions = highlighter.highlight(body, &SYNTAX_SET);
         let html = styled_line_to_highlighted_html(&regions[..], IncludeBackground::No);
 
-        write!(w, "<code>{}</code>", html).map_err(Error::IO)
+        Ok(write!(w, "<code>{}</code>", html)?)
     }
 
-    fn handle_link(&mut self, w: &mut W, path: &str, desc: Option<&str>) -> Result<()> {
-        let url = Url::parse(path).unwrap();
+    fn link(&mut self, w: &mut W, path: &str, desc: Option<&str>) -> Result<()> {
+        let url = Url::parse(path)?;
         if url.scheme() == "file" {
             let path = &url.path()[1..];
 
@@ -112,21 +105,25 @@ impl<W: Write> HtmlHandler<W, Error> for SolomonHtmlHandler {
                     w,
                     r#"<amp-img lightbox src="/{}" alt="" height="{}" width="{}" layout="responsive"></amp-img>"#,
                     path, height, width
-                )?;
+                )?
             } else {
                 write!(
                     w,
                     r#"<div class="image-container"><div class="image" style="background-image: url(/{});padding-top: {:.7}%"></div></div>"#,
                     path,
                     (height as f32 / width as f32) * 100.
-                )?;
+                )?
             }
         } else if let Some(desc) = desc {
-            write!(w, r#"<a href="{}">{}</a>"#, path, desc)?;
+            write!(w, r#"<a href="{}">{}</a>"#, path, desc)?
         } else {
-            write!(w, r#"<a href="{0}">{0}</a>"#, path)?;
+            write!(w, r#"<a href="{0}">{0}</a>"#, path)?
         }
 
         Ok(())
+    }
+
+    fn text(&mut self, w: &mut W, cont: &str) -> Result<()> {
+        Ok(self.escape(w, cont)?)
     }
 }
