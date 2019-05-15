@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/blog",
-    "ignore": ["/blog-server"]
+    "public": "web/dist/app",
+    "ignore": [".gitignore"]
   }
 }

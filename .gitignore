@@ -1,18 +1,5 @@
-# dependencies
-/node_modules
-
 # IDE
 /.idea
 
-# compiled output
-dist
-public
-
 # logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 firebase-debug.log*
-
-# org-mode latex fragment preview
-**/content/**/ltximg/
