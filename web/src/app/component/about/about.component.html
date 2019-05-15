@@ -1,39 +1,4 @@
 <div class="title-section">
   <h1 class="title">About…</h1>
 </div>
-<article>
-  <section>
-    <h1>poi</h1>
-    <p>林培奇（Alex Lin），17 岁零 {{days}} 天。</p>
-  </section>
-  <section>
-    <h1>gpg</h1>
-    <p>我的 PGP 指纹：<code>EC56 5FE9 8A6F 316A B69F 6979 8EE0 5E84 4452 6ED5</code>。</p>
-    <p>你可以从 Keybase 或是我的博客上导入我的公钥。当然，建议你都运行一次，以防止被更改：</p>
-    <pre><code class="language-bash"><span class="line-number">1 </span><span class="token comment"># import poi's gpg key from blog</span>
-<span class="line-number">2 </span>$ <span class="token function">curl</span> https://blog.poi.cat/assets/poi.gpg <span
-        class="token operator">|</span> <span class="token function">gpg</span> --import
-<span class="line-number">3 </span>
-<span class="line-number">4 </span><span class="token comment"># from keybase, too</span>
-<span class="line-number">5 </span>$ <span class="token function">curl</span> https://keybase.io/poiscript/pgp_keys.asc <span
-        class="token operator">|</span> <span class="token function">gpg</span> --import</code></pre>
-    <p>如无异样，gpg 应该会显示：「<b>"Alex Lin (poi) &lt;poiscript@gmail.com&gt;" not changed</b>」；</p>
-    <p>如有异样，请先运行
-      <code>gpg --delete-keys POI_KEY_ID</code>
-      清除已导入的可疑的 key，然后再联系我解决。 >_<
-    </p>
-  </section>
-  <section>
-    <h1>solomon</h1>
-    <p>solomon 是我的博客的名字，同时也是该博客框架的名字。</p>
-    <p>
-      目前 solomon 基于 <a href="https://angular.io">Angular</a> 和 <a href="https://material.angular.io/">
-      Angular Material</a>，使用 <a href="https://cli.angular.io/">Angular CLI</a> 构建。
-    </p>
-    <p>
-      博客的框架以 <a href="https://opensource.org/licenses/MIT">MIT 协议</a>在 GitHub 上开源，文章在
-      <a href="https://creativecommons.org/licenses/by-sa/4.0">知识共享 署名-相同方式共享 4.0协议</a>
-      下提供。
-    </p>
-  </section>
-</article>
+<article [innerHtml]="html | safeHtml"></article>

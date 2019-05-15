@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import {
   BrowserModule,
   BrowserTransferStateModule,
@@ -25,13 +26,16 @@ import {
   HomepageComponent,
   LinkComponent,
   NotFoundComponent,
-  PostContainerComponent,
-  PostListComponent,
-  TagComponent,
+  PostComponent,
 } from './component';
-import { AppRoutingModule } from './app.routing.module';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
-import { IconRegistry, PostService } from './service';
+import {
+  IconRegistry,
+  PostService,
+  PostResolver,
+  AboutResolver,
+  PostGroupResolver,
+} from './service';
 
 @NgModule({
   declarations: [
@@ -42,13 +46,34 @@ import { IconRegistry, PostService } from './service';
     HomepageComponent,
     LinkComponent,
     NotFoundComponent,
-    PostContainerComponent,
-    PostListComponent,
-    TagComponent,
+    PostComponent,
     SafeHtmlPipe,
   ],
   imports: [
-    AppRoutingModule,
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          component: HomepageComponent,
+          pathMatch: 'full',
+
+          resolve: { group: PostGroupResolver },
+        },
+        {
+          path: 'about',
+          component: AboutComponent,
+          resolve: { post: AboutResolver },
+        },
+        {
+          path: 'post/:slug',
+          component: PostComponent,
+          resolve: { post: PostResolver },
+        },
+        { path: 'link', component: LinkComponent },
+        { path: '**', component: NotFoundComponent },
+      ],
+      { scrollPositionRestoration: 'top' },
+    ),
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'solomon' }),
     BrowserTransferStateModule,

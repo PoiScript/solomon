@@ -1,14 +1,31 @@
-import { Component } from '@angular/core';
+import {
+  OnInit,
+  ChangeDetectorRef,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
-import { PostService } from '../../service';
+@Component({
+  templateUrl: './homepage.component.html',
+  styleUrls: ['./homepage.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class HomepageComponent implements OnInit {
+  postGroup;
 
-@Component({ templateUrl: './homepage.component.html' })
-export class HomepageComponent {
-  postDict = this.postService.posts$.pipe(map(dict => Object.values(dict)));
+  constructor(
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private cdRef: ChangeDetectorRef,
+  ) {}
 
-  constructor(private titleService: Title, private postService: PostService) {
-    this.titleService.setTitle('Home☆Solomon');
+  ngOnInit() {
+    this.route.data.subscribe(({ group }) => {
+      this.titleService.setTitle('Home☆Solomon');
+      this.postGroup = group;
+      this.cdRef.detectChanges();
+    });
   }
 }

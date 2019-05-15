@@ -1,0 +1,24 @@
+.post-item {
+  flex-direction: row;
+  display: flex;
+  padding-bottom: 12px;
+  color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+
+  .year {
+    flex: 0 0 48px;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+  }
+
+  .title {
+    flex: 1;
+    font-size: 22px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.8);
+  }
+}

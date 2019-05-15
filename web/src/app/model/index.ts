@@ -1,19 +1,23 @@
-import { SafeHtml } from '@angular/platform-browser';
-
-export class Post {
+export interface Post {
   title: string;
   slug: string;
   date: string;
   tags: string[];
-  html: SafeHtml;
-  next?: {
-    title: string;
-    slug: string;
-  };
-  prior?: {
-    title: string;
-    slug: string;
-  };
+  html: string;
+  next?: PostInfo;
+  prior?: PostInfo;
+}
+
+export interface PostInfo {
+  title: string;
+  slug: string;
+  tags: string[];
+  date: string;
+}
+
+export interface PostGroup {
+  year: number;
+  entries: PostInfo[];
 }
 
 export interface Link {

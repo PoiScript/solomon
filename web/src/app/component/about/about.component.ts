@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, OnInit, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-
-const birthday = 845971200000;
-const oneDay = 8.64e7;
-const seventhYears = 5.361e11;
+import { ActivatedRoute } from '@angular/router';
 
 @Component({ templateUrl: './about.component.html' })
-export class AboutComponent {
-  days = Math.floor((Date.now() - birthday - seventhYears) / oneDay);
+export class AboutComponent implements OnInit {
+  html: string;
 
-  constructor(private titleService: Title) {
-    this.titleService.setTitle('About☆Solomon');
+  constructor(
+    private titleService: Title,
+    private route: ActivatedRoute,
+    private cdRef: ChangeDetectorRef,
+  ) {}
+
+  ngOnInit() {
+    this.route.data.subscribe(({ post }) => {
+      this.html = post.html;
+      this.titleService.setTitle('About☆Solomon');
+      this.cdRef.detectChanges();
+    });
   }
 }

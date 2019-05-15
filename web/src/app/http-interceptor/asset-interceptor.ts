@@ -5,7 +5,6 @@ declare var require: any;
 import { Injectable } from '@angular/core';
 import {
   HttpEvent,
-  HttpHandler,
   HttpInterceptor,
   HttpRequest,
   HttpResponse,
@@ -17,10 +16,7 @@ const { resolve } = require('path');
 
 @Injectable()
 export class AssetInterceptor implements HttpInterceptor {
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>): Observable<HttpEvent<any>> {
     for (const dir of ['web/src', 'public']) {
       const path = resolve(dir, req.url.slice(1));
       if (existsSync(path)) {
