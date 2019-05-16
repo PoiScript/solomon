@@ -14,8 +14,7 @@ $ curl https://blog.poi.cat/poi.gpg | gpg --import
 $ curl https://keybase.io/poiscript/pgp_keys.asc | gpg --import
 #+END_SRC
 
-如无异样，gpg 应该会显示：「 *"Alex Lin (poi) <poiscript@gmail.com>" not
-changed* 」；
+如无异样，gpg 应该会显示无变换（ *not changed* ）；
 
 如有异样，请先运行 ~gpg --delete-keys POI_KEY_ID~ 清除已导入的可疑的 key，然后再
 联系我解决。 >_<
@@ -24,12 +23,9 @@ changed* 」；
 
 solomon 是我的博客的名字，同时也是该博客框架的名字。
 
-目前 solomon 基于 [[https://angular.io][Angular]] 和
-[[https://material.angular.io][Angular Material]]，使用
-[[https://cli.angular.io][Angular CLI]] 构建。
+目前 solomon 基于 [[https://angular.io][Angular]] 和 [[https://material.angular.io][Angular Material]]，使用 [[https://cli.angular.io][Angular CLI]] 构建。
 
 
-博客的框架以 [[https://opensource.org/licenses/MIT][MIT 协议]]在 GitHub 上开源，
-文章在[[https://creativecommons.org/licenses/by-sa/4.0][知识共享 署名-相同方式共
-享 4.0协议]]下提供。
+博客的框架以 [[https://opensource.org/licenses/MIT][MIT 协议]]在 GitHub 上开源，文章在[[https://creativecommons.org/licenses/by-sa/4.0][知识共享 署名-相同方式共享 4.0协议]]
+下提供。
 
