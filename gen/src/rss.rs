@@ -1,7 +1,6 @@
-use crate::{error::Result, Entry};
+use crate::Entry;
 use chrono::Utc;
-use maud::{html, Render};
-use std::{fs::File, io::Write};
+use maud::{html, Markup, Render};
 
 struct CData<T: AsRef<str>>(T);
 
@@ -13,17 +12,17 @@ impl<T: AsRef<str>> Render for CData<T> {
     }
 }
 
-pub fn write(entries: &[Entry<'_>]) -> Result<()> {
-    let markup = html! {
-        rss xmlns:dc="http://purl.org/dc/elements/1.1/"
+pub fn markup(entries: &[Entry]) -> Markup {
+    html! {
+        rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
             xmlns:content="http://purl.org/rss/1.0/modules/content/"
-            xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
         {
             channel {
                 title { "solomon" }
                 description { "PoiScript's Blog" }
                 link { "https://blog.poi.cat" }
-                generator { "solomon " (env!("CARGO_PKG_VERSION")) }
+                generator { "solomon "(env!("CARGO_PKG_VERSION")) }
                 lastBuildDate { (Utc::now().to_rfc2822()) }
                 language { "zh-Hans" }
                 copyright { "Content licensed under CC-BY-SA-4.0." }
@@ -31,19 +30,17 @@ pub fn write(entries: &[Entry<'_>]) -> Result<()> {
                 @for entry in entries {
                     item {
                         title { (CData(entry.title)) }
-                        link { "https://blog.poi.cat/post/" (entry.slug) }
+                        author { "PoiScript" }
+                        link { "https://blog.poi.cat/post/"(entry.slug) }
                         guid isPermaLink="false" { (entry.slug) }
                         @for tag in &entry.tags {
                             category { (CData(tag)) }
                         }
-                        author { "PoiScript" }
-                        pubDate { (entry.date.format("%a, %e %b %Y")) " 00:00:00 +0000" }
+                        pubDate { (entry.date.format("%a, %e %b %Y"))" 00:00:00 +0000" }
                         description  { (CData(&entry.html)) }
                     }
                 }
             }
         }
-    };
-
-    Ok(File::create("assets/atom.xml")?.write_all(markup.into_string().as_bytes())?)
+    }
 }

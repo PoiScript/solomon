@@ -1,16 +1,17 @@
 [package]
 name = "solomon"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["PoiScript <poiscript@gmail.com>"]
 edition = "2018"
 publish = false
 
 [dependencies]
-chrono = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
 imagesize = "0.7"
-json = "0.11"
 lazy_static = "1.3.0"
 maud = "*"
-orgize = { git = "https://github.com/PoiScript/orgize" }
+orgize = { git = "https://github.com/PoiScript/orgize", features = ["chrono"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 syntect = { version = "3.2", default-features = false, features = ["html", "dump-load", "yaml-load"] }
 url = "1.0"
