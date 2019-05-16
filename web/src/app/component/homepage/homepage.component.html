@@ -1,15 +1,9 @@
-<ng-container *ngIf="postGroup">
-  <ng-container *ngFor="let group of postGroup">
-    <div class="post-item" *ngFor="let post of group.entries; first as first">
-      <div class="year">{{ first ? group.year : '' }}</div>
-      <div>
-        <a class="title" [routerLink]="['/post', post.slug]">{{
-          post.title
-        }}</a>
-        <div>
-          <ng-container *ngFor="let tag of post.tags">#{{ tag }} </ng-container>
-        </div>
-      </div>
+<ng-container *ngFor="let group of postGroup">
+  <div class="year">{{ group.year }}</div>
+  <div class="post-item" *ngFor="let post of group.entries">
+    <a class="title" [routerLink]="['/post', post.slug]">{{ post.title }}</a>
+    <div>
+      <ng-container *ngFor="let tag of post.tags">#{{ tag }} </ng-container>
     </div>
-  </ng-container>
+  </div>
 </ng-container>

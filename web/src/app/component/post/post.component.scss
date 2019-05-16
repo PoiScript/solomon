@@ -46,38 +46,3 @@
     transform: rotateY(180deg);
   }
 }
-
-.loading {
-  width: 100%;
-  text-align: center;
-  margin: 100px 0;
-
-  svg > g {
-    stroke-dasharray: 250;
-    stroke-dashoffset: 250;
-    animation: dash 5s linear infinite;
-  }
-
-  @keyframes dash {
-    0%,
-    5% {
-      stroke-dashoffset: 250;
-    }
-    20%,
-    30% {
-      stroke-dashoffset: 0;
-    }
-    45%,
-    55% {
-      stroke-dashoffset: -250;
-    }
-    70%,
-    80% {
-      stroke-dashoffset: 0;
-    }
-    95%,
-    100% {
-      stroke-dashoffset: 250;
-    }
-  }
-}

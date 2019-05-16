@@ -1,47 +1,29 @@
-<ng-container *ngIf="post; else loading">
-  <div class="title-section">
-    <h1 class="title">{{ post.title }}</h1>
-    <h2 class="subtitle">
-      {{ post.date | date: 'mediumDate' }} ·
-      <ng-container *ngFor="let tag of post.tags"> #{{ tag }}</ng-container>
-    </h2>
-  </div>
-  <article [innerHtml]="post.html | safeHtml"></article>
-  <div class="up-next">
-    <ng-container *ngIf="post.prior">
-      <div matRipple class="nav" [routerLink]="['/post', post.prior.slug]">
-        <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
-        <div>
-          <div class="label">Prior</div>
-          <div class="title">{{ post.prior.title }}</div>
-        </div>
+<div class="title-section">
+  <h1 class="title">{{ post.title }}</h1>
+  <h2 class="subtitle">
+    {{ post.date | date: 'mediumDate' }} ·
+    <ng-container *ngFor="let tag of post.tags"> #{{ tag }}</ng-container>
+  </h2>
+</div>
+<article [innerHtml]="post.html | safeHtml"></article>
+<div class="up-next">
+  <ng-container *ngIf="post.prior">
+    <div matRipple class="nav" [routerLink]="['/post', post.prior.slug]">
+      <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
+      <div>
+        <div class="label">Prior</div>
+        <div class="title">{{ post.prior.title }}</div>
       </div>
-    </ng-container>
-    <span class="spacer"></span>
-    <ng-container *ngIf="post.next">
-      <div matRipple class="nav next" [routerLink]="['/post', post.next.slug]">
-        <div class="right">
-          <div class="label">Next</div>
-          <div class="title">{{ post.next.title }}</div>
-        </div>
-        <mat-icon class="icon" svgIcon="arrow"></mat-icon>
+    </div>
+  </ng-container>
+  <span class="spacer"></span>
+  <ng-container *ngIf="post.next">
+    <div matRipple class="nav next" [routerLink]="['/post', post.next.slug]">
+      <div class="right">
+        <div class="label">Next</div>
+        <div class="title">{{ post.next.title }}</div>
       </div>
-    </ng-container>
-  </div>
-</ng-container>
-
-<ng-template #loading>
-  <div class="loading">
-    <svg
-      focusable="false"
-      xmlns="http://www.w3.org/2000/svg"
-      width="120"
-      height="120"
-    >
-      <g fill="none" stroke="#000" stroke-width="4" stroke-opacity="0.4">
-        <path d="m60,86l-38,0l52,-78l-50,30l36,48z" />
-        <path d="m58,34l38,0l-52,78l50,-30l-36,-48z" />
-      </g>
-    </svg>
-  </div>
-</ng-template>
+      <mat-icon class="icon" svgIcon="arrow"></mat-icon>
+    </div>
+  </ng-container>
+</div>

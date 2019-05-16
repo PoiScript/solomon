@@ -1,9 +1,4 @@
-import {
-  OnInit,
-  ChangeDetectorRef,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { OnInit, ChangeDetectorRef, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,7 +7,6 @@ import { Post } from '../../model';
 @Component({
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class PostComponent implements OnInit {
   post: Post;
