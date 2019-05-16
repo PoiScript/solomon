@@ -17,29 +17,27 @@ const { resolve } = require('path');
 @Injectable()
 export class AssetInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>): Observable<HttpEvent<any>> {
-    for (const dir of ['web/src', 'public']) {
-      const path = resolve(dir, req.url.slice(1));
-      if (existsSync(path)) {
-        return of(
-          new HttpResponse<any>({
-            body: path.endsWith('.json')
-              ? readJsonSync(path)
-              : readFileSync(path).toString(),
-            status: 200,
-            statusText: 'OK',
-            url: req.url,
-          }),
-        );
-      }
+    const path = resolve(__dirname, '../../../assets', req.url.slice(1));
+    if (existsSync(path)) {
+      return of(
+        new HttpResponse<any>({
+          body: path.endsWith('.json')
+            ? readJsonSync(path)
+            : readFileSync(path).toString(),
+          status: 200,
+          statusText: 'OK',
+          url: req.url,
+        }),
+      );
+    } else {
+      return of(
+        new HttpResponse<any>({
+          body: '',
+          status: 404,
+          statusText: 'Not Found',
+          url: req.url,
+        }),
+      );
     }
-
-    return of(
-      new HttpResponse<any>({
-        body: '',
-        status: 404,
-        statusText: 'Not Found',
-        url: req.url,
-      }),
-    );
   }
 }

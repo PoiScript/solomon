@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -15,10 +16,10 @@ export class PostResolver implements Resolve<Post> {
 }
 
 @Injectable({ providedIn: 'root' })
-export class AboutResolver implements Resolve<Post> {
+export class AboutResolver implements Resolve<SafeHtml> {
   constructor(private postService: PostService) {}
 
-  resolve(): Observable<Post> {
+  resolve(): Observable<SafeHtml> {
     return this.postService.fetchAbout();
   }
 }

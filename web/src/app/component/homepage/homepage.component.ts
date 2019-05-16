@@ -19,7 +19,7 @@ export class HomepageComponent implements OnInit {
     this.route.data.subscribe(({ group }) => {
       this.titleService.setTitle('Home☆Solomon');
       this.postGroup = group;
-      this.cdRef.detectChanges();
+      this.cdRef.markForCheck();
     });
   }
 }

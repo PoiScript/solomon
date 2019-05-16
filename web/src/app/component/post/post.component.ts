@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
     this.route.data.subscribe(({ post }) => {
       this.post = post;
       this.titleService.setTitle(post.title + '☆Solomon');
-      this.cdRef.detectChanges();
+      this.cdRef.markForCheck();
     });
   }
 }

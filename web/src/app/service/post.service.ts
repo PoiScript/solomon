@@ -1,27 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { Post, PostGroup } from '../model';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
-  private aboutCache: Post | null = null;
+  private aboutCache: SafeHtml | null = null;
   private groupCache: PostGroup[] | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sanitized: DomSanitizer) {}
 
   fetchPost(slug: string): Observable<Post> {
     return this.http.get<Post>(`/post/${slug}.json`);
   }
 
-  fetchAbout(): Observable<Post> {
+  fetchAbout(): Observable<SafeHtml> {
     return this.aboutCache
       ? of(this.aboutCache)
-      : this.http
-          .get<Post>('/post/about.json')
-          .pipe(tap(post => (this.aboutCache = post)));
+      : this.http.get('/post/about.html', { responseType: 'text' }).pipe(
+          map(html => this.sanitized.bypassSecurityTrustHtml(html)),
+          tap(html => (this.aboutCache = html)),
+        );
   }
 
   fetchPosts(): Observable<PostGroup[]> {
