@@ -21,12 +21,12 @@ pub fn markup(entries: &[Entry]) -> Markup {
             channel {
                 title { "solomon" }
                 description { "PoiScript's Blog" }
-                link { "https://blog.poi.cat" }
+                link rel="self" href="https://blog.poi.cat/atom.xml" {}
+                link rel="alternate" href="https://blog.poi.cat" {}
                 generator { "solomon "(env!("CARGO_PKG_VERSION")) }
                 lastBuildDate { (Utc::now().to_rfc2822()) }
                 language { "zh-Hans" }
                 copyright { "Content licensed under CC-BY-SA-4.0." }
-                atom:link href="https://blog.poi.cat/atom.xml" rel="self" type="application/rss+xml";
                 @for entry in entries {
                     item {
                         title { (CData(entry.title)) }
