@@ -28,8 +28,8 @@ OAuth 的具体实现就是通过提供给第三方一个 *Token* ，第三方�
 
 既然要在 GitHub 上评论，我们就需要先在 GitHub 上注册我们的应用：
 
-打开 [[https://github.com/settings/developers][Developer applications]] 或者进入
-GitHub 的设置页面，在侧边栏里选择 *OAuth applicatioins* 。
+打开 [[https://github.com/settings/developers][Developer applications]] 或者进入 GitHub 的设置页面，在侧边栏里选择 *OAuth
+applicatioins* 。
 
 然后选择 *Register a new application* 注册一个新的应用：
 
@@ -59,9 +59,8 @@ GitHub 的设置页面，在侧边栏里选择 *OAuth applicatioins* 。
 说是一大困难。本身就是为了节省打理服务器的时间而选择了静态博客，现在为了一个评论
 的功能再引入一个服务器，不免有点本末倒置。
 
-所幸，托管我的网站的 Firebase 提供了
-[[https://firebase.google.com/docs/auth/][Firebasee Authentication]]，让我们可以
-通过 Firebasee 的服务器完成整个授权过程。
+所幸，托管我的网站的 Firebase 提供了 [[https://firebase.google.com/docs/auth/][Firebasee Authentication]]，让我们可以通过
+Firebasee 的服务器完成整个授权过程。
 
 * Firebase Authentication
 
@@ -106,16 +105,13 @@ Firebase Authentication 不仅可以使用 *传统的邮箱密码验证* ，还�
 
 GitHub 和 Firebase 都设置好之后，就可以正式的使用了。
 
-Firebase Authentication 提供了两种使用方法：
-[[https://github.com/firebase/FirebaseUI-Web][FirebaseUI]] 和
-[[https://firebase.google.com/docs/auth/web/github-auth][Firebase Authentication
-SDK]] 。
+Firebase Authentication 提供了两种使用方法：[[https://github.com/firebase/FirebaseUI-Web][FirebaseUI]] 和 [[https://firebase.google.com/docs/auth/web/github-auth][Firebase
+Authentication SDK]]。
 
 FirebaseUI 尚处于测试阶段，所以我这里选择用 Firebase Authentication SDK。
 
-Firebase 提供的
-[[https://github.com/firebase/quickstart-js/blob/master/auth/github-popup.html][Demo]]
-是在应用的 HTML 中加入 ~firebase.js~ 文件，然后在 ~<script>~ 中定义各种操作。
+Firebase 提供的 [[https://github.com/firebase/quickstart-js/blob/master/auth/github-popup.html][Demo]] 是在应用的 HTML 中加入 ~firebase.js~ 文件，然后在
+~<script>~ 中定义各种操作。
 
 既然我们已经用了 *Angular* ，就不需要用这么麻烦的方法了。我们这里用 Angular 官方
 提供的库：[[https://github.com/angular/angularfire2][Angularfire2]]。
@@ -132,21 +128,19 @@ $ npm install firebase angularfire2 --save
 
 #+BEGIN_SRC typescript
 export const firebaseConfig = {
-  apiKey: '<your-key>',
-  authDomain: '<your-project-authdomain>',
-  databaseURL: '<your-database-URL>',
-  storageBucket: '<your-storage-bucket>',
-  messagingSenderId: '<your-messaging-sender-id>'
+  apiKey: "<your-key>",
+  authDomain: "<your-project-authdomain>",
+  databaseURL: "<your-database-URL>",
+  storageBucket: "<your-storage-bucket>",
+  messagingSenderId: "<your-messaging-sender-id>"
 };
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig)
-  ],
+  imports: [BrowserModule, AngularFireModule.initializeApp(firebaseConfig)],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
+export class AppModule {}
 #+END_SRC
 
 注意要将其中的 ~firebaseConfig~ 改成你的项目的配置。
@@ -159,15 +153,20 @@ your web app* ：
 配置完了之后就可以使用了。例如，登录的话需要调用 ~AngularFire.auth#login()~ ：
 
 #+BEGIN_SRC typescript
-this.af.auth.login({
-  provider: AuthProviders.Github,
-  method: AuthMethods.Popup,
-  scope: ['public_repo']
-}).then((res: any) => {
-  console.log(res)
-  if ('accessToken' in res.github) this.tokenService.setToken(res.github.accessToken)
-  else this.snackBarOpen('Access Token Not Found, Re-login Please.', 1000)
-})
+this.af.auth
+  .login({
+    provider: AuthProviders.Github,
+    method: AuthMethods.Popup,
+    scope: ["public_repo"]
+  })
+  .then((res: any) => {
+    console.log(res);
+    if ("accessToken" in res.github) {
+      this.tokenService.setToken(res.github.accessToken);
+    } else {
+      this.snackBarOpen("Access Token Not Found, Re-login Please.", 1000);
+    }
+  });
 #+END_SRC
 
 这里需要注意两点：

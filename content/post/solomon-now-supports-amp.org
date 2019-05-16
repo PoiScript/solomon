@@ -6,8 +6,7 @@
 #+BEGIN_QUOTE
 Solomon 现已支持 AMP。
 
-你可以访问[[https://blog.poi.cat/amp/solomon-now-supports-amp.html][本篇文章的
-AMP 版本]]体验。 :)
+你可以访问[[https://blog.poi.cat/amp/solomon-now-supports-amp.html][本篇文章的 AMP 版本]]体验。 :)
 #+END_QUOTE
 
 * AMP 是什么？
@@ -15,8 +14,7 @@ AMP 版本]]体验。 :)
 *AMP (Accelerated Mobile Pages)* 是 Google 推出的一门能加快移动端页面呈现速度的
 技术。
 
-经测试，能提高 *15% ~ 85%* 的页面加载性能：
-[[https://www.ampproject.org/how-it-works/][Accelerated Mobile Pages – A new
+经测试，能提高 *15% ~ 85%* 的页面加载性能：[[https://www.ampproject.org/how-it-works/][Accelerated Mobile Pages – A new
 approach to web performance]]
 
 此外，大家还看一下 AMP 官方的介绍视频：
@@ -24,7 +22,7 @@ approach to web performance]]
 [[https://www.youtube.com/watch?v=lBTCB7yLs8Y&t=131s][Intro to AMP (Accelerated Mobile Pages)]]
 
 #+BEGIN_QUOTE
-里面小哥的演技好逼真 :)
+里面小哥的演技好逼真。:)
 #+END_QUOTE
 
 * AMP 结构简述
@@ -35,32 +33,63 @@ AMP 主要由 *AMP HTML* ， *AMP Runtime* 和 *AMP Component* 组成：
 
 一个规范的 AMP HTML 有以下的几个 *必要条件* ：
 
-1. 以 ~<!doctype html>~ 开头；
-2. 顶层标签为 ~<html ⚡>~ 或 ~<html amp>~ ；
-3. 必须包括 ~<head>~ 和 ~<body>~ 标签，他们在 HTML 中是可选的；
-4. ~<meta charset="utf-8">~ 放在 ~<head>~ 的开头；
-5. ~<script async src="https://cdn.ampproject.org/v0.js"></script>~ 做为第二个元
-   素；
-6. ~<link rel="canonical" href="$SOME_URL" />~ 这个 metadata 指向和这个页面相同
-   内容的非 AMP 版本的页面；
-7. ~<head>~ 中必须包含 ~<meta name="viewport"
-   content="width=device-width,minimum-scale=1">~ ；
-8. ~<head>~ 中必须包含 ~<style amp-boilerplate>body{-webkit-animation:-amp-start
-   8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s
-   1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal
-   both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes
-   -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes
-   -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes
-   -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes
-   -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes
-   -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style
-   amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>~
+1. 以 src_html{<!doctype html>} 开头；
+2. 顶层标签为 src_html{<html ⚡>} 或 src_html{<html amp>} ；
+3. 必须包括 src_html{<head>} 和 src_html{<body>} 标签，他们在 HTML 中是可选的；
+4. src_html{<meta charset="utf-8">} 放在 src_html{<head>} 的开头；
+5. src_html{<script async src="https://cdn.ampproject.org/v0.js"></script>} 做为
+   第二个元素；
+6. src_html{<link rel="canonical" href="$SOME_URL" />} 这个 metadata 指向和这个
+   页面相同内容的非 AMP 版本的页面；
+7. src_html{<head>} 中必须包含 src_html{<meta name="viewport"
+   content="width=device-width,minimum-scale=1">} ；
+8. src_html{<head>} 中必须包含
+
+   #+BEGIN_SRC html
+   <style amp-boilerplate>
+       body {
+           -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+           -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+           -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+           animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+       }
+       @-webkit-keyframes -amp-start {
+           from { visibility: hidden; }
+           to { visibility: visible; }
+       }
+       @-moz-keyframes -amp-start {
+           from { visibility: hidden; }
+           to { visibility: visible; }
+       }
+       @-ms-keyframes -amp-start {
+           from { visibility: hidden; }
+           to { visibility: visible; }
+       }
+       @-o-keyframes -amp-start {
+           from { visibility: hidden; }
+           to { visibility: visible; }
+       }
+       @keyframes -amp-start {
+           from { visibility: hidden; }
+           to { visibility: visible; }
+       }
+   </style>
+   <noscript><style amp-boilerplate>
+       body {
+           -webkit-animation: none;
+           -moz-animation: none;
+           -ms-animation: none;
+           animation: none;
+       }
+   </style></noscript>
+   #+END_SRC
 
 除了以上的要求之外，AMP HTML 还有其他的限制：
 
-多数的 HTML 标签在 AMP HTML 中都可以使用，除了少数的标签，例如 ~<img>~ ，
-~<video>~ 和 ~<audio>~ 等则必须以 ~<amp-img>~ ， ~<amp-anim>~ ， ~<amp-video>~
-和 ~<amp-audio>~ 替代，而且他们都是需要闭合的。
+多数的 HTML 标签在 AMP HTML 中都可以使用，除了少数的标签，例如 src_html{<img>}
+， src_html{<video>} 和 src_html{<audio>} 等则必须以 src_html{<amp-img>} ，
+src_html{<amp-anim>} ， src_html{<amp-video>} 和 src_html{<amp-audio>} 替代，而
+且他们都是需要闭合的。
 
 #+BEGIN_QUOTE
 关于为什么不能使用上述标签，可以参阅 AMP 官方文档：
@@ -70,8 +99,8 @@ AMP 主要由 *AMP HTML* ， *AMP Runtime* 和 *AMP Component* 组成：
 
 AMP HTML 不能引用 *除 AMP Runtime 和 AMP Components 之外的 JS 库* 。
 
-AMP HTML 不能引用 CSS 文件，只能使用内联样式，内联样式必须写成 ~<style
-amp-custom>~ 而不是 ~<style>~ ，而且在一个页面中 *只能出现一次* 内联样式。
+AMP HTML 不能引用 CSS 文件，只能使用内联样式，内联样式必须写成 src_html{<style
+amp-custom>} 而不是 src_html{<style>} ，而且在一个页面中 *只能出现一次* 内联样式。
 
 #+BEGIN_QUOTE
 AMP HTML 的规范很多，记不住没关系，可以通过在 URL 最后加 ~#development=1~ ，进入
@@ -84,9 +113,9 @@ https://cdn.ampproject.org/v0.js 就是 *AMP Runtime* ，负责协调资源的�
 
 *AMP Component* 其实是 *自定义元素(Custom Elements)* ；
 
-除了上述的 ~<amp-img>~ 和 ~<amp-audio>~ 之外，AMP Project 还提供了其他的
-Components，例如： ~<amp-analytics>~ ， ~<amp-app-banner>~ 和 ~<amp-experiment>~
-等。
+除了上述的 src_html{<amp-img>} 和 src_html{<amp-audio>} 之外，AMP Project 还提供
+了其他的 Components，例如： src_html{<amp-analytics>} ，
+src_html{<amp-app-banner>} 和 src_html{<amp-experiment>} 等。
 
 你可以在 [[https://ampbyexample.com/#components]] 找到他们。
 
@@ -107,9 +136,7 @@ AMP HTML 通过限制 HTML 的能力，获得了提高页面加载速度的能�
 Angular 和 React 等前端框架就 *用不上了* 。所以要实现 Solomon AMP，就必须用 *静
 态博客生成器* 。
 
-静态博客生成器有很多的选择，例如： [[https://gohugo.io/][Hugo]]，
-[[https://hexo.io][Hexo]]，[[https://blog.getpelican.com/][Pelican]] 和
-[[https://jekyllrb.com/][Jekyll]] 等。
+静态博客生成器有很多的选择，例如：[[https://gohugo.io/][Hugo]]，[[https://hexo.io][Hexo]]，[[https://blog.getpelican.com/][Pelican]] 和 [[https://jekyllrb.com/][Jekyll]] 等。
 
 我选择的是 *Pelican* 。理由很简单，AMP HTML 相比普通的 HTML 有大的区别，这意味着
 我必须修改生成器的代码或者写一个插件，使其可以渲染出合法的 AMP HTML。
@@ -141,9 +168,8 @@ Pelican 默认的 Metadata 的格式是
 的方式是直接解析了 JSON 代码块。
 #+END_QUOTE
 
-Pelican 默认的 Markdown 渲染器不支持自定义函数，所以我换成了
-[[https://github.com/lepture/mistune][Mistune]]，并且重写了 ~image~ ，把所有的
-~<img>~ 标签换成了 ~<amp-img></amp-img>~ 。
+Pelican 默认的 Markdown 渲染器不支持自定义函数，所以我换成了 [[https://github.com/lepture/mistune][Mistune]]，并且重写了
+~image~ ，把所有的 src_html{<img>} 标签换成了 src_html{<amp-img></amp-img>} 。
 
 写好了自己的 Reader 之后，记得还要去 ~pelicanconf.py~ 里，设置插件的路径和需要引入
 的插件： ~amp_markdown_reader~ ，这样插件才能生效。
@@ -152,15 +178,14 @@ Pelican 默认的 Markdown 渲染器不支持自定义函数，所以我换成�
 动端加速的，不需要也不适合太复杂页面逻辑，所以我就自己写了一个主题：
 ~solomon-amp~ 。
 
-写 AMP 主题的时候和写普通主题差不多，只不过写完之后记得用
-[[https://validator.ampproject.org][The AMP Validator]] 或者在 URL 后面加
-~#development=1~ （前提是你引入了 AMP Runtime）的方法来确认你的 AMP HTML 是否合
-法。
+写 AMP 主题的时候和写普通主题差不多，只不过写完之后记得用 [[https://validator.ampproject.org][The AMP Validator]] 或者
+在 URL 后面加 ~#development=1~ （前提是你引入了 AMP Runtime）的方法来确认你的
+AMP HTML 是否合法。
 
-不过我这里要特别提到的就是页面中的 ~<script type="application/ld+json">~ 即
-*Structured Data* 的设置: Structured Data 虽然不是 AMP HTML 中的规范，但是对于
-AMP 的页面来说，Structured Data 是相当重要的，因为它可以提供给搜索引擎更多的信息，
-使我们的页面在搜索引擎上可以显示 *更多的信息* 。
+不过我这里要特别提到的就是页面中的 src_html{<script type="application/ld+json">}
+即 *Structured Data* 的设置: Structured Data 虽然不是 AMP HTML 中的规范，但是对
+于 AMP 的页面来说，Structured Data 是相当重要的，因为它可以提供给搜索引擎更多的
+信息，使我们的页面在搜索引擎上可以显示 *更多的信息* 。
 
 * Structured Data
 
@@ -168,26 +193,20 @@ Structured Data 有两个形式：基于 JSON 的 *JSON-LD* 和基于 HTML Meta 
 *Microdata* 。我推荐的是 *JSON-LD* ，因为它的可读性相比后者更好，而且占的字节也
 小。
 
-使用 Structured Data 当然也有 Structured Data 的标准，首先先从
-[[https://developers.google.com/search/docs/data-types/data-type-selector][Introduction
-to Structured Data Types | Search | Google Developers]] 里选择你的网页的类型相应
-的 Structured Data ：目前有 Articles（文章），Music（音乐），Recipes（食谱），
+使用 Structured Data 当然也有 Structured Data 的标准，首先先从 [[https://developers.google.com/search/docs/data-types/data-type-selector][Introduction to
+Structured Data Types | Search | Google Developers]] 里选择你的网页的类型相应的
+Structured Data ：目前有 Articles（文章），Music（音乐），Recipes（食谱），
 Reviews（评论），TV & Movies（电视剧 & 电影），和 Videos（视频）几种。
 
-以 Articles 的 Structured Data 为例：在
-[[https://developers.google.com/search/docs/data-types/articles#type_definitions][Articles | Search | Google
-Developers]] 里点击 *See Mark Up* 之后，就可以在新页面里面看到 Google 给的一个
-json-ld 例子。
+以 Articles 的 Structured Data 为例：在 [[https://developers.google.com/search/docs/data-types/articles#type_definitions][Articles | Search | Google Developers]] 里
+点击 *See Mark Up* 之后，就可以在新页面里面看到 Google 给的一个 json-ld 例子。
 
 我们把它复制到我们的主题里面就行了，当然这只是一个例子，我们还需要根据具体的需求
-修改我们的 *json-ld* 。当然修改的时候根据
-[[https://developers.google.com/search/docs/data-types/articles#type_definitions][Articles | Search | Google
-Developers]] 里的规定修改，否则也是会视为无效的。改完了之后我们可以通过
-[[https://search.google.com/structured-data/testing-tool][Structured Data
+修改我们的 *json-ld* 。当然修改的时候根据 [[https://developers.google.com/search/docs/data-types/articles#type_definitions][Articles | Search | Google Developers]]
+里的规定修改，否则也是会视为无效的。改完了之后我们可以通过 [[https://search.google.com/structured-data/testing-tool][Structured Data
 Testing Tool]] 来查看我们的 json-ld 是否合法。
 
 * 后语
 
-最后，Solomon AMP 实现以 MIT 协议开源在
-[[https://github.com/PoiScript/Solomon-AMP][PoiScript/Solomon-AMP]] 上。有什么意
-见或建议的话，欢迎提 Issue 或者推 Pull Request。:)
+最后，Solomon AMP 实现以 MIT 协议开源在 [[https://github.com/PoiScript/Solomon-AMP][PoiScript/Solomon-AMP]] 上。有什么意见或建
+议的话，欢迎提 Issue 或者推 Pull Request。:)

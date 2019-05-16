@@ -25,9 +25,9 @@ LaTeX 是对著名排版系统 TeX 的二次开发，TeX 是公认的数学公�
 
 -----
 
-后来在 ~#archlinux-cn~ 的 [[https://twitter.com/riaqn0][riaqn]] 安利下，我开始使
-用 Emacs 的 Org-mode 来作笔记。不得不说相比 Markdown，Org-mode 配合 Emacs 的生态，
-在各种体验上都上升了不止一个等级。
+后来在 ~#archlinux-cn~ 的 [[https://twitter.com/riaqn0][riaqn]] 安利下，我开始使用 Emacs 的 Org-mode 来作笔记。
+不得不说相比 Markdown，Org-mode 配合 Emacs 的生态，在各种体验上都上升了不止一个
+等级。
 
 [[file:images/org-mode-latex-preview.png][Emacs 和 Org-mode 和 LaTeX]]
 
@@ -45,33 +45,30 @@ Emacs + Org-mode + LaTeX 环境的配置过程，大家可以选择性观看。
 $ zypper in emacs
 #+END_SRC
 
-其他的 Linux 发行版请尝试使用包管理器安装，或者和 Windows/macOS 用户一起看看
-[[https://www.gnu.org/software/emacs/download.html][官方文档]] 。
+其他的 Linux 发行版请尝试使用包管理器安装，或者和 Windows/macOS 用户一起看看[[https://www.gnu.org/software/emacs/download.html][官方
+文档]]。
 
 而 Spacemacs 是一个由社区驱动的 Emacs 的分支，它的口号是：
 
 #+BEGIN_QUOTE
-The best editor is neither Emacs nor Vim, it's Emacs _and_ Vim!
+The best editor is neither Emacs nor Vim, it's Emacs *and* Vim!
 #+END_QUOTE
 
-正如他们的口号所言，Spacemacs 的最大的特点就是 Vim 风格中通过
-[[https://www.emacswiki.org/emacs/Evil][Evil]] 实现了 Vim 的键位绑定。在 Emacs
-中也能使用 Vim 中独特的 ~insert mode~ 和 ~visual mode~ 了。
+正如他们的口号所言，Spacemacs 的最大的特点就是 Vim 风格中通过 [[https://www.emacswiki.org/emacs/Evil][Evil]] 实现了 Vim 的
+键位绑定。在 Emacs中也能使用 Vim 中独特的 ~insert mode~ 和 ~visual mode~ 了。
 
 Spacemacs 的默认风格是 Vim，同时也提供了 Emacs 和 Hybrid 适用不同的人。
 
 安装 Spacemacs 只需要：
 
 #+BEGIN_SRC bash
-$ mv ~/.emacs.d ~/.emacs.d.old && mv ~/.emacs ~/.emacs.old # backup
+$ mv ~/.emacs.d ~/.emacs.d.old
 $ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 #+END_SRC
 
 在 Windows 下的话，不仅要将 Spacemacs 的 ~.emacs~ 放在 ~C:\Users\{username}\~ 同
 时也要在 ~C:\Users\{username}\AppData\Roaming~ 里。此外，还有可能出现 ~packages
-unavailable~ 的情况，此时可以参考一下官方的
-[[https://github.com/syl20bnr/spacemacs/blob/master/doc/FAQ.org#why-are-all-packages-unavailable][FAQ]]
-。
+unavailable~ 的情况，此时可以参考一下官方的 [[https://github.com/syl20bnr/spacemacs/blob/master/doc/FAQ.org#why-are-all-packages-unavailable][FAQ]]。
 
 无论是什么 Editor/IDE，装好的第一步应该都是修改字体吧。Spacemacs 的默认等宽字体
 是 Abode 的 *Source Code Pro* ，这曾经是我也是我的首选，不过我现在喜欢用带连字
@@ -88,9 +85,7 @@ dotspacemacs-default-font '("Fira Code"
                             :powerline-scale 1.4)
 #+END_SRC
 
-其中字体大小，宽度等参数见个人喜好，你可以在
-[[https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#font][
-这里]]看到各个参数的含义。
+其中字体大小，宽度等参数见个人喜好，你可以在[[https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org#font][这里]]看到各个参数的含义。
 
 英文的等宽字体配置完后，还可以选择性地配置其他的语言，例如中文（这里需要先判断一
 下是不是 GUI）：
@@ -99,8 +94,8 @@ dotspacemacs-default-font '("Fira Code"
 ;; Set Chinese Font
 ;; Put this inside `dotspacemacs/user-config()`
 (if window-system
-        (dolist (charset '(kana han cjk-misc bopomofo))
-                (set-fontset-font (frame-parameter nil 'font)
+    (dolist (charset '(kana han cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
                         charset (font-spec :family "Noto Sans SC" :size 20))))
 #+END_SRC
 
@@ -111,10 +106,9 @@ dotspacemacs-default-font '("Fira Code"
 * Org-mode & LaTeX
 
 Org-mode 是 Emacs 中的一种编辑模式，支持编写 To-do list、日志和笔记等功能。其中
-（对于我来说）最重要的就是支持
-[[http://orgmode.org/manual/Embedded-LaTeX.html][内嵌 LaTeX]] 了。Org-mode 从
-Emacs 22 开始就已经成为默认安装的部分了，所以不需要额外的安装操作，只需要打开带
-有 ~.org~ 的文件，就会自动进入 Org-mode 了。
+（对于我来说）最重要的就是支持[[http://orgmode.org/manual/Embedded-LaTeX.html][内嵌 LaTeX]] 了。Org-mode 从Emacs 22 开始就已经成为
+默认安装的部分了，所以不需要额外的安装操作，只需要打开带有 ~.org~ 的文件，就会自
+动进入 Org-mode 了。
 
 不过想要有 LaTeX 的预览/导出的话，还需要安装 ~texlive~ 。openSUSE 下依旧是在
 root 环境下运行：
@@ -128,11 +122,10 @@ $ zypper in texlive
 各个版本的 texlive，不过我还未尝试过。
 #+END_QUOTE
 
-其他的系统也可以使用包管理器安装或者请参照一下
-[[https://www.tug.org/texlive/][官方文档]] 。
+其他的系统也可以使用包管理器安装或者请参照一下[[https://www.tug.org/texlive/][官方文档]]。
 
-Org-mode 内嵌 LaTeX 有几种方式，display 我喜欢用 ~\[E~mc^2\]~ ，inline 我偏好
-~$E~mc^2$~ 。预览时只需要用 ~C-c C-x C-l (org-toggle-latex-fragment)~ 即可。
+Org-mode 内嵌 LaTeX 有几种方式，display 我喜欢用 ~\[E=mc^2\]~ ，inline 我偏好
+~$E=mc^2$~ 。预览时只需要用 ~C-c C-x C-l (org-toggle-latex-fragment)~ 即可。
 
 默认的预览有点小，所以我在 ~.spacemacs~ 里拉伸了一下大小：
 
@@ -155,8 +148,7 @@ Org-mode 内嵌 LaTeX 有几种方式，display 我喜欢用 ~\[E~mc^2\]~ ，inl
 Mode。
 
 #+BEGIN_QUOTE
-如果想在 Emacs 的 buffer 中开多个 Major Mode，参见：
-[[https://www.emacswiki.org/emacs/MultipleModes][MultipleModes]]
+如果想在 Emacs 的 buffer 中开多个 Major Mode，参见：[[https://www.emacswiki.org/emacs/MultipleModes][MultipleModes]]
 #+END_QUOTE
 
 所以 ~CDLaTeX~ 作用其实是实现了部分来自另外一个 Major Mode —— ~AUCTeX~ 的功能，
@@ -175,9 +167,8 @@ dotspacemacs-additional-packages '(cdlatex auctex)
 
 然后重启 Emacs，Spacemacs 会自动帮你安装好他们。
 
-注意全部使用小写，而且不要用 ~M-x package-install~ 来安装，因为 Spacemacs 会在
-[[https://github.com/syl20bnr/spacemacs/blob/master/doc/FAQ.org#why-are-packages-installed-with-package-install-automatically-deleted-by-spacemacs-when-it-boots][
-重启之后删掉他们]]...
+注意全部使用小写，而且不要用 ~M-x package-install~ 来安装，因为 Spacemacs 会在重
+启之后[[https://github.com/syl20bnr/spacemacs/blob/master/doc/FAQ.org#why-are-packages-installed-with-package-install-automatically-deleted-by-spacemacs-when-it-boots][删掉他们]]……
 
 再次打开 Org-mode，用 ~M-x org-cdlatex-mode~ 打开 ~CDLaTeX~ 。然后你就可以体验
 的 ~CDLaTeX~ 带来的快速输入 LaTeX 的功能了：
@@ -203,4 +194,4 @@ dotspacemacs-additional-packages '(cdlatex auctex)
 以导出成 HTML 以便于时刻可以浏览，而 LaTeX 在这方面就比较吃力了。
 
 不过使用了 Org-mode 之后也有一个问题：目前似乎没有现成的基于 Org-mode 的 Wiki
-Software，所以这意味着我可能又需要自己造个轮子了… :(
+Software，所以这意味着我可能又需要自己造个轮子了……:(

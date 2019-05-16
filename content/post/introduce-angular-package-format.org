@@ -3,9 +3,8 @@
 #+SLUG: introduce-angular-package-format
 #+TAGS: angular
 
-[[https://goo.gl/jB3GVv][Angular Package Format(APF)]] 指的是 Angular 框架中的包
-的结构和规范。该规范的作者是 [[https://github.com/IgorMinar][IgorMinar]] 和
-[[https://github.com/jasonaden][Jason Aden]]，两者都是 Angular 的 Contributor。
+[[https://goo.gl/jB3GVv][Angular Package Format(APF)]] 指的是 Angular 框架中的包的结构和规范。该规范的作者
+是 [[https://github.com/IgorMinar][IgorMinar]] 和 [[https://github.com/jasonaden][Jason Aden]]，两者都是 Angular 的 Contributor。
 
 它详细地介绍了 Angular 的核心库，例如 ~@angular/core~ 和 ~@angular/common~ 的
 npm 包的结构和原因，同时还涉及到了在开发自己的库的时候如何优化编译结果，适配各种
@@ -144,5 +143,5 @@ ESM+ES5 的编译结果，主要用于 Webpack 等； ~es2015~ 字段指向 ESM+
 
 这篇文章只是对 APF 的一个简单的介绍和一个典型的例子的分析，还有更多的细节没有提
 及：例如，如何提供多个 entry point 这样可与成让用户只导入需要的模块，降低编译后
-的体积。如果感兴趣的话可以查看[[https://goo.gl/jB3GVv][原文档]]，以及 Juri
-Strumpflohner 在 ng-be 上的[[https://youtu.be/K4YMmwxGKjY][发言视频]]。
+的体积。如果感兴趣的话可以查看[[https://goo.gl/jB3GVv][原文档]]，以及 Juri Strumpflohner 在 ng-be 上的[[https://youtu.be/K4YMmwxGKjY][发言
+视频]]。

@@ -14,7 +14,7 @@
 主要是因为 PlayStation 上的独占游戏相比其他两个主机平台更多更全。
 
 #+BEGIN_QUOTE
-例如：[[https://en.wikipedia.org/wiki/Nier:_Automata][尼尔：机械纪元]](+2B 小姐姐+)
+例如：[[https://en.wikipedia.org/wiki/Nier:_Automata][尼尔：机械纪元]] +（2B 小姐姐）+
 #+END_QUOTE
 
 此外 PS4 的性能相比 XBox One 也更加强。当然，XBox 也在奋起直追，推出了 *天蝎座
@@ -70,8 +70,8 @@ PS4 目前简略的来说有三个大版本：PS4（即初版）、PS4 Slim 和 
 
 [[file:images/ps4-dualshock4.jpg][DUALSHOCK4 手柄]]
 
-新版的 DUALSHOCK4 手柄，相比旧款的，改进的地方不多。主要是改进了 LED 灯，可以通过
-触摸屏上看到 LED 灯的状态；还有就是按键改成磨砂质感了。
+新版的 DUALSHOCK4 手柄，相比旧款的，改进的地方不多。主要是改进了 LED 灯，可以通
+过触摸屏上看到 LED 灯的状态；还有就是按键改成磨砂质感了。
 
 [[file:images/ds4-vs-xbox-one-controller.jpg][PS4 的手柄对比 XBox One 手柄]]
 

@@ -9,17 +9,15 @@
 
 * 前言
 
-以前我的博客用的是 [[https://hexo.io/][Hexo]] 。但是我用起来感觉限制还是太多，然
-后又尝试了一下其他的静态博客生成器，例如： [[https://gohugo.io/][Hugo]] 、
-[[https://jekyllrb.com/][Jekyll]] 、[[https://ghost.org/][Ghost]] 等，发现也不太
-满足我的需求。恰巧，Angular 2 发布了，于是我就萌生了自己写一个博客系统的想法。
+以前我的博客用的是 [[https://hexo.io/][Hexo]]。但是我用起来感觉限制还是太多，然后又尝试了一下其他的静
+态博客生成器，例如：[[https://gohugo.io/][Hugo]]、[[https://jekyllrb.com/][Jekyll]]、[[https://ghost.org/][Ghost]] 等，发现也不太满足我的需求。恰巧，
+Angular 2 发布了，于是我就萌生了自己写一个博客系统的想法。
 
 说干就干，repo 的名字就叫 Solomon，和我的博客同名。
 
 * Angular 简介
 
-Angular 是 Google 开发的前端框架，据 [[https://angular.cn][Angular 中文网]] 介绍，
-其有如下功能：
+Angular 是 Google 开发的前端框架，据 [[https://angular.cn][Angular 中文网]] 介绍，其有如下功能：
 
 #+BEGIN_QUOTE
 Angular 特性与优点：跨平台（Cross Platform）、速度与性能（Speed and Performance）、
@@ -49,32 +47,31 @@ export interface SolomonConfig {
   GITHUB_USERNAME: string;
   GITHUB_POST_REPO: string;
   KITSU_ID: number;
-}
+};
 #+END_SRC
 
 使用之前需要先继承这个接口：
 
 #+BEGIN_SRC typescript
 export const CONFIG: SolomonConfig = {
-  BLOG_NAME: 'Solomon',
+  BLOG_NAME: "Solomon",
   RECENT_POST_LIMIT: 6,
   RECENT_ANIME_LIMIT: 6,
   RECENT_PROJECT_LIMIT: 6,
-  GITHUB_USERNAME: 'PoiScript',
-  GITHUB_POST_REPO: 'Solomon-Post',
-  KITSU_ID: 140033,
+  GITHUB_USERNAME: "PoiScript",
+  GITHUB_POST_REPO: "Solomon-Post",
+  KITSU_ID: 140033
 };
 
-export const CONFIG_TOKEN = new OpaqueToken('config');
+export const CONFIG_TOKEN = new OpaqueToken("config");
 #+END_SRC
 
-然后就可以通过 ~@Inject(CONFIG_TOKEN) config: SolomonConfig~ 来获得我们设置的
-~config~ ，进而获得我们的配置。
+然后就可以通过 src_typescript{@Inject(CONFIG_TOKEN) config: SolomonConfig} 来获
+得我们设置的 ~config~ ，进而获得我们的配置。
 
 * 文章
 
-我的文章放在 [[https://github.com/PoiScript/Solomon-Post][一个单独的Repository]]
-里，主要由如下的考虑：
+我的文章放在一个单独的 [[https://github.com/PoiScript/Solomon-Post][Repository]] 里，主要由如下的考虑：
 
 1. 我不想把文章和框架放在一起，这样有夹带私货的感觉；
 2. 方便给文章和框架使用不同的协议：框架是 MIT 协议，文章是 知识共享 署名-相同方
@@ -96,10 +93,9 @@ export const CONFIG_TOKEN = new OpaqueToken('config');
 我的文章的用 Markdown 写的，于是我需要先将 Markdown 渲染成 HTML 格式，然后再封装
 成JSON。
 
-于是我写了 [[https://github.com/PoiScript/Solomon-Post/blob/master/build.ts][一
-个脚本]] ，它可以把 ~src/markdown~ 里的文章解析成 ~src/json~ 里的 JSON 文件。此
-外还可以生成以日期排序的 ~archive.json~ 和以分类信息分类好的 ~category.json~ 以
-方便检索。
+于是我写了[[https://github.com/PoiScript/Solomon-Post/blob/master/build.ts][一个脚本]]，它可以把 ~src/markdown~ 里的文章解析成 ~src/json~ 里的 JSON
+文件。此外还可以生成以日期排序的 ~archive.json~ 和以分类信息分类好的
+~category.json~ 以方便检索。
 
 * 评论
 
@@ -122,7 +118,7 @@ accept: application/vnd.github.squirrel-girl-preview
 #+BEGIN_SRC typescript
 function getIssueComments(): Promise<Comment[]> {
   let headers = new Headers();
-  headers.append('accept', 'application/vnd.github.squirrel-girl-preview');
+  headers.append("accept", "application/vnd.github.squirrel-girl-preview");
   return this.http
     .get(url, { headers: headers })
     .toPromise()
@@ -152,9 +148,6 @@ accept: application/vnd.github.v3.text-match+json
 
 * 后语
 
-最后，整个博客系统以
-[[https://github.com/PoiScript/Solomon/blob/master/LICENSE][MIT 协议]]开源于
-[[https://github.com/PoiScript/Solomon][PoiScript/Solomon]]，目前没有写文档的打
-算。不过如果有人真的想用这个博客系统的话，可以在我的
-[[https://blog.poi.cat/about][关于界面]]的选择任意一种联系方式联系我，我会尽力解
-答你的疑问。:)
+最后，整个博客系统以 [[https://github.com/PoiScript/Solomon/blob/master/LICENSE][MIT 协议]]开源于 [[https://github.com/PoiScript/Solomon][PoiScript/Solomon]]，目前没有写文档的打算。不
+过如果有人真的想用这个博客系统的话，可以在我的[[https://blog.poi.cat/about][关于界面]]的选择任意一种联系方式联系
+我，我会尽力解答你的疑问。:)

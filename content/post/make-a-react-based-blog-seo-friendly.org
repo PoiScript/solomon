@@ -8,8 +8,7 @@
 嗯，没错，又是一篇「如何打造一个 XXX 的博客」的文章。这里的 XXX 是「 *基于 React
 的 SEO 友好* 」。其中的 SEO 既是 Search engine optimization， *搜索引擎优化* 。
 
-什么？React？你不是 [[https://blog.poi.cat/post/introducing-solomon/][Angular 的
-教徒]] 吗？怎么叛变到 React 了呢？
+什么？React？你不是 [[https://blog.poi.cat/post/introducing-solomon/][Angular 的教徒]]吗？怎么叛变到 React 了呢？
 
 嗯，这就说来话长了。
 
@@ -20,22 +19,19 @@
 究其原因，就是单页应用核心就是 JavaScript 应用，而一般的搜索引擎都只在乎你页面的
 HTML 而对于其中的 JavaScript 是不会执行的。
 
-虽然 Google [[https://developers.google.com/webmasters/ajax-crawling/][曾经表示
-会抓取单页应用（对 Ajax 的结果进行缓存）]]，但是现在已经表示已经
-[[https://webmasters.googleblog.com/2015/10/deprecating-our-ajax-crawling-scheme.html][
-不再支持了]] 。
+虽然 Google [[https://developers.google.com/webmasters/ajax-crawling/][曾经表示会抓取单页应用]]（对 Ajax 的结果进行缓存），但是现在已经表示已
+经[[https://webmasters.googleblog.com/2015/10/deprecating-our-ajax-crawling-scheme.html][不再支持了]] 。
 
 [[file:images/angular-app-in-google-search.png][在 Google 中搜索 Angular 应用，只能显示一个可怜的标题(2017-6-15)]]
 
 难道单页应用就是不能实现 SEO 吗？并不是，还是可以通过一种名叫 Server-side
 rendering （服务器端预渲染）的方式来实现的。
 
-Angular 的 Server-side Rendering API 叫 Angular Univeral API，并且
-[[https://github.com/angular/angular/issues/13822][也已经整合进了 Angular 4]]。
+Angular 的 Server-side Rendering API 叫 Angular Univeral API，并且也已经[[https://github.com/angular/angular/issues/13822][整合]]进了
+Angular 4。
 
 虽然前景是好的，但是目前支持的 Angular Universal 的库少之又少，难怕是 Angular 官
-方的 Angular Material 也[[https://github.com/angular/material2/issues/308][尚未
-支持]]。
+方的 Angular Material 也[[https://github.com/angular/material2/issues/308][尚未支持]]。
 
 而相比之下，React 的 Server-side Rendering API：
 ~ReactDOMServer.renderToString()~ 则适用程度大了很多，至少我目前还没有发现不支持
@@ -81,13 +77,13 @@ react-snapshot。
 拥有了复数多个功能相同的单页应用。
 #+END_QUOTE
 
-+react-snapshot 目前还有一个问题（对我来说），它会将路径 ~/path/to/page~ 保存
-为~/path/to/page.html~ ，但是并不是所有的服务器都可以识别，例如 Python 的
-SimpleHTTPServer 就不行。所以我写了一个小脚本，将保存好的 ~/path/to/page.html~
-重命名为 ~/path/to/page/index.html~ 。我给 react-snapshot 推了一个
-[[https://github.com/geelen/react-snapshot/pull/36][Pull Request]]，增加将页面保
-留保存为 ~/path/to/page/index.html~ 的形式，希望可以被合并，这样就能省去这一步了。
-+ 其实不用那么复杂，只需要在路径后面加上一个 ~/~ ，即可生成 ~index.html~ 的文件。
+@@html:<del>@@ react-snapshot 目前还有一个问题（对我来说），它会将路径
+~/path/to/page~ 保存为 ~/path/to/page.html~ ，但是并不是所有的服务器都可以识别，
+例如 Python 的 SimpleHTTPServer 就不行。所以我写了一个小脚本，将保存好的
+~/path/to/page.html~ 重命名为 ~/path/to/page/index.html~ 。我给 react-snapshot推
+了一个 [[https://github.com/geelen/react-snapshot/pull/36][Pull Request]]，增加将页面保留保存为 ~/path/to/page/index.html~ 的形式，希
+望可以被合并，这样就能省去这一步了。 @@html:</del>@@ 其实不用那么复杂，只需要在
+路径后面加上一个 ~/~ ，即可生成 ~index.html~ 的文件。
 
 如果说 react-snapshot 让你的单页应用里的 ~body~ 标签搜索引擎可见的话，那
 react-helmet 就可以让你的单页应里的 ~head~ 标签能被搜索引擎爬到了。
@@ -101,9 +97,7 @@ react-helmet 就可以让你的单页应里的 ~head~ 标签能被搜索引擎�
 
 #+BEGIN_QUOTE
 其实文章写到这里，除了一些关于 Angular 的吐槽和 react-snapshot 的小修改的话，和
-Medium 上的
-[[https://medium.com/superhighfives/an-almost-static-stack-6df0a2791319][这篇文
-章]]其实没什么区别。
+Medium 上的[[https://medium.com/superhighfives/an-almost-static-stack-6df0a2791319][这篇文章]]其实没什么区别。
 #+END_QUOTE
 
 但是还有一些缺点，在说之前，先说一下为什么单页引用可以提高网页的响应速度，减少资
@@ -145,9 +139,8 @@ Medium 里用 Component 的形式。这样就不需要全部写进 JavaScript �
 等一下，如果使用 XHR 的话，在调 ~render()~ 的时候，是不会含有文字的：因为 XHR 请
 求是异步，而 React 中的 ~setState~ 函数也是异步的。
 
-没错，就是空标签。那么说好的 SEO 呢？很简单，把生成的 HTML 里的空标签
-[[https://github.com/PoiScript/Solomon/blob/dev/react/scripts/replace-html.js][
-替换成我们的文章即可]]。:)
+没错，就是空标签。那么说好的 SEO 呢？很简单，把生成的 HTML 里的空标签[[https://github.com/PoiScript/Solomon/blob/dev/react/scripts/replace-html.js][替换成我们
+的文章即可]]。:)
 
 #+BEGIN_QUOTE
 提示：直接替换生成的 HTML 文件是一个危险的行为，最好替换普通的标签，不要替换
@@ -173,9 +166,7 @@ React Component 生成的标签。
 
 这是我想到的目前来说，最完美的单页应用的 SEO 的解决方案。
 
-有什么疑问的话，可以查看 Solomon 中
-[[https://github.com/PoiScript/Solomon/tree/dev/react][react]] 的源码，当然也欢
-迎向我提问。
+有什么疑问的话，可以查看 Solomon 中 [[https://github.com/PoiScript/Solomon/tree/dev/react][react]] 的源码，当然也欢迎向我提问。
 
 -----
 

@@ -133,9 +133,8 @@ $ cargo test
 主题了。
 
 这里我就只补充一点，如果需要给输出的 PDF 文件加上代码高亮的话，我们需要安装
-[[https://github.com/gpoore/minted][minted]] 宏包和
-[[http://pygments.org/][pygments]] 这个高亮的工具并且设置 Emacs 让 Org-mode 输出
-LaTeX 的时候把这个包带上：
+[[https://github.com/gpoore/minted][minted]] 宏包和 [[http://pygments.org/][pygments]] 这个高亮的工具并且设置 Emacs 让 Org-mode 输出LaTeX 的时候
+把这个包带上：
 
 #+BEGIN_SRC emacs-lisp
 (setq org-latex-listings 'minted)

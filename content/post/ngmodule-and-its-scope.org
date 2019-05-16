@@ -16,21 +16,25 @@ Module 中导入这个 ~SharedModule~ 即可。代码看起来大概是这样的
 // app/shared/spinner.service.ts
 @Injectable()
 export class SpinnerService {
-  show () { /* code logic */ }
-  hide () { /* code logic */ }
+  show() {
+    /* code logic */
+  }
+  hide() {
+    /* code logic */
+  }
 }
 
 // app/shared/shared.module.st
 @NgModule({
-  providers: [SpinnerService]，
-  //other staffs
+  providers: [SpinnerService]
+  // ... other staffs
 })
 export class SharedModule {}
 
 // app/some/some.module.ts
 @NgModule({
-  imports: [SharedModule],
-  // other staffs
+  imports: [SharedModule]
+  // ... other staffs
 })
 export class SomeModule {}
 #+END_SRC
@@ -146,17 +150,14 @@ Directive ~routerLink~ ，也有 Service ~ActivatedRoute~ 。
 
 * References
 
-1. 文章中提到了可以使用一个虚假的 Service 用于 Component 的单元测试，
-   [[https://angular.io/guide/testing#test-a-component-with-a-dependency][这里]]
-   介绍了具体应该怎么做。
+1. 文章中提到了可以使用一个虚假的 Service 用于 Component 的单元测试，[[https://angular.io/guide/testing#test-a-component-with-a-dependency][这里]]介绍了
+   具体应该怎么做。
 2. Angular 的 Hierarchical Dependency Injectors 系统，这是一个很有趣的系统，每一
-   个 Component 都有一个与之对应的可编辑的 Injector。具体可以查看的 Angular 的
-   官方文档：
-   [[https://angular.io/guide/hierarchical-dependency-injection][Hierarchical
-   Dependency Injectors]]。
+   个 Component 都有一个与之对应的可编辑的 Injector。具体可以查看的 Angular 的官
+   方文档：[[https://angular.io/guide/hierarchical-dependency-injection][Hierarchical Dependency Injectors]]。
 3. 写 Angular 应用的一个原则都是保持每一个 Module 的功能和结构的简单和统一，这一
    点和 Unix 的哲学不谋而合： *Write programs that do one thing and do it well.*
    那么我们怎么应该这么设计一个好的 Module 呢？Angular 官方的 NgModule FAQs 中其
-   实给出了[[https://angular.io/guide/ngmodule-faq#feature-modules][答案]]。从中
-   我们可以看出， ~CoreModule~ 这种只提供 Services 和 ~SharedModule~ 这种只提供
-   Components，Directives 和 Pipes 的 Module 是目前来说官方认为最好的设计。
+   实给出了[[https://angular.io/guide/ngmodule-faq#feature-modules][答案]]。从中我们可以看出， ~CoreModule~ 这种只提供 Services 和
+   ~SharedModule~ 这种只提供 Components，Directives 和 Pipes 的 Module 是目前来
+   说官方认为最好的设计。

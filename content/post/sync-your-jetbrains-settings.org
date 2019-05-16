@@ -5,9 +5,8 @@
 
 * 前言
 
-我是 JetBrains 的死忠，一是喜欢他们各种功能强大的 IDE ；二是喜欢他们推出的 JVM编
-程语言：[[https://kotlinlang.org/][Kotlin]]，对于我这种 Java 苦手来说，Kotlin 是
-一个非常不错的替代品。
+我是 JetBrains 的死忠，一是喜欢他们各种功能强大的 IDE；二是喜欢他们推出的 JVM 编
+程语言：[[https://kotlinlang.org/][Kotlin]]，对于我这种 Java 苦手来说，Kotlin 是一个非常不错的替代品。
 
 但是 JetBrains 的 IDE 有一个令人诟病的问题就是：IDE 太多了。所以如果你使用了太多
 JetBrains 的 IDE 的话，这会造成：
@@ -15,12 +14,9 @@ JetBrains 的 IDE 的话，这会造成：
 1. IDE 的安装和更新等管理起来很麻烦；
 2. 快捷键等设置也很麻烦。
 
-关于第一个问题，JetBrains 官方已经有了解决方法：
-[[https://www.jetbrains.com/toolbox/app][JetBrains Toolbox]]。
+关于第一个问题，JetBrains 官方已经有了解决方法：[[https://www.jetbrains.com/toolbox/app][JetBrains Toolbox]]。
 
-[[file:images/jetbrains-toolbox-app.jpg][JetBrains Toolbox App]]
-
-_使用 JetBrains Toolbox 可以很方便的管理你的项目和工具_
+[[file:images/jetbrains-toolbox-app.jpg][使用 JetBrains Toolbox 可以很方便的管理你的项目和工具]]
 
 有了 Toolbox 之后，所以的 JetBrains 都可以从 Toolbox 下载或者更新，同时 Toolbox
 也会列出所以你使用 JetBrains IDE 的项目。
@@ -30,9 +26,8 @@ _使用 JetBrains Toolbox 可以很方便的管理你的项目和工具_
 * JetBrains Settings Repository
 
 顾名思义，JetBrains Settings Repository 就是一个用于存放你的设置的 *Git 仓库* ，
-你可以把它放在 GitHub 上或者其他托管服务。
-
-例如我的就是 https://github.com/PoiScript/JetBrainsSettings
+你可以把它放在 GitHub 上或者其他托管服务。例如我的就是
+[[https://github.com/PoiScript/JetBrainsSettings]]。
 
 准备好 Settings Repository 之后，在 JetBrains IDE 的 *File > Settings
 Repository* 里输入你的 Settings Repository 的地址：
@@ -69,20 +64,17 @@ Overwrite Remote（覆写远程配置）。
 
 ** UI
 
-我不太喜欢 JetBrains 原生的界面字体，所以我替换成了 Google 的
-[[https://fonts.google.com/specimen/Roboto][Roboto]] 字体。
+我不太喜欢 JetBrains 原生的界面字体，所以我替换成了 Google 的 [[https://fonts.google.com/specimen/Roboto][Roboto]] 字体。
 
-至于编辑器的等宽字体，以前我喜欢用 Adobe 的
-[[https://fonts.google.com/specimen/Source+Code+Pro][Source Code Pro]]。不过后来
-kookxiang 安利了我 [[https://github.com/tonsky/FiraCode][Fira Code]]，我就用上了。
+至于编辑器的等宽字体，以前我喜欢用 Adobe 的 [[https://fonts.google.com/specimen/Source+Code+Pro][Source Code Pro]]。不过后来 kookxiang
+安利了我 [[https://github.com/tonsky/FiraCode][Fira Code]]，我就用上了。
 
-至于第二字体则是 [[https://www.google.com/get/noto/help/cjk/][Noto Sans Mono CJK
-SC]]，主要是为了显示中文字体的。
+至于第二字体则是 [[https://www.google.com/get/noto/help/cjk/][Noto Sans Mono CJK SC]]，主要是为了显示中文字体的。
 
 ** 快捷键
 
-因为我除了使用 JetBrains IDE 之外，还同时使用 [[https://atom.io/][GitHub Atom]]，
-所以我的快捷键的设置很大程度上是为了同一两者的体验：
+因为我除了使用 JetBrains IDE 之外，还同时使用 [[https://atom.io/][GitHub Atom]]，所以我的快捷键的置很
+大程度上是为了同一两者的体验：
 
 1. 删除光标所在的行： ~Ctrl+L~
 2. 移动光标所在的行： ~Ctrl+Shift+Up/Down~
