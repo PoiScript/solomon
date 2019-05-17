@@ -15,15 +15,8 @@ Solomon 现已支持 AMP。
 技术。
 
 经测试，能提高 *15% ~ 85%* 的页面加载性能：[[https://www.ampproject.org/how-it-works/][Accelerated Mobile Pages – A new
-approach to web performance]]
-
-此外，大家还看一下 AMP 官方的介绍视频：
-
-[[https://www.youtube.com/watch?v=lBTCB7yLs8Y&t=131s][Intro to AMP (Accelerated Mobile Pages)]]
-
-#+BEGIN_QUOTE
-里面小哥的演技好逼真。:)
-#+END_QUOTE
+approach to web performance]]。此外，大家还看一下 [[https://www.youtube.com/watch?v=lBTCB7yLs8Y&t=131s][AMP 官方的介绍视频]]，里面小哥的演
+技非常逼真。:)
 
 * AMP 结构简述
 
@@ -39,10 +32,9 @@ AMP 主要由 *AMP HTML* ， *AMP Runtime* 和 *AMP Component* 组成：
 4. src_html{<meta charset="utf-8">} 放在 src_html{<head>} 的开头；
 5. src_html{<script async src="https://cdn.ampproject.org/v0.js"></script>} 做为
    第二个元素；
-6. src_html{<link rel="canonical" href="$SOME_URL" />} 这个 metadata 指向和这个
+6. src_html{<link rel="canonical" href="$SOME_URL"/>} 这个 metadata 指向和这个
    页面相同内容的非 AMP 版本的页面；
-7. src_html{<head>} 中必须包含 src_html{<meta name="viewport"
-   content="width=device-width,minimum-scale=1">} ；
+7. src_html{<head>} 中必须包含 src_html{<meta name="viewport" content="width=device-width,minimum-scale=1">} ；
 8. src_html{<head>} 中必须包含
 
    #+BEGIN_SRC html
@@ -99,8 +91,8 @@ src_html{<amp-anim>} ， src_html{<amp-video>} 和 src_html{<amp-audio>} 替代�
 
 AMP HTML 不能引用 *除 AMP Runtime 和 AMP Components 之外的 JS 库* 。
 
-AMP HTML 不能引用 CSS 文件，只能使用内联样式，内联样式必须写成 src_html{<style
-amp-custom>} 而不是 src_html{<style>} ，而且在一个页面中 *只能出现一次* 内联样式。
+AMP HTML 不能引用 CSS 文件，只能使用内联样式，内联样式必须写成
+src_html{<style amp-custom>} 而不是 src_html{<style>} ，而且在一个页面中 *只能出现一次* 内联样式。
 
 #+BEGIN_QUOTE
 AMP HTML 的规范很多，记不住没关系，可以通过在 URL 最后加 ~#development=1~ ，进入
@@ -109,7 +101,7 @@ AMP HTML 的规范很多，记不住没关系，可以通过在 URL 最后加 ~#
 #+END_QUOTE
 
 上面提到的 AMP HTML 的必要条件的第 5 条中，引用的
-https://cdn.ampproject.org/v0.js 就是 *AMP Runtime* ，负责协调资源的加载。
+[[https://cdn.ampproject.org/v0.js]] 就是 *AMP Runtime* ，负责协调资源的加载。
 
 *AMP Component* 其实是 *自定义元素(Custom Elements)* ；
 
