@@ -7,23 +7,28 @@
 </div>
 <article [innerHtml]="post.html | safeHtml"></article>
 <div class="up-next">
-  <ng-container *ngIf="post.prior">
-    <div matRipple class="nav" [routerLink]="['/post', post.prior.slug]">
-      <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
-      <div>
-        <div class="label">Prior</div>
-        <div class="title">{{ post.prior.title }}</div>
-      </div>
+  <a
+    *ngIf="post.prior"
+    matRipple
+    class="nav"
+    [routerLink]="['/post', post.prior.slug]"
+  >
+    <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
+    <div>
+      <div class="label">Prior</div>
+      <div class="title">{{ post.prior.title }}</div>
     </div>
-  </ng-container>
-  <span class="spacer"></span>
-  <ng-container *ngIf="post.next">
-    <div matRipple class="nav next" [routerLink]="['/post', post.next.slug]">
-      <div class="right">
-        <div class="label">Next</div>
-        <div class="title">{{ post.next.title }}</div>
-      </div>
-      <mat-icon class="icon" svgIcon="arrow"></mat-icon>
+  </a>
+  <a
+    *ngIf="post.next"
+    matRipple
+    class="nav next"
+    [routerLink]="['/post', post.next.slug]"
+  >
+    <div>
+      <div class="label">Next</div>
+      <div class="title">{{ post.next.title }}</div>
     </div>
-  </ng-container>
+    <mat-icon class="icon" svgIcon="arrow"></mat-icon>
+  </a>
 </div>

@@ -1,21 +1,33 @@
+@import '../../../theme';
+
 .header {
   color: white;
-
-  .logo {
-    vertical-align: middle;
-  }
+  background-color: mat-color($primary);
 
   .link {
     color: white;
   }
 
-  .separator {
-    color: rgba(255, 255, 255, 0.8);
+  .homepage {
+    display: flex;
+    justify-items: center;
+    flex-direction: row;
+    align-items: center;
   }
 
-  @media all and (max-width: 400px) {
-    .tail {
+  .name {
+    margin: 0 4px;
+  }
+
+  .tail {
+    margin: 0 4px;
+
+    @media all and (max-width: 400px) {
       display: none;
     }
+  }
+
+  .separator {
+    color: rgba(255, 255, 255, 0.54);
   }
 }

@@ -1,20 +1,30 @@
+@import '../../../theme';
+
+$foreground: map-get($theme, foreground);
+
 .year {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  padding-top: 14px;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: 500;
+  margin: 18px 0 0;
+  color: mat-color($foreground, secondary-text);
+  font-size: mat-font-size($typography-config, caption);
+  font-weight: mat-font-weight($typography-config, body-2);
+  line-height: mat-line-height($typography-config, caption);
 }
 
 .post-item {
-  padding-bottom: 8px;
-  color: rgba(0, 0, 0, 0.8);
+  margin: 0 0 12px;
 
   .title {
-    font-size: 22px;
-    font-weight: 400;
     text-decoration: none;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.8);
+    color: mat-color($foreground, text);
+    font-size: mat-font-size($typography-config, headline);
+    font-weight: mat-font-weight($typography-config, headline);
+    line-height: mat-line-height($typography-config, headline);
+  }
+
+  .subtitle {
+    color: mat-color($foreground, secondary-text);
+    font-size: mat-font-size($typography-config, subheading-2);
+    font-weight: mat-font-weight($typography-config, subheading-2);
+    line-height: mat-line-height($typography-config, subheading-2);
   }
 }

@@ -1,22 +1,28 @@
+@import '../../../theme';
+
+$foreground: map-get($theme, foreground);
+
 .footer {
   background: whitesmoke;
 
-  @media all and (max-width: 400px) {
-    .head {
+  .head {
+    @media all and (max-width: 400px) {
       display: none;
     }
   }
 
   .link {
-    color: rgba(0, 0, 0, 0.6);
+    color: mat-color($foreground, text);
   }
 
   .license {
-    padding: 10px;
-    color: rgba(0, 0, 0, 0.55);
+    margin: 12px;
+    color: mat-color($foreground, secondary-text);
+    font-size: mat-font-size($typography-config, caption);
+    line-height: mat-line-height($typography-config, caption);
   }
 
   .separator {
-    color: rgba(0, 0, 0, 0.4);
+    color: mat-color($foreground, secondary-text);
   }
 }

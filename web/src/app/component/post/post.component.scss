@@ -1,3 +1,7 @@
+@import '../../../theme';
+
+$foreground: map-get($theme, foreground);
+
 .up-next {
   display: flex;
   flex-direction: row;
@@ -8,34 +12,33 @@
   }
 
   .nav {
+    flex: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    cursor: pointer;
     outline: none;
     user-select: none;
     padding: 10px;
-  }
+    text-decoration: none;
+    color: mat-color($foreground, text);
 
-  .spacer {
-    flex: 1 1 auto;
-  }
-
-  .next {
-    align-self: flex-end;
-  }
-
-  .right {
-    text-align: right;
+    &.next {
+      justify-content: flex-end;
+      text-align: end;
+    }
   }
 
   .title {
-    font-weight: 500;
+    font-weight: mat-font-weight($typography-config, body-2);
+    font-size: mat-font-size($typography-config, subheading-2);
+    line-height: mat-line-height($typography-config, subheading-2);
   }
 
   .label {
-    color: rgba(0, 0, 0, 0.55);
-    font-size: 14px;
+    color: mat-color($foreground, secondary-text);
+    font-size: mat-font-size($typography-config, caption);
+    font-weight: mat-font-weight($typography-config, body-2);
+    line-height: mat-line-height($typography-config, caption);
   }
 
   .icon {

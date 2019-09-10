@@ -2,7 +2,7 @@
   <div class="year">{{ group.year }}</div>
   <div class="post-item" *ngFor="let post of group.entries">
     <a class="title" [routerLink]="['/post', post.slug]">{{ post.title }}</a>
-    <div>
+    <div class="subtitle">
       <ng-container *ngFor="let tag of post.tags">#{{ tag }} </ng-container>
     </div>
   </div>
