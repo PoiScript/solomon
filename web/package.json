@@ -8,8 +8,8 @@
     "start": "ng serve",
     "lint": "ng lint",
     "build": "yarn build:prod && yarn build:server && yarn build:ngsw",
-    "build:prod": "ng build blog --prod",
-    "build:server": "ng run blog:server && ts-node src/prerender.ts",
+    "build:prod": "ng build solomon --prod",
+    "build:server": "ng run solomon:server && ts-node src/prerender.ts",
     "build:ngsw": "ngsw-config dist/app src/ngsw-config.json /"
   },
   "private": true,
