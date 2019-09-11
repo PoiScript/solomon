@@ -5,10 +5,14 @@
   <a
     mat-list-item
     *ngFor="let link of links"
-    [attr.href]="link.address"
+    [href]="link.address"
     target="_blank"
   >
-    <img mat-list-avatar [src]="link.avatar" alt="avatar for {{ link.name }}" />
+    <img
+      mat-list-avatar
+      src="/avatars/{{ link.avatar }}.jpg"
+      alt="avatar for {{ link.name }}"
+    />
     <h3 mat-line>{{ link.name }}</h3>
   </a>
 </mat-nav-list>
