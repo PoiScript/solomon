@@ -8,7 +8,7 @@ import { outputFile, readFileSync, readJsonSync } from 'fs-extra';
 import { resolve } from 'path';
 import { minify } from 'html-minifier';
 
-const groups = readJsonSync(resolve(__dirname, '../../assets/posts.json'));
+const posts = readJsonSync(resolve(__dirname, '../../assets/posts.json'));
 
 const document = readFileSync(
   resolve(__dirname, '../dist/app/index.html'),
@@ -28,16 +28,12 @@ const pages = [
   ['/404', '404.html'],
 ];
 
-for (const group of groups) {
-  for (const post of group.entries) {
-    pages.push([`/post/${post.slug}`, `post/${post.slug}/index.html`]);
-  }
+for (const post of posts) {
+  pages.push([`/post/${post.slug}`, `post/${post.slug}/index.html`]);
 }
 
-const promises = [];
-
-for (const [url, path] of pages) {
-  promises.push(
+Promise.all(
+  pages.map(([url, path]) =>
     renderModuleFactory(AppServerModuleNgFactory, { url, document })
       .then(html =>
         minify(html, {
@@ -47,9 +43,5 @@ for (const [url, path] of pages) {
         }),
       )
       .then(html => outputFile(resolve(__dirname, '../dist/app/', path), html)),
-  );
-}
-
-Promise.all(promises).then(res =>
-  console.log(`Pre-rendered ${res.length} files`),
-);
+  ),
+).then(res => console.log(`Pre-rendered ${res.length} files`));
