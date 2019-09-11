@@ -18,13 +18,6 @@ body {
   color: mat-color($foreground, text);
 }
 
-solomon-root {
-  min-height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
 .title-section {
   margin-bottom: 60px;
   text-align: center;

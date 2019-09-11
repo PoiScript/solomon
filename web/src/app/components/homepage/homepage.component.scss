@@ -2,16 +2,15 @@
 
 $foreground: map-get($theme, foreground);
 
-.year {
-  margin: 18px 0 0;
-  color: mat-color($foreground, secondary-text);
-  font-size: mat-font-size($typography-config, caption);
-  font-weight: mat-font-weight($typography-config, body-2);
-  line-height: mat-line-height($typography-config, caption);
-}
-
 .post-item {
   margin: 0 0 12px;
+
+  .date {
+    color: mat-color($foreground, secondary-text);
+    font-size: mat-font-size($typography-config, subheading-1) * 0.9;
+    font-weight: mat-font-weight($typography-config, body-2);
+    line-height: mat-line-height($typography-config, subheading-1) * 0.9;
+  }
 
   .title {
     text-decoration: none;
@@ -24,7 +23,7 @@ $foreground: map-get($theme, foreground);
   .subtitle {
     color: mat-color($foreground, secondary-text);
     font-size: mat-font-size($typography-config, subheading-2);
-    font-weight: mat-font-weight($typography-config, subheading-2);
+    font-weight: mat-font-weight($typography-config, body-2);
     line-height: mat-line-height($typography-config, subheading-2);
   }
 }

@@ -3,9 +3,11 @@ import { SafeHtml } from '@angular/platform-browser';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
+import { Post } from '../../app.models'
+
 @Component({ templateUrl: './about.component.html' })
 export class AboutComponent implements OnInit {
-  html: SafeHtml;
+  post: Post;
 
   constructor(
     private titleService: Title,
@@ -15,7 +17,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({ post }) => {
-      this.html = post;
+      this.post = post;
       this.titleService.setTitle('About☆Solomon');
       this.cdRef.markForCheck();
     });

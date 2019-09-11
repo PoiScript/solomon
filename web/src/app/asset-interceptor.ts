@@ -9,7 +9,7 @@ import {
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 
 const { readFileSync, existsSync, readJsonSync } = require('fs-extra');
 const { resolve } = require('path');
@@ -19,7 +19,7 @@ export class AssetInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>): Observable<HttpEvent<any>> {
     const path = resolve(__dirname, '../../../assets', req.url.slice(1));
     if (existsSync(path)) {
-      return of(
+      return observableOf(
         new HttpResponse<any>({
           body: path.endsWith('.json')
             ? readJsonSync(path)
@@ -30,7 +30,7 @@ export class AssetInterceptor implements HttpInterceptor {
         }),
       );
     } else {
-      return of(
+      return observableOf(
         new HttpResponse<any>({
           body: '',
           status: 404,

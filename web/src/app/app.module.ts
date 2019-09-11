@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
 import {
   BrowserModule,
   BrowserTransferStateModule,
 } from '@angular/platform-browser';
 import {
   MatIconModule,
-  MatIconRegistry,
   MatListModule,
   MatRippleModule,
 } from '@angular/material';
@@ -19,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environment';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import {
   AboutComponent,
   FooterComponent,
@@ -27,15 +26,9 @@ import {
   LinkComponent,
   NotFoundComponent,
   PostComponent,
-} from './component';
-import { SafeHtmlPipe } from './pipe/safe-html.pipe';
-import {
-  IconRegistry,
-  PostService,
-  PostResolver,
-  AboutResolver,
-  PostGroupResolver,
-} from './service';
+} from './components';
+import { SafeHtmlPipe } from './safe-html.pipe';
+import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
@@ -50,30 +43,7 @@ import {
     SafeHtmlPipe,
   ],
   imports: [
-    RouterModule.forRoot(
-      [
-        {
-          path: '',
-          component: HomepageComponent,
-          pathMatch: 'full',
-
-          resolve: { group: PostGroupResolver },
-        },
-        {
-          path: 'about',
-          component: AboutComponent,
-          resolve: { post: AboutResolver },
-        },
-        {
-          path: 'post/:slug',
-          component: PostComponent,
-          resolve: { post: PostResolver },
-        },
-        { path: 'link', component: LinkComponent },
-        { path: '**', component: NotFoundComponent },
-      ],
-      { scrollPositionRestoration: 'top' },
-    ),
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'solomon' }),
     BrowserTransferStateModule,
@@ -87,10 +57,7 @@ import {
     MatRippleModule,
     TransferHttpCacheModule,
   ],
-  providers: [
-    PostService,
-    { provide: MatIconRegistry, useClass: IconRegistry },
-  ],
+  providers: [PostService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

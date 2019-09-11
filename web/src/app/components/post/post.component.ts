@@ -2,12 +2,14 @@ import { OnInit, ChangeDetectorRef, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
+import { Post } from '../../app.models';
+
 @Component({
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss'],
 })
-export class HomepageComponent implements OnInit {
-  postGroup = [];
+export class PostComponent implements OnInit {
+  post: Post;
 
   constructor(
     private route: ActivatedRoute,
@@ -16,9 +18,9 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(({ group }) => {
-      this.titleService.setTitle('Home☆Solomon');
-      this.postGroup = group;
+    this.route.data.subscribe(({ post }) => {
+      this.post = post;
+      this.titleService.setTitle(post.title + '☆Solomon');
       this.cdRef.markForCheck();
     });
   }

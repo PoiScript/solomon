@@ -4,8 +4,14 @@ export interface Post {
   date: string;
   tags: string[];
   html: string;
-  next?: PostInfo;
-  prior?: PostInfo;
+  next?: {
+    title: string;
+    slug: string;
+  };
+  prior?: {
+    title: string;
+    slug: string;
+  };
 }
 
 export interface PostInfo {
@@ -13,15 +19,4 @@ export interface PostInfo {
   slug: string;
   tags: string[];
   date: string;
-}
-
-export interface PostGroup {
-  year: number;
-  entries: PostInfo[];
-}
-
-export interface Link {
-  address: string;
-  avatar: string;
-  name: string;
 }
