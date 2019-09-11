@@ -2,15 +2,17 @@
 
 mod entry;
 mod error;
-mod render;
+mod handlers;
+mod json;
 mod rss;
 
-use crate::entry::{group_by_year, Entry};
-use crate::render::render;
-use error::Result;
-use std::{fs, path::PathBuf};
+use std::{fs, path::Path};
 
-fn walk_dirs(dir: &PathBuf, files: &mut Vec<String>) -> Result<()> {
+use crate::entry::Entry;
+use crate::error::Result;
+use crate::json::{write_json, write_posts_json};
+
+fn walk_dirs<P: AsRef<Path>>(dir: P, files: &mut Vec<String>) -> Result<()> {
     for entry in fs::read_dir(dir)? {
         let path = entry?.path();
         if path.is_dir() {
@@ -26,40 +28,26 @@ fn walk_dirs(dir: &PathBuf, files: &mut Vec<String>) -> Result<()> {
 
 fn main() -> Result<()> {
     let mut files = Vec::new();
-    walk_dirs(&PathBuf::from(r"content/post"), &mut files)?;
+    walk_dirs("content/post", &mut files)?;
 
-    let mut entries = Vec::with_capacity(files.len());
-    for content in &files {
-        entries.push(Entry::from(content)?);
-    }
+    let mut entries = files
+        .iter()
+        .map(|file| Entry::from(file))
+        .collect::<Result<Vec<_>>>()?;
+
     entries.sort_by(|a, b| b.date.cmp(&a.date));
-
-    entries[0].next = entries.get(1).map(Entry::info);
-    for i in 1..entries.len() {
-        entries[i].prior = entries.get(i - 1).map(Entry::info);
-        entries[i].next = entries.get(i + 1).map(Entry::info);
-    }
 
     fs::create_dir_all("assets/post")?;
 
-    fs::write(
-        "assets/post/about.html",
-        render(&fs::read_to_string("content/about.org")?)?,
-    )?;
+    write_json(&entries)?;
+    write_posts_json(&entries)?;
 
-    for entry in &entries {
-        fs::write(
-            format!("assets/post/{}.json", entry.slug),
-            serde_json::to_string(entry)?,
-        )?;
-    }
+    let about_org = fs::read_to_string("content/about.org")?;
+    let about_entry = Entry::from(&about_org)?;
+
+    write_json(&[about_entry])?;
 
     fs::write("assets/atom.xml", rss::markup(&entries).into_string())?;
-
-    fs::write(
-        "assets/posts.json",
-        serde_json::to_string(&group_by_year(&entries))?,
-    )?;
 
     Ok(())
 }

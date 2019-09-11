@@ -1,20 +1,26 @@
-use crate::Entry;
 use chrono::Utc;
 use maud::{html, Markup, Render};
+use orgize::Org;
 
-struct CData<T: AsRef<str>>(T);
+use crate::entry::Entry;
+use crate::handlers::SolomonRssHandler;
 
-impl<T: AsRef<str>> Render for CData<T> {
+struct Rss<'a>(&'a Org<'a>);
+
+impl<'a> Render for Rss<'a> {
     fn render_to(&self, w: &mut String) {
-        w.push_str("<![CDATA[");
-        w.push_str(self.0.as_ref());
-        w.push_str("]]>");
+        let mut vec = Vec::new();
+        self.0
+            .html_with_handler(&mut vec, SolomonRssHandler::default())
+            .unwrap();
+        w.push_str(&String::from_utf8(vec).unwrap());
     }
 }
 
 pub fn markup(entries: &[Entry]) -> Markup {
     html! {
-        rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+        rss version="2.0"
+            xmlns:atom="http://www.w3.org/2005/Atom"
             xmlns:content="http://purl.org/rss/1.0/modules/content/"
             xmlns:dc="http://purl.org/dc/elements/1.1/"
         {
@@ -29,15 +35,15 @@ pub fn markup(entries: &[Entry]) -> Markup {
                 copyright { "Content licensed under CC-BY-SA-4.0." }
                 @for entry in entries {
                     item {
-                        title { (CData(entry.title)) }
+                        title { (&entry.title) }
                         author { "PoiScript" }
                         link { "https://blog.poi.cat/post/"(entry.slug) }
                         guid isPermaLink="false" { (entry.slug) }
                         @for tag in &entry.tags {
-                            category { (CData(tag)) }
+                            category { (tag) }
                         }
                         pubDate { (entry.date.format("%a, %e %b %Y"))" 00:00:00 +0000" }
-                        description  { (CData(&entry.html)) }
+                        description { "<![CDATA["(Rss(&entry.org))"]]>" }
                     }
                 }
             }
