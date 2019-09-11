@@ -13,7 +13,10 @@ impl<'a> Render for Rss<'a> {
         self.0
             .html_with_handler(&mut vec, SolomonRssHandler::default())
             .unwrap();
+
+        w.push_str("<![CDATA[");
         w.push_str(&String::from_utf8(vec).unwrap());
+        w.push_str("]]>");
     }
 }
 
@@ -43,7 +46,7 @@ pub fn markup(entries: &[Entry]) -> Markup {
                             category { (tag) }
                         }
                         pubDate { (entry.date.format("%a, %e %b %Y"))" 00:00:00 +0000" }
-                        description { "<![CDATA["(Rss(&entry.org))"]]>" }
+                        description { (Rss(&entry.org)) }
                     }
                 }
             }
