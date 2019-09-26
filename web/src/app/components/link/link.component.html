@@ -1,18 +1,21 @@
 <div class="title-section">
   <h1 class="title">Link</h1>
 </div>
-<mat-nav-list>
+<div class="link-list">
   <a
-    mat-list-item
+    class="item"
+    mat-ripple
     *ngFor="let link of links"
     [href]="link.address"
     target="_blank"
   >
     <img
-      mat-list-avatar
+      class="profile"
       src="/avatars/{{ link.avatar }}.jpg"
       alt="avatar for {{ link.name }}"
     />
-    <h3 mat-line>{{ link.name }}</h3>
+    <div class="text">
+      <div class="title">{{ link.name }}</div>
+    </div>
   </a>
-</mat-nav-list>
+</div>

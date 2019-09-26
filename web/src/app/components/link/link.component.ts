@@ -7,7 +7,10 @@ interface Link {
   name: string;
 }
 
-@Component({ templateUrl: './link.component.html' })
+@Component({
+  templateUrl: './link.component.html',
+  styleUrls: ['./link.component.scss'],
+})
 export class LinkComponent {
   readonly links: Link[] = [
     {

@@ -5,12 +5,6 @@ $foreground: map-get($theme, foreground);
 .footer {
   background: whitesmoke;
 
-  .head {
-    @media all and (max-width: 400px) {
-      display: none;
-    }
-  }
-
   .link {
     color: mat-color($foreground, text);
   }

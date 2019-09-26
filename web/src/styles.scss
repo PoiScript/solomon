@@ -4,6 +4,9 @@
 $foreground: map-get($theme, foreground);
 $background: map-get($theme, background);
 
+@include mat-ripple();
+@include mat-ripple-theme($theme);
+
 html,
 body {
   height: 100%;

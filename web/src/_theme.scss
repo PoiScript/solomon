@@ -1,7 +1,5 @@
 @import '~@angular/material/theming';
 
-@include mat-ripple();
-
 $typography-config: mat-typography-config(
   $font-family:
     "-apple-system, Roboto, 'Noto Sans', 'Helvetica Neue', Helvetica," +
@@ -12,12 +10,5 @@ $typography-config: mat-typography-config(
   $body-1: mat-typography-level(15px, 24px, 400),
 );
 
-@include mat-list-typography($typography-config);
-
-// default theme
 $primary: mat-palette($mat-deep-purple);
-$accent: mat-palette($mat-amber, A200, A100, A400);
-$theme: mat-light-theme($primary, $accent);
-
-@include mat-core-theme($theme);
-@include mat-list-theme($theme);
+$theme: mat-light-theme($primary, $primary);

@@ -8,7 +8,7 @@ import { Post } from 'src/app/app.models';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  posts = [];
+  posts: Post[] = [];
 
   constructor(
     private route: ActivatedRoute,

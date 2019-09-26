@@ -9,7 +9,7 @@
   <div class="nav prev">
     <a
       *ngIf="post.prev"
-      matRipple
+      mat-ripple
       class="link prev"
       [routerLink]="['/post', post.prev.slug]"
     >
@@ -23,7 +23,7 @@
   <div class="nav next">
     <a
       *ngIf="post.next"
-      matRipple
+      mat-ripple
       class="link next"
       [routerLink]="['/post', post.next.slug]"
     >

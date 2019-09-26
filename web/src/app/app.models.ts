@@ -3,20 +3,13 @@ export interface Post {
   slug: string;
   date: string;
   tags: string[];
-  html: string;
+  html?: string;
   next?: {
     title: string;
     slug: string;
   };
-  prior?: {
+  prev?: {
     title: string;
     slug: string;
   };
-}
-
-export interface PostInfo {
-  title: string;
-  slug: string;
-  tags: string[];
-  date: string;
 }

@@ -17,7 +17,7 @@ import {
   NotFoundComponent,
   PostComponent,
 } from './components';
-import { Post, PostInfo } from './app.models';
+import { Post } from './app.models';
 
 @Injectable({ providedIn: 'root' })
 export class PostResolver implements Resolve<Post> {
@@ -45,17 +45,15 @@ export class AboutResolver implements Resolve<Post> {
 }
 
 @Injectable({ providedIn: 'root' })
-export class PostsResolver implements Resolve<PostInfo[]> {
+export class PostsResolver implements Resolve<Post[]> {
   constructor(private http: HttpClient) {}
 
-  private posts: Observable<PostInfo[]> = this.http
-    .get<Post[]>('/posts.json')
-    .pipe(
-      publishReplay(1),
-      refCount(),
-    );
+  private posts: Observable<Post[]> = this.http.get<Post[]>('/posts.json').pipe(
+    publishReplay(1),
+    refCount(),
+  );
 
-  resolve(): Observable<PostInfo[]> {
+  resolve(): Observable<Post[]> {
     return this.posts;
   }
 }

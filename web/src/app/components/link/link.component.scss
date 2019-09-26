@@ -1,0 +1,61 @@
+@import '../../../theme';
+
+$foreground: map-get($theme, foreground);
+
+.link-list {
+  display: flex;
+  flex-flow: row wrap;
+
+  .item {
+    display: flex;
+    box-sizing: border-box;
+    flex: 1 1 100%;
+    flex-direction: row;
+    align-items: center;
+    outline: none;
+    user-select: none;
+    padding: 4px 16px;
+    text-decoration: none;
+    color: mat-color($foreground, text);
+    height: 60px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    @media (max-width: 400px) {
+      max-width: 100%;
+    }
+
+    @media (min-width: 400px) and (max-width: 800px) {
+      max-width: 50%;
+    }
+
+    @media (min-width: 800px) {
+      max-width: 33.33%;
+    }
+  }
+
+  .profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .text {
+    padding-left: 16px;
+  }
+
+  .title {
+    font-weight: mat-font-weight($typography-config, subheading-2);
+    font-size: mat-font-size($typography-config, subheading-2);
+    line-height: mat-line-height($typography-config, subheading-2);
+  }
+
+  // .subtitle {
+  //   color: mat-color($foreground, secondary-text);
+  //   font-size: mat-font-size($typography-config, subheading-1);
+  //   font-weight: mat-font-weight($typography-config, subheading-1);
+  //   line-height: mat-line-height($typography-config, subheading-1);
+  // }
+}
