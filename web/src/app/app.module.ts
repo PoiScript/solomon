@@ -9,7 +9,6 @@ import {
   MatListModule,
   MatRippleModule,
 } from '@angular/material';
-import { FormsModule } from '@angular/forms';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -28,7 +27,6 @@ import {
   PostComponent,
 } from './components';
 import { SafeHtmlPipe } from './safe-html.pipe';
-import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +45,6 @@ import { PostService } from './post.service';
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'solomon' }),
     BrowserTransferStateModule,
-    FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production,
     }),
@@ -57,7 +54,6 @@ import { PostService } from './post.service';
     MatRippleModule,
     TransferHttpCacheModule,
   ],
-  providers: [PostService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import { OnInit, ChangeDetectorRef, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Post } from 'src/app/app.models';
 
 @Component({
   templateUrl: './homepage.component.html',
@@ -21,5 +22,9 @@ export class HomepageComponent implements OnInit {
       this.posts = posts;
       this.cdRef.markForCheck();
     });
+  }
+
+  tag(post: Post): string {
+    return post.tags.map(tag => `#${tag}`).join(' ');
   }
 }

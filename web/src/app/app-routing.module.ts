@@ -1,8 +1,14 @@
 import { NgModule, Injectable } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { SafeHtml } from '@angular/platform-browser';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  Router,
+  RouterModule,
+  Routes,
+} from '@angular/router';
+import { Observable, EMPTY } from 'rxjs';
+import { catchError, publishReplay, refCount } from 'rxjs/operators';
 
 import {
   AboutComponent,
@@ -12,32 +18,45 @@ import {
   PostComponent,
 } from './components';
 import { Post, PostInfo } from './app.models';
-import { PostService } from './post.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostResolver implements Resolve<Post> {
-  constructor(private postService: PostService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Post> {
-    return this.postService.fetchPost(route.paramMap.get('slug'));
+    const slug = route.paramMap.get('slug');
+    return this.http.get<Post>(`/post/${slug}.json`).pipe(
+      catchError(err => {
+        console.error(err);
+        this.router.navigate(['/not-found']);
+        return EMPTY;
+      }),
+    );
   }
 }
 
 @Injectable({ providedIn: 'root' })
-export class AboutResolver implements Resolve<SafeHtml> {
-  constructor(private postService: PostService) {}
+export class AboutResolver implements Resolve<Post> {
+  constructor(private http: HttpClient) {}
 
-  resolve(): Observable<SafeHtml> {
-    return this.postService.fetchAbout();
+  resolve(): Observable<Post> {
+    return this.http.get<Post>('/post/about.json');
   }
 }
 
 @Injectable({ providedIn: 'root' })
 export class PostsResolver implements Resolve<PostInfo[]> {
-  constructor(private postService: PostService) {}
+  constructor(private http: HttpClient) {}
+
+  private posts: Observable<PostInfo[]> = this.http
+    .get<Post[]>('/posts.json')
+    .pipe(
+      publishReplay(1),
+      refCount(),
+    );
 
   resolve(): Observable<PostInfo[]> {
-    return this.postService.fetchPosts();
+    return this.posts;
   }
 }
 

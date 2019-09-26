@@ -5,13 +5,6 @@ $foreground: map-get($theme, foreground);
 .post-item {
   margin: 0 0 12px;
 
-  .date {
-    color: mat-color($foreground, secondary-text);
-    font-size: mat-font-size($typography-config, subheading-1) * 0.9;
-    font-weight: mat-font-weight($typography-config, body-2);
-    line-height: mat-line-height($typography-config, subheading-1) * 0.9;
-  }
-
   .title {
     text-decoration: none;
     color: mat-color($foreground, text);
@@ -22,8 +15,8 @@ $foreground: map-get($theme, foreground);
 
   .subtitle {
     color: mat-color($foreground, secondary-text);
-    font-size: mat-font-size($typography-config, subheading-2);
-    font-weight: mat-font-weight($typography-config, body-2);
-    line-height: mat-line-height($typography-config, subheading-2);
+    font-size: mat-font-size($typography-config, subheading-1);
+    font-weight: mat-font-weight($typography-config, subheading-1);
+    line-height: mat-line-height($typography-config, subheading-1);
   }
 }

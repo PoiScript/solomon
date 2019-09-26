@@ -1,34 +1,37 @@
 <div class="title-section">
   <h1 class="title">{{ post.title }}</h1>
   <h2 class="subtitle">
-    {{ post.date | date: 'mediumDate' }} ·
-    <ng-container *ngFor="let tag of post.tags"> #{{ tag }}</ng-container>
+    {{ post.date | date: 'mediumDate' }} · {{ postTags() }}
   </h2>
 </div>
 <article [innerHtml]="post.html | safeHtml"></article>
 <div class="up-next">
-  <a
-    *ngIf="post.prior"
-    matRipple
-    class="nav"
-    [routerLink]="['/post', post.prior.slug]"
-  >
-    <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
-    <div>
-      <div class="label">Prior</div>
-      <div class="title">{{ post.prior.title }}</div>
-    </div>
-  </a>
-  <a
-    *ngIf="post.next"
-    matRipple
-    class="nav next"
-    [routerLink]="['/post', post.next.slug]"
-  >
-    <div>
-      <div class="label">Next</div>
-      <div class="title">{{ post.next.title }}</div>
-    </div>
-    <mat-icon class="icon" svgIcon="arrow"></mat-icon>
-  </a>
+  <div class="nav prev">
+    <a
+      *ngIf="post.prev"
+      matRipple
+      class="link prev"
+      [routerLink]="['/post', post.prev.slug]"
+    >
+      <mat-icon class="icon rotated" svgIcon="arrow"></mat-icon>
+      <div>
+        <div class="label">Prev</div>
+        <div class="title">{{ post.prev.title }}</div>
+      </div>
+    </a>
+  </div>
+  <div class="nav next">
+    <a
+      *ngIf="post.next"
+      matRipple
+      class="link next"
+      [routerLink]="['/post', post.next.slug]"
+    >
+      <div>
+        <div class="label">Next</div>
+        <div class="title">{{ post.next.title }}</div>
+      </div>
+      <mat-icon class="icon" svgIcon="arrow"></mat-icon>
+    </a>
+  </div>
 </div>

@@ -1,9 +1,8 @@
 import { ChangeDetectorRef, OnInit, Component } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-import { Post } from '../../app.models'
+import { Post } from '../../app.models';
 
 @Component({ templateUrl: './about.component.html' })
 export class AboutComponent implements OnInit {

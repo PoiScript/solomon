@@ -19,7 +19,7 @@ body {
 }
 
 .title-section {
-  margin-bottom: 60px;
+  margin-bottom: 48px;
   text-align: center;
 
   .title {
@@ -33,7 +33,7 @@ body {
   .subtitle {
     color: mat-color($foreground, secondary-text);
     margin: 0;
-    padding: 5px;
+    padding: 8px;
     font-size: mat-font-size($typography-config, subheading-2);
     font-weight: mat-font-weight($typography-config, subheading-2);
     line-height: mat-line-height($typography-config, subheading-2);
@@ -48,7 +48,7 @@ body {
   .link {
     text-decoration: none;
     outline: none;
-    margin: 12px;
+    padding: 12px;
 
     font-size: mat-font-size($typography-config, button);
     font-weight: mat-font-weight($typography-config, button);

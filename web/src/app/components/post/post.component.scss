@@ -14,18 +14,27 @@ $foreground: map-get($theme, foreground);
   .nav {
     flex: 50%;
     display: flex;
+  }
+
+  .link {
+    display: flex;
     flex-direction: row;
     align-items: center;
     outline: none;
     user-select: none;
-    padding: 10px;
+    padding: 8px;
     text-decoration: none;
     color: mat-color($foreground, text);
+  }
 
-    &.next {
-      justify-content: flex-end;
-      text-align: end;
-    }
+  .prev {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .next {
+    justify-content: flex-end;
+    text-align: end;
   }
 
   .title {

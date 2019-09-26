@@ -24,4 +24,8 @@ export class PostComponent implements OnInit {
       this.cdRef.markForCheck();
     });
   }
+
+  postTags(): string {
+    return this.post.tags.map(tag => `#${tag}`).join(' ');
+  }
 }
