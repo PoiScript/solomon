@@ -11,7 +11,7 @@ impl<'a> Render for Rss<'a> {
     fn render_to(&self, w: &mut String) {
         let mut vec = Vec::new();
         self.0
-            .html_with_handler(&mut vec, SolomonRssHandler::default())
+            .html_with_handler(&mut vec, &mut SolomonRssHandler::default())
             .unwrap();
 
         w.push_str("<![CDATA[");

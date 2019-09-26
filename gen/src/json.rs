@@ -26,7 +26,7 @@ pub fn write_json(entries: &[Entry]) -> Result<()> {
 fn write_json_internal(curr: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Result<()> {
     let mut vec = Vec::new();
     curr.org
-        .html_with_handler(&mut vec, SolomonHtmlHandler::default())?;
+        .html_with_handler(&mut vec, &mut SolomonHtmlHandler::default())?;
     let html = String::from_utf8(vec)?;
 
     let mut obj = object! {
@@ -77,7 +77,7 @@ pub fn write_posts_json(entries: &[Entry]) -> Result<()> {
             .collect::<Vec<_>>(),
     );
 
-    fs::write("assets/posts.json", arr.to_string())?;
+    fs::write("assets/posts.json", entries.to_string())?;
 
     Ok(())
 }
