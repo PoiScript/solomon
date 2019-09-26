@@ -1,5 +1,6 @@
 use chrono::ParseError as DateError;
 use imagesize::ImageError;
+use json::Error as JsonError;
 use std::{io::Error as IOError, str::Utf8Error, string::FromUtf8Error};
 use url::ParseError as UrlError;
 
@@ -8,6 +9,7 @@ pub enum Error {
     Date(DateError),
     IO(IOError),
     Image(ImageError),
+    Json(JsonError),
     Url(UrlError),
     Utf8(Utf8Error),
 }
@@ -25,6 +27,7 @@ macro_rules! impl_from {
 impl_from!(DateError, Date);
 impl_from!(IOError, IO);
 impl_from!(ImageError, Image);
+impl_from!(JsonError, Json);
 impl_from!(UrlError, Url);
 impl_from!(Utf8Error, Utf8);
 
