@@ -6,7 +6,7 @@ use orgize::{
     export::{html::Escape, DefaultHtmlHandler, HtmlHandler},
     Element,
 };
-use std::{io::Write, path::PathBuf};
+use std::{io::Write, path::PathBuf, process::Command};
 use syntect::{
     easy::HighlightLines,
     highlighting::ThemeSet,
@@ -74,9 +74,21 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
                 "<pre><code>{}</code></pre>",
                 self.highlight(None, &block.contents)
             )?,
-            Element::Macros(macros) if macros.name == "age-days" => {
-                write!(w, " {:.} ", (Utc::now().timestamp() - 1382071200) / 86400)?;
-            }
+            Element::Macros(macros) => match &macros.name as &str {
+                "age-days" => {
+                    write!(w, " {:.} ", (Utc::now().timestamp() - 1382071200) / 86400)?;
+                }
+                "angular-core-version" => {
+                    write_nodejs_package_version(w, "@angular/core")?;
+                }
+                "angular-material-version" => {
+                    write_nodejs_package_version(w, "@angular/material")?;
+                }
+                "angular-cli-version" => {
+                    write_nodejs_package_version(w, "@angular/cli")?;
+                }
+                _ => (),
+            },
             Element::Link(link) => {
                 if let Some(desc) = &link.desc {
                     write!(
@@ -160,6 +172,24 @@ impl HtmlHandler<Error> for SolomonRssHandler {
 
         Ok(())
     }
+}
+
+fn write_nodejs_package_version<W: Write>(mut w: W, package: &str) -> Result<()> {
+    write!(w, "<code>")?;
+
+    let command = Command::new("yarn")
+        .args(&["--cwd", "web", "--silent", "list", "--pattern", package])
+        .output()?;
+
+    let output = String::from_utf8(output.stdout)?;
+
+    if let Some(version) = output.trim().split_whitespace().last() {
+        write!(w, "{}", version)?;
+    }
+
+    write!(w, "</code>")?;
+
+    Ok(())
 }
 
 // fn should_insert_space(c1: char, c2: char) -> bool {
