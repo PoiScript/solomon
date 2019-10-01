@@ -1,14 +1,11 @@
 import { NgModule, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {
   ActivatedRouteSnapshot,
   Resolve,
-  Router,
   RouterModule,
   Routes,
 } from '@angular/router';
-import { Observable, EMPTY } from 'rxjs';
-import { catchError, publishReplay, refCount } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import {
   AboutComponent,
@@ -18,43 +15,32 @@ import {
   PostComponent,
 } from './components';
 import { Post } from './app.models';
+import { AppService } from './app.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostResolver implements Resolve<Post> {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private appService: AppService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Post> {
-    const slug = route.paramMap.get('slug');
-    return this.http.get<Post>(`/post/${slug}.json`).pipe(
-      catchError(err => {
-        console.error(err);
-        this.router.navigate(['/not-found']);
-        return EMPTY;
-      }),
-    );
+    return this.appService.getPost(route.paramMap.get('slug'));
   }
 }
 
 @Injectable({ providedIn: 'root' })
 export class AboutResolver implements Resolve<Post> {
-  constructor(private http: HttpClient) {}
+  constructor(private appService: AppService) {}
 
   resolve(): Observable<Post> {
-    return this.http.get<Post>('/post/about.json');
+    return this.appService.getPost('about');
   }
 }
 
 @Injectable({ providedIn: 'root' })
 export class PostsResolver implements Resolve<Post[]> {
-  constructor(private http: HttpClient) {}
-
-  private posts: Observable<Post[]> = this.http.get<Post[]>('/posts.json').pipe(
-    publishReplay(1),
-    refCount(),
-  );
+  constructor(private appService: AppService) {}
 
   resolve(): Observable<Post[]> {
-    return this.posts;
+    return this.appService.getPosts();
   }
 }
 

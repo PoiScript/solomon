@@ -1,52 +1,16 @@
 .root {
-  min-height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
+  width: 100%;
 }
 
 main {
-  flex: 1;
   box-sizing: border-box;
-}
-
-.container {
-  max-width: 800px;
+  flex: 1;
   margin: 80px auto;
+  max-width: 800px;
   padding: 0 20px;
-}
-
-.loading {
   width: 100%;
-  text-align: center;
-  margin: 100px 0;
-
-  .stroke {
-    stroke-dasharray: 250;
-    stroke-dashoffset: 250;
-    animation: dash 5s linear infinite;
-  }
-
-  @keyframes dash {
-    0%,
-    5% {
-      stroke-dashoffset: 250;
-    }
-    20%,
-    30% {
-      stroke-dashoffset: 0;
-    }
-    45%,
-    55% {
-      stroke-dashoffset: -250;
-    }
-    70%,
-    80% {
-      stroke-dashoffset: 0;
-    }
-    95%,
-    100% {
-      stroke-dashoffset: 250;
-    }
-  }
 }

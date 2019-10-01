@@ -19,6 +19,7 @@ import {
   HeaderComponent,
   HomepageComponent,
   LinkComponent,
+  LoadingComponent,
   NotFoundComponent,
   PostComponent,
 } from './components';
@@ -32,6 +33,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
     HeaderComponent,
     HomepageComponent,
     LinkComponent,
+    LoadingComponent,
     NotFoundComponent,
     PostComponent,
     SafeHtmlPipe,
