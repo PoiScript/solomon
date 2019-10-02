@@ -177,7 +177,7 @@ impl HtmlHandler<Error> for SolomonRssHandler {
 fn write_nodejs_package_version<W: Write>(mut w: W, package: &str) -> Result<()> {
     write!(w, "<code>")?;
 
-    let command = Command::new("yarn")
+    let output = Command::new("yarn")
         .args(&["--cwd", "web", "--silent", "list", "--pattern", package])
         .output()?;
 
