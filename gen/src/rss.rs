@@ -1,27 +1,29 @@
 use chrono::Utc;
-use maud::{html, Markup, Render};
-use orgize::Org;
+use maud::{html, PreEscaped};
+use std::fs;
+use std::io::Write;
 
 use crate::entry::Entry;
+use crate::error::Result;
 use crate::handlers::SolomonRssHandler;
 
-struct Rss<'a>(&'a Org<'a>);
+pub fn write(entries: &[Entry]) -> Result<()> {
+    let mut handler = SolomonRssHandler::default();
 
-impl<'a> Render for Rss<'a> {
-    fn render_to(&self, w: &mut String) {
-        let mut vec = Vec::new();
-        self.0
-            .html_with_handler(&mut vec, &mut SolomonRssHandler::default())
-            .unwrap();
+    let contents = entries
+        .iter()
+        .map(|entry| {
+            let mut vec = Vec::new();
 
-        w.push_str("<![CDATA[");
-        w.push_str(&String::from_utf8(vec).unwrap());
-        w.push_str("]]>");
-    }
-}
+            write!(vec, "<![CDATA[")?;
+            entry.org.html_with_handler(&mut vec, &mut handler)?;
+            write!(vec, "]]>")?;
 
-pub fn markup(entries: &[Entry]) -> Markup {
-    html! {
+            Result::Ok(String::from_utf8(vec)?)
+        })
+        .collect::<Result<Vec<_>>>()?;
+
+    let markup = html! {
         rss version="2.0"
             xmlns:atom="http://www.w3.org/2005/Atom"
             xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -36,7 +38,7 @@ pub fn markup(entries: &[Entry]) -> Markup {
                 lastBuildDate { (Utc::now().to_rfc2822()) }
                 language { "zh-Hans" }
                 copyright { "Content licensed under CC-BY-SA-4.0." }
-                @for entry in entries {
+                @for (entry, content) in entries.iter().zip(contents) {
                     item {
                         title { (&entry.title) }
                         author { "PoiScript" }
@@ -45,11 +47,15 @@ pub fn markup(entries: &[Entry]) -> Markup {
                         @for tag in &entry.tags {
                             category { (tag) }
                         }
-                        pubDate { (entry.date.format("%a, %e %b %Y"))" 00:00:00 +0000" }
-                        description { (Rss(&entry.org)) }
+                        pubDate { (entry.date.to_rfc2822()) }
+                        description { (PreEscaped(content)) }
                     }
                 }
             }
         }
-    }
+    };
+
+    fs::write("assets/atom.xml", markup.into_string())?;
+
+    Ok(())
 }

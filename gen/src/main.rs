@@ -1,5 +1,6 @@
 #![feature(proc_macro_hygiene)]
 
+mod amp;
 mod entry;
 mod error;
 mod handlers;
@@ -10,7 +11,6 @@ use std::{fs, path::Path};
 
 use crate::entry::Entry;
 use crate::error::Result;
-use crate::json::{write_json, write_posts_json};
 
 fn walk_dirs<P: AsRef<Path>>(dir: P, files: &mut Vec<String>) -> Result<()> {
     for entry in fs::read_dir(dir)? {
@@ -38,16 +38,19 @@ fn main() -> Result<()> {
     entries.sort_by(|a, b| b.date.cmp(&a.date));
 
     fs::create_dir_all("assets/post")?;
+    fs::create_dir_all("assets/amp")?;
 
-    write_json(&entries)?;
-    write_posts_json(&entries)?;
+    json::write(&entries)?;
+    json::write_posts(&entries)?;
 
     let about_org = fs::read_to_string("content/about.org")?;
     let about_entry = Entry::from(&about_org)?;
 
-    write_json(&[about_entry])?;
+    json::write(&[about_entry])?;
 
-    fs::write("assets/atom.xml", rss::markup(&entries).into_string())?;
+    amp::write(&entries)?;
+
+    rss::write(&entries)?;
 
     Ok(())
 }

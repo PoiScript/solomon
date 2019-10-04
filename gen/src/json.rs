@@ -3,27 +3,27 @@ use std::fs;
 
 use crate::{entry::Entry, error::Result, handlers::SolomonHtmlHandler};
 
-pub fn write_json(entries: &[Entry]) -> Result<()> {
+pub fn write(entries: &[Entry]) -> Result<()> {
     match entries.len() {
         0 => {}
         1 => {
-            write_json_internal(&entries[0], None, None)?;
+            write_internal(&entries[0], None, None)?;
         }
         len @ _ => {
-            write_json_internal(&entries[0], None, Some(&entries[1]))?;
+            write_internal(&entries[0], None, Some(&entries[1]))?;
 
             for windows in entries.windows(3) {
-                write_json_internal(&windows[1], Some(&windows[0]), Some(&windows[2]))?;
+                write_internal(&windows[1], Some(&windows[0]), Some(&windows[2]))?;
             }
 
-            write_json_internal(&entries[len - 1], Some(&entries[len - 2]), None)?;
+            write_internal(&entries[len - 1], Some(&entries[len - 2]), None)?;
         }
     }
 
     Ok(())
 }
 
-fn write_json_internal(curr: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Result<()> {
+fn write_internal(curr: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Result<()> {
     let mut vec = Vec::new();
     curr.org
         .html_with_handler(&mut vec, &mut SolomonHtmlHandler::default())?;
@@ -62,7 +62,7 @@ fn write_json_internal(curr: &Entry, prev: Option<&Entry>, next: Option<&Entry>)
     Ok(())
 }
 
-pub fn write_posts_json(entries: &[Entry]) -> Result<()> {
+pub fn write_posts(entries: &[Entry]) -> Result<()> {
     let entries = JsonValue::Array(
         entries
             .iter()

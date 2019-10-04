@@ -50,6 +50,7 @@ impl SolomonBaseHandler {
 impl HtmlHandler<Error> for SolomonBaseHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
         match element {
+            Element::Document => (),
             Element::InlineSrc(inline_src) => write!(
                 w,
                 "<code>{}</code>",
@@ -90,16 +91,12 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
                 _ => (),
             },
             Element::Link(link) => {
-                if let Some(desc) = &link.desc {
-                    write!(
-                        w,
-                        r#"<a href="{}">{}</a>"#,
-                        Escape(&link.path),
-                        Escape(desc)
-                    )?;
-                } else {
-                    write!(w, r#"<a href="{0}">{0}</a>"#, Escape(&link.path))?;
-                }
+                write!(
+                    w,
+                    r#"<a href="{}">{}</a>"#,
+                    Escape(&link.path),
+                    Escape(&link.desc.as_ref().unwrap_or(&link.path))
+                )?;
             }
             _ => self.0.start(w, element)?,
         }
@@ -125,7 +122,7 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
                 write!(
                     w,
                     "<div class=\"image-container\">\
-                     <div class=\"image\" style=\"background-image: url({});padding-top: {:.7}%\">\
+                     <div class=\"image\" style=\"background-image:url({});padding-top:{:.7}%\">\
                      </div></div>",
                     url.path(),
                     (size.height as f32 / size.width as f32) * 100.
@@ -133,11 +130,11 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
             } else {
                 self.0.start(w, element)?;
             }
-
-            Ok(())
         } else {
-            self.0.start(w, element)
+            self.0.start(w, element)?;
         }
+
+        Ok(())
     }
 }
 
@@ -162,6 +159,39 @@ impl HtmlHandler<Error> for SolomonRssHandler {
                     url.path(),
                     size.width,
                     size.height
+                )?;
+            } else {
+                self.0.start(w, element)?;
+            }
+        } else {
+            self.0.start(w, element)?;
+        }
+
+        Ok(())
+    }
+}
+
+pub struct SolomonAmpHandler(SolomonBaseHandler);
+
+impl Default for SolomonAmpHandler {
+    fn default() -> Self {
+        SolomonAmpHandler(SolomonBaseHandler(DefaultHtmlHandler))
+    }
+}
+
+impl HtmlHandler<Error> for SolomonAmpHandler {
+    fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
+        if let Element::Link(link) = element {
+            let url = Url::parse(&link.path)?;
+            if url.scheme() == "file" {
+                let size = size(PathBuf::from(r"content/post").join(&url.path()[1..]))?;
+
+                write!(
+                    w,
+                    "<amp-img src=\"{}\" width=\"{}\" height=\"{}\" layout=\"responsive\"></amp-img>",
+                    url.path(),
+                    size.width,
+                    size.height,
                 )?;
             } else {
                 self.0.start(w, element)?;
