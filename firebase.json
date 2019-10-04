@@ -1,6 +1,16 @@
 {
   "hosting": {
     "public": "web/dist/app",
-    "ignore": [".gitignore"]
+    "cleanUrls": true,
+    "headers": [
+      {
+        "source": "**/*.@(gif|jpg|jpeg|png|svg|webp|ico|json|gpg)",
+        "headers": [{ "key": "Cache-Control", "value": "max-age=86400" }]
+      },
+      {
+        "source": "**/*.+([0-9a-f]).@(css|js)",
+        "headers": [{ "key": "Cache-Control", "value": "max-age=2592000" }]
+      }
+    ]
   }
 }
