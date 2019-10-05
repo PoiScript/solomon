@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "build": "ng build --prod && yarn prerender && yarn ngsw",
     "prerender": "ng run solomon:server && ts-node scripts/prerender.ts",
-    "ngsw": "ngsw-config dist/app src/ngsw-config.json /",
+    "ngsw": "ngsw-config dist/app ngsw-config.json /",
     "server": "ng run solomon:server && ts-node server.ts"
   },
   "private": true,
