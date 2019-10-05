@@ -59,30 +59,40 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
 
     let markup = html! {
         (DOCTYPE)
-        html amp? {
+        html amp? i-amphtml-layout? i-amphtml-no-boilerplate? transformed="self;v=1" {
             head {
-                title { (entry.title) "☆Solomon" }
                 meta charset="utf-8";
-                meta name="viewport" content="width=device-width,minimum-scale=1";
-                link rel="canonical" href={"https://blog.poi.cat/post/" (entry.slug)};
+                style amp-runtime? i-amphtml-version="011909181902540" {
+                    (PreEscaped(include_str!("../etc/amp-runtime.011909181902540.css")))
+                }
                 link rel="preload" href="https://cdn.ampproject.org/v0.js" as="script";
+                meta name="viewport" content="width=device-width,minimum-scale=1";
                 script async? src="https://cdn.ampproject.org/v0.js" {  }
                 script async?
                     custom-element="amp-install-serviceworker"
                     src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js" {  }
-                script type="application/ld+json" { (PreEscaped(json.to_string())) }
-                style amp-custom? { (PreEscaped(include_str!("./amp-custom.css"))) }
-                (PreEscaped(include_str!("./amp-boilerplate.html")))
+                style amp-custom? {
+                    (PreEscaped(include_str!("../etc/amp-custom.css")))
+                }
+                link rel="canonical" href={"https://blog.poi.cat/post/" (entry.slug)};
+                title { (entry.title) "☆Solomon" }
+                script type="application/ld+json" {
+                    (PreEscaped(json.to_string()))
+                }
             }
             body {
-                amp-install-serviceworker layout="nodisplay"
+                amp-install-serviceworker
+                    layout="nodisplay"
                     src="https://blog.poi.cat/ngsw-worker.js"
-                    data-iframe-src={"https://blog.poi.cat/amp/" (entry.slug)} { }
+                    data-iframe-src={"https://blog.poi.cat/amp/" (entry.slug)}
+                    class="i-amphtml-layout-nodisplay"
+                    hidden="hidden"
+                    i-amphtml-layout="nodisplay" { }
                 .root {
                     header.toolbar.header {
                         .container {
                             a.homepage.link href="https://blog.poi.cat" { "Solomon" }
-                            span.spacer {  }
+                            span.spacer { }
                             a.link href="https://blog.poi.cat/about" { "About" }
                             span.separator { "/" }
                             a.link href="https://blog.poi.cat/link" { "Link" }

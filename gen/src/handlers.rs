@@ -188,10 +188,13 @@ impl HtmlHandler<Error> for SolomonAmpHandler {
 
                 write!(
                     w,
-                    "<amp-img src=\"{}\" width=\"{}\" height=\"{}\" layout=\"responsive\"></amp-img>",
+                    "<amp-img src=\"{}\" width=\"{}\" height=\"{}\" layout=\"responsive\" \
+                     class=\"i-amphtml-layout-responsive i-amphtml-layout-size-defined\" i-amphtml-layout=\"responsive\">\
+                     <i-amphtml-sizer style=\"display:block;padding-top:{:.7}%;\"></i-amphtml-sizer></amp-img>",
                     url.path(),
                     size.width,
                     size.height,
+                    (size.height as f32 / size.width as f32) * 100.
                 )?;
             } else {
                 self.0.start(w, element)?;
