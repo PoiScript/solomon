@@ -9,7 +9,6 @@ const sassData = `
 @import "${join(src, './app/app.component.scss')}";
 @import "${join(src, './app/components/footer/footer.component.scss')}";
 @import "${join(src, './app/components/header/header.component.scss')}";
-@import "${join(src, './app/components/loading/loading.component.scss')}";
 @import "${join(src, './app/components/post/post.component.scss')}";
 `;
 
