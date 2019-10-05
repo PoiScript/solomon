@@ -1,4 +1,4 @@
-import { ApplicationRef, Component } from '@angular/core';
+import { ApplicationRef, Component, ViewEncapsulation } from '@angular/core';
 
 import { AppService } from '../../app.service';
 
@@ -6,6 +6,7 @@ import { AppService } from '../../app.service';
   selector: 'solomon-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoadingComponent {
   isLoading = false;

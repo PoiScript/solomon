@@ -1,4 +1,9 @@
-import { OnInit, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  OnInit,
+  ChangeDetectorRef,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/app.models';
@@ -6,6 +11,7 @@ import { Post } from 'src/app/app.models';
 @Component({
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomepageComponent implements OnInit {
   posts: Post[] = [];

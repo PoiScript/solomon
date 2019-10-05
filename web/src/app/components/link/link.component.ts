@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 interface Link {
@@ -10,6 +10,7 @@ interface Link {
 @Component({
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LinkComponent {
   readonly links: Link[] = [
