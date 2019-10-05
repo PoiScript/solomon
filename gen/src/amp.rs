@@ -67,11 +67,17 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
                 link rel="canonical" href={"https://blog.poi.cat/post/" (entry.slug)};
                 link rel="preload" href="https://cdn.ampproject.org/v0.js" as="script";
                 script async? src="https://cdn.ampproject.org/v0.js" {  }
+                script async?
+                    custom-element="amp-install-serviceworker"
+                    src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js" {  }
                 script type="application/ld+json" { (PreEscaped(json.to_string())) }
                 style amp-custom? { (PreEscaped(include_str!("./amp-custom.css"))) }
                 (PreEscaped(include_str!("./amp-boilerplate.html")))
             }
             body {
+                amp-install-serviceworker layout="nodisplay"
+                    src="https://blog.poi.cat/ngsw-worker.js"
+                    data-iframe-src={"https://blog.poi.cat/amp/" (entry.slug)} { }
                 .root {
                     header.toolbar.header {
                         .container {
