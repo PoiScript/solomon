@@ -7,5 +7,10 @@
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": false
-  }
+  },
+  "exclude": [
+    "main.server.ts",
+    "app/app.server.module.ts",
+    "app/asset-interceptor.ts"
+  ]
 }

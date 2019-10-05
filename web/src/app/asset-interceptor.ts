@@ -1,6 +1,6 @@
 // tslint:disable:no-any
 
-declare var require: any;
+declare const __dirname: string;
 
 import { Injectable } from '@angular/core';
 import {
@@ -10,9 +10,8 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Observable, of as observableOf } from 'rxjs';
-
-const { readFileSync, existsSync, readJsonSync } = require('fs-extra');
-const { resolve } = require('path');
+import { readFileSync, existsSync, readJsonSync } from 'fs-extra';
+import { resolve } from 'path';
 
 @Injectable()
 export class AssetInterceptor implements HttpInterceptor {
