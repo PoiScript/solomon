@@ -4,6 +4,7 @@
   "projects": {
     "solomon": {
       "root": "src",
+      "sourceRoot": "src",
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -38,6 +39,7 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/manifest.webmanifest",
               {
                 "glob": "**/*",
                 "input": "../assets",
