@@ -17,7 +17,19 @@ use url::Url;
 
 use crate::error::{Error, Result};
 
-pub struct SolomonBaseHandler(DefaultHtmlHandler);
+struct SolomonBaseHandler {
+    default: DefaultHtmlHandler,
+    last_char: Option<char>,
+}
+
+impl Default for SolomonBaseHandler {
+    fn default() -> Self {
+        SolomonBaseHandler {
+            default: DefaultHtmlHandler,
+            last_char: None,
+        }
+    }
+}
 
 impl SolomonBaseHandler {
     fn highlight(&self, language: Option<&str>, content: &str) -> String {
@@ -89,28 +101,45 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
                     write_nodejs_package_version(w, "@angular/cli")?;
                 }
                 _ => (),
-            },
-            Element::Link(link) => {
-                write!(
-                    w,
-                    r#"<a href="{}">{}</a>"#,
-                    Escape(&link.path),
-                    Escape(&link.desc.as_ref().unwrap_or(&link.path))
-                )?;
             }
-            _ => self.0.start(w, element)?,
+            Element::Paragraph => {
+                self.last_char = None;
+                write!(w, "<p>")?;
+            }
+            Element::Link(link) => {
+                let text = link.desc.as_ref().unwrap_or(&link.path);
+                if should_insert_space(self.last_char, text.chars().next()) {
+                    write!(w, " ")?;
+                }
+                self.last_char = text.chars().last();
+                write!(w, "<a href=\"{}\">{}</a>", Escape(&link.path), Escape(text))?;
+            }
+            Element::Text { value } => {
+                for line in value.lines() {
+                    let text = line.trim();
+                    if should_insert_space(self.last_char, text.chars().next()) {
+                        write!(w, " ")?;
+                    }
+                    self.last_char = text.chars().last();
+                    write!(w, "{}", Escape(text))?;
+                }
+            }
+            Element::Verbatim { value } | Element::Code { value } => {
+                let text = value.trim();
+                if should_insert_space(self.last_char, text.chars().next()) {
+                    write!(w, " ")?;
+                }
+                self.last_char = text.chars().last();
+                write!(w, "<code>{}</code>", Escape(text))?;
+            }
+            _ => self.default.start(w, element)?,
         }
         Ok(())
     }
 }
 
+#[derive(Default)]
 pub struct SolomonHtmlHandler(SolomonBaseHandler);
-
-impl Default for SolomonHtmlHandler {
-    fn default() -> Self {
-        SolomonHtmlHandler(SolomonBaseHandler(DefaultHtmlHandler))
-    }
-}
 
 impl HtmlHandler<Error> for SolomonHtmlHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
@@ -138,13 +167,8 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
     }
 }
 
+#[derive(Default)]
 pub struct SolomonRssHandler(SolomonBaseHandler);
-
-impl Default for SolomonRssHandler {
-    fn default() -> Self {
-        SolomonRssHandler(SolomonBaseHandler(DefaultHtmlHandler))
-    }
-}
 
 impl HtmlHandler<Error> for SolomonRssHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
@@ -171,13 +195,8 @@ impl HtmlHandler<Error> for SolomonRssHandler {
     }
 }
 
+#[derive(Default)]
 pub struct SolomonAmpHandler(SolomonBaseHandler);
-
-impl Default for SolomonAmpHandler {
-    fn default() -> Self {
-        SolomonAmpHandler(SolomonBaseHandler(DefaultHtmlHandler))
-    }
-}
 
 impl HtmlHandler<Error> for SolomonAmpHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
@@ -225,18 +244,22 @@ fn write_nodejs_package_version<W: Write>(mut w: W, package: &str) -> Result<()>
     Ok(())
 }
 
-// fn should_insert_space(c1: char, c2: char) -> bool {
-//     const CHINESE_PUNCTUATION: [char; 14] = [
-//         '。', '？', '，', '、', '；', '：', '“', '”', '「', '」', '（', '）', '《', '》',
-//     ];
+fn should_insert_space(c1: Option<char>, c2: Option<char>) -> bool {
+    const PUNCTUATIONS: [char; 14] = [
+        '。', '？', '，', '、', '；', '：', '“', '”', '「', '」', '（', '）', '《', '》',
+    ];
 
-//     (c1.is_ascii_graphic() && c2.is_ascii_graphic())
-//         || (c1.is_ascii_graphic()
-//             && 0x4E00 < (c2 as u32)
-//             && (c2 as u32) < 0x9FFF
-//             && !CHINESE_PUNCTUATION.contains(&c2))
-//         || (c2.is_ascii_graphic()
-//             && 0x4E00 < (c1 as u32)
-//             && (c1 as u32) < 0x9FFF
-//             && !CHINESE_PUNCTUATION.contains(&c1))
-// }
+    if let (Some(c1), Some(c2)) = (c1, c2) {
+        (c1.is_ascii_graphic() && c2.is_ascii_graphic())
+            || (c1.is_ascii_graphic()
+                && 0x4E00 < (c2 as u32)
+                && (c2 as u32) < 0x9FFF
+                && !PUNCTUATIONS.contains(&c2))
+            || (c2.is_ascii_graphic()
+                && 0x4E00 < (c1 as u32)
+                && (c1 as u32) < 0x9FFF
+                && !PUNCTUATIONS.contains(&c1))
+    } else {
+        false
+    }
+}
