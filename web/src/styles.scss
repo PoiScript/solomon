@@ -4,9 +4,6 @@
 $foreground: map-get($theme, foreground);
 $background: map-get($theme, background);
 
-@include mat-ripple();
-@include mat-ripple-theme($theme);
-
 html,
 body {
   height: 100%;
@@ -37,9 +34,9 @@ body {
     color: mat-color($foreground, secondary-text);
     margin: 0;
     padding: 8px;
-    font-size: mat-font-size($typography-config, subheading-2);
-    font-weight: mat-font-weight($typography-config, subheading-2);
-    line-height: mat-line-height($typography-config, subheading-2);
+    font-size: mat-font-size($typography-config, subheading-1);
+    font-weight: mat-font-weight($typography-config, subheading-1);
+    line-height: mat-line-height($typography-config, subheading-1);
   }
 }
 

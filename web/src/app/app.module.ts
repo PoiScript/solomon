@@ -4,7 +4,6 @@ import {
   BrowserModule,
   BrowserTransferStateModule,
 } from '@angular/platform-browser';
-import { MatIconModule, MatRippleModule } from '@angular/material';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -47,8 +46,6 @@ import { SafeHtmlPipe } from './safe-html.pipe';
       enabled: environment.production,
     }),
     HttpClientModule,
-    MatIconModule,
-    MatRippleModule,
     TransferHttpCacheModule,
   ],
   bootstrap: [AppComponent],

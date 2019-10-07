@@ -27,12 +27,12 @@ $foreground: map-get($theme, foreground);
     color: mat-color($foreground, text);
   }
 
-  .prev {
+  .start {
     justify-content: flex-start;
     text-align: start;
   }
 
-  .next {
+  .end {
     justify-content: flex-end;
     text-align: end;
   }
@@ -51,10 +51,16 @@ $foreground: map-get($theme, foreground);
   }
 
   .icon {
-    padding-left: 10px;
-  }
+    width: 24px;
+    height: 24px;
+    color: mat-color($foreground, secondary-text);
 
-  .rotated {
-    transform: rotateY(180deg);
+    &.right {
+      padding-left: 10px;
+    }
+
+    &.left {
+      padding-right: 10px;
+    }
   }
 }

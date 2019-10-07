@@ -1,12 +1,26 @@
 <header class="toolbar header">
   <div class="container">
-    <a mat-ripple class="homepage link" routerLink="/">
-      <mat-icon class="logo" svgIcon="solomon"></mat-icon>
-      <span class="name">Solomon</span>
+    <a class="homepage link" routerLink="/">
+      <span class="logo">
+        <svg
+          focusable="false"
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          fit=""
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M11.6 17.2H4L14.4 1.6l-10 6 7.2 9.6z"></path>
+            <path d="M12.4 6.8H20L9.6 22.4l10-6-7.2-9.6z"></path>
+          </g>
+        </svg>
+      </span>
+      <span>Solomon</span>
     </a>
     <span class="spacer"></span>
-    <a mat-ripple class="link" routerLink="/about">About</a>
+    <a class="link" routerLink="/about">About</a>
     <span class="separator">/</span>
-    <a mat-ripple class="link" routerLink="/link">Link</a>
+    <a class="link" routerLink="/link">Link</a>
   </div>
 </header>
