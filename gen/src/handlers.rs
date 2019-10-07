@@ -136,6 +136,14 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
         }
         Ok(())
     }
+
+    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+        match element {
+            Element::Document => (),
+            _ => self.default.end(w, element)?,
+        }
+        Ok(())
+    }
 }
 
 #[derive(Default)]
@@ -165,6 +173,10 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
 
         Ok(())
     }
+
+    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+        self.0.end(w, element)
+    }
 }
 
 #[derive(Default)]
@@ -192,6 +204,10 @@ impl HtmlHandler<Error> for SolomonRssHandler {
         }
 
         Ok(())
+    }
+
+    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+        self.0.end(w, element)
     }
 }
 
@@ -223,6 +239,10 @@ impl HtmlHandler<Error> for SolomonAmpHandler {
         }
 
         Ok(())
+    }
+
+    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+        self.0.end(w, element)
     }
 }
 
