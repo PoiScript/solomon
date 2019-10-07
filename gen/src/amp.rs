@@ -59,7 +59,7 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
 
     let markup = html! {
         (DOCTYPE)
-        html amp? i-amphtml-layout? i-amphtml-no-boilerplate? transformed="self;v=1" {
+        html amp? lang="zh-Hans" i-amphtml-layout? i-amphtml-no-boilerplate? transformed="self;v=1" {
             head {
                 meta charset="utf-8";
                 style amp-runtime? i-amphtml-version="011909181902540" {
@@ -88,59 +88,92 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
                     class="i-amphtml-layout-nodisplay"
                     hidden="hidden"
                     i-amphtml-layout="nodisplay" { }
-                .root {
-                    header.toolbar.header {
-                        .container {
-                            a.homepage.link href="https://blog.poi.cat" { "Solomon" }
-                            span.spacer { }
-                            a.link href="https://blog.poi.cat/about" { "About" }
-                            span.separator { "/" }
-                            a.link href="https://blog.poi.cat/link" { "Link" }
+                header.toolbar.header {
+                    .container {
+                        a.homepage.link href="https://blog.poi.cat" {
+                            span.logo {
+                                svg focusable="false"
+                                    height="100%"
+                                    width="100%"
+                                    preserveAspectRatio="xMidYMid meet"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                {
+                                    g fill="none" stroke="currentColor" stroke-width="1.6" {
+                                        path d="M11.6 17.2H4L14.4 1.6l-10 6 7.2 9.6z" {  }
+                                        path d="M12.4 6.8H20L9.6 22.4l10-6-7.2-9.6z" {  }
+                                    }
+                                }
+                            }
+                            span { "Solomon" }
+                        }
+                        span.spacer { }
+                        a.link href="https://blog.poi.cat/about" { "About" }
+                        span.separator { "/" }
+                        a.link href="https://blog.poi.cat/link" { "Link" }
+                    }
+                }
+                main.main {
+                    .title-section {
+                        h1.title { (entry.title) }
+                        h2.subtitle {
+                            (entry.date.format("%b %e, %Y"))
+                            " · "
+                            (entry.tags.iter().map(|t| format!("#{}", t)).collect::<Vec<_>>().join(" "))
                         }
                     }
-                    .main {
-                        .title-section {
-                            h1.title { (entry.title) }
-                            h2.subtitle {
-                                (entry.date.format("%b %e, %Y"))
-                                " · "
-                                (entry.tags.iter().map(|t| format!("#{}", t)).collect::<Vec<_>>().join(" "))
+                    article { (PreEscaped(amp)) }
+                    .up-next {
+                        .nav.start {
+                            @if let Some(prev) = prev {
+                                a.link.start href={"https://blog.poi.cat/post/" (prev.slug)} {
+                                    .icon.left {
+                                        svg fill="currentColor"
+                                            focusable="false"
+                                            height="100%"
+                                            preserveAspectRatio="xMidYMid meet"
+                                            width="100%"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        {
+                                            path d="M15.4 16.6L10.8 12l4.6-4.6L14 6l-6 6 6 6 1.4-1.4z" {  }
+                                        }
+                                    }
+                                    div {
+                                        .label { "Prev" }
+                                        .title { (prev.title) }
+                                    }
+                                }
                             }
                         }
-                        article { (PreEscaped(amp)) }
-                        .up-next {
-                            .nav.prev {
-                                @if let Some(prev) = prev {
-                                    a.link.prev href={"https://blog.poi.cat/post/" (prev.slug)} {
-                                        div {
-                                            .label{ "Prev" }
-                                            .title{ (prev.title) }
+                        .nav.end {
+                            @if let Some(next) = next {
+                                a.link.end href={"https://blog.poi.cat/post/" (next.slug)} {
+                                    div {
+                                        .label { "Next" }
+                                        .title { (next.title) }
+                                    }
+                                    .icon.right {
+                                        svg fill="currentColor"
+                                            focusable="false"
+                                            height="100%"
+                                            width="100%"
+                                            preserveAspectRatio="xMidYMid meet"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        {
+                                            path d="M8.6 16.3l4.6-4.6-4.6-4.5L10 5.7l6 6-6 6z" { }
                                         }
                                     }
                                 }
                             }
-                            .nav.next {
-                                @if let Some(next) = next {
-                                    a.link.next href={"https://blog.poi.cat/post/" (next.slug)} {
-                                        div {
-                                            .label{ "Next" }
-                                            .title{ (next.title) }
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
-                    footer.toolbar.footer {
-                        .container {
-                            .links {
-                                a.link href="https://blog.poi.cat/atom.xml"{ "RSS" }
-                                span.separator { "/" }
-                                a.link href="https://github.com/PoiScript/solomon" { "GitHub"}
-                            }
-                            span.spacer { }
-                            span.license{ "CC-BY-SA-4.0" }
-                        }
+                }
+                footer.toolbar.footer {
+                    .container {
+                        a.link href="https://blog.poi.cat/atom.xml" { "RSS" }
+                        span.separator { "/" }
+                        a.link href="https://github.com/PoiScript/solomon" { "GitHub" }
+                        span.spacer { }
+                        span.license { "CC-BY-SA-4.0" }
                     }
                 }
             }
