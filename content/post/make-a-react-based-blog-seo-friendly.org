@@ -1,5 +1,5 @@
 #+TITLE: 基于 React 的 SEO 友好的博客
-#+DATE: [2017-06-15 Thu]
+#+PUBLISHED: [2017-06-15 Thu]
 #+SLUG: make-a-react-based-blog-seo-friendly
 #+TAGS: blog react seo
 

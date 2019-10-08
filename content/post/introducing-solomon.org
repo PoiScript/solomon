@@ -1,5 +1,6 @@
 #+TITLE: 新的博客系统 Solomon
-#+DATE: [2017-01-15 Sun]
+#+PUBLISHED: [2017-01-15 Sun]
+#+UPDATED: [2017-02-13 Mon]
 #+SLUG: introducing-solomon
 #+TAGS: angular blog
 
@@ -66,8 +67,8 @@ export const CONFIG: SolomonConfig = {
 export const CONFIG_TOKEN = new OpaqueToken("config");
 #+END_SRC
 
-然后就可以通过 src_typescript{@Inject(CONFIG_TOKEN) config: SolomonConfig} 来获
-得我们设置的 ~config~ ，进而获得我们的配置。
+然后就可以通过 ~@Inject(CONFIG_TOKEN) config: SolomonConfig~ 来获得我们设置的
+~config~ ，进而获得我们的配置。
 
 * 文章
 

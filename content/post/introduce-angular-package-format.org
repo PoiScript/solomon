@@ -1,5 +1,5 @@
 #+TITLE: Angular Package Format 简介
-#+DATE: [2018-03-15 Thu]
+#+PUBLISHED: [2018-03-15 Thu]
 #+SLUG: introduce-angular-package-format
 #+TAGS: angular
 

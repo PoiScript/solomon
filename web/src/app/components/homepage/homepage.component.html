@@ -1,6 +1,6 @@
 <div class="post-item" *ngFor="let post of posts">
   <a class="title" [routerLink]="['/post', post.slug]">{{ post.title }}</a>
   <div class="subtitle">
-    {{ post.date | date: 'yyyy/MM/dd' }} · {{ tag(post) }}
+    {{ post.published | date: 'yyyy/MM/dd' }} · {{ tag(post) }}
   </div>
 </div>

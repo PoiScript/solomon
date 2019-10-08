@@ -35,8 +35,8 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
     let json = object! {
         "@context" => "http://schema.org",
         "@type" => "BlogPosting",
-        "dateModified" => entry.date.to_rfc3339(),
-        "datePublished" => entry.date.to_rfc3339(),
+        "dateModified" => entry.updated.as_ref().unwrap_or(&entry.published).to_rfc3339(),
+        "datePublished" => entry.published.to_rfc3339(),
         "headline" => &*entry.title,
         "image" => "https://blog.poi.cat/amp-image.jpg",
         "author" => object! {
@@ -116,7 +116,7 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
                     .title-section {
                         h1.title { (entry.title) }
                         h2.subtitle {
-                            (entry.date.format("%b %e, %Y"))
+                            (entry.published.format("%b %e, %Y"))
                             " · "
                             (entry.tags.iter().map(|t| format!("#{}", t)).collect::<Vec<_>>().join(" "))
                         }

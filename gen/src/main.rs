@@ -35,7 +35,7 @@ fn main() -> Result<()> {
         .map(|file| Entry::from(file))
         .collect::<Result<Vec<_>>>()?;
 
-    entries.sort_by(|a, b| b.date.cmp(&a.date));
+    entries.sort_by(|a, b| b.published.cmp(&a.published));
 
     fs::create_dir_all("assets/post")?;
     fs::create_dir_all("assets/amp")?;

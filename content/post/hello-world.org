@@ -1,5 +1,5 @@
 #+TITLE: Hello World!
-#+DATE: [2017-01-05 Thu]
+#+PUBLISHED: [2017-01-05 Thu]
 #+SLUG: hello-world
 #+TAGS: thought
 

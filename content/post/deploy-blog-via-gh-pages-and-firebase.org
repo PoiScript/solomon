@@ -1,5 +1,6 @@
 #+TITLE: 部署博客到 GitHub Pages & Firebase
-#+DATE: [2017-02-05 Sun]
+#+PUBLISHED: [2017-02-05 Sun]
+#+UPDATED: [2017-02-09 Thu]
 #+SLUG: deploy-blog-via-gh-pages-and-firebase
 #+TAGS: angular firebase github
 

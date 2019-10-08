@@ -1,5 +1,5 @@
 #+TITLE: NgModule 的作用域
-#+DATE: [2017-10-16 Mon]
+#+PUBLISHED: [2017-10-16 Mon]
 #+SLUG: ngmodule-and-its-scope
 #+TAGS: angular
 

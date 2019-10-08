@@ -1,5 +1,6 @@
 #+TITLE: 入手 PS4 Slim
-#+DATE: [2017-03-01 Wed]
+#+PUBLISHED: [2017-03-01 Wed]
+#+UPDATED: [2017-03-14 Tue]
 #+SLUG: bought-ps4-slim
 #+TAGS: game ps4 sony
 

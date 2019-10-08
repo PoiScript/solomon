@@ -1,5 +1,5 @@
 #+TITLE: 用 Org-mode 写编程文档
-#+DATE: [2018-08-14 Tue]
+#+PUBLISHED: [2018-08-14 Tue]
 #+SLUG: write-a-programming-doc-with-org-mode
 #+TAGS: emacs org-mode
 

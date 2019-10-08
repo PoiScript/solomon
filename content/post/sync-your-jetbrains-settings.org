@@ -1,5 +1,5 @@
 #+TITLE: 同步你的 JetBrains 设置
-#+DATE: [2017-03-18 Sat]
+#+PUBLISHED: [2017-03-18 Sat]
 #+SLUG: sync-your-jetbrains-settings
 #+TAGS: github jetbrains
 
@@ -36,7 +36,7 @@ Repository* 里输入你的 Settings Repository 的地址：
 
 #+BEGIN_QUOTE
 如果你的没有找到这个选项的话，请确认一下是否开启了
-https://plugins.jetbrains.com/plugin/7566-settings-repository 这个插件：
+[[https://plugins.jetbrains.com/plugin/7566-settings-repository]] 这个插件：
 
 [[file:images/settings-repository-plugin.png]]
 

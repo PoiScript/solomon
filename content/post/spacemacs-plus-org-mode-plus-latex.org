@@ -1,5 +1,5 @@
 #+TITLE: Spacemacs 和 Org-mode 和 LaTeX
-#+DATE: [2017-06-27 Tue]
+#+PUBLISHED: [2017-06-27 Tue]
 #+SLUG: spacemacs-plus-org-mode-plus-latex
 #+TAGS: emacs latex org-mode
 

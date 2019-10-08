@@ -47,7 +47,7 @@ pub fn write(entries: &[Entry]) -> Result<()> {
                         @for tag in &entry.tags {
                             category { (tag) }
                         }
-                        pubDate { (entry.date.to_rfc2822()) }
+                        pubDate { (entry.published.to_rfc2822()) }
                         description { (PreEscaped(content)) }
                     }
                 }

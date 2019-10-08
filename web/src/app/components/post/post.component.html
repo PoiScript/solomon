@@ -1,7 +1,7 @@
 <div class="title-section">
   <h1 class="title">{{ post.title }}</h1>
   <h2 class="subtitle">
-    {{ post.date | date: 'mediumDate' }} · {{ postTags() }}
+    {{ post.published | date: 'mediumDate' }} · {{ postTags() }}
   </h2>
 </div>
 <article [innerHtml]="post.html | safeHtml"></article>

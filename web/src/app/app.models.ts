@@ -1,7 +1,8 @@
 export interface Post {
   title: string;
   slug: string;
-  date: string;
+  published: string;
+  updated?: string;
   tags: string[];
   html?: string;
   next?: {

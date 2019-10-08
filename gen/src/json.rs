@@ -33,7 +33,8 @@ fn write_internal(curr: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> R
         "title" => &*curr.title,
         "slug" => &*curr.slug,
         "tags" => &*curr.tags,
-        "date" => curr.date.to_rfc3339(),
+        "published" => curr.published.to_rfc3339(),
+        "updated" => curr.updated.map(|d| d.to_rfc3339()),
         "html" => html,
     };
 
@@ -71,7 +72,7 @@ pub fn write_posts(entries: &[Entry]) -> Result<()> {
                     "title" => &*entry.title,
                     "slug" => &*entry.slug,
                     "tags" => &*entry.tags,
-                    "date" => entry.date.to_rfc3339(),
+                    "published" => entry.published.to_rfc3339(),
                 }
             })
             .collect::<Vec<_>>(),

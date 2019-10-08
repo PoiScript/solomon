@@ -1,5 +1,5 @@
 #+TITLE: 通过 Firebase Authentication 进行 OAuth 授权
-#+DATE: [2017-02-19 Sun]
+#+PUBLISHED: [2017-02-19 Sun]
 #+SLUG: oauth-via-firebase-authentication
 #+TAGS: firebase github oauth
 

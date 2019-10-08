@@ -1,5 +1,5 @@
 #+TITLE: about
-#+DATE: [2019-09-11 Wed]
+#+PUBLISHED: [2019-09-11 Wed]
 #+SLUG: about
 #+TAGS:
 
