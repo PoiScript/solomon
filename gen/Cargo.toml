@@ -11,6 +11,6 @@ imagesize = "0.8.0"
 json = "0.12.0"
 lazy_static = "1.4.0"
 maud = "0.21.0"
-orgize = { version = "0.4.2", default-features = false }
+orgize = { version = "0.5.0", default-features = false }
 syntect = { version = "3.3.0", default-features = false, features = ["html", "dump-load", "yaml-load"] }
 url = "2.1.0"
