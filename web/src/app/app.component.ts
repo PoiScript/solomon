@@ -1,4 +1,9 @@
-import { AfterViewInit, ApplicationRef, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ApplicationRef,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -10,6 +15,7 @@ import {
   selector: 'solomon-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements AfterViewInit {
   loading = true;
