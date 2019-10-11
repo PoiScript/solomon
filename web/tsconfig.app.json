@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
@@ -9,8 +9,8 @@
     "preserveWhitespaces": false
   },
   "exclude": [
-    "main.server.ts",
-    "app/app.server.module.ts",
-    "app/asset-interceptor.ts"
+    "src/main.server.ts",
+    "src/app/app.server.module.ts",
+    "src/app/asset-interceptor.ts"
   ]
 }

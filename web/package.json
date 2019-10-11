@@ -10,7 +10,7 @@
     "build": "ng build --prod && yarn prerender && yarn ngsw",
     "prerender": "ng run solomon:server && ts-node scripts/prerender.ts",
     "ngsw": "ngsw-config dist/app ngsw-config.json /",
-    "server": "ng run solomon:server && ts-node server.ts"
+    "server": "ng run solomon:server && ts-node scripts/server.ts"
   },
   "private": true,
   "dependencies": {
