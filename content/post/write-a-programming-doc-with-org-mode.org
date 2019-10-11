@@ -1,5 +1,6 @@
 #+TITLE: 用 Org-mode 写编程文档
 #+PUBLISHED: [2018-08-14 Tue]
+#+UPDATED: [2019-10-11 Fri]
 #+SLUG: write-a-programming-doc-with-org-mode
 #+TAGS: emacs org-mode
 
@@ -152,17 +153,9 @@ $ pdflatex -shell-escape -interaction nonstopmode <tex-file>
 [[file:images/latex-output-pdf-with-syntax-highlight.png][latex outputs pdf with syntax highlight]]
 
 #+BEGIN_QUOTE
-在输出 PDF 的时候，minted 可能会出现类似这样的错误：
-
-#+BEGIN_SRC
-! Undefined control sequence.
-<argument> \PYGZob
-                   {}
-l.2 ...G{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
-#+END_SRC
-
-这个时候就需要手动删除 ~_minted-test~ 这个文件夹，然后再运行即可。具体可以查看
-~minted~ 的 [[https://github.com/gpoore/minted/issues/92][issue]]。
+在输出 PDF 的时候，minted 可能会出现类似这样的错误： ~Undefined control
+sequence.~ 。这个时候就需要手动删除 ~_minted-test~ 这个文件夹，然后再运行即可。
+具体可以查看 ~minted~ 的 [[https://github.com/gpoore/minted/issues/92][issue]]。
 #+END_QUOTE
 
 * 结语
