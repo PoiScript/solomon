@@ -30,5 +30,10 @@
       }
     }
   ],
-  "navigationUrls": ["/**", "!/amp/*"]
+  "navigationUrls": [
+    "/**",
+    "!/amp/**",
+    "!/atom.xml",
+    "!/poi.gpg"
+  ]
 }
