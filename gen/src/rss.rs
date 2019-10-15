@@ -1,7 +1,6 @@
 use chrono::Utc;
 use maud::{html, PreEscaped};
-use std::fs;
-use std::io::Write;
+use std::{fs, io::Write};
 
 use crate::entry::Entry;
 use crate::error::Result;

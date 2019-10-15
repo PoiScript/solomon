@@ -9,8 +9,7 @@ mod rss;
 
 use std::{fs, path::Path};
 
-use crate::entry::Entry;
-use crate::error::Result;
+use crate::{entry::Entry, error::Result};
 
 fn walk_dirs<P: AsRef<Path>>(dir: P, files: &mut Vec<String>) -> Result<()> {
     for entry in fs::read_dir(dir)? {

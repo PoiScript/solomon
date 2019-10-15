@@ -1,34 +1,24 @@
 #![allow(clippy::unreadable_literal)]
 
-use chrono::Utc;
-use imagesize::size;
+use chrono::{DateTime, NaiveDateTime, Utc};
 use orgize::{
     export::{html::Escape, DefaultHtmlHandler, HtmlHandler},
     Element,
 };
-use std::{io::Write, path::PathBuf, process::Command};
+use std::{io::Write, path::Path, process::Command};
 use syntect::{
     easy::HighlightLines,
     highlighting::ThemeSet,
     html::{styled_line_to_highlighted_html, IncludeBackground},
     parsing::SyntaxSet,
 };
-use url::Url;
 
 use crate::error::{Error, Result};
 
+#[derive(Default)]
 struct SolomonBaseHandler {
     default: DefaultHtmlHandler,
     last_char: Option<char>,
-}
-
-impl Default for SolomonBaseHandler {
-    fn default() -> Self {
-        SolomonBaseHandler {
-            default: DefaultHtmlHandler,
-            last_char: None,
-        }
-    }
 }
 
 impl SolomonBaseHandler {
@@ -68,17 +58,11 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
                 "<code>{}</code>",
                 self.highlight(Some(&inline_src.lang), &inline_src.body)
             )?,
-            Element::SourceBlock(block) => {
-                if block.language.is_empty() {
-                    write!(w, "<pre><code>{}</code></pre>", block.contents)?;
-                } else {
-                    write!(
-                        w,
-                        "<pre><code>{}</code></pre>",
-                        self.highlight(Some(&block.language), &block.contents)
-                    )?
-                }
-            }
+            Element::SourceBlock(block) => write!(
+                w,
+                "<pre><code>{}</code></pre>",
+                self.highlight(Some(&block.language), &block.contents)
+            )?,
             Element::FixedWidth { value } => {
                 write!(w, "<pre><code>{}</code></pre>", self.highlight(None, value))?
             }
@@ -89,7 +73,10 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
             )?,
             Element::Macros(macros) => match &macros.name as &str {
                 "age-days" => {
-                    write!(w, " {:.} ", (Utc::now().timestamp() - 1382071200) / 86400)?;
+                    let date =
+                        DateTime::from_utc(NaiveDateTime::from_timestamp(1382071200, 0), Utc);
+
+                    write!(w, " {} ", (Utc::now() - date).num_days())?;
                 }
                 "angular-core-version" => {
                     write_nodejs_package_version(w, "@angular/core")?;
@@ -101,7 +88,7 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
                     write_nodejs_package_version(w, "@angular/cli")?;
                 }
                 _ => (),
-            }
+            },
             Element::Paragraph => {
                 self.last_char = None;
                 write!(w, "<p>")?;
@@ -151,24 +138,20 @@ pub struct SolomonHtmlHandler(SolomonBaseHandler);
 
 impl HtmlHandler<Error> for SolomonHtmlHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
-        if let Element::Link(link) = element {
-            let url = Url::parse(&link.path)?;
-            if url.scheme() == "file" {
-                let size = size(PathBuf::from(r"content/post").join(&url.path()[1..]))?;
+        match element {
+            Element::Link(link) if link.path.starts_with("file:") => {
+                let size = imagesize::size(Path::new("content/post").join(&link.path[5..]))?;
 
                 write!(
                     w,
                     "<div class=\"image-container\">\
-                     <div class=\"image\" style=\"background-image:url({});padding-top:{:.7}%\">\
+                     <div class=\"image\" style=\"background-image:url(/{});padding-top:{:.7}%\">\
                      </div></div>",
-                    url.path(),
+                    link.path,
                     (size.height as f32 / size.width as f32) * 100.
                 )?;
-            } else {
-                self.0.start(w, element)?;
             }
-        } else {
-            self.0.start(w, element)?;
+            _ => self.0.start(w, element)?,
         }
 
         Ok(())
@@ -184,23 +167,17 @@ pub struct SolomonRssHandler(SolomonBaseHandler);
 
 impl HtmlHandler<Error> for SolomonRssHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
-        if let Element::Link(link) = element {
-            let url = Url::parse(&link.path)?;
-            if url.scheme() == "file" {
-                let size = size(PathBuf::from(r"content/post").join(&url.path()[1..]))?;
+        match element {
+            Element::Link(link) if link.path.starts_with("file:") => {
+                let size = imagesize::size(Path::new("content/post").join(&link.path[5..]))?;
 
                 write!(
                     w,
-                    r#"<img src="{}" width="{}" height="{}">"#,
-                    url.path(),
-                    size.width,
-                    size.height
+                    r#"<img src="/{}" width="{}" height="{}">"#,
+                    link.path, size.width, size.height
                 )?;
-            } else {
-                self.0.start(w, element)?;
             }
-        } else {
-            self.0.start(w, element)?;
+            _ => self.0.start(w, element)?,
         }
 
         Ok(())
@@ -216,26 +193,22 @@ pub struct SolomonAmpHandler(SolomonBaseHandler);
 
 impl HtmlHandler<Error> for SolomonAmpHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
-        if let Element::Link(link) = element {
-            let url = Url::parse(&link.path)?;
-            if url.scheme() == "file" {
-                let size = size(PathBuf::from(r"content/post").join(&url.path()[1..]))?;
+        match element {
+            Element::Link(link) if link.path.starts_with("file:") => {
+                let size = imagesize::size(Path::new("content/post").join(&link.path[5..]))?;
 
                 write!(
                     w,
-                    "<amp-img src=\"{}\" width=\"{}\" height=\"{}\" layout=\"responsive\" \
+                    "<amp-img src=\"/{}\" width=\"{}\" height=\"{}\" layout=\"responsive\" \
                      class=\"i-amphtml-layout-responsive i-amphtml-layout-size-defined\" i-amphtml-layout=\"responsive\">\
                      <i-amphtml-sizer style=\"display:block;padding-top:{:.7}%;\"></i-amphtml-sizer></amp-img>",
-                    url.path(),
+                    link.path,
                     size.width,
                     size.height,
                     (size.height as f32 / size.width as f32) * 100.
                 )?;
-            } else {
-                self.0.start(w, element)?;
             }
-        } else {
-            self.0.start(w, element)?;
+            _ => self.0.start(w, element)?,
         }
 
         Ok(())
@@ -253,9 +226,9 @@ fn write_nodejs_package_version<W: Write>(mut w: W, package: &str) -> Result<()>
         .args(&["--cwd", "web", "--silent", "list", "--pattern", package])
         .output()?;
 
-    let output = String::from_utf8(output.stdout)?;
+    let stdout = String::from_utf8(output.stdout)?;
 
-    if let Some(version) = output.trim().split_whitespace().last() {
+    if let Some(version) = stdout.trim().split_whitespace().last() {
         write!(w, "{}", version)?;
     }
 
