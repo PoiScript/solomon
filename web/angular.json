@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
+  "defaultProject": "solomon",
   "projects": {
     "solomon": {
       "root": "src",
@@ -34,6 +35,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "./dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -112,6 +114,18 @@
             "outputPath": "./dist/server",
             "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "src": "src/environment/index.ts",
+                  "replaceWith": "src/environment/prod.ts"
+                }
+              ],
+              "optimization": true,
+              "sourceMap": false
+            }
           }
         }
       }

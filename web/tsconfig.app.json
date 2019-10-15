@@ -8,9 +8,5 @@
   "angularCompilerOptions": {
     "preserveWhitespaces": false
   },
-  "exclude": [
-    "src/main.server.ts",
-    "src/app/app.server.module.ts",
-    "src/app/asset-interceptor.ts"
-  ]
+  "files": ["src/main.ts"]
 }
