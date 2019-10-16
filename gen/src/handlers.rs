@@ -147,7 +147,7 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
                     "<div class=\"image-container\">\
                      <div class=\"image\" style=\"background-image:url(/{});padding-top:{:.7}%\">\
                      </div></div>",
-                    link.path,
+                    &link.path[5..],
                     (size.height as f32 / size.width as f32) * 100.
                 )?;
             }
@@ -174,7 +174,9 @@ impl HtmlHandler<Error> for SolomonRssHandler {
                 write!(
                     w,
                     r#"<img src="/{}" width="{}" height="{}">"#,
-                    link.path, size.width, size.height
+                    &link.path[5..],
+                    size.width,
+                    size.height
                 )?;
             }
             _ => self.0.start(w, element)?,
@@ -202,7 +204,7 @@ impl HtmlHandler<Error> for SolomonAmpHandler {
                     "<amp-img src=\"/{}\" width=\"{}\" height=\"{}\" layout=\"responsive\" \
                      class=\"i-amphtml-layout-responsive i-amphtml-layout-size-defined\" i-amphtml-layout=\"responsive\">\
                      <i-amphtml-sizer style=\"display:block;padding-top:{:.7}%;\"></i-amphtml-sizer></amp-img>",
-                    link.path,
+                    &link.path[5..],
                     size.width,
                     size.height,
                     (size.height as f32 / size.width as f32) * 100.
