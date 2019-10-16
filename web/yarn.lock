@@ -928,10 +928,15 @@
     tree-kill "1.2.1"
     webpack-sources "1.4.3"
 
-"@nguniversal/common@v9.0.0-next.3", "@nguniversal/common@~9.0.0-next.3":
+"@nguniversal/common@v9.0.0-next.3":
   version "9.0.0-next.3"
   resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-9.0.0-next.3.tgz#955aea148772ff4fa3257a5933df88f7e3115572"
   integrity sha512-Cyfm1UMYCx3Og5tYeFcf5ow+e/mgIcJDUs4F18psVd1HIs2JSIWrrqR2Jtp7W5vBfNcjPA3jbM8Oji+Qk3vnlQ==
+
+"@nguniversal/common@~9.0.0-next.5":
+  version "9.0.0-next.5"
+  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-9.0.0-next.5.tgz#7b0aad56e741011593b34961de0515f6ff4a4dec"
+  integrity sha512-CmN4Y8gq052NWrFVnLP7dONqra7mAd5n2evIxY4gZCANENxLnleKcRH9crnv1igkBLPcf1FGJiwqNcVruNDwwQ==
 
 "@nguniversal/express-engine@~9.0.0-next.3":
   version "9.0.0-next.3"
