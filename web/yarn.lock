@@ -928,17 +928,17 @@
     tree-kill "1.2.1"
     webpack-sources "1.4.3"
 
-"@nguniversal/common@v9.0.0-next.3", "@nguniversal/common@~9.0.0-next.3":
-  version "9.0.0-next.3"
-  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-9.0.0-next.3.tgz#955aea148772ff4fa3257a5933df88f7e3115572"
-  integrity sha512-Cyfm1UMYCx3Og5tYeFcf5ow+e/mgIcJDUs4F18psVd1HIs2JSIWrrqR2Jtp7W5vBfNcjPA3jbM8Oji+Qk3vnlQ==
+"@nguniversal/common@9.0.0-next.5", "@nguniversal/common@~9.0.0-next.3":
+  version "9.0.0-next.5"
+  resolved "https://registry.yarnpkg.com/@nguniversal/common/-/common-9.0.0-next.5.tgz#7b0aad56e741011593b34961de0515f6ff4a4dec"
+  integrity sha512-CmN4Y8gq052NWrFVnLP7dONqra7mAd5n2evIxY4gZCANENxLnleKcRH9crnv1igkBLPcf1FGJiwqNcVruNDwwQ==
 
-"@nguniversal/express-engine@~9.0.0-next.3":
-  version "9.0.0-next.3"
-  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-9.0.0-next.3.tgz#f7b52ddd1ca0559bd8942c199453266fc9063ec9"
-  integrity sha512-wuk2XO405uMz2jXMYmepa2M+Mun3X8bRrL+7pfrbv7HTqulPbSh+uHKX485w3GeCHPbHScjwY9tdyDH4M5jGyA==
+"@nguniversal/express-engine@~9.0.0-next.5":
+  version "9.0.0-next.5"
+  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-9.0.0-next.5.tgz#0808539944703af40a942b393652c431435005f6"
+  integrity sha512-srgV2toN6R6NLi51Ic1dqUcnbPOSr4y+KJIkUunw6vBSPdHkLsyPJBDzyzz7HaHO5P/tbkWSeFJZ+c0bygkotQ==
   dependencies:
-    "@nguniversal/common" v9.0.0-next.3
+    "@nguniversal/common" "9.0.0-next.5"
 
 "@schematics/angular@9.0.0-next.9":
   version "9.0.0-next.9"
