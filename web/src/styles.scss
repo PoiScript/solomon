@@ -171,16 +171,20 @@ article {
     border-left: 0.3em solid rgba(0, 0, 0, 0.1);
   }
 
-  .image {
-    margin: 0;
-    background-size: cover;
-    background-position: center;
+  .image-wrapper {
+    height: 0;
+    position: relative;
+
+    > img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   .image-container {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+    margin: 0 auto;
   }
 
   hr {

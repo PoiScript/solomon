@@ -18,7 +18,7 @@ fn parse_timestamp(value: &str) -> Result<DateTime<Utc>> {
 }
 
 impl Entry<'_> {
-    pub fn from(content: &str) -> Result<Entry<'_>> {
+    pub fn from(content: &str) -> Result<Entry> {
         let org = Org::parse(content);
         let (mut title, mut published, mut updated, mut slug, mut tags) =
             (None, None, None, None, None);

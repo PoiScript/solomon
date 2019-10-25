@@ -50,7 +50,7 @@ impl SolomonBaseHandler {
 }
 
 impl HtmlHandler<Error> for SolomonBaseHandler {
-    fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
+    fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
         match element {
             Element::Document => (),
             Element::InlineSrc(inline_src) => write!(
@@ -124,7 +124,7 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
         Ok(())
     }
 
-    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+    fn end<W: Write>(&mut self, w: W, element: &Element) -> Result<()> {
         match element {
             Element::Document => (),
             _ => self.default.end(w, element)?,
@@ -137,18 +137,20 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
 pub struct SolomonHtmlHandler(SolomonBaseHandler);
 
 impl HtmlHandler<Error> for SolomonHtmlHandler {
-    fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
+    fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
         match element {
             Element::Link(link) if link.path.starts_with("file:") => {
-                let size = imagesize::size(Path::new("content/post").join(&link.path[5..]))?;
+                let path = &link.path[5..];
+                let size = imagesize::size(Path::new("content/post").join(path))?;
 
                 write!(
                     w,
-                    "<div class=\"image-container\">\
-                     <div class=\"image\" style=\"background-image:url(/{});padding-top:{:.7}%\">\
-                     </div></div>",
-                    &link.path[5..],
-                    (size.height as f32 / size.width as f32) * 100.
+                    "<div class=\"image-container\" style=\"max-width:{}px;\">\
+                     <div class=\"image-wrapper\" style=\"padding-top:{:.7}%\">\
+                     <img src=\"/{}\" loading=\"lazy\"></div></div>",
+                    size.width,
+                    (size.height as f32 / size.width as f32) * 100.,
+                    path,
                 )?;
             }
             _ => self.0.start(w, element)?,
@@ -157,7 +159,7 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
         Ok(())
     }
 
-    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+    fn end<W: Write>(&mut self, w: W, element: &Element) -> Result<()> {
         self.0.end(w, element)
     }
 }
@@ -166,17 +168,16 @@ impl HtmlHandler<Error> for SolomonHtmlHandler {
 pub struct SolomonRssHandler(SolomonBaseHandler);
 
 impl HtmlHandler<Error> for SolomonRssHandler {
-    fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
+    fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
         match element {
             Element::Link(link) if link.path.starts_with("file:") => {
-                let size = imagesize::size(Path::new("content/post").join(&link.path[5..]))?;
+                let path = &link.path[5..];
+                let size = imagesize::size(Path::new("content/post").join(path))?;
 
                 write!(
                     w,
                     r#"<img src="/{}" width="{}" height="{}">"#,
-                    &link.path[5..],
-                    size.width,
-                    size.height
+                    path, size.width, size.height
                 )?;
             }
             _ => self.0.start(w, element)?,
@@ -185,7 +186,7 @@ impl HtmlHandler<Error> for SolomonRssHandler {
         Ok(())
     }
 
-    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+    fn end<W: Write>(&mut self, w: W, element: &Element) -> Result<()> {
         self.0.end(w, element)
     }
 }
@@ -194,17 +195,18 @@ impl HtmlHandler<Error> for SolomonRssHandler {
 pub struct SolomonAmpHandler(SolomonBaseHandler);
 
 impl HtmlHandler<Error> for SolomonAmpHandler {
-    fn start<W: Write>(&mut self, mut w: W, element: &Element<'_>) -> Result<()> {
+    fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
         match element {
             Element::Link(link) if link.path.starts_with("file:") => {
-                let size = imagesize::size(Path::new("content/post").join(&link.path[5..]))?;
+                let path = &link.path[5..];
+                let size = imagesize::size(Path::new("content/post").join(path))?;
 
                 write!(
                     w,
                     "<amp-img src=\"/{}\" width=\"{}\" height=\"{}\" layout=\"responsive\" \
                      class=\"i-amphtml-layout-responsive i-amphtml-layout-size-defined\" i-amphtml-layout=\"responsive\">\
                      <i-amphtml-sizer style=\"display:block;padding-top:{:.7}%;\"></i-amphtml-sizer></amp-img>",
-                    &link.path[5..],
+                    path,
                     size.width,
                     size.height,
                     (size.height as f32 / size.width as f32) * 100.
@@ -216,7 +218,7 @@ impl HtmlHandler<Error> for SolomonAmpHandler {
         Ok(())
     }
 
-    fn end<W: Write>(&mut self, w: W, element: &Element<'_>) -> Result<()> {
+    fn end<W: Write>(&mut self, w: W, element: &Element) -> Result<()> {
         self.0.end(w, element)
     }
 }
