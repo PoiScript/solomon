@@ -2,7 +2,7 @@
 
 use chrono::{DateTime, NaiveDateTime, Utc};
 use orgize::{
-    export::{html::Escape, DefaultHtmlHandler, HtmlHandler},
+    export::{DefaultHtmlHandler, HtmlEscape as Escape, HtmlHandler},
     Element,
 };
 use std::{io::Write, path::Path, process::Command};
@@ -21,56 +21,10 @@ struct SolomonBaseHandler {
     last_char: Option<char>,
 }
 
-impl SolomonBaseHandler {
-    fn highlight(&self, language: Option<&str>, content: &str) -> String {
-        lazy_static::lazy_static! {
-            static ref SYNTAX_SET: SyntaxSet = {
-                let set = SyntaxSet::load_defaults_newlines();
-                let mut builder = set.into_builder();
-                // add extra language syntax files
-                builder.add_from_folder("gen/syntax", true).unwrap();
-                builder.build()
-            };
-            static ref THEME_SET: ThemeSet = ThemeSet::load_defaults();
-        }
-
-        let language = match language {
-            Some("elisp") | Some("emacs-lisp") => Some("lisp"),
-            _ => language,
-        };
-        let mut highlighter = HighlightLines::new(
-            language
-                .and_then(|lang| SYNTAX_SET.find_syntax_by_token(lang))
-                .unwrap_or_else(|| SYNTAX_SET.find_syntax_plain_text()),
-            &THEME_SET.themes["InspiredGitHub"],
-        );
-        let regions = highlighter.highlight(content, &SYNTAX_SET);
-        styled_line_to_highlighted_html(&regions[..], IncludeBackground::No)
-    }
-}
-
 impl HtmlHandler<Error> for SolomonBaseHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
         match element {
-            Element::Document => (),
-            Element::InlineSrc(inline_src) => write!(
-                w,
-                "<code>{}</code>",
-                self.highlight(Some(&inline_src.lang), &inline_src.body)
-            )?,
-            Element::SourceBlock(block) => write!(
-                w,
-                "<pre><code>{}</code></pre>",
-                self.highlight(Some(&block.language), &block.contents)
-            )?,
-            Element::FixedWidth { value } => {
-                write!(w, "<pre><code>{}</code></pre>", self.highlight(None, value))?
-            }
-            Element::ExampleBlock(block) => write!(
-                w,
-                "<pre><code>{}</code></pre>",
-                self.highlight(None, &block.contents)
-            )?,
+            Element::Document { .. } => (),
             Element::Macros(macros) => match &macros.name as &str {
                 "age-days" => {
                     let date =
@@ -89,7 +43,7 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
                 }
                 _ => (),
             },
-            Element::Paragraph => {
+            Element::Paragraph { .. } => {
                 self.last_char = None;
                 write!(w, "<p>")?;
             }
@@ -126,7 +80,7 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
 
     fn end<W: Write>(&mut self, w: W, element: &Element) -> Result<()> {
         match element {
-            Element::Document => (),
+            Element::Document { .. } => (),
             _ => self.default.end(w, element)?,
         }
         Ok(())
@@ -134,7 +88,89 @@ impl HtmlHandler<Error> for SolomonBaseHandler {
 }
 
 #[derive(Default)]
-pub struct SolomonHtmlHandler(SolomonBaseHandler);
+struct SolomonSyntectHandler(SolomonBaseHandler);
+
+impl SolomonSyntectHandler {
+    fn highlight(&self, language: Option<&str>, content: &str) -> String {
+        lazy_static::lazy_static! {
+            static ref SYNTAX_SET: SyntaxSet = {
+                let set = SyntaxSet::load_defaults_newlines();
+                let mut builder = set.into_builder();
+                // add extra language syntax files
+                builder.add_from_folder("gen/syntax", true).unwrap();
+                builder.build()
+            };
+            static ref THEME_SET: ThemeSet = ThemeSet::load_defaults();
+        }
+
+        let language = match language {
+            Some("elisp") | Some("emacs-lisp") => Some("lisp"),
+            _ => language,
+        };
+        let mut highlighter = HighlightLines::new(
+            language
+                .and_then(|lang| SYNTAX_SET.find_syntax_by_token(lang))
+                .unwrap_or_else(|| SYNTAX_SET.find_syntax_plain_text()),
+            &THEME_SET.themes["InspiredGitHub"],
+        );
+        let regions = highlighter.highlight(content, &SYNTAX_SET);
+        styled_line_to_highlighted_html(&regions[..], IncludeBackground::No)
+    }
+}
+
+impl HtmlHandler<Error> for SolomonSyntectHandler {
+    fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
+        match element {
+            Element::InlineSrc(inline_src) => write!(
+                w,
+                "<code>{}</code>",
+                self.highlight(Some(&inline_src.lang), &inline_src.body)
+            )?,
+            Element::SourceBlock(block) => write!(
+                w,
+                "<pre><code>{}</code></pre>",
+                self.highlight(Some(&block.language), &block.contents)
+            )?,
+            Element::FixedWidth(fixed_width) => write!(
+                w,
+                "<pre><code>{}</code></pre>",
+                self.highlight(None, &fixed_width.value)
+            )?,
+            Element::ExampleBlock(block) => write!(
+                w,
+                "<pre><code>{}</code></pre>",
+                self.highlight(None, &block.contents)
+            )?,
+            Element::Macros(macros) => match &macros.name as &str {
+                "age-days" => {
+                    let date =
+                        DateTime::from_utc(NaiveDateTime::from_timestamp(1382071200, 0), Utc);
+
+                    write!(w, " {} ", (Utc::now() - date).num_days())?;
+                }
+                "angular-core-version" => {
+                    write_nodejs_package_version(w, "@angular/core")?;
+                }
+                "angular-material-version" => {
+                    write_nodejs_package_version(w, "@angular/material")?;
+                }
+                "angular-cli-version" => {
+                    write_nodejs_package_version(w, "@angular/cli")?;
+                }
+                _ => (),
+            },
+            _ => self.0.start(w, element)?,
+        }
+        Ok(())
+    }
+
+    fn end<W: Write>(&mut self, w: W, element: &Element) -> Result<()> {
+        self.0.end(w, element)
+    }
+}
+
+#[derive(Default)]
+pub struct SolomonHtmlHandler(SolomonSyntectHandler);
 
 impl HtmlHandler<Error> for SolomonHtmlHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {
@@ -192,7 +228,7 @@ impl HtmlHandler<Error> for SolomonRssHandler {
 }
 
 #[derive(Default)]
-pub struct SolomonAmpHandler(SolomonBaseHandler);
+pub struct SolomonAmpHandler(SolomonSyntectHandler);
 
 impl HtmlHandler<Error> for SolomonAmpHandler {
     fn start<W: Write>(&mut self, mut w: W, element: &Element) -> Result<()> {

@@ -9,19 +9,6 @@ use crate::handlers::SolomonRssHandler;
 pub fn write(entries: &[Entry]) -> Result<()> {
     let mut handler = SolomonRssHandler::default();
 
-    let contents = entries
-        .iter()
-        .map(|entry| {
-            let mut vec = Vec::new();
-
-            write!(vec, "<![CDATA[")?;
-            entry.org.html_with_handler(&mut vec, &mut handler)?;
-            write!(vec, "]]>")?;
-
-            Result::Ok(String::from_utf8(vec)?)
-        })
-        .collect::<Result<Vec<_>>>()?;
-
     let markup = html! {
         rss version="2.0"
             xmlns:atom="http://www.w3.org/2005/Atom"
@@ -37,7 +24,7 @@ pub fn write(entries: &[Entry]) -> Result<()> {
                 lastBuildDate { (Utc::now().to_rfc2822()) }
                 language { "zh-Hans" }
                 copyright { "Content licensed under CC-BY-SA-4.0." }
-                @for (entry, content) in entries.iter().zip(contents) {
+                @for entry in entries {
                     item {
                         title { (&entry.title) }
                         author { "PoiScript" }
@@ -47,7 +34,15 @@ pub fn write(entries: &[Entry]) -> Result<()> {
                             category { (tag) }
                         }
                         pubDate { (entry.published.to_rfc2822()) }
-                        description { (PreEscaped(content)) }
+                        description {
+                            ({
+                                let mut content = Vec::new();
+                                write!(content, "<![CDATA[")?;
+                                entry.org.write_html_custom(&mut content, &mut handler)?;
+                                write!(content, "]]>")?;
+                                PreEscaped(String::from_utf8(content)?)
+                            })
+                        }
                     }
                 }
             }

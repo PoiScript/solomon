@@ -28,7 +28,7 @@ fn write_amp(entry: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Resul
     let mut handler = SolomonAmpHandler::default();
 
     let mut vec = Vec::new();
-    entry.org.html_with_handler(&mut vec, &mut handler)?;
+    entry.org.write_html_custom(&mut vec, &mut handler)?;
 
     let amp = String::from_utf8(vec)?;
 

@@ -25,8 +25,9 @@ pub fn write(entries: &[Entry]) -> Result<()> {
 
 fn write_internal(curr: &Entry, prev: Option<&Entry>, next: Option<&Entry>) -> Result<()> {
     let mut vec = Vec::new();
-    curr.org
-        .html_with_handler(&mut vec, &mut SolomonHtmlHandler::default())?;
+    let mut handler = SolomonHtmlHandler::default();
+    curr.org.write_html_custom(&mut vec, &mut handler)?;
+
     let html = String::from_utf8(vec)?;
 
     let mut obj = object! {
