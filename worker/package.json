@@ -1,0 +1,16 @@
+{
+  "name": "@solomon/worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@solomon/wasm": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.2.1",
+    "typescript": "^4.4.2",
+    "vite": "^2.7.13"
+  }
+}

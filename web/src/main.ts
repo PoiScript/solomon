@@ -1,0 +1,105 @@
+import Prism from "prismjs";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-lisp";
+import "prismjs/components/prism-rust";
+import "prismjs/components/prism-http";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-yaml";
+
+import init, { render, Context } from "../pkg";
+
+import "prismjs/themes/prism.css";
+import "./index.less";
+
+const updateHead = (head: string) => {
+  const start = document.querySelector('meta[name="wasm-head-start"]');
+  const end = document.querySelector('meta[name="wasm-head-end"]');
+
+  if (!start || !end) {
+    console.error(
+      'meta[name="wasm-head-start"] or meta[name="wasm-head-end"] not found'
+    );
+    return;
+  }
+
+  let el = start.nextElementSibling;
+  while (el && el !== end) {
+    let next = el.nextElementSibling;
+    el.remove();
+    el = next;
+  }
+
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = head;
+  [...wrapper.children].forEach((child) => {
+    start.insertAdjacentElement("afterend", child);
+  });
+};
+
+const updatePage = async (ctx: Context): Promise<Context> => {
+  ctx = await render(ctx);
+  updateHead(ctx.get_head());
+  document.body.innerHTML = ctx.get_body();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  Prism.highlightAll();
+  return ctx;
+};
+
+const main = async () => {
+  await init();
+  let ctx = new Context(location.pathname, import.meta.env.BASE_URL);
+  console.log(ctx.get_version());
+
+  if (import.meta.env.DEV) {
+    ctx = await updatePage(ctx);
+  }
+
+  let previousUrl = location.pathname;
+
+  document.addEventListener("click", async (event) => {
+    if (!(event.target instanceof Element)) return null;
+
+    const anchor = event.target.closest<HTMLAnchorElement>(
+      "a[data-router][href]"
+    );
+
+    if (!anchor) return;
+
+    const newUrl = new URL(anchor.href);
+
+    // external links
+    if (newUrl.hostname && newUrl.hostname !== location.hostname) return;
+
+    // prevent reload
+    event.preventDefault();
+
+    // current url
+    if (newUrl.pathname !== previousUrl) {
+      previousUrl = newUrl.pathname;
+      console.log("pushState:", newUrl.pathname);
+
+      window.history.pushState(null, "", newUrl.pathname);
+      ctx.set_url(newUrl.pathname);
+      ctx = await updatePage(ctx);
+    }
+  });
+
+  // back or forward buttons are clicked
+  window.addEventListener("popstate", async () => {
+    if (previousUrl !== location.pathname) {
+      previousUrl = location.pathname;
+      console.log("popState:", location.pathname);
+
+      ctx.set_url(location.pathname);
+      ctx = await updatePage(ctx);
+    }
+  });
+};
+
+Prism.highlightAll();
+
+console.time("init");
+
+main()
+  .catch(console.error)
+  .finally(() => console.timeEnd("init"));

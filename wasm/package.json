@@ -1,0 +1,17 @@
+{
+  "name": "@solomon/wasm",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "module": "pkg/solomon.js",
+  "types": "pkg/solomon.d.ts",
+  "files": [
+    "pkg/solomon_bg.wasm",
+    "pkg/solomon.js",
+    "pkg/solomon.d.ts"
+  ],
+  "scripts": {
+    "build:web": "wasm-pack build -t web -d ../web/pkg",
+    "build:worker": "wasm-pack build -t no-modules -d ../worker/pkg --features workers"
+  }
+}

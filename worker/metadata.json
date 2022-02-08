@@ -1,0 +1,15 @@
+{
+  "bindings": [
+    {
+      "name": "SOLOMON_WSAM",
+      "part": "solomon_bg",
+      "type": "wasm_module"
+    },
+    {
+      "name": "SOLOMON_KV",
+      "namespace_id": "e994fdd7add54bee9b3e905bbad1ce61",
+      "type": "kv_namespace"
+    }
+  ],
+  "body_part": "script"
+}

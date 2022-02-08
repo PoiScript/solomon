@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+
+# compiled output
+dist/
+pkg/
+target/
+**/*.rs.bk
+
+# logs
+yarn-debug.log*
+yarn-error.log*
+
+# generated
+img-meta.json
+org-meta.json

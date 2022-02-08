@@ -1,0 +1,20 @@
+{
+  "name": "solomon",
+  "version": "2.0.0",
+  "author": "PoiScript <poiscript@gmail.com>",
+  "description": "PoiScript's Blog",
+  "homepage": "https://blog.poi.cat",
+  "license": "MIT",
+  "private": true,
+  "repository": "git@github.com:PoiScript/solomon.git",
+  "workspaces": [
+    "wasm",
+    "web",
+    "worker"
+  ],
+  "devDependencies": {
+    "image-size": "^1.0.1",
+    "undici": "^4.13.0",
+    "zx": "^4.3.0"
+  }
+}
