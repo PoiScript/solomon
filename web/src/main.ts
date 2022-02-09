@@ -10,6 +10,7 @@ import init, { render, Context } from "../pkg";
 
 import "prismjs/themes/prism.css";
 import "./index.less";
+import { showProgress, hideProgress } from "./progress";
 
 const updateHead = (head: string) => {
   const start = document.querySelector('meta[name="wasm-head-start"]');
@@ -37,8 +38,10 @@ const updateHead = (head: string) => {
 };
 
 const updatePage = async (ctx: Context): Promise<Context> => {
+  showProgress();
   ctx = await render(ctx);
   updateHead(ctx.get_head());
+  hideProgress();
   document.body.innerHTML = ctx.get_body();
   window.scrollTo({ top: 0, behavior: "smooth" });
   Prism.highlightAll();

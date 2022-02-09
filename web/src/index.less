@@ -344,22 +344,26 @@ article {
     font-size: 16px;
     line-height: 28px;
   }
+
   .label {
     color: rgba(0, 0, 0, 0.54);
     font-size: 12px;
     font-weight: 500;
     line-height: 20px;
   }
+
   .icon {
     width: 24px;
     height: 24px;
     color: rgba(0, 0, 0, 0.54);
-  }
-  .icon.right {
-    padding-left: 10px;
-  }
-  .icon.left {
-    padding-right: 10px;
+
+    &.right {
+      padding-left: 10px;
+    }
+
+    &.left {
+      padding-right: 10px;
+    }
   }
 }
 
@@ -402,8 +406,10 @@ a.tag {
 }
 
 .toc {
-  each(range(1, 6),{
-    .level-@{value} { margin-left: (@value - 1) * 24px; }
+  each(range(1, 6), {
+    .level-@{value} {
+      margin-left: (@value - 1) * 24px;
+    }
   });
 
   margin-bottom: 24px;
@@ -432,31 +438,33 @@ a.tag {
   }
 }
 
-.loading-bar {
+.progress-bar {
   position: fixed;
-  top: 0;
   left: 0;
+  top: 0;
   right: 0;
   height: 4px;
-  overflow: hidden;
-  transition: opacity 250ms linear;
+  position: fixed;
   background-color: #d5cae9;
+  overflow: hidden;
 
   .fill {
-    transform: scale3d(0.4, 1, 1);
+    width: 100%;
+    height: 100%;
+    background-color: #673ab7;
+    animation: indeterminate 1s infinite linear;
+    transform-origin: 0% 50%;
+  }
 
-    transform-origin: top left;
-    // transition: transform 250ms ease;
-
-    &:after {
-      background-color: #673ab7;
-
-      height: 4px;
-      position: absolute;
-      width: 100%;
-      content: "";
-      display: inline-block;
-      left: 0;
+  @keyframes indeterminate {
+    0% {
+      transform: translateX(0) scaleX(0);
+    }
+    40% {
+      transform: translateX(0) scaleX(0.4);
+    }
+    100% {
+      transform: translateX(100%) scaleX(0.5);
     }
   }
 }
