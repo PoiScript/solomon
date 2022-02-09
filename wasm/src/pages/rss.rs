@@ -1,6 +1,6 @@
 use chrono::Utc;
 use futures_util::future::try_join_all;
-use maud::{html, PreEscaped};
+use maud::html;
 use wasm_bindgen::prelude::*;
 
 use crate::context::{Content, Context};
@@ -49,13 +49,11 @@ pub async fn rss(mut ctx: Context) -> Result<Context, JsValue> {
                             }
                             pubDate { (post.published.to_rfc2822()) }
                             description {
-                                (PreEscaped("<![CDATA["))
                                 (Article {
                                     mode: Mode::Rss,
                                     org: &orgize::Org::parse(&org),
                                     ctx: &ctx,
                                 })
-                                (PreEscaped("]]>"))
                             }
                         }
                     }

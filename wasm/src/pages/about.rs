@@ -18,13 +18,11 @@ pub async fn about(mut ctx: Context, is_amp: bool) -> Result<Context, JsValue> {
             main.main {
                 (Heading { title: &meta.title, subtitle: None })
                 (TableOfContent { org: &org })
-                article {
-                    (Article {
-                        mode: if is_amp { Mode::Amp } else { Mode::Html },
-                        org: &org,
-                        ctx: &ctx
-                    })
-                }
+                (Article {
+                    mode: if is_amp { Mode::Amp } else { Mode::Html },
+                    org: &org,
+                    ctx: &ctx
+                })
             }
             (Footer)
         };

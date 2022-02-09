@@ -33,9 +33,11 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
             main.main {
                 (Heading { title: &meta.title, subtitle: Some(&subtitle) })
                 (TableOfContent { org: &org })
-                article {
-                    (Article { mode: Mode::Html, org: &org, ctx: &ctx })
-                }
+                (Article {
+                    mode: if is_amp { Mode::Amp } else { Mode::Html },
+                    org: &org,
+                    ctx: &ctx
+                })
                 (UpNext { next: &None, prev: &None })
             }
             (Footer)

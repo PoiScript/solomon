@@ -119,18 +119,41 @@ impl<'a> Render for Article<'a> {
                     let _ = write!(w, "<code>{}</code>", HtmlEscape(text));
                 }
 
-                Event::Start(Element::Document { .. }) | Event::End(Element::Document { .. }) => (),
+                Event::Start(Element::Document { .. }) => match self.mode {
+                    Mode::Amp | Mode::Html => {
+                        let _ = write!(w, "<article>");
+                    }
+                    Mode::Rss => {
+                        let _ = write!(w, "<![CDATA[");
+                    }
+                },
+
+                Event::End(Element::Document { .. }) => match self.mode {
+                    Mode::Amp | Mode::Html => {
+                        let _ = write!(w, "</article>");
+                    }
+                    Mode::Rss => {
+                        let _ = write!(w, "]]>");
+                    }
+                },
 
                 Event::Start(Element::Title(title)) => {
-                    title_n = title_n + 1;
-
-                    let id = get_id(title_n, &title.raw);
                     let level = min(title.level, 6);
 
-                    let _ = write!(
-                        w,
-                        r##"<a class="anchor" href="#{id}"></a><h{level} id="{id}">"##
-                    );
+                    match self.mode {
+                        Mode::Amp | Mode::Html => {
+                            title_n = title_n + 1;
+                            let id = get_id(title_n, &title.raw);
+
+                            let _ = write!(
+                                w,
+                                r##"<a class="anchor" href="#{id}"></a><h{level} id="{id}">"##
+                            );
+                        }
+                        Mode::Rss => {
+                            let _ = write!(w, r##"<h{level}>"##);
+                        }
+                    }
                 }
 
                 // code highlighting
