@@ -7,6 +7,8 @@ use crate::partials::{Article, Footer, Header, Heading, Mode, Schema, TableOfCon
 use super::not_found::not_found;
 
 pub async fn about(mut ctx: Context, is_amp: bool) -> Result<Context, JsValue> {
+    ctx.load_org_meta().await?;
+
     let key = "/about";
 
     if let Some(meta) = ctx.org_meta.get(key) {

@@ -112,12 +112,15 @@ impl Context {
 
     #[wasm_bindgen]
     pub fn get_version(&self) -> String {
-        format!(
-            "Solomon {} ({}): {}",
+        concat!(
+            "Solomon ",
             env!("CARGO_PKG_VERSION"),
+            " (",
             env!("CARGO_GIT_HASH"),
+            "): ",
             env!("CARGO_BUILD_TIME")
         )
+        .into()
     }
 }
 
@@ -150,8 +153,8 @@ impl Context {
 
         let text = self.load("org-meta.json").await?;
 
-        self.org_meta =
-            serde_json::from_str(&text).map_err(|err| JsValue::from_str(&format!("{}", err)))?;
+        self.org_meta = serde_json::from_str(&text)
+            .map_err(|err| JsValue::from_str(&format!("seder error: {}", err)))?;
 
         Ok(())
     }
@@ -163,8 +166,8 @@ impl Context {
 
         let text = self.load("img-meta.json").await?;
 
-        self.img_meta =
-            serde_json::from_str(&text).map_err(|err| JsValue::from_str(&format!("{}", err)))?;
+        self.img_meta = serde_json::from_str(&text)
+            .map_err(|err| JsValue::from_str(&format!("seder error: {}", err)))?;
 
         Ok(())
     }

@@ -11,24 +11,24 @@ use context::Context;
 pub async fn render(url: String, ctx: Context) -> Result<Context, JsValue> {
     std::panic::set_hook(Box::new(console_error_panic_hook::hook));
 
-    let segs: Vec<&str> = url.split('/').skip(1).take(3).collect();
+    let segs: Vec<_> = url.trim_matches('/').split('/').take(3).collect();
 
-    match segs.as_slice() {
-        [""] | ["index.html"] => pages::home(ctx).await,
+    match segs[..] {
+        [""] => pages::home(ctx).await,
 
-        ["about"] | ["about.html"] => pages::about(ctx, false).await,
+        ["about"] => pages::about(ctx, false).await,
 
-        ["amp", "about"] | ["amp", "about.html"] => pages::about(ctx, true).await,
+        ["amp", "about"] => pages::about(ctx, true).await,
 
-        ["post", slug] => pages::post(ctx, slug.trim_end_matches(".html"), false).await,
+        ["post", slug] => pages::post(ctx, slug, false).await,
 
-        ["amp", "post", slug] => pages::post(ctx, slug.trim_end_matches(".html"), true).await,
+        ["amp", "post", slug] => pages::post(ctx, slug, true).await,
 
-        ["tag", tag] => pages::tag(ctx, tag.trim_end_matches(".html")).await,
+        ["tag", tag] => pages::tag(ctx, tag).await,
 
-        ["link"] | ["link.html"] => pages::link(ctx).await,
+        ["link"] => pages::link(ctx).await,
 
-        ["rss"] | ["feed.xml"] => pages::rss(ctx).await,
+        ["rss"] | ["feed.xml"] | ["atom.xml"] => pages::rss(ctx).await,
 
         ["sitemap"] => pages::sitemap(ctx).await,
 
