@@ -9,6 +9,10 @@ pub struct Schema<'a> {
 
 impl<'a> Render for Schema<'a> {
     fn render_to(&self, buffer: &mut String) {
+        if cfg!(not(feature = "worker")) {
+            return;
+        }
+
         let value = object! {
             "@context": "http://schema.org",
             "@type": "BlogPosting",

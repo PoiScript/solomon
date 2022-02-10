@@ -30,19 +30,13 @@ web-sys = { version = "0.3.56", features = [
 ] }
 wee_alloc = "0.4.5"
 serde_json = "1.0.78"
-cfg-if = "1.0.0"
 js-sys = "0.3.56"
 futures-util = "0.3.19"
 
-[build-dependencies]
-chrono = { version = "0.4.19", default-features = false, features = [
-    "clock",
-    "serde",
-    "wasmbind",
-] }
-
 [features]
-workers = []
+default = ["worker", "web"]
+worker = []
+web = []
 
 [profile.release]
 lto = true

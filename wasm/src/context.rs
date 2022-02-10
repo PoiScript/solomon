@@ -4,7 +4,6 @@ use maud::Markup;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use wasm_bindgen::prelude::*;
-use wasm_bindgen_futures::JsFuture;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrgMeta {
@@ -158,41 +157,38 @@ impl Context {
     }
 
     async fn load(&self, path: &str) -> Result<String, JsValue> {
-        cfg_if::cfg_if! {
-            if #[cfg(feature = "workers")] {
-                use js_sys::Promise;
-
-                #[wasm_bindgen]
-                extern "C" {
-                    #[wasm_bindgen(catch, js_namespace = SOLOMON_KV, js_name = "get")]
-                    async fn kv_get(key: &str) -> Result<JsValue, JsValue>;
-                }
-
-                let text = kv_get(path).await?;
-
-                let text = text.as_string().unwrap();
-
-                Ok(text)
-            } else {
-                use wasm_bindgen::JsCast;
-                use web_sys::Response;
-
-                let window = web_sys::window().unwrap();
-
-                let url = format!("{}{}", self.base_url, path);
-
-                let response = JsFuture::from(window.fetch_with_str(&url)).await?;
-
-                assert!(response.is_instance_of::<Response>());
-
-                let response: Response = response.dyn_into().unwrap();
-
-                let text = JsFuture::from(response.text()?).await?;
-
-                let text = text.as_string().unwrap();
-
-                Ok(text)
+        if cfg!(feature = "worker") {
+            #[wasm_bindgen]
+            extern "C" {
+                #[wasm_bindgen(catch, js_namespace = SOLOMON_KV, js_name = "get")]
+                async fn kv_get(key: &str) -> Result<JsValue, JsValue>;
             }
+
+            let text = kv_get(path).await?;
+
+            let text = text.as_string().unwrap();
+
+            Ok(text)
+        } else {
+            use wasm_bindgen::JsCast;
+            use wasm_bindgen_futures::JsFuture;
+            use web_sys::Response;
+
+            let window = web_sys::window().unwrap();
+
+            let url = format!("{}{}", self.base_url, path);
+
+            let response = JsFuture::from(window.fetch_with_str(&url)).await?;
+
+            assert!(response.is_instance_of::<Response>());
+
+            let response: Response = response.dyn_into().unwrap();
+
+            let text = JsFuture::from(response.text()?).await?;
+
+            let text = text.as_string().unwrap();
+
+            Ok(text)
         }
     }
 }

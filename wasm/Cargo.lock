@@ -332,7 +332,6 @@ checksum = "9def91fd1e018fe007022791f865d0ccc9b3a0d5001e01aabb8b40e46000afb5"
 name = "solomon"
 version = "2.0.0"
 dependencies = [
- "cfg-if 1.0.0",
  "chrono",
  "console_error_panic_hook",
  "futures-util",
