@@ -2,9 +2,8 @@ use maud::html;
 use wasm_bindgen::JsValue;
 
 use crate::context::{Content, Context};
+use crate::pages::not_found::not_found;
 use crate::partials::{Article, Footer, Header, Heading, Mode, Schema, TableOfContent, UpNext};
-
-use super::not_found::not_found;
 
 pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context, JsValue> {
     ctx.load_org_meta().await?;
@@ -28,6 +27,8 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
         }
         .into_string();
 
+        let (prev, next) = ctx.find_prev_and_next(&meta.published);
+
         let body = html! {
             (Header)
             main.main {
@@ -38,7 +39,7 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
                     org: &org,
                     ctx: &ctx
                 })
-                (UpNext { next: &None, prev: &None })
+                (UpNext { prev, next })
             }
             (Footer)
         };

@@ -47,8 +47,8 @@ fn up_next_next(org: &OrgMeta) -> Markup {
 }
 
 pub struct UpNext<'a> {
-    pub prev: &'a Option<OrgMeta>,
-    pub next: &'a Option<OrgMeta>,
+    pub prev: Option<&'a OrgMeta>,
+    pub next: Option<&'a OrgMeta>,
 }
 
 impl<'a> Render for UpNext<'a> {

@@ -122,8 +122,21 @@ impl Context {
 }
 
 impl Context {
-    pub async fn load_org(&self, file: &str) -> Result<String, JsValue> {
-        let url = format!("{}.org", file.trim_start_matches('/'));
+    pub fn find_prev_and_next(&self, date: &DateTime<Utc>) -> (Option<&OrgMeta>, Option<&OrgMeta>) {
+        (
+            self.org_meta
+                .values()
+                .filter(|org| org.slug.starts_with("/post/") && org.published < *date)
+                .min_by(|a, b| b.published.cmp(&a.published)),
+            self.org_meta
+                .values()
+                .filter(|org| org.slug.starts_with("/post/") && org.published > *date)
+                .min_by(|a, b| b.published.cmp(&a.published)),
+        )
+    }
+
+    pub async fn load_org(&self, slug: &str) -> Result<String, JsValue> {
+        let url = format!("{}.org", slug.trim_start_matches('/'));
 
         let text = self.load(&url).await?;
 
