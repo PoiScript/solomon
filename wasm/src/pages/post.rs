@@ -10,7 +10,7 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
     ctx.load_org_meta().await?;
     ctx.load_img_meta().await?;
 
-    let key = format!("/post/{}", slug.trim_end_matches(".html"));
+    let key = format!("/post/{}", slug);
 
     if let Some(meta) = ctx.org_meta.get(&key) {
         let content = ctx.load_org(&key).await?;
@@ -49,7 +49,7 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
                 head: html! {
                     title { (meta.title)"☆Solomon" }
                     link rel="canonical" href=(meta.slug);
-                    script type="application/ld+json" { (Schema { meta: &meta }) }
+                    script type="application/ld+json" { (Schema { meta }) }
                 },
                 body,
             }

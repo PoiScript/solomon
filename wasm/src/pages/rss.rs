@@ -51,7 +51,7 @@ pub async fn rss(mut ctx: Context) -> Result<Context, JsValue> {
                             description {
                                 (Article {
                                     mode: Mode::Rss,
-                                    org: &orgize::Org::parse(&org),
+                                    org: &orgize::Org::parse(org),
                                     ctx: &ctx,
                                 })
                             }

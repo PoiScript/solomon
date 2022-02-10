@@ -7,8 +7,6 @@ use crate::partials::{Footer, Header, Heading, PostItem};
 pub async fn tag(mut ctx: Context, tag: &str) -> Result<Context, JsValue> {
     ctx.load_org_meta().await?;
 
-    let tag = tag.trim_end_matches(".html");
-
     let mut posts: Vec<_> = ctx
         .org_meta
         .values()

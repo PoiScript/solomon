@@ -78,8 +78,8 @@ async function handleRequest(event: FetchEvent): Promise<Response> {
 
     await wasm_bindgen(SOLOMON_WSAM);
 
-    let ctx = new wasm_bindgen.Context(url, import.meta.env.BASE_URL);
-    ctx = await wasm_bindgen.render(ctx);
+    let ctx = new wasm_bindgen.Context(import.meta.env.BASE_URL);
+    ctx = await wasm_bindgen.render(url, ctx);
 
     let response: Response = null;
 

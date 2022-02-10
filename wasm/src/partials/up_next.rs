@@ -57,12 +57,12 @@ impl<'a> Render for UpNext<'a> {
             .up-next {
                 .nav.start {
                     @if let Some(prev) = self.prev {
-                        ( up_next_prev(&prev) )
+                        ( up_next_prev(prev) )
                     }
                 }
                 .nav.end {
                     @if let Some(next) = self.next {
-                        ( up_next_next(&next) )
+                        ( up_next_next(next) )
                     }
                 }
             }

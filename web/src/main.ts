@@ -37,9 +37,9 @@ const updateHead = (head: string) => {
   });
 };
 
-const updatePage = async (ctx: Context): Promise<Context> => {
+const updatePage = async (url: string, ctx: Context): Promise<Context> => {
   showProgress();
-  ctx = await render(ctx);
+  ctx = await render(url, ctx);
   updateHead(ctx.get_head());
   hideProgress();
   document.body.innerHTML = ctx.get_body();
@@ -50,11 +50,11 @@ const updatePage = async (ctx: Context): Promise<Context> => {
 
 const main = async () => {
   await init();
-  let ctx = new Context(location.pathname, import.meta.env.BASE_URL);
+  let ctx = new Context(import.meta.env.BASE_URL);
   console.log(ctx.get_version());
 
   if (import.meta.env.DEV) {
-    ctx = await updatePage(ctx);
+    ctx = await updatePage(location.pathname, ctx);
   }
 
   let previousUrl = location.pathname;
@@ -82,8 +82,7 @@ const main = async () => {
       console.log("pushState:", newUrl.pathname);
 
       window.history.pushState(null, "", newUrl.pathname);
-      ctx.set_url(newUrl.pathname);
-      ctx = await updatePage(ctx);
+      ctx = await updatePage(newUrl.pathname, ctx);
     }
   });
 
@@ -93,8 +92,7 @@ const main = async () => {
       previousUrl = location.pathname;
       console.log("popState:", location.pathname);
 
-      ctx.set_url(location.pathname);
-      ctx = await updatePage(ctx);
+      ctx = await updatePage(location.pathname, ctx);
     }
   });
 };

@@ -34,7 +34,7 @@ pub async fn about(mut ctx: Context, is_amp: bool) -> Result<Context, JsValue> {
                 head: html! {
                     title { "About☆Solomon" }
                     link rel="canonical" href="/about";
-                    script type="application/ld+json" { (Schema { meta: &meta }) }
+                    script type="application/ld+json" { (Schema { meta }) }
                 },
             }
         } else {

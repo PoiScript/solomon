@@ -30,7 +30,7 @@ impl<'a> Render for TableOfContent<'a> {
                         );
                     }
 
-                    title_n = title_n + 1;
+                    title_n += 1;
                     in_title = true;
 
                     let id = get_id(title_n, &title.raw);

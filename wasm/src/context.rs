@@ -27,8 +27,6 @@ pub struct ImgMeta {
 
 #[wasm_bindgen]
 pub struct Context {
-    pub(crate) url: String,
-
     pub(crate) base_url: String,
 
     pub(crate) content: Content,
@@ -61,9 +59,8 @@ pub enum Content {
 #[wasm_bindgen]
 impl Context {
     #[wasm_bindgen(constructor)]
-    pub fn new(url: String, base_url: String) -> Context {
+    pub fn new(base_url: String) -> Context {
         Context {
-            url,
             base_url,
             content: Content::Txt {
                 status: 404,
@@ -72,11 +69,6 @@ impl Context {
             org_meta: HashMap::new(),
             img_meta: HashMap::new(),
         }
-    }
-
-    #[wasm_bindgen]
-    pub fn set_url(&mut self, url: String) {
-        self.url = url;
     }
 
     #[wasm_bindgen]
@@ -136,7 +128,7 @@ impl Context {
 
         let text = self.load(&url).await?;
 
-        return Ok(text);
+        Ok(text)
     }
 
     pub async fn load_org_meta(&mut self) -> Result<(), JsValue> {

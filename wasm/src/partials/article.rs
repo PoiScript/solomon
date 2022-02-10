@@ -38,7 +38,7 @@ impl<'a> Render for Article<'a> {
                 Event::Start(Element::Link(link)) if link.path.starts_with("file:") => {
                     let key = &link.path[5..];
                     let path = key.trim_start_matches('/');
-                    let alt = link.desc.as_ref().unwrap_or_else(|| &Cow::Borrowed(""));
+                    let alt = link.desc.as_ref().unwrap_or(&Cow::Borrowed(""));
                     let base = &self.ctx.base_url;
 
                     if let Some(&ImgMeta { height, width, .. }) = self.ctx.img_meta.get(key) {
@@ -142,7 +142,7 @@ impl<'a> Render for Article<'a> {
 
                     match self.mode {
                         Mode::Amp | Mode::Html => {
-                            title_n = title_n + 1;
+                            title_n += 1;
                             let id = get_id(title_n, &title.raw);
 
                             let _ = write!(
