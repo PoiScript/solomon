@@ -2,8 +2,6 @@ import { defineConfig } from "vite";
 import { readFileSync } from "fs";
 
 export default defineConfig({
-  base: "/assets/",
-
   publicDir: false,
 
   build: {

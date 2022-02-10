@@ -26,49 +26,45 @@ async function handleRequest(event: FetchEvent): Promise<Response> {
 
   // assets
   {
-    if (url.startsWith("/assets/")) {
+    // kv key cannot be empty
+    if (url.length > 1) {
       const { value: buffer, metadata = {} } =
-        await SOLOMON_KV.getWithMetadata<any>(
-          url.substring("/assets/".length),
-          "arrayBuffer"
-        );
+        await SOLOMON_KV.getWithMetadata<any>(url.substring(1), "arrayBuffer");
 
-      if (!buffer) {
-        return new Response(null, { status: 404 });
-      }
+      if (buffer) {
+        if (
+          event.request.headers.has("if-none-match") &&
+          event.request.headers.get("if-none-match") === metadata?.etag
+        ) {
+          return new Response(null, {
+            status: 304,
+            headers: {
+              "content-type": mime(url),
+              etag: metadata?.etag,
+              "cf-cache-status": "MISS",
+            },
+          });
+        }
 
-      if (
-        event.request.headers.has("if-none-match") &&
-        event.request.headers.get("if-none-match") === metadata?.etag
-      ) {
-        return new Response(null, {
-          status: 304,
+        const cache_control =
+          url.endsWith(".js") || url.endsWith(".css") || url.endsWith(".wasm")
+            ? "public, max-age=31536000, immutable"
+            : "public, no-cache";
+
+        const response = new Response(buffer, {
+          status: 200,
           headers: {
             "content-type": mime(url),
             etag: metadata?.etag,
             "cf-cache-status": "MISS",
+            "cache-control": cache_control,
           },
         });
+
+        event.waitUntil(cache.put(event.request, response.clone()));
+
+        return response;
       }
-
-      const cache_control =
-        url.endsWith(".js") || url.endsWith(".css") || url.endsWith(".wasm")
-          ? "public, max-age=31536000, immutable"
-          : "public, no-cache";
-
-      const response = new Response(buffer, {
-        status: 200,
-        headers: {
-          "content-type": mime(url),
-          etag: metadata?.etag,
-          "cf-cache-status": "MISS",
-          "cache-control": cache_control,
-        },
-      });
-
-      event.waitUntil(cache.put(event.request, response.clone()));
-
-      return response;
     }
   }
 

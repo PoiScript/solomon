@@ -1,8 +1,6 @@
 import { defineConfig } from "vite";
 
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/assets/" : "/",
-
   publicDir: "../public",
 
   build: {
