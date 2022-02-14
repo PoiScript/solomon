@@ -44,8 +44,8 @@ impl<'a> Render for Article<'a> {
                         .map(|meta| {
                             (
                                 Some(meta.height),
-                                Some(meta.height),
-                                Some(html! { "max-width:"(meta.width)"px;max-height:"(meta.height)"px;" }),
+                                Some(meta.width),
+                                Some(html! { "max-height:"(meta.height)"px;max-width:"(meta.width)"px;" }),
                             )
                         })
                         .unwrap_or_default();
