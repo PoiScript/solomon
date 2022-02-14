@@ -15,10 +15,17 @@ pub async fn about(mut ctx: Context, is_amp: bool) -> Result<Context, JsValue> {
         let content = ctx.load_org(key).await?;
         let org = orgize::Org::parse(&content);
 
+        let subtitle = html! {
+            (meta.published.format("%F"))
+            " · "
+            a.source target="_blank" href={ (key)".org" } { "source" }
+        }
+        .into_string();
+
         let body = html! {
             (Header)
             main.main {
-                (Heading { title: &meta.title, subtitle: None })
+                (Heading { title: &meta.title, subtitle: Some(&subtitle) })
                 (TableOfContent { org: &org })
                 (Article {
                     mode: if is_amp { Mode::Amp } else { Mode::Html },

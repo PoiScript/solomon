@@ -37,6 +37,13 @@ const updateHead = (head: string) => {
   });
 };
 
+const highlightCode = () => {
+  const article = document.querySelector("article");
+  if (article) {
+    Prism.highlightAllUnder(article);
+  }
+};
+
 const updatePage = async (url: string, ctx: Context): Promise<Context> => {
   showProgress();
   ctx = await render(url, ctx);
@@ -44,7 +51,7 @@ const updatePage = async (url: string, ctx: Context): Promise<Context> => {
   hideProgress();
   document.body.innerHTML = ctx.get_body();
   window.scrollTo({ top: 0, behavior: "smooth" });
-  Prism.highlightAll();
+  highlightCode();
   return ctx;
 };
 

@@ -2,6 +2,7 @@ use maud::html;
 use wasm_bindgen::JsValue;
 
 use crate::context::{Content, Context};
+use crate::pages::not_found;
 use crate::partials::{Footer, Header, Heading, PostItem};
 
 pub async fn tag(mut ctx: Context, tag: &str) -> Result<Context, JsValue> {
@@ -12,6 +13,10 @@ pub async fn tag(mut ctx: Context, tag: &str) -> Result<Context, JsValue> {
         .values()
         .filter(|org| org.tags.iter().any(|t| t == tag))
         .collect();
+
+    if posts.is_empty() {
+        return not_found(ctx).await;
+    }
 
     posts.sort_by(|a, b| b.published.cmp(&a.published));
 

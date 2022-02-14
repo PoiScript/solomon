@@ -6,9 +6,9 @@ impl Render for Header {
     fn render(&self) -> Markup {
         html! {
             header.header.toolbar {
-                div.container {
+                .wrapper {
                     a.homepage.link data-router href="/" {
-                        span.logo {
+                        span.logo aria-hidden="true" {
                             svg xmlns="http://www.w3.org/2000/svg"
                                 width="100%" height="100%"
                             {

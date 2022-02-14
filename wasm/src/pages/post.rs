@@ -24,6 +24,8 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
                     "#" (tag)
                 }
             }
+            " · "
+            a.source target="_blank" href={ (key)".org" } { "source" }
         }
         .into_string();
 

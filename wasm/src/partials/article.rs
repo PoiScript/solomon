@@ -1,3 +1,4 @@
+use maud::html;
 use maud::Render;
 use orgize::Org;
 use orgize::{
@@ -6,11 +7,11 @@ use orgize::{
 };
 use std::borrow::Cow;
 use std::cmp::min;
-use std::io::Write;
+use std::fmt::Write;
 use std::ops::Range;
 
 use crate::utils::get_id;
-use crate::{context::ImgMeta, Context};
+use crate::Context;
 
 pub enum Mode {
     Html,
@@ -32,68 +33,85 @@ impl<'a> Render for Article<'a> {
         let mut last_char = None;
 
         for event in self.org.iter() {
-            let w = unsafe { buffer.as_mut_vec() };
-
             match event {
                 Event::Start(Element::Link(link)) if link.path.starts_with("file:") => {
                     let key = &link.path[5..];
+
+                    let (height, width, style) = self
+                        .ctx
+                        .img_meta
+                        .get(key)
+                        .map(|meta| {
+                            (
+                                Some(meta.height),
+                                Some(meta.height),
+                                Some(html! { "max-width:"(meta.width)"px;max-height:"(meta.height)"px;" }),
+                            )
+                        })
+                        .unwrap_or_default();
+
                     let path = key.trim_start_matches('/');
                     let alt = link.desc.as_ref().unwrap_or(&Cow::Borrowed(""));
-                    let base = &self.ctx.base_url;
 
-                    if let Some(&ImgMeta { height, width, .. }) = self.ctx.img_meta.get(key) {
-                        match self.mode {
-                            Mode::Html => {
-                                let _ = write!(
-                                    w,
-                                    r#"<div class="img-container"><img loading="lazy" alt="{alt}" width="{width}" height="{height}" src="{base}{path}"/></div>"#,
-                                );
+                    html! {
+                        figure {
+                            @match self.mode {
+                                Mode::Html => {
+                                    img style=[style]
+                                        loading="lazy"
+                                        src={ (self.ctx.base_url)(path) }
+                                        width=[width]
+                                        height=[height]
+                                        alt=(alt);
+                                },
+                                Mode::Rss => {
+                                    img loading="lazy"
+                                        src={ (self.ctx.base_url)(path) }
+                                        width=[width]
+                                        height=[height]
+                                        alt=(alt);
+                                },
+                                Mode::Amp => {
+                                    amp-img style=[style]
+                                        loading="lazy"
+                                        src={ (self.ctx.base_url)(path) }
+                                        width=[width]
+                                        height=[height]
+                                        alt=(alt);
+                                }
                             }
-                            Mode::Rss => {
-                                let _ = write!(
-                                    w,
-                                    r#"<img alt="{alt}" width="{width}" height="{height}" src="{base}{path}"/>"#,
-                                );
-                            }
-                            Mode::Amp => {
-                                let _ = write!(
-                                    w,
-                                    r#"<amp-img alt="{alt}" width="{width}" height="{height}" src="{base}{path}" layout="responsive"></amp-img>"#,
-                                );
-                            }
+                            figcaption {(alt)}
                         }
-                    } else {
-                        let _ =
-                            write!(w, r#"<img loading="lazy" alt="{alt}" src="{base}{path}"/>"#);
                     }
+                    .render_to(buffer)
                 }
 
                 Event::Start(Element::Paragraph { .. }) => {
                     last_char = None;
-                    let _ = write!(w, "<p>");
+                    let _ = write!(buffer, "<p>");
                 }
 
                 Event::Start(Element::Link(link)) => {
                     let text = link.desc.as_ref().unwrap_or(&link.path);
                     if should_insert_space(last_char, text.chars().next()) {
-                        let _ = write!(w, " ");
+                        let _ = write!(buffer, " ");
                     }
                     last_char = None;
 
-                    let _ = write!(w, "<a href=\"{}\">", HtmlEscape(&link.path));
+                    let _ = write!(buffer, "<a href=\"{}\">", HtmlEscape(&link.path));
 
                     for line in text.lines() {
                         let text = line.trim();
                         let first_char = text.chars().next();
                         if should_insert_space(last_char, first_char) {
-                            let _ = write!(w, " ");
+                            let _ = write!(buffer, " ");
                         }
                         last_char = text.chars().last();
 
-                        let _ = write!(w, "{}", HtmlEscape(text));
+                        let _ = write!(buffer, "{}", HtmlEscape(text));
                     }
 
-                    let _ = write!(w, "</a>");
+                    let _ = write!(buffer, "</a>");
                 }
 
                 Event::Start(Element::Text { value }) => {
@@ -101,11 +119,11 @@ impl<'a> Render for Article<'a> {
                         let text = line.trim();
                         let first_char = text.chars().next();
                         if should_insert_space(last_char, first_char) {
-                            let _ = write!(w, " ");
+                            let _ = write!(buffer, " ");
                         }
                         last_char = text.chars().last();
 
-                        let _ = write!(w, "{}", HtmlEscape(text));
+                        let _ = write!(buffer, "{}", HtmlEscape(text));
                     }
                 }
 
@@ -113,27 +131,27 @@ impl<'a> Render for Article<'a> {
                 | Event::Start(Element::Code { value }) => {
                     let text = value.trim();
                     if should_insert_space(last_char, text.chars().next()) {
-                        let _ = write!(w, " ");
+                        let _ = write!(buffer, " ");
                     }
                     last_char = text.chars().last();
-                    let _ = write!(w, "<code>{}</code>", HtmlEscape(text));
+                    let _ = write!(buffer, "<code>{}</code>", HtmlEscape(text));
                 }
 
                 Event::Start(Element::Document { .. }) => match self.mode {
                     Mode::Amp | Mode::Html => {
-                        let _ = write!(w, "<article>");
+                        let _ = write!(buffer, "<article>");
                     }
                     Mode::Rss => {
-                        let _ = write!(w, "<![CDATA[");
+                        let _ = write!(buffer, "<![CDATA[");
                     }
                 },
 
                 Event::End(Element::Document { .. }) => match self.mode {
                     Mode::Amp | Mode::Html => {
-                        let _ = write!(w, "</article>");
+                        let _ = write!(buffer, "</article>");
                     }
                     Mode::Rss => {
-                        let _ = write!(w, "]]>");
+                        let _ = write!(buffer, "]]>");
                     }
                 },
 
@@ -146,37 +164,34 @@ impl<'a> Render for Article<'a> {
                             let id = get_id(title_n, &title.raw);
 
                             let _ = write!(
-                                w,
+                                buffer,
                                 r##"<a class="anchor" href="#{id}"></a><h{level} id="{id}">"##
                             );
                         }
                         Mode::Rss => {
-                            let _ = write!(w, r##"<h{level}>"##);
+                            let _ = write!(buffer, r##"<h{level}>"##);
                         }
                     }
                 }
 
                 // code highlighting
-                Event::Start(Element::InlineSrc(inline_src)) => {
-                    let _ = write!(
-                        w,
-                        r#"<code class="lang-{}">{}</code>"#,
-                        &inline_src.lang, &inline_src.body,
-                    );
+                Event::Start(Element::InlineSrc(inline_src)) => html! {
+                    code class={ "lang-"(inline_src.lang) } { (inline_src.body) }
                 }
-                Event::Start(Element::SourceBlock(block)) => {
-                    let _ = write!(
-                        w,
-                        r#"<pre><code class="lang-{}">{}</code></pre>"#,
-                        &block.language, &block.contents
-                    );
+                .render_to(buffer),
+
+                Event::Start(Element::SourceBlock(block)) => html! {
+                    pre {
+                        code class={ "lang-"(block.language) } { (block.contents) }
+                    }
                 }
+                .render_to(buffer),
 
                 Event::Start(element) => {
-                    let _ = handler.start(w, element);
+                    let _ = handler.start(unsafe { buffer.as_mut_vec() }, element);
                 }
                 Event::End(element) => {
-                    let _ = handler.end(w, element);
+                    let _ = handler.end(unsafe { buffer.as_mut_vec() }, element);
                 }
             }
         }

@@ -5,7 +5,7 @@ use crate::context::OrgMeta;
 fn up_next_prev(org: &OrgMeta) -> Markup {
     html! {
         a.link.start data-router href=(org.slug) {
-            .icon.left {
+            .icon.left aria-hidden="true" {
                 svg fill="currentColor"
                     focusable="false"
                     height="100%"
@@ -31,7 +31,7 @@ fn up_next_next(org: &OrgMeta) -> Markup {
                 .label { "Next" }
                 .title { (org.title) }
             }
-            .icon.right {
+            .icon.right aria-hidden="true" {
                 svg fill="currentColor"
                     focusable="false"
                     height="100%"

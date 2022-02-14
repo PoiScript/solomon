@@ -5,6 +5,9 @@ mod pages;
 mod partials;
 mod utils;
 
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 use context::Context;
 
 #[wasm_bindgen]

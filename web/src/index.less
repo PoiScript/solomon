@@ -142,7 +142,8 @@ article {
     flex: 1 1 auto;
   }
 
-  .container {
+  .wrapper {
+    padding: 0 16px;
     height: 64px;
     display: flex;
     flex-direction: row;
@@ -154,7 +155,6 @@ article {
 
   .link {
     text-decoration: none;
-    outline: 0;
     padding: 12px;
     font-size: 14px;
     font-weight: 500;
@@ -325,7 +325,6 @@ article {
     display: flex;
     flex-direction: row;
     align-items: center;
-    outline: 0;
     user-select: none;
     padding: 8px;
     text-decoration: none;
@@ -367,17 +366,25 @@ article {
   }
 }
 
-.img-container {
-  margin: 0 auto;
+figure {
+  text-align: center;
 
   > img {
     height: auto;
     width: 100%;
     max-width: 100%;
   }
+
+  > figcaption {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
 }
 
-a.tag {
+a.tag,
+a.source {
   color: inherit;
   text-decoration: none;
 
