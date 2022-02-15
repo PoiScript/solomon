@@ -42,6 +42,7 @@ export const html = (ctx: wasm_bindgen.Context): Response => {
       headers: {
         "content-type": "text/html; charset=utf-8",
         "cache-control": "public, max-age=600", // 10 minutes
+        "cf-cache-status": "MISS",
       },
     }
   );
@@ -80,6 +81,7 @@ export const amp = async (ctx: wasm_bindgen.Context): Promise<Response> => {
       headers: {
         "content-type": "text/html; charset=utf-8",
         "cache-control": "public, max-age=600", // 10 minutes
+        "cf-cache-status": "MISS",
       },
     }
   );
@@ -91,6 +93,7 @@ export const rss = (ctx: wasm_bindgen.Context): Response => {
     headers: {
       "content-type": "text/xml; charset=utf-8",
       "cache-control": "public, max-age=86400", // 1 day
+      "cf-cache-status": "MISS",
     },
   });
 };

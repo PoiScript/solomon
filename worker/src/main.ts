@@ -19,8 +19,14 @@ async function handleRequest(event: FetchEvent): Promise<Response> {
     const response = await cache.match(event.request);
 
     if (response) {
-      response.headers.set("cf-cache-status", "HIT");
-      return response;
+      const headers = new Headers(response.headers);
+      headers.set("cf-cache-status", "HIT");
+
+      return new Response(response.body, {
+        headers,
+        status: response.status || 200,
+        statusText: response.statusText || "OK",
+      });
     }
   }
 
@@ -97,8 +103,6 @@ async function handleRequest(event: FetchEvent): Promise<Response> {
         break;
       }
     }
-
-    response.headers.set("cf-cache-status", "MISS");
 
     event.waitUntil(cache.put(event.request, response.clone()));
 
