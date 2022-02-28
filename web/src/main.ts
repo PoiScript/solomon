@@ -37,13 +37,6 @@ const updateHead = (head: string) => {
   });
 };
 
-const highlightCode = () => {
-  const article = document.querySelector("article");
-  if (article) {
-    Prism.highlightAllUnder(article);
-  }
-};
-
 const updatePage = async (url: string, ctx: Context): Promise<Context> => {
   showProgress();
   ctx = await render(url, ctx);
@@ -51,13 +44,21 @@ const updatePage = async (url: string, ctx: Context): Promise<Context> => {
   hideProgress();
   document.body.innerHTML = ctx.get_body();
   window.scrollTo({ top: 0, behavior: "smooth" });
-  highlightCode();
   return ctx;
 };
 
 const main = async () => {
   await init();
-  let ctx = new Context(import.meta.env.BASE_URL);
+  let ctx = new Context(import.meta.env.BASE_URL, {
+    highlight: (code, lang) => {
+      if (lang in Prism.languages) {
+        return Prism.highlight(code, Prism.languages[lang], lang);
+      }
+
+      return code;
+    },
+  });
+
   console.log(ctx.get_version());
 
   if (import.meta.env.DEV) {

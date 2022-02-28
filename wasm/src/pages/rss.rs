@@ -32,8 +32,8 @@ pub async fn rss(mut ctx: Context) -> Result<Context, JsValue> {
                 channel {
                     title { "solomon" }
                     description { "PoiScript's Blog" }
-                    link rel="self" href="https://blog.poi.cat/rss" {}
-                    link rel="alternate" href="https://blog.poi.cat" {}
+                    link rel="self" href={ (ctx.base_url)("/rss")} {}
+                    link rel="alternate" href={ (ctx.base_url) } {}
                     generator { "solomon "(env!("CARGO_PKG_VERSION")) }
                     lastBuildDate { (Utc::now().to_rfc2822()) }
                     language { "zh-Hans" }
@@ -42,7 +42,7 @@ pub async fn rss(mut ctx: Context) -> Result<Context, JsValue> {
                         item {
                             title { (&post.title) }
                             author { "PoiScript" }
-                            link { "https://blog.poi.cat"(post.slug) }
+                            link { (ctx.base_url)(post.slug) }
                             guid isPermaLink="false" { (post.slug) }
                             @for tag in &post.tags {
                                 category { (tag) }

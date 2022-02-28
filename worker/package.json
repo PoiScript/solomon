@@ -6,7 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@solomon/wasm": "*"
+    "prismjs": "^1.27.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.2.1",

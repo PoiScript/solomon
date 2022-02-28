@@ -21,20 +21,25 @@ pub async fn render(url: String, ctx: Context) -> Result<Context, JsValue> {
 
         ["about"] => pages::about(ctx, false).await,
 
+        #[cfg(feature = "worker")]
         ["amp", "about"] => pages::about(ctx, true).await,
 
         ["post", slug] => pages::post(ctx, slug, false).await,
 
+        #[cfg(feature = "worker")]
         ["amp", "post", slug] => pages::post(ctx, slug, true).await,
 
         ["tag", tag] => pages::tag(ctx, tag).await,
 
         ["link"] => pages::link(ctx).await,
 
+        #[cfg(feature = "worker")]
         ["rss"] | ["feed.xml"] | ["atom.xml"] => pages::rss(ctx).await,
 
+        #[cfg(feature = "worker")]
         ["sitemap"] => pages::sitemap(ctx).await,
 
+        #[cfg(feature = "worker")]
         ["version"] => pages::version(ctx).await,
 
         _ => pages::not_found(ctx).await,

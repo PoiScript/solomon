@@ -2,7 +2,9 @@ use maud::html;
 use wasm_bindgen::JsValue;
 
 use crate::context::{Content, Context};
-use crate::partials::{Article, Footer, Header, Heading, Mode, Schema, TableOfContent};
+use crate::partials::{
+    Article, Footer, Header, Heading, Mode, OgDescription, Schema, TableOfContent,
+};
 
 use super::not_found::not_found;
 
@@ -28,7 +30,7 @@ pub async fn about(mut ctx: Context, is_amp: bool) -> Result<Context, JsValue> {
                 (Heading { title: &meta.title, subtitle: Some(&subtitle) })
                 (TableOfContent { org: &org })
                 (Article {
-                    mode: if is_amp { Mode::Amp } else { Mode::Html },
+                    mode: if cfg!(feature = "worker") && is_amp { Mode::Amp } else { Mode::Html },
                     org: &org,
                     ctx: &ctx
                 })
@@ -36,25 +38,27 @@ pub async fn about(mut ctx: Context, is_amp: bool) -> Result<Context, JsValue> {
             (Footer)
         };
 
-        ctx.content = if is_amp {
-            Content::Amp {
-                status: 200,
-                body,
-                head: html! {
-                    title { "About☆Solomon" }
-                    link rel="canonical" href="/about";
-                    script type="application/ld+json" { (Schema { meta }) }
-                },
+        let head = html! {
+            title { "About☆Solomon" }
+            meta property="og:title" content="About☆Solomon";
+            meta property="og:type" content="article";
+            meta property="og:image" content={ (ctx.base_url)"/amp-image.jpg"};
+            meta property="og:url" content={ (ctx.base_url)"/about" };
+            (OgDescription { org: &org })
+            @if cfg!(feature = "worker") && is_amp {
+                link rel="canonical" href={ (ctx.base_url)"/about" };
+                script type="application/ld+json" { (Schema { ctx: &ctx, meta }) }
+            } @else {
+                link rel="amphtml" href={ (ctx.base_url)"/amp/about" };
             }
+        };
+
+        let status = 200;
+
+        ctx.content = if cfg!(feature = "worker") && is_amp {
+            Content::Amp { status, body, head }
         } else {
-            Content::Html {
-                status: 200,
-                body,
-                head: html! {
-                    title { "About☆Solomon" }
-                    link rel="amphtml" href="/amp/about";
-                },
-            }
+            Content::Html { status, body, head }
         };
 
         Ok(ctx)

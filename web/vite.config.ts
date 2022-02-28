@@ -1,6 +1,10 @@
 import { defineConfig } from "vite";
 
+const { WORKER_NAME = "blogdev" } = process.env;
+
 export default defineConfig(({ command }) => ({
+  base: command === "serve" ? "/" : `https://${WORKER_NAME}.poi.cat/`,
+
   publicDir: "../public",
 
   build: {

@@ -9,7 +9,7 @@ impl Render for Footer {
                 .wrapper {
                     div.links {
                         a.link href="/rss" { "RSS" }
-                        span.separator { "/" }
+                        span.separator aria-hidden="true" { "/" }
                         a.link href="https://github.com/PoiScript/solomon" { "GitHub" }
                     }
                     span.spacer { }

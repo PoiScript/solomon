@@ -1,7 +1,11 @@
 import { defineConfig } from "vite";
 import { readFileSync } from "fs";
 
-export default defineConfig({
+const { WORKER_NAME = "blogdev" } = process.env;
+
+export default defineConfig(({ command }) => ({
+  base: command === "serve" ? "/" : `https://${WORKER_NAME}.poi.cat/`,
+
   publicDir: false,
 
   build: {
@@ -26,4 +30,4 @@ export default defineConfig({
   define: {
     WASM_BINDGEN_SCRIPT: readFileSync("./pkg/solomon.js", "utf-8"),
   },
-});
+}));

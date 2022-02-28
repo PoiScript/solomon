@@ -39,6 +39,10 @@ pub async fn link(mut ctx: Context) -> Result<Context, JsValue> {
         status: 200,
         head: html! {
             title { "Link☆Solomon" }
+            meta property="og:title" content="Link☆Solomon";
+            meta property="og:type" content="website";
+            meta property="og:image" content={ (ctx.base_url)"/amp-image.jpg"};
+            meta property="og:url" content={ (ctx.base_url)"/link" };
         },
         body: html! {
             (Header)
@@ -48,7 +52,7 @@ pub async fn link(mut ctx: Context) -> Result<Context, JsValue> {
                     @for link in LINKS.iter() {
                         a.item target="_blank" href=(link.0) {
                             img.profile
-                                src={ (ctx.base_url)"avatars/"(link.1)".jpg"}
+                                src={ (ctx.base_url)"/avatars/"(link.1)".jpg"}
                                 alt={ "avatar for "(link.2) };
                             .text {
                                 .title { (link.2) }

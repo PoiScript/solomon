@@ -1,3 +1,11 @@
+import Prism from "prismjs";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-lisp";
+import "prismjs/components/prism-rust";
+import "prismjs/components/prism-http";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-yaml";
+
 import mime from "./mime";
 import { html, rss, amp, txt } from "./response";
 
@@ -80,7 +88,15 @@ async function handleRequest(event: FetchEvent): Promise<Response> {
 
     await wasm_bindgen(SOLOMON_WSAM);
 
-    let ctx = new wasm_bindgen.Context(import.meta.env.BASE_URL);
+    let ctx = new wasm_bindgen.Context(import.meta.env.BASE_URL, {
+      highlight: (code, lang) => {
+        if (lang in Prism.languages) {
+          return Prism.highlight(code, Prism.languages[lang], lang);
+        }
+
+        return code;
+      },
+    });
     ctx = await wasm_bindgen.render(url, ctx);
 
     let response: Response = null;

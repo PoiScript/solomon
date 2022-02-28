@@ -8,14 +8,17 @@ pub async fn sitemap(mut ctx: Context) -> Result<Context, JsValue> {
 
     let mut body = String::new();
 
-    let _ = writeln!(&mut body, "https://blog.poi.cat/");
-    let _ = writeln!(&mut body, "https://blog.poi.cat/link");
+    let base_url = ctx.base_url.as_str();
+
+    let _ = writeln!(&mut body, "{base_url}");
+    let _ = writeln!(&mut body, "{base_url}/link");
 
     // posts
     {
         for post in ctx.org_meta.values() {
-            let _ = writeln!(&mut body, "https://blog.poi.cat{}", post.slug);
-            let _ = writeln!(&mut body, "https://blog.poi.cat/amp{}", post.slug);
+            let slug = post.slug.as_str();
+            let _ = writeln!(&mut body, "{base_url}{slug}");
+            let _ = writeln!(&mut body, "{base_url}/amp{slug}");
         }
     }
 
@@ -32,7 +35,7 @@ pub async fn sitemap(mut ctx: Context) -> Result<Context, JsValue> {
         tags.dedup();
 
         for tag in tags {
-            let _ = writeln!(&mut body, "https://blog.poi.cat/tag/{} ", tag);
+            let _ = writeln!(&mut body, "{base_url}/tag/{tag}");
         }
     }
 

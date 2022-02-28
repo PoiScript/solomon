@@ -22,7 +22,7 @@ impl Render for Header {
                     }
                     span.spacer { }
                     a.link data-router href="/about" { "About" }
-                    span.separator { "/" }
+                    span.separator aria-hidden="true" { "/" }
                     a.link data-router href="/link" { "Link" }
                 }
             }

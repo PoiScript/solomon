@@ -24,11 +24,30 @@ pub struct ImgMeta {
     pub height: u32,
 }
 
+#[wasm_bindgen(typescript_custom_section)]
+const HIGHLIGHTER_STYLE: &'static str = r#"
+interface Highlighter {
+    highlight(code: string, lang: string): string;
+}
+"#;
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(typescript_type = "Highlighter")]
+    pub type Highlighter;
+
+    #[wasm_bindgen(method)]
+    pub fn highlight(this: &Highlighter, code: &str, lang: &str) -> String;
+}
+
 #[wasm_bindgen]
 pub struct Context {
+    /// base url, not including trailing slash ('/')
     pub(crate) base_url: String,
 
     pub(crate) content: Content,
+
+    pub(crate) highlighter: Highlighter,
 
     pub(crate) org_meta: HashMap<String, OrgMeta>,
     pub(crate) img_meta: HashMap<String, ImgMeta>,
@@ -58,9 +77,14 @@ pub enum Content {
 #[wasm_bindgen]
 impl Context {
     #[wasm_bindgen(constructor)]
-    pub fn new(base_url: String) -> Context {
+    pub fn new(mut base_url: String, highlighter: Highlighter) -> Context {
+        // trim String in place
+        let len = base_url.trim_end_matches('/').len();
+        base_url.truncate(len);
+
         Context {
             base_url,
+            highlighter,
             content: Content::Txt {
                 status: 404,
                 body: String::new(),
@@ -192,7 +216,7 @@ impl Context {
 
             let window = web_sys::window().unwrap();
 
-            let url = format!("{}{}", self.base_url, path);
+            let url = format!("{}/{}", self.base_url, path);
 
             let response = JsFuture::from(window.fetch_with_str(&url)).await?;
 

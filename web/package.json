@@ -7,7 +7,6 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@solomon/wasm": "*",
     "prismjs": "^1.23.0"
   },
   "devDependencies": {

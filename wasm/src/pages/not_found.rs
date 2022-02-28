@@ -9,6 +9,9 @@ pub async fn not_found(mut ctx: Context) -> Result<Context, JsValue> {
         status: 404,
         head: html! {
             title { "Not Found☆Solomon" }
+            meta property="og:title" content="Not Found☆Solomon";
+            meta property="og:type" content="website";
+            meta property="og:image" content={ (ctx.base_url)"/amp-image.jpg"};
         },
         body: html! {
             (Header)

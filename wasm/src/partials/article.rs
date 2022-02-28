@@ -1,11 +1,8 @@
-use maud::html;
-use maud::Render;
-use orgize::Org;
+use maud::{html, PreEscaped, Render};
 use orgize::{
     export::{DefaultHtmlHandler, HtmlEscape, HtmlHandler},
-    Element, Event,
+    Element, Event, Org,
 };
-use std::borrow::Cow;
 use std::cmp::min;
 use std::fmt::Write;
 use std::ops::Range;
@@ -50,8 +47,8 @@ impl<'a> Render for Article<'a> {
                         })
                         .unwrap_or_default();
 
-                    let path = key.trim_start_matches('/');
-                    let alt = link.desc.as_ref().unwrap_or(&Cow::Borrowed(""));
+                    let path = key;
+                    let alt = link.desc.as_ref();
 
                     html! {
                         figure {
@@ -62,14 +59,14 @@ impl<'a> Render for Article<'a> {
                                         src={ (self.ctx.base_url)(path) }
                                         width=[width]
                                         height=[height]
-                                        alt=(alt);
+                                        alt=[alt];
                                 },
                                 Mode::Rss => {
                                     img loading="lazy"
                                         src={ (self.ctx.base_url)(path) }
                                         width=[width]
                                         height=[height]
-                                        alt=(alt);
+                                        alt=[alt];
                                 },
                                 Mode::Amp => {
                                     amp-img style=[style]
@@ -77,10 +74,12 @@ impl<'a> Render for Article<'a> {
                                         src={ (self.ctx.base_url)(path) }
                                         width=[width]
                                         height=[height]
-                                        alt=(alt);
+                                        alt=[alt] {}
                                 }
                             }
-                            figcaption {(alt)}
+                            @if let Some(alt) = alt {
+                                figcaption {(alt)}
+                            }
                         }
                     }
                     .render_to(buffer)
@@ -98,7 +97,11 @@ impl<'a> Render for Article<'a> {
                     }
                     last_char = None;
 
-                    let _ = write!(buffer, "<a href=\"{}\">", HtmlEscape(&link.path));
+                    let _ = write!(
+                        buffer,
+                        r#"<a target="_blank" rel="noreferrer noopener" href="{}">"#,
+                        HtmlEscape(&link.path)
+                    );
 
                     for line in text.lines() {
                         let text = line.trim();
@@ -176,13 +179,17 @@ impl<'a> Render for Article<'a> {
 
                 // code highlighting
                 Event::Start(Element::InlineSrc(inline_src)) => html! {
-                    code class={ "lang-"(inline_src.lang) } { (inline_src.body) }
+                    code class={ "lang-"(inline_src.lang) } {(PreEscaped(
+                        self.ctx.highlighter.highlight(&inline_src.body, &inline_src.lang)
+                    ))}
                 }
                 .render_to(buffer),
 
                 Event::Start(Element::SourceBlock(block)) => html! {
                     pre {
-                        code class={ "lang-"(block.language) } { (block.contents) }
+                        code class={ "lang-"(block.language) } {(PreEscaped(
+                            self.ctx.highlighter.highlight(&block.contents, &block.language)
+                        ))}
                     }
                 }
                 .render_to(buffer),

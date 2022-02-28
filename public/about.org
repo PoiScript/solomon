@@ -22,7 +22,7 @@
 
 #+BEGIN_SRC bash
 $ curl https://blog.poi.cat/poi.gpg | gpg --import
-$ curl https://keybase.io/poiscript/pgp_keys.asc | gpg --import
+$ curl https://github.com/poiscript.gpg | gpg --import
 #+END_SRC
 
 如无异样，gpg 应该会显示无变换（ *not changed* ）；

@@ -19,6 +19,10 @@ pub async fn home(mut ctx: Context) -> Result<Context, JsValue> {
         status: 200,
         head: html! {
             title { "Home☆Solomon" }
+            meta property="og:title" content="Home☆Solomon";
+            meta property="og:type" content="website";
+            meta property="og:image" content={ (ctx.base_url)"/amp-image.jpg"};
+            meta property="og:url" content={ (ctx.base_url) };
         },
         body: html! {
             (Header)

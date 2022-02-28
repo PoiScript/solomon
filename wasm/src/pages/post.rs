@@ -3,7 +3,9 @@ use wasm_bindgen::JsValue;
 
 use crate::context::{Content, Context};
 use crate::pages::not_found::not_found;
-use crate::partials::{Article, Footer, Header, Heading, Mode, Schema, TableOfContent, UpNext};
+use crate::partials::{
+    Article, Footer, Header, Heading, Mode, OgDescription, Schema, TableOfContent, UpNext,
+};
 
 pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context, JsValue> {
     ctx.load_org_meta().await?;
@@ -37,7 +39,7 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
                 (Heading { title: &meta.title, subtitle: Some(&subtitle) })
                 (TableOfContent { org: &org })
                 (Article {
-                    mode: if is_amp { Mode::Amp } else { Mode::Html },
+                    mode: if cfg!(feature = "worker") && is_amp { Mode::Amp } else { Mode::Html },
                     org: &org,
                     ctx: &ctx
                 })
@@ -46,25 +48,27 @@ pub async fn post(mut ctx: Context, slug: &str, is_amp: bool) -> Result<Context,
             (Footer)
         };
 
-        ctx.content = if is_amp {
-            Content::Amp {
-                status: 200,
-                head: html! {
-                    title { (meta.title)"☆Solomon" }
-                    link rel="canonical" href=(meta.slug);
-                    script type="application/ld+json" { (Schema { meta }) }
-                },
-                body,
+        let head = html! {
+            title { (meta.title)"☆Solomon" }
+            meta property="og:title" content={ (meta.title)"☆Solomon" };
+            meta property="og:type" content="article";
+            meta property="og:image" content={ (ctx.base_url)"/amp-image.jpg"};
+            meta property="og:url" content={ (ctx.base_url)(meta.slug)};
+            (OgDescription { org: &org })
+            @if cfg!(feature = "worker") && is_amp {
+                link rel="canonical" href={ (ctx.base_url)(meta.slug)};
+                script type="application/ld+json" { (Schema { ctx: &ctx, meta }) }
+            } @else {
+                link rel="amphtml" href={ (ctx.base_url)"/amp"(meta.slug) };
             }
+        };
+
+        let status = 200;
+
+        ctx.content = if cfg!(feature = "worker") && is_amp {
+            Content::Amp { status, head, body }
         } else {
-            Content::Html {
-                status: 200,
-                head: html! {
-                    title { (meta.title)"☆Solomon" }
-                    link rel="amphtml" href={ "/amp"(meta.slug) };
-                },
-                body,
-            }
+            Content::Html { status, head, body }
         };
 
         Ok(ctx)

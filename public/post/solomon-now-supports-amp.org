@@ -5,7 +5,7 @@
 #+TAGS: amp blog
 
 #+BEGIN_QUOTE
-Solomon 现已支持 AMP。你可以访问[[https://blog.poi.cat/amp/solomon-now-supports-amp.html][本篇文章的 AMP 版本]]体验。 :)
+Solomon 现已支持 AMP。你可以访问[[/amp/post/solomon-now-supports-amp][本篇文章的 AMP 版本]]体验。 :)
 #+END_QUOTE
 
 * AMP 是什么？
