@@ -70,7 +70,6 @@ impl<'a> Render for Article<'a> {
                                 },
                                 Mode::Amp => {
                                     amp-img style=[style]
-                                        loading="lazy"
                                         src={ (self.ctx.base_url)(path) }
                                         width=[width]
                                         height=[height]
