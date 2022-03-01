@@ -35,6 +35,11 @@ export const html = (ctx: wasm_bindgen.Context): Response => {
   </head>
   <body class="root">
     ${ctx.get_body()}
+    ${
+      base === "https://blog.poi.cat/"
+        ? `<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3c4b6155b33b47bda87cfbe4184a722e"}'></script>`
+        : ""
+    }
   </body>
 </html>`,
     {
