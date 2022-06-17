@@ -14,7 +14,7 @@
   ],
   "devDependencies": {
     "image-size": "^1.0.1",
-    "undici": "^4.13.0",
+    "undici": "^5.5.1",
     "zx": "^4.3.0"
   }
 }
